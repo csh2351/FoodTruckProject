@@ -62,7 +62,9 @@ public class TruckDao {
 				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setTruckgeolacation(rs.getString("truck_geoloaction"));
-				truck.setTruckgeolacation(rs.getString("truck_category"));
+				truck.setTruckCategory(rs.getString("truck_category"));
+				truck.setMemberPk(rs.getInt("member_pk"));
+				truck.setTruckStar(rs.getInt("truck_star"));
 				list.add(truck);
 			}
 		} catch (SQLException e) {
@@ -90,7 +92,23 @@ public class TruckDao {
 			rs=pstmp.executeQuery();
 			while(rs.next()){
 				Truck truck=new Truck();
-				//구현~
+				truck.setTruckPk(rs.getInt("truck_pk"));
+				truck.setTruckName(rs.getString("truck_name"));
+				truck.setTruckOriginalImage(rs.getString("truck_original_image"));
+				truck.setTruckRenameImage(rs.getString("truck_rename_image"));
+				truck.setTrucklocation(rs.getString("truck_location"));
+				truck.setTruckInfoName(rs.getString("truck_info_name"));
+				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
+				truck.setTruckContent(rs.getString("truck_content"));
+				truck.setTruckStatus(rs.getString("truck_status"));
+				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
+				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckApprove(rs.getString("truck_approve"));
+				truck.setTruckgeolacation(rs.getString("truck_geoloaction"));
+				truck.setTruckCategory(rs.getString("truck_category"));
+				truck.setMemberPk(rs.getInt("member_pk"));
+				truck.setTruckStar(rs.getInt("truck_star"));
+				list.add(truck);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -112,11 +130,29 @@ public class TruckDao {
 			rs=pstmp.executeQuery();
 			while(rs.next()){
 				Truck truck=new Truck();
-				//구현~
+				truck.setTruckPk(rs.getInt("truck_pk"));
+				truck.setTruckName(rs.getString("truck_name"));
+				truck.setTruckOriginalImage(rs.getString("truck_original_image"));
+				truck.setTruckRenameImage(rs.getString("truck_rename_image"));
+				truck.setTrucklocation(rs.getString("truck_location"));
+				truck.setTruckInfoName(rs.getString("truck_info_name"));
+				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
+				truck.setTruckContent(rs.getString("truck_content"));
+				truck.setTruckStatus(rs.getString("truck_status"));
+				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
+				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckApprove(rs.getString("truck_approve"));
+				truck.setTruckgeolacation(rs.getString("truck_geoloaction"));
+				truck.setTruckCategory(rs.getString("truck_category"));
+				truck.setMemberPk(rs.getInt("member_pk"));
+				truck.setTruckStar(rs.getInt("truck_star"));
+				list.add(truck);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmp);
 		}
 		return list;
 		}

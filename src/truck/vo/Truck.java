@@ -21,6 +21,7 @@ private Date truckCloseTime;
 private String truckApprove;
 private String truckgeolacation;
 private String truckCategory;
+private int	truckStar;
 private int memberPk;
 
 
@@ -29,7 +30,7 @@ public Truck() {
 
 public Truck(int truckPk, String truckName, String truckOriginalImage, String truckRenameImage, String trucklocation,
 		String truckInfoName, int truckInfoRegisterNumber, String truckContent, String truckStatus, Date truckOpenTime,
-		Date truckCloseTime, String truckApprove, String truckgeolacation, String truckCategory, int memberPk) {
+		Date truckCloseTime, String truckApprove, String truckgeolacation, String truckCategory, int memberPk, int truckStar) {
 	super();
 	this.truckPk = truckPk;
 	this.truckName = truckName;
@@ -46,6 +47,7 @@ public Truck(int truckPk, String truckName, String truckOriginalImage, String tr
 	this.truckgeolacation = truckgeolacation;
 	this.truckCategory = truckCategory;
 	this.memberPk = memberPk;
+	this.setTruckStar(truckStar);
 }
 public int getTruckPk() {
 	return truckPk;
@@ -145,6 +147,14 @@ public String toString() {
 			+ ", truckStatus=" + truckStatus + ", truckOpenTime=" + truckOpenTime + ", truckCloseTime=" + truckCloseTime
 			+ ", truckApprove=" + truckApprove + ", truckgeolacation=" + truckgeolacation + ", truckCategory="
 			+ truckCategory + ", memberPk=" + memberPk + "]";
+}
+
+public int getTruckStar() {
+	return truckStar;
+}
+
+public void setTruckStar(int truckStar) {
+	this.truckStar = truckStar;
 }
 
 }

@@ -30,7 +30,7 @@ public class TruckListServlet extends HttpServlet {
 		List<Truck> list=null;
 		
 		String view="/views/truck/truckList.jsp";
-		String selectSort=request.getParameter("selectSort");
+		String selectSort=request.getParameter("select_sort");
 		if (selectSort!=null) {
 			switch (selectSort) {
 			case "grade": 
@@ -45,7 +45,8 @@ public class TruckListServlet extends HttpServlet {
 				list=new TruckService().selectByReviewList();
 				break;
 			}
-			System.out.println(selectSort);
+			System.out.println("영업순:"+selectSort);
+			System.out.println(list);
 			request.setAttribute("selectlist", list);
 		}
 		
@@ -53,8 +54,8 @@ public class TruckListServlet extends HttpServlet {
 			list=new TruckService().selectAllLitst();
 		}
 			if(list.size()>0){
-				System.out.println(list);
-				request.setAttribute("basiclist", list);
+				System.out.println("ㄱ본"+list);
+				request.setAttribute("basicList", list);
 			}
 			else{
 				view="/views/common/msg.jsp";
@@ -63,7 +64,7 @@ public class TruckListServlet extends HttpServlet {
 			}
 		//dao갔따오는 형식으로~
 		
-		request.getRequestDispatcher("/views/truck/truckList.jsp").forward(request, response);
+		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

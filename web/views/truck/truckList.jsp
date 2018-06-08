@@ -1,9 +1,11 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="truck.vo.Truck"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
     
-<%//서블릿에서 ㄹ %>
-
-			<%for(int i=0; i<10; i++){ %>
+<% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("basicList");%>
+			<%for(int i=0; i<list.size(); i++){%>
 				<!--클릭리스너 만들기-->
 				<li class='store_list' value="1">
 					<div class="col-sm-6 col-md-4 padding store_list">
@@ -13,13 +15,13 @@
 							</div>
 
 							<div class="col-xs-8" align="left">
-								<span class='truck_name'>점포명</span>
+								<span class='truck_name'><%=list.get(i).getTruckName()%></span>
 							</div>
 							<div class="col-xs-4">
 								<!--고정값으로 할수있는 checkd찾기-->
 								<div class="onoffswitch">
 									<input type="checkbox" name="onoffswitch"
-										class="onoffswitch-checkbox" id="myonoffswitch" <%//if문으로 구현. %>>
+										class="onoffswitch-checkbox" id="myonoffswitch" <%=(list.get(i).getTruckStatus()).equals("t")?"CHECKED":""%>>
 																								<!--checked  -->
 									<label class="onoffswitch-label" for="myonoffswitch"> <span
 										class="onoffswitch-inner"></span> <span
@@ -40,9 +42,10 @@
                     
 							<div class="col-xs-7">
 								<br>
-								<p>위치</p>
-								<p>평점</p>
-								<p>최소금액</p>
+								<p>위치: <%=list.get(i).getTrucklocation()%></p>
+								<p>평점: <%=list.get(i).getTruckStar()%></p>
+								<p>최소금액: 25000원</p>
+								<p>업종: <%=list .get(i).getTruckCategory()%></p>
 							</div>
 							<div class='col-xs-4'></div>
 							<div class='col-xs-4'></div>
