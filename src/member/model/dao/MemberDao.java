@@ -80,7 +80,7 @@ public class MemberDao {
 				member.setMemberId(rs.getString("member_id"));
 				member.setMemberPw(rs.getString("member_pw"));
 				member.setMemberName(rs.getString("member_name"));
-				member.setMemberPhone(rs.getInt("member_phone"));
+				member.setMemberPhone(rs.getString("member_phone"));
 				member.setMemberEmail(rs.getString("member_email"));
 				member.setMemberAddress(rs.getString("member_address"));
 				member.setMemberLevel(rs.getInt("member_level"));
