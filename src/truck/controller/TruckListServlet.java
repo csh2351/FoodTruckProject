@@ -47,15 +47,14 @@ public class TruckListServlet extends HttpServlet {
 			}
 			System.out.println("영업순:"+selectSort);
 			System.out.println(list);
-			request.setAttribute("selectlist", list);
+			request.setAttribute("list", list);
 		}
 		
 		else{
 			list=new TruckService().selectAllLitst();
 		}
 			if(list.size()>0){
-				System.out.println("ㄱ본"+list);
-				request.setAttribute("basicList", list);
+				request.setAttribute("List", list);
 			}
 			else{
 				view="/views/common/msg.jsp";
