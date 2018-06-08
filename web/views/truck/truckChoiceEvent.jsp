@@ -43,6 +43,7 @@
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
  
+ 	<br>
    <section>
     <div class="container">
 

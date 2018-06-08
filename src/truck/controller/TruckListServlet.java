@@ -19,6 +19,7 @@ public class TruckListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		//dao갔따오는 형식으로~
 		request.getRequestDispatcher("/views/truck/truckList.jsp").forward(request, response);
 	}

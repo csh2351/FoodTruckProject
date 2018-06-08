@@ -32,12 +32,12 @@
 				//data변수를 명수하지않아도 알아서 받아서 넣는다.
 				//readyState:4번
 				//sataus:200일때 작용한다.
+				$('#store_ul').remove();
 				$('#store_ul').html(data);
 				//text는 태그를 인식하지못한다.
 				//html로 하면 태그를인식해 파싱처리해서인식한다.
 			}
 		});
-			this.form.submit();
 		});
 	})
 </script>
@@ -48,7 +48,7 @@
 		<div class="row" id='row_padding'>
 			<div class="col-md-12">
 				<div class="form-group nav navbar-nav">
-					<form name="sort_group" id="sort_group" action=	"<%=request.getContextPath()%>/truckSelectOne">
+					<form name="sort_group" id="sort_group" action=	"<%=request.getContextPath()%>/truckList">
 					<input type="hidden" name="sort_option" value="">
 					<select name="select_sort" id="select_sort">
 						<option value='1' >평점순</option>
@@ -62,6 +62,7 @@
 		
 		<div class='row'>
 		<ul id='store_ul' class='store_ul'>
+		
 		</ul>
 		
 		</div>
