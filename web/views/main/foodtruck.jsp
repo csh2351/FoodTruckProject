@@ -25,14 +25,15 @@
 		$('#select_sort').on('change', function(e) {
 		 $.ajax({
 				//xml requset가 자동으로 생성된다고 볼수있다.
-			url:this.form.submit(),
+			url:"<%=request.getContextPath()%>/truckList",
 			type : "post",
+			data :{"select_sort":$("#select_sort").val()},
 			dataType : "html",
 			success : function(data) { //success완료가됬을떄 별도의 
 				//data변수를 명수하지않아도 알아서 받아서 넣는다.
 				//readyState:4번
 				//sataus:200일때 작용한다.
-				$('#store_ul').remove();
+				//$('#store_ul').remove();
 				$('#store_ul').html(data);
 				//text는 태그를 인식하지못한다.
 				//html로 하면 태그를인식해 파싱처리해서인식한다.
@@ -48,12 +49,12 @@
 		<div class="row" id='row_padding'>
 			<div class="col-md-12">
 				<div class="form-group nav navbar-nav">
-					<form name="sort_group" id="sort_group" action=	"<%=request.getContextPath()%>/truckList">
+					<form name="sort_group" id="sort_group" action=	"#">
 					<input type="hidden" name="sort_option" value="">
-					<select name="select_sort" id="select_sort">
-						<option value='1' >평점순</option>
-						<option value='2'>영업순</option>
-						<option value='3'>리뷰순</option>
+					<select name="selectSort" id="select_sort">
+						<option value='grade' >평점순</option>
+						<option value='onOff'>영업순</option>
+						<option value='review'>리뷰순</option>
 					</select>
 				</form>
 				</div>
