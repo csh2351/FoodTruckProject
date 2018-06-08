@@ -19,20 +19,20 @@ public class TruckService {
 		return list;
 	}
 	
-	public List<Truck> selectBygradeList(String selectSort) {
-		List<Truck> list=new TruckDao().selectBygradeList(conn,selectSort);
+	public List<Truck> selectBygradeList() {
+		List<Truck> list=new TruckDao().selectBygradeList(conn);
 		close(conn);
 		return list;
 	}
 	
-	public List<Truck> selectByonOffList(String selectSort) {
-		List<Truck> list=new TruckDao().selectByonOffList(conn,selectSort);
+	public List<Truck> selectByonOffList() {
+		List<Truck> list=new TruckDao().selectByonOffList(conn);
 		close(conn);
 		return list;
 	}
 	
-	public List<Truck> selectByReviewList(String selectSort) {
-		List<Truck> list=new TruckDao().selectByReviewList(conn,selectSort);
+	public List<Truck> selectByReviewList() {
+		List<Truck> list=new TruckDao().selectByReviewList(conn);
 		close(conn);
 		return list;
 	}

@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class Truck implements Serializable{
 
-	private static final long serialVersionUID = 1396658688017710173L;
+	private static final long serialVersionUID = 1967483248967652055L;
 	
 private int truckPk;
 private String truckName;
@@ -21,14 +21,16 @@ private Date truckCloseTime;
 private String truckApprove;
 private String truckgeolacation;
 private String truckCategory;
+private int memberPk;
+
 
 public Truck() {
-	// TODO Auto-generated constructor stub
 }
 
 public Truck(int truckPk, String truckName, String truckOriginalImage, String truckRenameImage, String trucklocation,
 		String truckInfoName, int truckInfoRegisterNumber, String truckContent, String truckStatus, Date truckOpenTime,
-		Date truckCloseTime, String truckApprove, String truckgeolacation, String truckCategory) {
+		Date truckCloseTime, String truckApprove, String truckgeolacation, String truckCategory, int memberPk) {
+	super();
 	this.truckPk = truckPk;
 	this.truckName = truckName;
 	this.truckOriginalImage = truckOriginalImage;
@@ -43,6 +45,7 @@ public Truck(int truckPk, String truckName, String truckOriginalImage, String tr
 	this.truckApprove = truckApprove;
 	this.truckgeolacation = truckgeolacation;
 	this.truckCategory = truckCategory;
+	this.memberPk = memberPk;
 }
 public int getTruckPk() {
 	return truckPk;
@@ -128,6 +131,12 @@ public String getTruckCategory() {
 public void setTruckCategory(String truckCategory) {
 	this.truckCategory = truckCategory;
 }
+public int getMemberPk() {
+	return memberPk;
+}
+public void setMemberPk(int memberPk) {
+	this.memberPk = memberPk;
+}
 @Override
 public String toString() {
 	return "Truck [truckPk=" + truckPk + ", truckName=" + truckName + ", truckOriginalImage=" + truckOriginalImage
@@ -135,6 +144,7 @@ public String toString() {
 			+ truckInfoName + ", truckInfoRegisterNumber=" + truckInfoRegisterNumber + ", truckContent=" + truckContent
 			+ ", truckStatus=" + truckStatus + ", truckOpenTime=" + truckOpenTime + ", truckCloseTime=" + truckCloseTime
 			+ ", truckApprove=" + truckApprove + ", truckgeolacation=" + truckgeolacation + ", truckCategory="
-			+ truckCategory + "]";
+			+ truckCategory + ", memberPk=" + memberPk + "]";
 }
+
 }

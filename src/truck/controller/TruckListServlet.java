@@ -27,22 +27,22 @@ public class TruckListServlet extends HttpServlet {
 		
 		//기본리스트
 		
-		/*List<Truck> list=null;
+		List<Truck> list=null;
 		
 		String view="/views/truck/truckList.jsp";
 		String selectSort=request.getParameter("selectSort");
 		if (selectSort!=null) {
 			switch (selectSort) {
 			case "grade": 
-				list=new TruckService().selectBygradeList(selectSort);
+				list=new TruckService().selectBygradeList();
 				break;
 
 			case "onOff": 
-				list=new TruckService().selectByonOffList(selectSort);
+				list=new TruckService().selectByonOffList();
 				break;
 				
 			case "review": 
-				list=new TruckService().selectByReviewList(selectSort);
+				list=new TruckService().selectByReviewList();
 				break;
 			}
 			System.out.println(selectSort);
@@ -53,6 +53,7 @@ public class TruckListServlet extends HttpServlet {
 			list=new TruckService().selectAllLitst();
 		}
 			if(list.size()>0){
+				System.out.println(list);
 				request.setAttribute("basiclist", list);
 			}
 			else{
@@ -60,7 +61,7 @@ public class TruckListServlet extends HttpServlet {
 				request.setAttribute("msg", "리스트를 불러올수없습니다.[관리자문의]");
 				request.setAttribute("loc", "/");
 			}
-		//dao갔따오는 형식으로~*/
+		//dao갔따오는 형식으로~
 		
 		request.getRequestDispatcher("/views/truck/truckList.jsp").forward(request, response);
 	}
