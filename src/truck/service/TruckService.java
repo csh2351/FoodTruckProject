@@ -37,4 +37,10 @@ public class TruckService {
 		return list;
 	}
 
+	public Truck selectOne(int truckPk) {
+		Truck truck = new TruckDao().selectOne(conn,truckPk);
+		close(conn);
+		return truck;
+	}
+
 }

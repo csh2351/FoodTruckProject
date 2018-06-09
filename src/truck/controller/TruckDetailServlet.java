@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import truck.service.TruckService;
+import truck.vo.Truck;
+
 /**
  * Servlet implementation class TruckDetailServlet
  */
@@ -26,8 +29,10 @@ public class TruckDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int truck_Pk=Integer.parseInt(request.getParameter("truck_Pk"));
-		System.out.println(truck_Pk);
+		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+		Truck truck = new TruckService().selectOne(truckPk);
+		request.setAttribute("truckSelectOne", truck);
+		
 		//sevice,dao로직짜서 객체받아오기
 		//받아온객체 jsp로보내기
 		request.getRequestDispatcher("/views/truck/truckDetail.jsp").forward(request, response);

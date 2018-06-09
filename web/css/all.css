@@ -83,3 +83,12 @@ section ul {
           height: 100%;
         }
       }
+      
+      
+      /* 구글 맵 상세정보 css*/
+        #googlemap {
+      width: 800px;
+      height: 550px;
+      border: 1px solid black;
+    }
+      

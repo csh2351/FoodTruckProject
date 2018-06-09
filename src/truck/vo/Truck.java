@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Truck implements Serializable{
+	
+	public Truck() {
+		super();
+	}
 
 	private static final long serialVersionUID = 1967483248967652055L;
 	
@@ -19,18 +23,22 @@ private String truckStatus;
 private Date truckOpenTime;
 private Date truckCloseTime;
 private String truckApprove;
-private String truckgeolacation;
-private String truckCategory;
-private int	truckStar;
-private int memberPk;
-
-
-public Truck() {
+private String truckGeolacation;
+private String truckHoiliday;
+@Override
+public String toString() {
+	return "Truck [truckPk=" + truckPk + ", truckName=" + truckName + ", truckOriginalImage=" + truckOriginalImage
+			+ ", truckRenameImage=" + truckRenameImage + ", trucklocation=" + trucklocation + ", truckInfoName="
+			+ truckInfoName + ", truckInfoRegisterNumber=" + truckInfoRegisterNumber + ", truckContent=" + truckContent
+			+ ", truckStatus=" + truckStatus + ", truckOpenTime=" + truckOpenTime + ", truckCloseTime=" + truckCloseTime
+			+ ", truckApprove=" + truckApprove + ", truckGeolacation=" + truckGeolacation + ", truckHoiliday="
+			+ truckHoiliday + ", truckCategory=" + truckCategory + ", truckStar=" + truckStar + ", memberPk=" + memberPk
+			+ "]";
 }
-
 public Truck(int truckPk, String truckName, String truckOriginalImage, String truckRenameImage, String trucklocation,
 		String truckInfoName, int truckInfoRegisterNumber, String truckContent, String truckStatus, Date truckOpenTime,
-		Date truckCloseTime, String truckApprove, String truckgeolacation, String truckCategory, int memberPk, int truckStar) {
+		Date truckCloseTime, String truckApprove, String truckGeolacation, String truckHoiliday, String truckCategory,
+		int truckStar, int memberPk) {
 	super();
 	this.truckPk = truckPk;
 	this.truckName = truckName;
@@ -44,11 +52,15 @@ public Truck(int truckPk, String truckName, String truckOriginalImage, String tr
 	this.truckOpenTime = truckOpenTime;
 	this.truckCloseTime = truckCloseTime;
 	this.truckApprove = truckApprove;
-	this.truckgeolacation = truckgeolacation;
+	this.truckGeolacation = truckGeolacation;
+	this.truckHoiliday = truckHoiliday;
 	this.truckCategory = truckCategory;
+	this.truckStar = truckStar;
 	this.memberPk = memberPk;
-	this.setTruckStar(truckStar);
 }
+private String truckCategory;
+private int	truckStar;
+private int memberPk;
 public int getTruckPk() {
 	return truckPk;
 }
@@ -121,11 +133,17 @@ public String getTruckApprove() {
 public void setTruckApprove(String truckApprove) {
 	this.truckApprove = truckApprove;
 }
-public String getTruckgeolacation() {
-	return truckgeolacation;
+public String getTruckGeolacation() {
+	return truckGeolacation;
 }
-public void setTruckgeolacation(String truckgeolacation) {
-	this.truckgeolacation = truckgeolacation;
+public void setTruckGeolacation(String truckGeolacation) {
+	this.truckGeolacation = truckGeolacation;
+}
+public String getTruckHoiliday() {
+	return truckHoiliday;
+}
+public void setTruckHoiliday(String truckHoiliday) {
+	this.truckHoiliday = truckHoiliday;
 }
 public String getTruckCategory() {
 	return truckCategory;
@@ -133,28 +151,20 @@ public String getTruckCategory() {
 public void setTruckCategory(String truckCategory) {
 	this.truckCategory = truckCategory;
 }
+public int getTruckStar() {
+	return truckStar;
+}
+public void setTruckStar(int truckStar) {
+	this.truckStar = truckStar;
+}
 public int getMemberPk() {
 	return memberPk;
 }
 public void setMemberPk(int memberPk) {
 	this.memberPk = memberPk;
 }
-@Override
-public String toString() {
-	return "Truck [truckPk=" + truckPk + ", truckName=" + truckName + ", truckOriginalImage=" + truckOriginalImage
-			+ ", truckRenameImage=" + truckRenameImage + ", trucklocation=" + trucklocation + ", truckInfoName="
-			+ truckInfoName + ", truckInfoRegisterNumber=" + truckInfoRegisterNumber + ", truckContent=" + truckContent
-			+ ", truckStatus=" + truckStatus + ", truckOpenTime=" + truckOpenTime + ", truckCloseTime=" + truckCloseTime
-			+ ", truckApprove=" + truckApprove + ", truckgeolacation=" + truckgeolacation + ", truckCategory="
-			+ truckCategory + ", memberPk=" + memberPk + "]";
-}
-
-public int getTruckStar() {
-	return truckStar;
-}
-
-public void setTruckStar(int truckStar) {
-	this.truckStar = truckStar;
+public static long getSerialversionuid() {
+	return serialVersionUID;
 }
 
 }

@@ -11,7 +11,8 @@
 $(function() {
 	$.ajax({
 		url:"<%=request.getContextPath()%>/truckDetail",
-		data:{truck_Pk:"1"},	//쏴주기
+		data:{truckPk:"1"},	//쏴주기 
+		// truck_Pk 에서  truckPk로 통일
 		type : "get", 
 		success: function(data) {
 			$("#truckDetail").html(data);

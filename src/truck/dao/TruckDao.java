@@ -142,7 +142,8 @@ public class TruckDao {
 				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
 				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
-				truck.setTruckgeolacation(rs.getString("truck_geoloaction"));
+				truck.setTruckGeolacation(rs.getString("truck_geoloaction"));
+				truck.setTruckHoiliday(rs.getString("truck_holiday"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setMemberPk(rs.getInt("member_pk"));
 				truck.setTruckStar(rs.getInt("truck_star"));
@@ -178,6 +179,46 @@ public class TruckDao {
 		}
 		return list;
 		}
+
+
+
+
+
+	public Truck selectOne(Connection conn, int truckPk) {
+		Truck truck =new Truck();
+		try {
+			pstmp=conn.prepareStatement(prop.getProperty("selectOne"));
+			pstmp.setInt(1, truckPk);
+			rs=pstmp.executeQuery();
+			while(rs.next()){
+				
+				truck.setTruckPk(rs.getInt("truck_pk"));
+				truck.setTruckName(rs.getString("truck_name"));
+				truck.setTruckOriginalImage(rs.getString("truck_original_image"));
+				truck.setTruckRenameImage(rs.getString("truck_rename_image"));
+				truck.setTrucklocation(rs.getString("truck_location"));
+				truck.setTruckInfoName(rs.getString("truck_info_name"));
+				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
+				truck.setTruckContent(rs.getString("truck_content"));
+				truck.setTruckStatus(rs.getString("truck_status"));
+				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
+				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckApprove(rs.getString("truck_approve"));
+				truck.setTruckGeolacation(rs.getString("truck_geoloaction"));
+				truck.setTruckHoiliday(rs.getString("truck_holiday"));
+				truck.setTruckCategory(rs.getString("truck_category"));
+				truck.setMemberPk(rs.getInt("member_pk"));
+				truck.setTruckStar(rs.getInt("truck_star"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmp);
+		}
+		return truck;
+	}
 	
 
 }
