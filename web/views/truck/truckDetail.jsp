@@ -13,7 +13,7 @@
 
  			 var geocoder = new google.maps.Geocoder;
   			 var infowindow = new google.maps.InfoWindow;
-    		 var latlngStr = <%=truck.getTruckGeolocation()%>;
+    		 var latlngStr = <%=truck.getTruckGeolacation()%>;
     		 var latitude = latlngStr.subString(0,indexof(","));
     		 var logitude = latlngStr.subString(indexof(","));
     	     var latlng = {
@@ -54,16 +54,13 @@
 			<div id="googlemap"></div>
 			<br> <br> <br> <br>
 			<p id="address">
-				상세 위치 :
-				<%=truck.getTruckLocation()%></p>
+				상세 위치 : <%=truck.getTrucklocation() %></p>
 			<br>
 			<p id="oponTime">
-				오픈시간 :
-				<%=truck.getTruckOpenTime()%></p>
+				오픈시간 : <%=truck.getTruckOpenTime()%></p>
 			<br>
 			<p id="holiday">
-				휴무일 :
-				<%=truck.getTruckHoliday()%></p>
+				휴무일 : <%=truck.getTruckHoiliday()%></p>
 
 		</div>
 	</div>

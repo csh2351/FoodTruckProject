@@ -61,7 +61,7 @@ public class TruckDao {
 				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
 				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
-				truck.setTruckgeolacation(rs.getString("truck_geoloaction"));
+				truck.setTruckGeolacation(rs.getString("truck_geolocation"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setMemberPk(rs.getInt("member_pk"));
 				truck.setTruckStar(rs.getInt("truck_star"));
@@ -104,7 +104,7 @@ public class TruckDao {
 				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
 				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
-				truck.setTruckgeolacation(rs.getString("truck_geoloaction"));
+				truck.setTruckGeolacation(rs.getString("truck_geoloaction"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setMemberPk(rs.getInt("member_pk"));
 				truck.setTruckStar(rs.getInt("truck_star"));
@@ -205,7 +205,7 @@ public class TruckDao {
 				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setTruckGeolacation(rs.getString("truck_geoloaction"));
-				truck.setTruckHoiliday(rs.getString("truck_holiday"));
+//				truck.setTruckHoiliday(rs.getString("truck_holiday"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setMemberPk(rs.getInt("member_pk"));
 				truck.setTruckStar(rs.getInt("truck_star"));
