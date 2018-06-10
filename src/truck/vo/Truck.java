@@ -25,9 +25,16 @@ public class Truck implements Serializable{
 	private String truckCategory;
 	private int truckStar;
 	private int memberPk;
-	private int latitude;
+	private int latitude;	
 	private int logitude;
 	private String truckHoliday;
+	private int truckPrice;
+	public int getTruckPrice() {
+		return truckPrice;
+	}
+	public void setTruckPrice(int truckPrice) {
+		this.truckPrice = truckPrice;
+	}
 	public int getTruckPk() {
 		return truckPk;
 	}
