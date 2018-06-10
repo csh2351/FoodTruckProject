@@ -77,8 +77,9 @@ section ul {
       
       /* 구글 맵 상세정보 css*/
         #googlemap {
-      width: 800px;
-      height: 550px;
+    	 width: 100%;
+ 	  	 height: 200px;
+      
       border: 1px solid black;
     }
       

@@ -37,6 +37,7 @@ public class TruckDetailServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		//sevice,dao로직짜서 객체받아오기
 		//받아온객체 jsp로보내기
+		System.out.println(truck.getLatitude());
 		request.getRequestDispatcher("/views/truck/truckDetail.jsp").forward(request, response);
 	}
 

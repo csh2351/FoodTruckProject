@@ -3,11 +3,14 @@
 	pageEncoding="UTF-8"%>
 <%@page import="truck.vo.Truck"%>
 <% Truck truck =(Truck)request.getAttribute("truckSelectOne");%>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDmfjiMcgfcCVI6QKs42Kk4AvHUVdOQtso"></script>
+
 
 <script>
     // 맵에 찍어주기
    $(function geocodeLatLng() {
+	   		var mapOptions = {
+	   			      zoom: 17
+	   		};
 		  	 var map = new google.maps.Map(document.getElementById('googlemap'), mapOptions);
 	 //googlemap div에 구글 맵을 붙여쥼
 
@@ -15,8 +18,9 @@
   			 var infowindow = new google.maps.InfoWindow;
     	
     		 var latitude = <%=truck.getLatitude()%>;
-    		 var logitude = <%=truck.getLogitude()%>;
-    		 
+    		 var longitude = <%=truck.getLogitude()%>;
+    		  var latlngStr = latitude + "," + longitude;
+    			$('#holiday').html(<%=truck.getLatitude()%>);
     	     var latlng = {
 		        lat: latitude,
 		        lng: longitude
@@ -42,7 +46,7 @@
 		        } //  오류표시
       });
     });
-
+	
   </script>
 
 

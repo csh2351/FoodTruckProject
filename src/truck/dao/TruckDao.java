@@ -64,7 +64,7 @@ public class TruckDao {
 			truck.setLatitude(rs.getInt("truck_latitude"));
 			truck.setLogitude(rs.getInt("truck_logitude"));
 				truck.setTruckStar(rs.getInt("truck_star"));
-			truck.setTruckPrice(rs.getInt("truk_price"));
+			truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("member_pk"));
@@ -111,8 +111,8 @@ public class TruckDao {
 				truck.setLogitude(rs.getInt("truck_logitude"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setTruckStar(rs.getInt("truck_star"));
-				truck.setTruckPrice(rs.getInt("truk_price"));
-				truck.setTruckHoiliday(rs.getString("truck_holiday"));
+				truck.setTruckPrice(rs.getInt("truck_price"));
+				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("memer_pk"));
 				list.add(truck);
 			}
@@ -152,8 +152,8 @@ public class TruckDao {
 				truck.setLogitude(rs.getInt("truck_logitude"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setTruckStar(rs.getInt("truck_star"));
-				truck.setTruckPrice(rs.getInt("truk_price"));
-				truck.setTruckHoiliday(rs.getString("truck_holiday"));
+				truck.setTruckPrice(rs.getInt("truck_price"));
+				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("memer_pk"));
 				list.add(truck);
 			}
@@ -216,8 +216,8 @@ public class TruckDao {
 				truck.setLogitude(rs.getInt("truck_logitude"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setTruckStar(rs.getInt("truck_star"));
-				truck.setTruckPrice(rs.getInt("truk_price"));
-				truck.setTruckHoiliday(rs.getString("truck_holiday"));
+				truck.setTruckPrice(rs.getInt("truck_price"));
+				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("memer_pk"));
 				
 			}

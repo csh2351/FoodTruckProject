@@ -49,7 +49,7 @@
 
 <script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
 <script src='js/bootstrap.js'></script>
-
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDmfjiMcgfcCVI6QKs42Kk4AvHUVdOQtso"></script>
 <title>Main</title>
 
 </head>
