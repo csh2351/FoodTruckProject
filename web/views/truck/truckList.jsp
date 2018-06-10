@@ -7,13 +7,14 @@
 <% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("List");
 	//String saveDir=(String)request.getAttribute("saveDir");%>
   
-  <%String saveDir=application.getRealPath("/uploadFiles/truck"); %>
+  <%//String saveDir=application.getRealPath("/uploadFiles/truck"); %>
   
 			<%for(int i=0; i<list.size(); i++){%>
 				<!--클릭리스너 만들기-->
-  <script type="text/javascript">
 
-  </script>
+
+
+</style>
 				<li class='store_list' value="1">
 					<div class="col-sm-6 col-md-4 padding store_list">
 						<div class="thumbnail thumnail-botton">
@@ -40,8 +41,8 @@
 
 							</div>
 							<div class="col-xs-5">
-								<br> <img src='<%=saveDir+"/"+list.get(i).getTruckOriginalImage()%>'
-									alt="" class='img_size'>
+								<br> <img class="truck_img_size"src="images/truck/<%=list.get(i).getTruckOriginalImage()%>"
+									alt=""  width=130px; height=130px;>
 									
 							</div>
 							
