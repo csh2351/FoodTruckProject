@@ -9,7 +9,7 @@
                   <div class="row">
                     <div class="col-md-4 panel-1">
                       <p id='truck-title-p'>점포명</p>
-                      <a href="#" data-toggle="modal" data-target=".pop-up-1"><img class='trcuk-img img-responsive center-block' src="http://proxyprivat.com/images/noimage.jpeg" alt="" width="150" height="150"></a>
+                      <a href="#" data-toggle="modal" data-target=".pop-up-1"><img class='trcuk-img img-responsive center-block' src="file:///C:/semi/semiproject/web/uploadFiles/truck/foodtruck7.jpeg" alt="" width="150" height="150"></a>
                       <br>
                       <br>
                     </div>

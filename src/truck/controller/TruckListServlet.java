@@ -25,6 +25,13 @@ public class TruckListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		//이미지파일 경로가져오기
+		String saveDir = getServletContext().getRealPath("/uploadFiles/truck");
+		System.out.println("saveDir"+saveDir);
+		
+		
+		
 		//기본리스트
 		
 		List<Truck> list=null;
@@ -33,6 +40,11 @@ public class TruckListServlet extends HttpServlet {
 		String selectSort=request.getParameter("select_sort");
 		if (selectSort!=null) {
 			switch (selectSort) {
+
+			case "basic": 
+				list=new TruckService().selectAllLitst();
+				break;
+				
 			case "grade": 
 				list=new TruckService().selectBygradeList();
 				break;
@@ -62,7 +74,7 @@ public class TruckListServlet extends HttpServlet {
 				request.setAttribute("loc", "/");
 			}
 		//dao갔따오는 형식으로~
-		
+		request.setAttribute("saveDir", saveDir);
 		request.getRequestDispatcher(view).forward(request, response);
 	}
 

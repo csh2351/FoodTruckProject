@@ -51,6 +51,7 @@
 					<form name="sort_group" id="sort_group" action=	"#">
 					<input type="hidden" name="sort_option" value="">
 					<select name="selectSort" id="select_sort">
+						<option value='basic' >기본</option>
 						<option value='grade' >평점순</option>
 						<option value='onOff'>영업순</option>
 						<option value='review'>리뷰순</option>

@@ -4,7 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
     
-<% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("List");%>
+<% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("List");
+	//String saveDir=(String)request.getAttribute("saveDir");%>
+  
+  <%String saveDir=application.getRealPath("/uploadFiles/truck"); %>
 			<%for(int i=0; i<list.size(); i++){%>
 				<!--클릭리스너 만들기-->
 				<li class='store_list' value="1">
@@ -33,7 +36,7 @@
 
 							</div>
 							<div class="col-xs-5">
-								<br> <img src="http://proxyprivat.com/images/noimage.jpeg"
+								<br> <img src='//uploadFiles//truck//<%=list.get(i).getTruckOriginalImage()%>'
 									alt="" class='img_size'>
 									
 							</div>
