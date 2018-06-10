@@ -32,7 +32,9 @@ public class TruckDetailServlet extends HttpServlet {
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
 		Truck truck = new TruckService().selectOne(truckPk);
 		request.setAttribute("truckSelectOne", truck);
-		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		//sevice,dao로직짜서 객체받아오기
 		//받아온객체 jsp로보내기
 		request.getRequestDispatcher("/views/truck/truckDetail.jsp").forward(request, response);

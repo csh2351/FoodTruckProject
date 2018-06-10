@@ -4,7 +4,7 @@
 <% Truck truck =(Truck)request.getAttribute("truckSelectOne");%>
 <script type="text/javascript"
 	src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDmfjiMcgfcCVI6QKs42Kk4AvHUVdOQtso"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <script>
     // 맵에 찍어주기
    $(function geocodeLatLng() {
@@ -13,9 +13,10 @@
 
  			 var geocoder = new google.maps.Geocoder;
   			 var infowindow = new google.maps.InfoWindow;
-    		 var latlngStr = <%=truck.getTruckGeolacation()%>;
-    		 var latitude = latlngStr.subString(0,indexof(","));
-    		 var logitude = latlngStr.subString(indexof(","));
+    	
+    		 var latitude = <%=truck.getLatitude()%>;
+    		 var logitude = <%=truck.getLogitude()%>;
+    		 
     	     var latlng = {
 		        lat: latitude,
 		        lng: longitude
@@ -60,7 +61,7 @@
 				오픈시간 : <%=truck.getTruckOpenTime()%></p>
 			<br>
 			<p id="holiday">
-				휴무일 : <%=truck.getTruckHoiliday()%></p>
+				휴무일 : </p>
 
 		</div>
 	</div>
