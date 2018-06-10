@@ -46,7 +46,7 @@
 									
 							</div>
 							
-                  
+                  	<!--ver1.1-->
                     
 							<div class="col-xs-7">
 								<br>
