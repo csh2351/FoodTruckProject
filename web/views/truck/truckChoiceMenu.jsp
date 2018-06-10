@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
   
  
-  <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
+
 <script type="text/javascript">
 
 $(function() {
