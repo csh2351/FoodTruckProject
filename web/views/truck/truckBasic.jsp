@@ -1,6 +1,30 @@
+<%@page import="truck.vo.Truck"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html">
+<%Truck truck=(Truck)request.getAttribute("truck");
+	String star="";%>
+<%switch (truck.getTruckStar()) {
+            				case 1:
+            					star="★";
+            				break;
+            				case 2:
+            					star="★★";
+            				break;
+            				case 3:
+            					star="★★★";
+            				break;
+            				case 4:
+            					star="★★★★";
+            				break;
+            				case 5:
+            					star="★★★★★";
+            				break;
+            				default:
+            					star="★★★★★";
+            				break;
+            			}	
+            			%>
   <div class='panel panel-default'>
                 <div class='panel-heading'>
                   <h3 class='panel-title truck-panel-header'>기본정보</h3>
@@ -8,8 +32,8 @@
                 <div class='panel-body pannel-basic'>
                   <div class="row">
                     <div class="col-md-4 panel-1">
-                      <p id='truck-title-p'>점포명</p>
-                      <a href="#" data-toggle="modal" data-target=".pop-up-1"><img class='trcuk-img img-responsive center-block' src="http://proxyprivat.com/images/noimage.jpeg" alt="" width="150" height="150"></a>
+                      <p id='truck-title-p'>점포명:<%=truck.getTruckName() %></p>
+                      <a href="#" data-toggle="modal" data-target=".pop-up-1"><img class='trcuk-img img-responsive center-block' src="images/truck/<%=truck.getTruckOriginalImage()%>" alt="" width="200" height="200"></a>
                       <br>
                       <br>
                     </div>
@@ -24,7 +48,7 @@
                             <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
                           </div>
                           <div class="modal-body">
-                            <img src="http://proxyprivat.com/images/noimage.jpeg" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
+                            <img src="images/truck/<%=truck.getTruckOriginalImage()%>" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
                           </div>
                         </div>
                         <!-- /.modal-content -->
@@ -34,24 +58,24 @@
                     <!-- /.modal mixer image -->
 
                     <div class="col-md-6">
-                      <p class='truck-basic-font'>경기도구리시등등id입력</p>
-                      <span class='truck-basic-font'>평점:</span>
+                      <p class='truck-basic-font'>주소: <%=truck.getTrucklocation() %></p>
+                     
+                      <span class='truck-basic-font'>평점 : <%=star%> </span>
                       
-                      <span>★★★★★</span>
                       <br>
-                      <span class='truck-basic-font'>최소금액: <span class='truck-basic-font'>~원이상 id부여</span></span>
+                      <span class='truck-basic-font'>최소금액: <%=truck.getTruckPrice() %></span>
                       <br><br><br>
-                      <p class='truck-basic-font'>사업자정보</p>
-                      <span class='truck-basic-font'>상호명: <span class='truck-basic-font'>상호명뿌려줌 id부여</span></span>
+                      <p class='truck-basic-font'>사업자정보 : <%=truck.getTruckInfoName() %></p>
+                      <span class='truck-basic-font'>상호명: <%=truck.getTruckName() %></span>
                       <br>
-                      <span class='truck-basic-font'>사업자등록번호:<span class='truck-basic-font'>등록번호뿌려줌 id부여</span></span>
+                      <span class='truck-basic-font'>사업자등록번호: <%=truck.getTruckInfoRegisterNumber() %></span>
 
                     </div>
 
                     <div class="col-md-2" align="center">
                       <br>
                       <div class="onoffswitch">
-                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" <%=truck.getTruckStatus().equals("t")?"checked":"" %>>
                         <label class="onoffswitch-label" for="myonoffswitch" align="left">
                               <span class="onoffswitch-inner"></span>
                               <span class="onoffswitch-switch"></span>

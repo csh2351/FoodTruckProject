@@ -4,7 +4,6 @@
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckEvent.css">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/event.css">
-
   <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 
@@ -63,7 +62,7 @@
                 <div class="panel-heading">
                   <div class="row">
                     <ul class="nav nav-pills nav-justified">
-                       <li role="presentation"><a  class='truck-panel-header' href="<%=request.getContextPath()%>/truckChoice?choice=메뉴">메뉴</a></li>
+                      <li role="presentation"><a  class='truck-panel-header'  href="<%=request.getContextPath()%>/truckChoice?choice=메뉴">메뉴</a></li>
                       <li role="presentation"><a  class='truck-panel-header'  href="<%=request.getContextPath()%>/truckChoice?choice=리뷰">리뷰</a></li>
                       <li role="presentation"><a  class='truck-panel-header'  href="<%=request.getContextPath()%>/truckChoice?choice=이벤트">이벤트</a></li>
                     </ul>

@@ -14,9 +14,9 @@
 
 
 
-</style>
-				<li class='store_list' value="1">
-					<div class="col-sm-6 col-md-4 padding store_list">
+		</style>
+				<li class='store_list' value=<%=list.get(i).getTruckPk() %>>
+					<div class="col-sm-6 col-md-4 padding">
 						<div class="thumbnail thumnail-botton">
 							<div class="col-xs-12">
 								<br>
@@ -78,7 +78,7 @@
 		var truck_no=$(this).val();
 		console.log(truck_no);
 		//location.href = "서블릿으로보내고?truck_pk="+truck_no;	
-		location.href = "<%=request.getContextPath()%>/truckSelectOne?truck_Pk="+truck_no;	
+		location.href = "<%=request.getContextPath()%>/truckSelectOne?truckPk="+truck_no;	
 
 	});
 </script>

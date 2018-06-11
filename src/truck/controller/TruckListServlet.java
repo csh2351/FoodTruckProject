@@ -27,8 +27,6 @@ public class TruckListServlet extends HttpServlet {
 		
 		
 		//이미지파일 경로가져오기
-		String saveDir = getServletContext().getRealPath("/uploadFiles/truck");
-		System.out.println("saveDir"+saveDir);
 		
 		
 		
@@ -74,7 +72,6 @@ public class TruckListServlet extends HttpServlet {
 				request.setAttribute("loc", "/");
 			}
 		//dao갔따오는 형식으로~
-		request.setAttribute("saveDir", saveDir);
 		request.getRequestDispatcher(view).forward(request, response);
 	}
 

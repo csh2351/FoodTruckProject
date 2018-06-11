@@ -27,11 +27,12 @@ public class TruckSelectOneServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int truck_Pk=Integer.parseInt(request.getParameter("truck_Pk"));
-		System.out.println(truck_Pk);
-		Truck truck=new TruckService().selectOne(truck_Pk);
-		List<TruckMenu>list=new TruckService().selectMenu(truck_Pk);
-		
+		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+		System.out.println(truckPk);
+		Truck truck=new TruckService().selectOne(truckPk);
+		List<TruckMenu>list=new TruckService().selectMenu(truckPk);
+		System.out.println(truck);
+		System.out.println(list);
 		
 		String view="";
 		

@@ -234,7 +234,6 @@ public class TruckDao {
 
 
 
-
 	public List<TruckMenu> selectMenuList(Connection conn, int truck_Pk) {
 		List<TruckMenu> list=new ArrayList();
 		try {
@@ -255,8 +254,7 @@ public class TruckDao {
 		}finally {
 			close(rs);
 			close(pstmp);
-		}
-		return list;
+		}return list;
 	}
 	//
 

@@ -34,7 +34,7 @@ $(function() {
 $(function() {
 	$.ajax({
 		url:"<%=request.getContextPath()%>/truckBasic",
-		data:{truck:<%=truck%>},	//쏴주기
+		data:{truckPk:<%=truck.getTruckPk()%>},	//쏴주기
 		type : "post", 
 		success: function(data) {
 			$("#truckBasic").html(data);
@@ -83,22 +83,21 @@ $(function() {
                     <%for(int i=0; i<menuList.size(); i++){ %>
                     <li>
                       <div class="row">
-                        <div class="col-xs-7  col-xs-7-pading">
+                        <div class="col-xs-6  col-xs-7-pading">
                           <ul class='menu-ul'>
                             <div class="menuName">
                               <br>
-                              <span class='panel-2-body-font'>메뉴명 : <%=menuList.get(i).getMenuName() %></span><span class='truck-basic-font'>,menu id부여</span>
+                              <span class='panel-2-body-font'>메뉴명 : <%=menuList.get(i).getMenuName() %></span>
                               <br>
                               <br>
-                              <span class='panel-2-body-font'>가격 : <%=menuList.get(i).getMenuPrice() %> </span><span class='truck-basic-font'> price id부여</span>
+                              <span class='panel-2-body-font'>가격 : <%=menuList.get(i).getMenuPrice() %> </span>
                             </div>
                           </ul>
                         </div>
-                        <div class="col-xs-4" align="center">
+                        <div class="col-xs-5" align="center">
                           <a href="#" data-toggle="modal" data-target=".pop-up-2">
                                 <br>
-                                <img src="/images/truckMenu/<%=menuList.get(i).getMenuImage()%>" alt="" width=120 height=100></a>
-
+                                <img src="images/truckMenu/<%=menuList.get(i).getMenuImage()%>" alt="" width=120 height=100></a>
                         </div>
                         <div class="col-xs-1 ">
                         </div>
