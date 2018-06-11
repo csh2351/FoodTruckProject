@@ -64,8 +64,7 @@
 			<p id="oponTime">
 				오픈시간 : <%=truck.getTruckOpenTime()%></p>
 			<br>
-			<p id="holiday">
-				휴무일 : </p>
+			<p id="holiday">오픈시간 : <%=truck.getTruckHoliday() %></p>
 
 		</div>
 	</div>

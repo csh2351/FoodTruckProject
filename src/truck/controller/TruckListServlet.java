@@ -26,11 +26,6 @@ public class TruckListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		//이미지파일 경로가져오기
-		
-		
-		
-		//기본리스트
 		
 		List<Truck> list=null;
 		

@@ -262,14 +262,14 @@ public class TruckDao {
 
 
 
-	public List<TruckReview> selectReview(Connection conn, int truckPk) {
-		List<TruckReview> list = new ArrayList();
+	public List<Truck> selectReview(Connection conn, int truckPk) {
+		List<Truck> list = new ArrayList();
 		try {
 			pstmp = conn.prepareStatement(prop.getProperty("selectReview"));
 			pstmp.setInt(1, truckPk);
 			rs = pstmp.executeQuery();
 			while(rs.next()) {
-				TruckReview tr = new TruckReview();
+				Truck tr = new Truck();
 				tr.setReviewPk(rs.getInt("review_pk"));
 				tr.setReviewName(rs.getString("review_Name"));
 				tr.setReviewTitle(rs.getString("review_title"));

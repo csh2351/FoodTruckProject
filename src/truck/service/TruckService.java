@@ -33,7 +33,7 @@ public class TruckService {
 		return list;
 	}
 	
-	public List<Truck> selectByReviewList() {
+	public List<Truck> selectByReviewList() {	//truckReview로 바꾸기 매개변수
 		List<Truck> list=new TruckDao().selectByReviewList(conn);
 		close(conn);
 		return list;
