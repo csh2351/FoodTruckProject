@@ -1,6 +1,8 @@
 package truck.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,16 +28,17 @@ public class TruckSelectOneServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int truck_Pk=Integer.parseInt(request.getParameter("truck_Pk"));
+		
 		Truck truck=new TruckService().selectOne(truck_Pk);
-		TruckMenu menu=new TruckService().selectMenu(truck_Pk);
+		List<TruckMenu>list=new TruckService().selectMenu(truck_Pk);
 		
 		
 		String view="";
 		
-		if(truck!=null&&menu!=null){
+		if(truck!=null&&list.size()>0){
 			view="/views/truck/truckChoiceMenu.jsp";
 			request.setAttribute("truck_Pk", truck_Pk);
-			request.setAttribute("truck_menu", menu);
+			request.setAttribute("truck_Menu", list);
 		}
 		else {
 			view="/views/commom/msg.jsp";

@@ -1,10 +1,12 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="truck.vo.TruckMenu"%>
 <%@page import="truck.vo.Truck"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ include file="/views/common/header.jsp" %>
 <%Truck truck=(Truck)request.getAttribute("truck_Pk");
- TruckMenu menu=(TruckMenu)request.getAttribute("truck_Menu");%>	
+ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("truck_menu");%>	
 	
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
@@ -78,23 +80,24 @@ $(function() {
                   <ul class='menu-ul-main'>
 
                     <!--메뉴시작-->
+                    <%for(int i=0; i<menuList.size(); i++){ %>
                     <li>
                       <div class="row">
                         <div class="col-xs-7  col-xs-7-pading">
                           <ul class='menu-ul'>
                             <div class="menuName">
                               <br>
-                              <span class='panel-2-body-font'>메뉴명 : <%=menu.getMenuName() %></span><span class='truck-basic-font'>,menu id부여</span>
+                              <span class='panel-2-body-font'>메뉴명 : <%=menuList.get(i).getMenuName() %></span><span class='truck-basic-font'>,menu id부여</span>
                               <br>
                               <br>
-                              <span class='panel-2-body-font'>가격 : <%=menu.getMenuPrice() %> </span><span class='truck-basic-font'> price id부여</span>
+                              <span class='panel-2-body-font'>가격 : <%=menuList.get(i).getMenuPrice() %> </span><span class='truck-basic-font'> price id부여</span>
                             </div>
                           </ul>
                         </div>
                         <div class="col-xs-4" align="center">
                           <a href="#" data-toggle="modal" data-target=".pop-up-2">
                                 <br>
-                                <img src="http://proxyprivat.com/images/noimage.jpeg" alt="" width=120 height=100></a>
+                                <img src="/images/truckMenu/<%=menuList.get(i).getMenuImage()%>" alt="" width=120 height=100></a>
 
                         </div>
                         <div class="col-xs-1 ">
@@ -119,7 +122,7 @@ $(function() {
                 <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
               </div>
               <div class="modal-body">
-                            <img src="http://proxyprivat.com/images/noimage.jpeg" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
+                            <img src="/images/truckMenu/<%=menuList.get(i).getMenuImage()%>" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
               </div>
             </div>
             <!-- /.modal-content -->
@@ -127,6 +130,8 @@ $(function() {
           <!-- /.modal-dialog -->
         </div>
         <!-- /.modal mixer image -->
+        
+      <%} %>
 
 
 

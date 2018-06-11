@@ -235,18 +235,25 @@ public class TruckDao {
 
 
 
-	public TruckMenu selectMenu(Connection conn,int truck_Pk) {
-		TruckMenu menu=null;
+	
+
+
+
+
+
+	public List<TruckMenu> selectMenuList(Connection conn, int truck_Pk) {
+		List<TruckMenu> list=new ArrayList<>();
 		try {
-			 menu=new TruckMenu();
-			pstmp=conn.prepareStatement(prop.getProperty("selectMenu"));
+			pstmp=conn.prepareStatement(prop.getProperty("selectMenuLIst"));
 			pstmp.setInt(1, truck_Pk);
 			rs=pstmp.executeQuery();
 			while(rs.next()){
+				TruckMenu menu=new TruckMenu();
 				menu.setMenuPk(rs.getInt("menu_pk"));
 				menu.setMenuName(rs.getString("menu_name"));
 				menu.setMenuPrice(rs.getInt("menu_price"));
-				menu.setMenuImage(rs.getString("menu_Image"));
+				menu.setMenuImage(rs.getString("menu_image"));
+				list.add(menu);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -255,7 +262,7 @@ public class TruckDao {
 			close(rs);
 			close(pstmp);
 		}
-		return menu;
+		return list;
 	}
 	
 
