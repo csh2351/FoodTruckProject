@@ -89,7 +89,7 @@ $(function() {
                 </div>
                 <script type="text/javascript">
                 
-                $("#choiceReview").on("click", function() {
+                $("#choiceMenu").on("click", function() {
 					$.ajax({
 						url:"<%=request.getContextPath()%>/truckChoice",
 						type : "POST",
