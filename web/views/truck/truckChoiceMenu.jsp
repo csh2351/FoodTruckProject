@@ -34,7 +34,7 @@ $(function() {
 $(function() {
 	$.ajax({
 		url:"<%=request.getContextPath()%>/truckBasic",
-		data:{truck_Pk:<%=truck.getTruckPk()%>},	//쏴주기
+		data:{truck:<%=truck%>},	//쏴주기
 		type : "post", 
 		success: function(data) {
 			$("#truckBasic").html(data);
