@@ -234,13 +234,6 @@ public class TruckDao {
 
 
 
-
-	
-
-
-
-
-
 	public List<TruckMenu> selectMenuList(Connection conn, int truck_Pk) {
 		List<TruckMenu> list=new ArrayList<>();
 		try {
