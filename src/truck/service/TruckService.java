@@ -5,6 +5,8 @@ import java.util.List;
 
 import truck.dao.TruckDao;
 import truck.vo.Truck;
+import truck.vo.TruckMenu;
+
 import static common.JDBCTemplate.*;
 
 public class TruckService {
@@ -41,6 +43,12 @@ public class TruckService {
 		Truck truck = new TruckDao().selectOne(conn,truckPk);
 		close(conn);
 		return truck;
+	}
+
+	public TruckMenu selectMenu(int truck_Pk) {	
+		TruckMenu menu = new TruckDao().selectMenu(conn,truck_Pk);
+		close(conn);
+		return menu;
 	}
 
 }

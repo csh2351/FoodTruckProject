@@ -1,6 +1,11 @@
+<%@page import="truck.vo.TruckMenu"%>
+<%@page import="truck.vo.Truck"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ include file="/views/common/header.jsp" %>
+<%Truck truck=(Truck)request.getAttribute("truck_Pk");
+ TruckMenu menu=(TruckMenu)request.getAttribute("truck_Menu");%>	
+	
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
   
@@ -11,7 +16,7 @@
 $(function() {
 	$.ajax({
 		url:"<%=request.getContextPath()%>/truckDetail",
-		data:{truckPk:"1"},	//쏴주기 
+		data:{truckPk:<%=truck.getTruckPk()%>},	//쏴주기 
 		// truck_Pk 에서  truckPk로 통일
 		type : "get", 
 		success: function(data) {
@@ -27,7 +32,7 @@ $(function() {
 $(function() {
 	$.ajax({
 		url:"<%=request.getContextPath()%>/truckBasic",
-		data:{truck_Pk:"1"},	//쏴주기
+		data:{truck_Pk:<%=truck.getTruckPk()%>},	//쏴주기
 		type : "post", 
 		success: function(data) {
 			$("#truckBasic").html(data);
@@ -79,10 +84,10 @@ $(function() {
                           <ul class='menu-ul'>
                             <div class="menuName">
                               <br>
-                              <span class='panel-2-body-font'>메뉴명 : </span><span class='truck-basic-font'>,menu id부여</span>
+                              <span class='panel-2-body-font'>메뉴명 : <%=menu.getMenuName() %></span><span class='truck-basic-font'>,menu id부여</span>
                               <br>
                               <br>
-                              <span class='panel-2-body-font'>가격 : </span><span class='truck-basic-font'> price id부여</span>
+                              <span class='panel-2-body-font'>가격 : <%=menu.getMenuPrice() %> </span><span class='truck-basic-font'> price id부여</span>
                             </div>
                           </ul>
                         </div>

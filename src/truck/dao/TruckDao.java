@@ -15,6 +15,7 @@ import static common.JDBCTemplate.*;
 
 import member.model.dao.MemberDao;
 import truck.vo.Truck;
+import truck.vo.TruckMenu;
 
 public class TruckDao {
 	private PreparedStatement pstmp;
@@ -193,13 +194,13 @@ public class TruckDao {
 
 
 	public Truck selectOne(Connection conn, int truckPk) {
-		Truck truck =new Truck();
+		Truck truck =null;
 		try {
+			truck =new Truck();
 			pstmp=conn.prepareStatement(prop.getProperty("selectOne"));
 			pstmp.setInt(1, truckPk);
 			rs=pstmp.executeQuery();
 			while(rs.next()){
-				
 				truck.setTruckPk(rs.getInt("truck_pk"));
 				truck.setTruckName(rs.getString("truck_name"));
 				truck.setTruckOriginalImage(rs.getString("truck_original_image"));
@@ -228,6 +229,33 @@ public class TruckDao {
 			close(pstmp);
 		}
 		return truck;
+	}
+
+
+
+
+
+	public TruckMenu selectMenu(Connection conn,int truck_Pk) {
+		TruckMenu menu=null;
+		try {
+			 menu=new TruckMenu();
+			pstmp=conn.prepareStatement(prop.getProperty("selectMenu"));
+			pstmp.setInt(1, truck_Pk);
+			rs=pstmp.executeQuery();
+			while(rs.next()){
+				menu.setMenuPk(rs.getInt("menu_pk"));
+				menu.setMenuName(rs.getString("menu_name"));
+				menu.setMenuPrice(rs.getInt("menu_price"));
+				menu.setMenuImage(rs.getString("menu_Image"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmp);
+		}
+		return menu;
 	}
 	
 

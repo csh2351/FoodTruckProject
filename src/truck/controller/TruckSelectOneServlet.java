@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.glass.ui.Menu;
+
+import truck.service.TruckService;
+import truck.vo.Truck;
+import truck.vo.TruckMenu;
+
 /**
  * Servlet implementation class TruckSelectOneServlet
  */
@@ -19,8 +25,25 @@ public class TruckSelectOneServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int truck_Pk=Integer.parseInt(request.getParameter("truck_Pk"));
+		Truck truck=new TruckService().selectOne(truck_Pk);
+		TruckMenu menu=new TruckService().selectMenu(truck_Pk);
 		
-		request.getRequestDispatcher("/views/truck/truckChoiceMenu.jsp").forward(request, response);
+		
+		String view="";
+		
+		if(truck!=null&&menu!=null){
+			view="/views/truck/truckChoiceMenu.jsp";
+			request.setAttribute("truck_Pk", truck_Pk);
+			request.setAttribute("truck_menu", menu);
+		}
+		else {
+			view="/views/commom/msg.jsp";
+			request.setAttribute("msg","트럭을 찾을수 없습니다[관리자에ㅔ문의]");
+			request.setAttribute("loc", "/");
+		}
+		
+		request.getRequestDispatcher(view).forward(request, response);
 		
 	}
 
