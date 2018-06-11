@@ -58,13 +58,13 @@
 		<div class="panel-body">
 			<div id="googlemap"></div>
 			<br> <br> <br> <br>
-			<p id="address">
+			<p id="truck_address">
 				상세 위치 : <%=truck.getTrucklocation() %></p>
 			<br>
-			<p id="oponTime">
+			<p id="truck_oponTime">
 				오픈시간 : <%=truck.getTruckOpenTime()%></p>
 			<br>
-			<p id="holiday">오픈시간 : <%=truck.getTruckHoliday() %></p>
+			<p id="truck_holiday">휴일 : <%=truck.getTruckHoliday() %></p>
 
 		</div>
 	</div>
