@@ -16,6 +16,7 @@ import static common.JDBCTemplate.*;
 import member.model.dao.MemberDao;
 import truck.vo.Truck;
 import truck.vo.TruckMenu;
+import truck.vo.TruckReview;
 
 public class TruckDao {
 	private PreparedStatement pstmp;
@@ -258,6 +259,42 @@ public class TruckDao {
 		return list;
 	}
 	//
+
+
+
+
+
+	public List<TruckReview> selectReview(Connection conn, int truckPk) {
+		List<TruckReview> list = new ArrayList();
+		try {
+			pstmp = conn.prepareStatement(prop.getProperty("selectReview"));
+			pstmp.setInt(1, truckPk);
+			rs = pstmp.executeQuery();
+			while(rs.next()) {
+				TruckReview tr = new TruckReview();
+				tr.setReviewPk(rs.getInt("review_pk"));
+				tr.setReviewName(rs.getString("review_Name"));
+				tr.setReviewTitle(rs.getString("review_title"));
+				tr.setReviewDate(rs.getDate("review_date"));
+				tr.setReviewContent(rs.getString("review_content"));
+				tr.setReviewComment(rs.getString("review_comment"));
+				tr.setReviewOimg(rs.getString("review_original_image"));
+				tr.setReviewName(rs.getString("review_rename_image"));
+				tr.setReviewStar(rs.getInt("review_star"));
+				tr.setMemberPk(rs.getInt("member_pk"));
+				tr.setTruckPk(rs.getInt("truck_pk"));
+				list.add(tr);
+			}			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmp);
+			close(rs);
+		}
+		
+		
+		return list;
+	}
 	
 
 }
