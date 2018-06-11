@@ -28,7 +28,7 @@ public class TruckSelectOneServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int truck_Pk=Integer.parseInt(request.getParameter("truck_Pk"));
-		
+		System.out.println(truck_Pk);
 		Truck truck=new TruckService().selectOne(truck_Pk);
 		List<TruckMenu>list=new TruckService().selectMenu(truck_Pk);
 		
