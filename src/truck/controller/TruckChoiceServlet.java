@@ -1,11 +1,18 @@
 package truck.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import truck.service.TruckService;
+import truck.vo.Truck;
+import truck.vo.TruckMenu;
 
 /**
  * Servlet implementation class TruckChoiceServlet
@@ -25,24 +32,28 @@ public class TruckChoiceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
-			String truckPk=request.getParameter("choice");
+			String choice=request.getParameter("choice");
+			int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+			List<TruckMenu> menuList=new TruckService().selectMenu(truckPk);
 			//service~dao다녀와서 
 			//관련테이블 객체가져와서 
 			
-			System.out.println(truckPk);
+			System.out.println("choice:"+choice);
+			System.out.println("truckPk:"+truckPk);
+			System.out.println("menuList:"+menuList);
 			String view="";
-			if(truckPk.equals("메뉴")){
+			if(choice.equals("menu")){
 				//객체같이 보내기
 				view="/views/truck/truckChoiceMenu.jsp";
+				request.setAttribute("menuList", menuList);
 			}
-			else if(truckPk.equals("리뷰")){
+			else if(choice.equals("리뷰")){
 				//객체같이 보내기
 
 				view="/views/truck/truckChoiceReview.jsp";
 			}
 			else {
 				//객체같이 보내기
-
 				view="/views/truck/truckChoiceEvent.jsp";
 			}
 			

@@ -4,86 +4,20 @@
 <%@page import="truck.vo.Truck"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ include file="/views/common/header.jsp" %>
-<%Truck truck=(Truck)request.getAttribute("truck");
-ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("truckMenuList");%>	
-	
+<%ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("menuList");%>	
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
   
  
 
-<script type="text/javascript">
-
-$(function() {
-	$.ajax({
-		url:"<%=request.getContextPath()%>/truckDetail",
-		data:{truckPk:<%=truck.getTruckPk()%>},	//쏴주기 
-		// truck_Pk 에서  truckPk로 통일
-		type : "get", 
-		success: function(data) {
-			$("#truckDetail").html(data);
-		},
-		error : function(request,status,error) { 
-			alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-			}
-		
-	});
-})
-
-$(function() {
-	$.ajax({
-		url:"<%=request.getContextPath()%>/truckBasic",
-		data:{truckPk:<%=truck.getTruckPk()%>},	//쏴주기
-		type : "post", 
-		success: function(data) {
-			$("#truckBasic").html(data);
-		},
-		error : function(request,status,error) { 
-			alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-			}
-	});
-}) 
-</script>
-
-   	<br>
-  <section>
-    <div class="container" >
-
-      <div class='row'>
-        <div class="col-md-7 ">
-          <div class="panel-group">
-
-            <div id="truckBasic" class='row'>
-         		<!--truckBasic.jsp ajax-->
-            </div>
-
-            <br>
-            <br>
-
-            <div class="row">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <div class="row">
-                    <ul class="nav nav-pills nav-justified">
-                      <li role="presentation"><a  class='truck-panel-header' href="<%=request.getContextPath()%>/truckChoice?choice=메뉴">메뉴</a></li>
-                      <li role="presentation"><a  class='truck-panel-header'  href="<%=request.getContextPath()%>/truckChoice?choice=리뷰">리뷰</a></li>
-                      <li role="presentation"><a  class='truck-panel-header'  href="<%=request.getContextPath()%>/truckChoice?choice=이벤트">이벤트</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div id="choice-body" class="panel-body">
-
-                    <div class="page-header">
-                      <p style="font-size:14pt; font-weight:bold;">&nbsp;&nbsp;&nbsp;메뉴</p>
-                    </div>
                   <ul class='menu-ul-main'>
 
                     <!--메뉴시작-->
                     <%for(int i=0; i<menuList.size(); i++){ %>
                     <li>
                       <div class="row">
-                        <div class="col-xs-6  col-xs-7-pading">
+                      <div class="col-xs-1" ></div>
+                        <div class="col-xs-5  col-xs-7-pading">
                           <ul class='menu-ul'>
                             <div class="menuName">
                               <br>
@@ -94,19 +28,20 @@ $(function() {
                             </div>
                           </ul>
                         </div>
-                        <div class="col-xs-5" align="center">
-                          <a href="#" data-toggle="modal" data-target=".pop-up-2">
+                        <div class="col-xs-6" align="center">
+                          <a id="menu-modal" href="javascript:fn_modal('<%= menuList.get(i).getMenuImage()%>');" data-toggle="modal" data-target=".pop-up-2" >
+                            
                                 <br>
                                 <img src="images/truckMenu/<%=menuList.get(i).getMenuImage()%>" alt="" width=120 height=100></a>
                         </div>
-                        <div class="col-xs-1 ">
-                        </div>
+                        
                       </div>
                       <hr>
                     </li>
+      <%} %>
                     <!--메뉴종료-->
                         <!--모달 틀-->
-        <div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+        <div  class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
@@ -114,7 +49,7 @@ $(function() {
                 <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
               </div>
               <div class="modal-body">
-                 <img src="/images/truckMenu/<%=menuList.get(i).getMenuImage()%>" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
+                 <img id="modal-img" src="" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
               </div>
             </div>
             <!-- /.modal-content -->
@@ -122,8 +57,6 @@ $(function() {
           <!-- /.modal-dialog -->
         </div>
         <!-- /.modal mixer image -->
-        
-      <%} %>
                     
                   </ul>
                 </div>
@@ -146,6 +79,17 @@ $(function() {
       </div>
     </div>
   </section>
+  <script type="text/javascript">
   
-  	<%@ include file="/views/common/footer.jsp" %>
+  
+	 	function fn_modal(oriName) {
+	 		oName=encodeURIComponent(oriName);
+	 		//console.log(oName);
+	  		var menu_modal=$("#modal-img");	
+	  		menu_modal.attr("src","/images/truckMenu/"+oriName);
+	  		console.log("src","/images/truckMenu/"+oriName); 
+		}
+ 
+</script>
+  
   
