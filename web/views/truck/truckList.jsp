@@ -78,7 +78,7 @@
 		var truck_no=$(this).val();
 		console.log(truck_no);
 		//location.href = "서블릿으로보내고?truck_pk="+truck_no;	
-		location.href = "<%=request.getContextPath()%>/truckSelectOne?truck="+truck_no;	
+		location.href = "<%=request.getContextPath()%>/truckSelectOne?truck="+truck_Pk;	
 
 	});
 </script>
