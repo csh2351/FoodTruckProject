@@ -269,7 +269,7 @@ public class TruckDao {
 			pstmp.setInt(1, truckPk);
 			rs = pstmp.executeQuery();
 			while(rs.next()) {
-				Truck tr = new Truck();
+				TruckReview tr=new TruckReview();
 				tr.setReviewPk(rs.getInt("review_pk"));
 				tr.setReviewName(rs.getString("review_Name"));
 				tr.setReviewTitle(rs.getString("review_title"));

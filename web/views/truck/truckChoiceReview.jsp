@@ -1,75 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ include file="/views/common/header.jsp" %>
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
 
 
 
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
-	<script type="text/javascript">
 
-	$(function() {
-		$.ajax({
-			url:"<%=request.getContextPath()%>/truckDetail",
-			data:{truck_Pk:"1"},	//쏴주기
-			type : "get", 
-			success: function(data) {
-				$("#truckDetail").html(data);
-			},
-			error : function(request,status,error) { 
-				alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-				}
-			
-		});
-	})
-	
-	$(function() {
-	$.ajax({
-		url:"<%=request.getContextPath()%>/truckBasic",
-		data:{truck_Pk:"1"},	//쏴주기
-		type : "post", 
-		success: function(data) {
-			$("#truckBasic").html(data);
-		},
-		error : function(request,status,error) { 
-			alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-			}
-	});
-}) 
-	</script>
 
  
-   	<br>
-  <section>
-    <div class="container">
-      <div class='row'>
-        <div class="col-md-7 ">
-          <div class="panel-group">
-
-            <div id="truckBasic" class='row'>
-               <!--truckBasic.jsp ajax-->
-            </div>
-
-            <br>
-            <br>
-
-
-            <div class="row">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <div class="row">
-                    <ul class="nav nav-pills nav-justified">
-                     <li role="presentation"><a class='truck-panel-header' href="<%=request.getContextPath()%>/truckChoice?choice=메뉴">메뉴</a></li>
-                      <li role="presentation"><a class='truck-panel-header'  href="<%=request.getContextPath()%>/truckChoice?choice=리뷰">리뷰</a></li>
-                      <li role="presentation"><a  class='truck-panel-header'  href="<%=request.getContextPath()%>/truckChoice?choice=이벤트">이벤트</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="panel-body">
-                  <div class="page-header">
-                    <p style="font-size:14pt; font-weight:bold;">&nbsp;&nbsp;&nbsp;리뷰</p>
-                  </div>
 
                   <ul id='comment-main'>
                     <!-- <li  class='level1'>
@@ -320,22 +259,7 @@
 
                     </li>
                   </ul>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-       
-        <div id="truckDetail" class="col-md-4 col-md-offset-1">
-      		<!--ajax-->
-        </div>
-      </div>
-    </div>
-  </section>
   
-  	<%@ include file="/views/common/footer.jsp" %>
   
 <script>
   $("#myonoffswitch").on('click', function(e) {

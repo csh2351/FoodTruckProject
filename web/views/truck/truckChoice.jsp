@@ -81,13 +81,29 @@ $(function() {
                 <div class="panel-heading">
                   <div class="row">
                     <ul class="nav nav-pills nav-justified">
-                      <li role="presentation"><a id="choiceMenu"  class='truck-panel-header' href="#">메뉴</a></li>
-                      <li role="presentation"><a id="choiceReview" class='truck-panel-header'  href="<%=request.getContextPath()%>/truckChoice?choice=리뷰">리뷰</a></li>
-                      <li role="presentation"><a id="choiceEvent" class='truck-panel-header'  href="<%=request.getContextPath()%>/truckChoice?choice=이벤트">이벤트</a></li>
+                      <li role="presentation"><a id="choiceMenu"  class='truck-panel-header' >메뉴</a></li>
+                      <li role="presentation"><a id="choiceReview" class='truck-panel-header'>리뷰</a></li>
+                      <li role="presentation"><a id="choiceEvent" class='truck-panel-header'>이벤트</a></li>
                     </ul>
                   </div>
                 </div>
                 <script type="text/javascript">
+                
+                $("#choiceReview").on("click", function() {
+					$.ajax({
+						url:"<%=request.getContextPath()%>/truckChoice",
+						type : "POST",
+						data:{truckPk :<%=truck.getTruckPk()%>,choice:"menu"},
+						success : function(data){ 
+							$("#choice-body").html(data);
+						}, 
+						error : function(request,status,error) { 
+							alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+						}
+					})
+				})
+				
+				
                 $("#choiceReview").on("click", function() {
 						$.ajax({
 							url:"<%=request.getContextPath()%>/truckChoice",
@@ -123,12 +139,6 @@ $(function() {
             </div>
           </div>
         </div>
-
-    
-
-
-
-
 
 
 

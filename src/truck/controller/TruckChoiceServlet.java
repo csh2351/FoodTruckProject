@@ -33,23 +33,22 @@ public class TruckChoiceServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
 			String choice=request.getParameter("choice");
-			int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+			int truckpk=Integer.parseInt(request.getParameter("truckPk"));
+			List<TruckMenu> menuList=new TruckService().selectMenu(truckpk);
 			//service~dao다녀와서 
 			//관련테이블 객체가져와서 
 			
 			System.out.println("choice:"+choice);
-			System.out.println("truckPk:"+truckPk);
+			System.out.println("truckPk:"+truckpk);
+			
+			
 			String view="";
 			if(choice.equals("menu")){
-				//객체같이 보내기
-				List<TruckMenu> menuList=new TruckService().selectMenu(truckPk);
-				System.out.println("menuList:"+menuList);
 				view="/views/truck/truckChoiceMenu.jsp";
 				request.setAttribute("menuList", menuList);
 			}
 			else if(choice.equals("review")){
 				//객체같이 보내기
-
 				view="/views/truck/truckChoiceReview.jsp";
 //				List<Truck> reviewList=new TruckService().selectByReviewList(truckPk);
 //				System.out.println("reviewList:"+reviewList);
