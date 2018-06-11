@@ -235,7 +235,7 @@ public class TruckDao {
 
 
 	public List<TruckMenu> selectMenuList(Connection conn, int truck_Pk) {
-		List<TruckMenu> list=new ArrayList<>();
+		List<TruckMenu> list=new ArrayList();
 		try {
 			pstmp=conn.prepareStatement(prop.getProperty("selectMenuList"));
 			pstmp.setInt(1, truck_Pk);

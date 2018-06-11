@@ -37,8 +37,10 @@ public class TruckSelectOneServlet extends HttpServlet {
 		
 		if(truck!=null&&list.size()>0){
 			view="/views/truck/truckChoiceMenu.jsp";
-			request.setAttribute("truck_Pk", truck_Pk);
-			request.setAttribute("truck_Menu", list);
+			request.setAttribute("truck", truck);
+			request.setAttribute("truckMenuList", list);
+			System.out.println(truck);
+			System.out.println(list);
 		}
 		else {
 			view="/views/commom/msg.jsp";

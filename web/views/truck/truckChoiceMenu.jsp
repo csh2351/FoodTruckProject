@@ -5,8 +5,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ include file="/views/common/header.jsp" %>
-<%Truck truck=(Truck)request.getAttribute("truck_Pk");
-ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("truck_menu");%>	
+<%Truck truck=(Truck)request.getAttribute("truck");
+ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("truckMenuList");%>	
 	
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
@@ -106,14 +106,7 @@ $(function() {
                       <hr>
                     </li>
                     <!--메뉴종료-->
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--모달 틀-->
+                        <!--모달 틀-->
         <div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -122,7 +115,7 @@ $(function() {
                 <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
               </div>
               <div class="modal-body">
-                            <img src="/images/truckMenu/<%=menuList.get(i).getMenuImage()%>" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
+                 <img src="/images/truckMenu/<%=menuList.get(i).getMenuImage()%>" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
               </div>
             </div>
             <!-- /.modal-content -->
@@ -132,7 +125,15 @@ $(function() {
         <!-- /.modal mixer image -->
         
       <%} %>
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+    
 
 
 

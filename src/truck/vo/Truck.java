@@ -143,4 +143,14 @@ public class Truck implements Serializable{
 	public void setTruckHoliday(String truckHoliday) {
 		this.truckHoliday = truckHoliday;
 	}
+	@Override
+	public String toString() {
+		return "Truck [truckPk=" + truckPk + ", truckName=" + truckName + ", truckOriginalImage=" + truckOriginalImage
+				+ ", truckRenameImage=" + truckRenameImage + ", trucklocation=" + trucklocation + ", truckInfoName="
+				+ truckInfoName + ", truckInfoRegisterNumber=" + truckInfoRegisterNumber + ", truckContent="
+				+ truckContent + ", truckStatus=" + truckStatus + ", truckOpenTime=" + truckOpenTime
+				+ ", truckCloseTime=" + truckCloseTime + ", truckApprove=" + truckApprove + ", truckCategory="
+				+ truckCategory + ", truckStar=" + truckStar + ", memberPk=" + memberPk + ", latitude=" + latitude
+				+ ", logitude=" + logitude + ", truckHoliday=" + truckHoliday + ", truckPrice=" + truckPrice + "]";
+	}
 }
