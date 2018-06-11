@@ -32,7 +32,9 @@
                           <a id="menu-modal" href="javascript:fn_modal('<%= menuList.get(i).getMenuImage()%>');" data-toggle="modal" data-target=".pop-up-2" >
                             
                                 <br>
+                                <%if(menuList.get(i).getMenuImage()!=null){ %>
                                 <img src="images/truckMenu/<%=menuList.get(i).getMenuImage()%>" alt="" width=120 height=100></a>
+	                          <%} %>
                         </div>
                         
                       </div>

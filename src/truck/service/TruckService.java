@@ -6,6 +6,7 @@ import java.util.List;
 import truck.dao.TruckDao;
 import truck.vo.Truck;
 import truck.vo.TruckMenu;
+import truck.vo.TruckReviewComment;
 
 import static common.JDBCTemplate.*;
 
@@ -51,10 +52,12 @@ public class TruckService {
 		return list;
 	}
 
-/*	public List<TruckReview> selectReview(int truckPk) {
-		List<TruckReview> list = new TruckDao().selectReview(conn,truckPk);
+	
+
+	public List<TruckReviewComment> selectReviewCommnetList(int truckpk) {
+		List<TruckReviewComment> list=new TruckDao().selectReviewCommnetList(conn,truckpk);
 		close(conn);
 		return list;
-	}*/
+	}
 
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import truck.service.TruckService;
 import truck.vo.TruckMenu;
+import truck.vo.TruckReviewComment;
 
 /**
  * Servlet implementation class TruckChoiceReviewServlet
@@ -46,9 +47,9 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 		if(choice.equals("review")){
 			//객체같이 보내기
 			view="/views/truck/truckChoiceReview.jsp";
-//			List<Truck> reviewList=new TruckService().selectByReviewList(truckPk);
-//			System.out.println("reviewList:"+reviewList);
-//			request.setAttribute("reviewList", reviewList);
+			List<TruckReviewComment> reviewList=new TruckService().selectReviewCommnetList(truckpk);
+          System.out.println("reviewList:"+reviewList);
+          request.setAttribute("reviewList", reviewList);
 		}
 		//속성보낼꺼 포함해서보냄~
 		request.getRequestDispatcher(view).forward(request, response);

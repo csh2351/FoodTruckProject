@@ -1,16 +1,19 @@
+<%@page import="truck.vo.TruckReviewComment"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
 
-
-
+ <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList"); %>
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 
 
- 
-
-                  <ul id='comment-main'>
+ 		
+ 		
+           <ul id='comment-main'>
+			<%for(int i=0; i<reviewList.size(); i++){ %>
                     <!-- <li  class='level1'>
                     <label for="content">아이디: &nbsp;쏴주기</label>
                     <form name="commentInsertForm">
@@ -28,68 +31,86 @@
                     <div class="commentList"></div>
 
                     </li> -->
+                    <%if(reviewList.get(i).getReviewCommentLevel()==1){ %>
                     <li id='comment-modify-list'>
                       <!--댓글보기-->
-                      <form>
-                        <!--form클래스 아이디부여-->
-                        <div clas='row'>
+                        <div class='row'>
                           <div class="col-xs-9">
                             <div class="row">
-                              <div class="col-md-6 ">
-                                <span class='panel-2-body-font'>아이디: jazzhong111111</span> 
+                              <div class="col-xs-6 ">
+                                <span class='panel-2-body-font'>아이디: <%=reviewList.get(i).getReviewCommnetWriter() %></span> 
                                 <!--아이디부여-->
                               </div>
-                              <div class="col-md-6 date-padding">
-                                <span class='panel-2-body-font'>작성날짜: 2012/12/11</span><br>
+                              <div class="col-xs-6 date-padding">
+                                <span class='panel-2-body-font'>작성일:<%=reviewList.get(i).getReivewCommentDate() %></span><br>
                                 <!--date 부여 -->
                               </div>
                             </div>
                             <span class="rating">
                             <label>
-                             <span class="icon">★★★★★</span>
+                             <span class="icon">평점:</span>
                             </label>
                             </span>
-                            <br>
                             <div class="row">
                               <div class="col-xs-12">
-								<span>
-								댓글댓글댓글댓글댓글댓글댓글ㅍ댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글
-								</span>
+								<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
                               </div>
-
                             </div>
 
                           </div>
                           <div class='col-xs-3 col-md-3-body-center'>
-                            <img class='comment-check-img' src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=100% height=150%><br>
+                          <%if(reviewList.get(i).getRviewCommentRimage()==null){ %>
+                            <img class='comment-check-img' src="images/review/"+<%=reviewList.get(i).getRviewCommentRimage() %> alt="Card image cap" width=100% height=150%><br>
+                          <%} %>
                           </div>
                         </div>
-
-                        <div class="row">
-                          <div class="col-xs-12 result-btn-positon">
-                            <hr>
-                          </div>
-
-                        </div>
-
-                      </form>
-
+                       <hr>
                     </li>
-
-                    <li id='comment-modify-list'>
-                      <!--댓글수정-->
+                    <%}if(reviewList.get(i).getReviewCommentLevel()==2) {%>
+                    
+                    <li class='comment-reply' textalign="right"> 
+                     <div class='row'>
+                     <div class="col-xs-2">	↘</div>
+                          <div class="col-xs-10">
+                            <div class="row">
+                              <div class="col-xs-6 ">
+                                <span class='panel-2-body-font'>사장님: <%=reviewList.get(i).getReviewCommnetWriter() %></span> 
+                                <!--아이디부여-->
+                              </div>
+                              <div class="col-xs-6 date-padding">
+                                <span class='panel-2-body-font'>작성일:<%=reviewList.get(i).getReivewCommentDate() %></span><br>
+                                <!--date 부여 -->
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12">
+								<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
+                              </div>
+                            </div>
+                        	<hr>
+                          </div>
+                        </div>
+                    </li>
+                    <%} %>
+                    <%} %>
+                    
+                  
+                   
+                    
+              <!--       <li id='comment-modify-list'>
+                      댓글수정
                       <form>
-                        <!--form클래스 아이디부여-->
+                        form클래스 아이디부여
                         <div clas='row'>
                           <div class="col-xs-9">
                             <div class="row">
                             <div class="col-md-6 ">
                                 <span class='panel-2-body-font'>아이디: jazzhong111111</span> 
-                                <!--아이디부여-->
+                                아이디부여
                               </div>
                               <div class="col-md-6 date-padding">
                                 <span class='panel-2-body-font'>작성날짜: 2012/12/11</span><br>
-                                <!--date 부여 -->
+                                date 부여
                               </div>
                             </div>
 
@@ -166,7 +187,7 @@
                       </form>
 
                     </li>
-
+ -->
                     <!--댓글달기-->
                     <li id='comment-list'>
                       <form>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import truck.service.TruckService;
 import truck.vo.Truck;
 import truck.vo.TruckMenu;
+import truck.vo.TruckReviewComment;
 
 /**
  * Servlet implementation class TruckChoiceServlet
@@ -34,7 +35,7 @@ public class TruckChoiceServlet extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			String choice=request.getParameter("choice");
 			int truckpk=Integer.parseInt(request.getParameter("truckPk"));
-			List<TruckMenu> menuList=new TruckService().selectMenu(truckpk);
+			
 			//service~dao다녀와서 
 			//관련테이블 객체가져와서 
 			
@@ -44,15 +45,18 @@ public class TruckChoiceServlet extends HttpServlet {
 			
 			String view="";
 			if(choice.equals("menu")){
+				List<TruckMenu> menuList=new TruckService().selectMenu(truckpk);
 				view="/views/truck/truckChoiceMenu.jsp";
 				request.setAttribute("menuList", menuList);
 			}
+			
 			else if(choice.equals("review")){
 				//객체같이 보내기
+				List<TruckReviewComment> reviewList=new TruckService().selectReviewCommnetList(truckpk);
+				//List<TruckReviewComment> reviewCommentList=new TruckService().selectReviewCommnetList(truckpk);
 				view="/views/truck/truckChoiceReview.jsp";
-//				List<Truck> reviewList=new TruckService().selectByReviewList(truckPk);
-//				System.out.println("reviewList:"+reviewList);
-//				request.setAttribute("reviewList", reviewList);
+				System.out.println("reviewList:"+reviewList);
+		        request.setAttribute("reviewList", reviewList);
 			}
 			else {
 				//객체같이 보내기

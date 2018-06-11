@@ -16,7 +16,7 @@ import static common.JDBCTemplate.*;
 import member.model.dao.MemberDao;
 import truck.vo.Truck;
 import truck.vo.TruckMenu;
-import truck.vo.TruckReview;
+import truck.vo.TruckReviewComment;
 
 public class TruckDao {
 	private PreparedStatement pstmp;
@@ -234,11 +234,11 @@ public class TruckDao {
 
 
 
-	public List<TruckMenu> selectMenuList(Connection conn, int truck_Pk) {
+	public List<TruckMenu> selectMenuList(Connection conn, int truckPk) {
 		List<TruckMenu> list=new ArrayList();
 		try {
 			pstmp=conn.prepareStatement(prop.getProperty("selectMenuList"));
-			pstmp.setInt(1, truck_Pk);
+			pstmp.setInt(1, truckPk);
 			rs=pstmp.executeQuery();
 			while(rs.next()){
 				TruckMenu menu=new TruckMenu();
@@ -262,36 +262,38 @@ public class TruckDao {
 
 
 
-	public List<Truck> selectReview(Connection conn, int truckPk) {
-		List<Truck> list = new ArrayList();
+
+
+
+
+	public List<TruckReviewComment> selectReviewCommnetList(Connection conn, int truckPk) {
+		List<TruckReviewComment> list=new ArrayList();
 		try {
-			pstmp = conn.prepareStatement(prop.getProperty("selectReview"));
+			pstmp=conn.prepareStatement(prop.getProperty("selectReviewCommnetList"));
 			pstmp.setInt(1, truckPk);
-			rs = pstmp.executeQuery();
-			while(rs.next()) {
-				TruckReview tr=new TruckReview();
-				tr.setReviewPk(rs.getInt("review_pk"));
-				tr.setReviewName(rs.getString("review_Name"));
-				tr.setReviewTitle(rs.getString("review_title"));
-				tr.setReviewDate(rs.getDate("review_date"));
-				tr.setReviewContent(rs.getString("review_content"));
-				tr.setReviewComment(rs.getString("review_comment"));
-				tr.setReviewOimg(rs.getString("review_original_image"));
-				tr.setReviewName(rs.getString("review_rename_image"));
-				tr.setReviewStar(rs.getInt("review_star"));
-				tr.setMemberPk(rs.getInt("member_pk"));
-				tr.setTruckPk(rs.getInt("truck_pk"));
-				list.add(tr);
-			}			
-		}catch (Exception e) {
+			rs=pstmp.executeQuery();
+			while(rs.next()){
+				TruckReviewComment comment=new TruckReviewComment();
+				comment.setReviewCommentPk(rs.getInt("review_comment_pk"));
+				comment.setReviewCommentLevel(rs.getInt("review_comment_level"));
+				comment.setReviewCommnetWriter(rs.getString("review_comment_writer"));
+				comment.setReviewCommnetContent(rs.getString("review_comment_content"));
+				comment.setReviewRef(rs.getInt("review_ref"));
+				comment.setReviewCommentRef(rs.getInt("review_comment_ref"));
+				comment.setReivewCommentDate(rs.getDate("review_comment_date"));
+				comment.setReviewCommentOimage(rs.getString("review_comment_oimage"));
+				comment.setRviewCommentRimage(rs.getString("review_comment_rimage"));
+				comment.setMemberPk(rs.getInt("member_Pk"));
+				comment.setTruckPk(rs.getInt("truck_pk"));
+				list.add(comment);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			close(pstmp);
 			close(rs);
-		}
-		
-		
-		return list;
+			close(pstmp);
+		}return list;
 	}
 	
 
