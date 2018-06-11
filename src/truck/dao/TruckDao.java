@@ -114,7 +114,7 @@ public class TruckDao {
 				truck.setTruckStar(rs.getInt("truck_star"));
 				truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
-				truck.setMemberPk(rs.getInt("memer_pk"));
+				truck.setMemberPk(rs.getInt("member_pk"));
 				list.add(truck);
 			}
 		} catch (SQLException e) {
@@ -155,7 +155,7 @@ public class TruckDao {
 				truck.setTruckStar(rs.getInt("truck_star"));
 				truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
-				truck.setMemberPk(rs.getInt("memer_pk"));
+				truck.setMemberPk(rs.getInt("member_pk"));
 				list.add(truck);
 			}
 		} catch (SQLException e) {
@@ -219,7 +219,7 @@ public class TruckDao {
 				truck.setTruckStar(rs.getInt("truck_star"));
 				truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
-				truck.setMemberPk(rs.getInt("memer_pk"));
+				truck.setMemberPk(rs.getInt("member_pk"));
 				
 			}
 		} catch (SQLException e) {
