@@ -45,8 +45,8 @@ public class TruckService {
 		return truck;
 	}
 
-	public List<TruckMenu> selectMenu(int truck_Pk) {	
-		List<TruckMenu> list=new TruckDao().selectMenuList(conn,truck_Pk);
+	public List<TruckMenu> selectMenu(int truckPk) {	
+		List<TruckMenu> list=new TruckDao().selectMenuList(conn,truckPk);
 		close(conn);
 		return list;
 	}

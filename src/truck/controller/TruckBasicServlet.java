@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import truck.service.TruckService;
+import truck.vo.Truck;
+
 /**
  * Servlet implementation class TruckBasicServlet
  */
@@ -23,8 +26,9 @@ public class TruckBasicServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int truck_Pk=Integer.parseInt(request.getParameter("truck_Pk"));
-		System.out.println(truck_Pk);
+		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+		Truck truck=new TruckService().selectOne(truckPk);
+		request.setAttribute("truck", truck);
 		request.getRequestDispatcher("/views/truck/truckBasic.jsp").forward(request, response);
 
 	}
