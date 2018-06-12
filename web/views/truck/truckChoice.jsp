@@ -5,7 +5,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ include file="/views/common/header.jsp" %>
-<%Truck truck=(Truck)request.getAttribute("truck");%>	
+<%Truck truck=(Truck)request.getAttribute("truck");%>
+<%String serlvet=(String)request.getAttribute("truckChoice"); %>
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
   
@@ -14,7 +15,7 @@
 <script type="text/javascript">
 
 $(function() {
-	$.ajax({
+	$.ajax({		
 		url:"<%=request.getContextPath()%>/truckDetail",
 		data:{truckPk:<%=truck.getTruckPk()%>},	//쏴주기 
 		// truck_Pk 에서  truckPk로 통일
@@ -46,7 +47,7 @@ $(function() {
 
 	$(function() {
 	$.ajax({
-			url:"<%=request.getContextPath()%>/truckChoiceMenu",
+			url:"<%=request.getContextPath()%>/<%=serlvet%>",
 			type : "POST",
 			data:{truckPk :<%=truck.getTruckPk()%>},
 			success : function(data){ 
@@ -82,7 +83,7 @@ $(function() {
                   <div class="row">
                     <ul class="nav nav-pills nav-justified">
                       <li role="presentation"><a id="choiceMenu"  class='truck-panel-header' >메뉴</a></li>
-                      <li role="presentation"><a id="choiceReview" class='truck-panel-header'>리뷰</a></li>
+                      <li role="presentation"><a id="choiceReview"class='truck-panel-header'>리뷰</a></li>
                       <li role="presentation"><a id="choiceEvent" class='truck-panel-header'>이벤트</a></li>
                     </ul>
                   </div>
