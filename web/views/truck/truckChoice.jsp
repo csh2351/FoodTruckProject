@@ -39,27 +39,7 @@
         <div class="col-md-7 ">
           <div class="panel-group">
 
-            <%switch (truck.getTruckStar()) {
-            				case 1:
-            					star="★";
-            				break;
-            				case 2:
-            					star="★★";
-            				break;
-            				case 3:
-            					star="★★★";
-            				break;
-            				case 4:
-            					star="★★★★";
-            				break;
-            				case 5:
-            					star="★★★★★";
-            				break;
-            				default:
-            					star="★★★★★";
-            				break;
-            			}	
-            			%>
+        
   <div class='panel panel-default'>
                 <div class='panel-heading'>
                   <h3 class='panel-title truck-panel-header'>기본정보</h3>
@@ -95,7 +75,7 @@
                     <div class="col-md-6">
                       <p class='truck-basic-font'>주소: <%=truck.getTrucklocation() %></p>
                      
-                      <span class='truck-basic-font'>평점 : <%=star%> </span>
+                      <span class='truck-basic-font'>평점 : <%=truck.getTruckStar()%> </span>
                       
                       <br>
                       <span class='truck-basic-font'>최소금액: <%=truck.getTruckPrice() %></span>
@@ -126,7 +106,7 @@
              $("#myonoffswitch").on('click', function(e) {
             	    e.preventDefault();
             	  });
-
+				</script>
             <br>
             <br>
 
@@ -191,13 +171,9 @@
                 	</div>
               </div>
             </div>
-          </div>
-        </div>
-        </div>
-
-
-
-     
+          
+        
+  
 
 <script>
     // 맵에 찍어주기
@@ -264,7 +240,8 @@
 			</div>
 				</div>
      				 </div>
-
+						</div>
+						</div>
   </section>
   <script type="text/javascript">
   
