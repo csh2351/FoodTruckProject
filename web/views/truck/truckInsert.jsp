@@ -16,6 +16,7 @@
                   <h3 class='panel-title truck-panel-header'>기본정보</h3>
                 </div>
                 <div class='panel-body pannel-basic'>
+                <!-- 베이직단 폼 전송 -->
                   <form name="truckBasicInsert" action="<%=request.getContextPath()%>/truckBasicInsert" method="post">
 						<input type ="hidden" value="<%=truck.getTruckPk()%>">
 						<!--  트럭 pk 히든 input 으로 넣어줌 -->
@@ -109,17 +110,23 @@
 
                   <ul id='comment-main'><!--  reviewInsert.jsp로 이동 -->
                     <li id="addr0">
+                    <!--  메뉴단 AJAX 삽입 -->
                       <form action="#" method="post">
                         <div clas="row">
                           <div class="col-xs-9"><br>
                             <div class="row">
                               <div class="col-xs-12">
-                                <div class="form-group"><input name="menu-name" class="form-control" type="text" placeholder="메뉴입력"><br><input name="menu-price" class="form-control" type="text" placeholder="가격입력"></div>
+                                <div class="form-group"><input name="menu-name" class="form-control" type="text" placeholder="메뉴입력">
+                                <br><input name="menu-price" class="form-control" type="text" placeholder="가격입력"></div>
                               </div>
                             </div>
                           </div>
-                          <div class="col-xs-3 col-md-3-body-center"><img id="menu-check-img0" class="menu-check-img" src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=100% height=100><br><button class="btn-success menu-img-replace">사진등록</button>
-                            <div class="test"><input id="menu-input-img0" type="file" value="사진등록" class="upload menu-input-img" accept="image/gif, image/jpeg, image/png" name="menu-img" onclick="view_img(this)"></div>
+                          <div class="col-xs-3 col-md-3-body-center">
+                          <img id="menu-check-img0" class="menu-check-img" src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=100% height=100>
+                          <br><button class="btn-success menu-img-replace">사진등록</button>
+                            <div class="test">
+                            <input id="menu-input-img0" type="file" value="사진등록" class="upload menu-input-img" accept="image/gif, image/jpeg, image/png" name="menu-img" onclick="view_img(this)">
+                            </div>
 
 
                             <br>
@@ -149,7 +156,7 @@
 
           </div>
         </div>
-
+<!--  디테일 단 폼작성 -->
 	<form action="<%=request.getContextPath()%>/truckDetailInsert" name="truck_detail_insert" method="post">
 		<input type ="hidden" value="<%=truck.getTruckPk()%>">
 						<!--  트럭 pk 히든 input 으로 넣어줌 -->
