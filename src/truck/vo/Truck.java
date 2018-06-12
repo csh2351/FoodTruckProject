@@ -25,8 +25,8 @@ public class Truck implements Serializable{
 	private String truckCategory;
 	private int truckStar;
 	private int memberPk;
-	private int latitude;	
-	private int logitude;
+	private double latitude;	
+	private double logitude;
 	private String truckHoliday;
 	private int truckPrice;
 	public int getTruckPrice() {
@@ -125,16 +125,16 @@ public class Truck implements Serializable{
 	public void setMemberPk(int memberPk) {
 		this.memberPk = memberPk;
 	}
-	public int getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(int latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	public int getLogitude() {
+	public double getLogitude() {
 		return logitude;
 	}
-	public void setLogitude(int logitude) {
+	public void setLogitude(double logitude) {
 		this.logitude = logitude;
 	}
 	public String getTruckHoliday() {
