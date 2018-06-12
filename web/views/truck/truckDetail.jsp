@@ -6,22 +6,22 @@
 
 
 <script>
-    // 맵에 찍어주기
-   $(function geocodeLatLng() {
+//맵에 찍어주기
+$(function geocodeLatLng() {
 	   		var mapOptions = {
 	   			      zoom: 17
 	   		};
 		  	 var map = new google.maps.Map(document.getElementById('googlemap'), mapOptions);
 	 //googlemap div에 구글 맵을 붙여쥼
 
- 			 var geocoder = new google.maps.Geocoder;
-  			 var infowindow = new google.maps.InfoWindow;
-    	
-    		 var latitude = <%=truck.getLatitude()%>;
-    		 var longitude = <%=truck.getLogitude()%>;
-    		  var latlngStr = latitude + "," + longitude;
-    			$('#holiday').html(<%=truck.getLatitude()%>);
-    	     var latlng = {
+			 var geocoder = new google.maps.Geocoder;
+			 var infowindow = new google.maps.InfoWindow;
+ 	
+ 		 var latitude = <%=truck.getLatitude()%>;
+ 		 var longitude = <%=truck.getLogitude()%>;
+ 		  var latlngStr = latitude + "," + longitude;
+ 			$('#holiday').html(<%=truck.getLatitude()%>);
+ 	     var latlng = {
 		        lat: latitude,
 		        lng: longitude
 		      };	
@@ -44,9 +44,9 @@
 		          window.alert('No results found');
 		          window.alert('Geocoder failed due to: ' + status);
 		        } //  오류표시
-      });
-    });
-	
+   });
+ });
+	s
   </script>
 
 
