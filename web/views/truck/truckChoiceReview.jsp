@@ -233,7 +233,7 @@
                             <br>
                             <div class="row">
                               <div class="col-xs-12">
-                                <textarea class="form-control" id="content" name="reviewCommentContent" placeholder="내용을 입력하세요." rows="2" cols="100" style="resize: none;"></textarea>
+                                <textarea class="form-control" id="content" name="reviewCommentContent" placeholder="내용을 입력하세요." rows="2" cols="100" style="resize: none;" autofocus></textarea>
                               </div>
 
                             </div>
