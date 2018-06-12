@@ -245,7 +245,8 @@ public class TruckDao {
 				menu.setMenuPk(rs.getInt("menu_pk"));
 				menu.setMenuName(rs.getString("menu_name"));
 				menu.setMenuPrice(rs.getInt("menu_price"));
-				menu.setMenuImage(rs.getString("menu_image"));
+				menu.setMenuOimage(rs.getString("menu_oimage"));
+				menu.setMenuRimage(rs.getString("menu_rimage"));
 				list.add(menu);
 			}
 		} catch (SQLException e) {
@@ -282,7 +283,8 @@ public class TruckDao {
 				comment.setReviewCommentRef(rs.getInt("review_comment_ref"));
 				comment.setReivewCommentDate(rs.getDate("review_comment_date"));
 				comment.setReviewCommentOimage(rs.getString("review_comment_oimage"));
-				comment.setRviewCommentRimage(rs.getString("review_comment_rimage"));
+				comment.setReviewCommentRimage(rs.getString("review_comment_rimage"));
+				comment.setReviewStar(rs.getInt("review_star"));
 				comment.setMemberPk(rs.getInt("member_Pk"));
 				comment.setTruckPk(rs.getInt("truck_pk"));
 				list.add(comment);
@@ -294,6 +296,31 @@ public class TruckDao {
 			close(rs);
 			close(pstmp);
 		}return list;
+	}
+
+
+
+
+
+	public int insertTruckComment(Connection conn, TruckReviewComment comment) {
+		int result=0;
+		try {
+			pstmp=conn.prepareStatement(prop.getProperty("insertTruckComment"));
+			pstmp.setInt(1, comment.getReviewCommentLevel());
+			pstmp.setString(2, comment.getReviewCommnetWriter());
+			pstmp.setString(3, comment.getReviewCommnetContent());
+			pstmp.setString(4, comment.getReviewCommentOimage());
+			pstmp.setString(5, comment.getReviewCommentRimage());
+			pstmp.setDouble(6, comment.getReviewStar());
+			pstmp.setInt(7, comment.getMemberPk());
+			pstmp.setInt(8, comment.getTruckPk());
+			result=pstmp.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 

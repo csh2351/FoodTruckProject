@@ -15,16 +15,17 @@ public class TruckReviewComment implements Serializable{
 	private int reviewCommentRef;
 	private Date reivewCommentDate;
 	private String reviewCommentOimage;
-	private String rviewCommentRimage;
+	private String reviewCommentRimage;
 	private int memberPk;
 	private int truckPk;
+	private double reviewStar;
 	
 	public TruckReviewComment() {
 	}
 	
 	public TruckReviewComment(int reviewCommentPk, int reviewCommentLevel, String reviewCommnetWriter,
 			String reviewCommnetContent, int reviewRef, int reviewCommentRef, Date reivewCommentDate,
-			String reviewCommentOimage, String rviewCommentRimage, int memberPk, int truckPk) {
+			String reviewCommentOimage, String reviewCommentRimage, int memberPk, int truckPk, int reviewStar) {
 		super();
 		this.reviewCommentPk = reviewCommentPk;
 		this.reviewCommentLevel = reviewCommentLevel;
@@ -34,9 +35,10 @@ public class TruckReviewComment implements Serializable{
 		this.reviewCommentRef = reviewCommentRef;
 		this.reivewCommentDate = reivewCommentDate;
 		this.reviewCommentOimage = reviewCommentOimage;
-		this.rviewCommentRimage = rviewCommentRimage;
+		this.reviewCommentRimage = reviewCommentRimage;
 		this.memberPk = memberPk;
 		this.truckPk = truckPk;
+		this.setReviewStar(reviewStar);
 	}
 	public int getReviewCommentPk() {
 		return reviewCommentPk;
@@ -86,11 +88,11 @@ public class TruckReviewComment implements Serializable{
 	public void setReviewCommentOimage(String reviewCommentOimage) {
 		this.reviewCommentOimage = reviewCommentOimage;
 	}
-	public String getRviewCommentRimage() {
-		return rviewCommentRimage;
+	public String getReviewCommentRimage() {
+		return reviewCommentRimage;
 	}
-	public void setRviewCommentRimage(String rviewCommentRimage) {
-		this.rviewCommentRimage = rviewCommentRimage;
+	public void setReviewCommentRimage(String reviewCommentRimage) {
+		this.reviewCommentRimage = reviewCommentRimage;
 	}
 	public int getMemberPk() {
 		return memberPk;
@@ -104,15 +106,26 @@ public class TruckReviewComment implements Serializable{
 	public void setTruckPk(int truckPk) {
 		this.truckPk = truckPk;
 	}
+	public double getReviewStar() {
+		return reviewStar;
+	}
+	
+	public void setReviewStar(double reviewStar) {
+		this.reviewStar = reviewStar;
+	}
+
 	@Override
 	public String toString() {
 		return "TruckReviewComment [reviewCommentPk=" + reviewCommentPk + ", reviewCommentLevel=" + reviewCommentLevel
 				+ ", reviewCommnetWriter=" + reviewCommnetWriter + ", reviewCommnetContent=" + reviewCommnetContent
 				+ ", reviewRef=" + reviewRef + ", reviewCommentRef=" + reviewCommentRef + ", reivewCommentDate="
-				+ reivewCommentDate + ", reviewCommentOimage=" + reviewCommentOimage + ", rviewCommentRimage="
-				+ rviewCommentRimage + ", memberPk=" + memberPk + ", truckPk=" + truckPk + "]";
+				+ reivewCommentDate + ", reviewCommentOimage=" + reviewCommentOimage + ", reviewCommentRimage="
+				+ reviewCommentRimage + ", memberPk=" + memberPk + ", truckPk=" + truckPk + ", reviewStar=" + reviewStar
+				+ "]";
 	}
 	
 	
+	
+
 
 }

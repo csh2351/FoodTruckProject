@@ -7,49 +7,31 @@
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 
- <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList"); 
- 	%>
+ <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList");%>
+ <%int truckPk=(int)(request.getAttribute("truckPk"));%>
 
-
- 		
  		
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
-                    <!-- <li  class='level1'>
-                    <label for="content">아이디: &nbsp;쏴주기</label>
-                    <form name="commentInsertForm">
-                      <div class="input-group">
-                        <input type="hidden" name="필요한거삽입" value="필요한거삽입" />
-                        <input type="hidden" name="필요한거삽입" value="필요한거삽입" />
-                        <input type="hidden" name="필요한거삽입" value="필요한거삽입" />
-                        <textarea class="form-control" id="content" name="content" placeholder="내용을 입력하세요." rows="2" cols="100" style="resize: none;"></textarea>
-                        <div class="input-comment-span" align="right">
-                    <button class="btn btn-success" type="submit" name="commentInsertBtn">등록</button>
-                <button class="btn btn-success" type="reset" name="commentResetBtn">취소</button>
-                   </div>
-                      </div>
-                    </form>
-                    <div class="commentList"></div>
-
-                    </li> -->
+             
                     <%if(reviewList.get(i).getReviewCommentLevel()==1){ %>
                     <li id='comment-modify-list'>
                       <!--댓글보기-->
                         <div class='row'>
-                          <div class="col-xs-9">
+                          <div class="col-xs-8">
                             <div class="row">
-                              <div class="col-xs-6 ">
+                              <div class="col-md-6 ">
                                 <span class='panel-2-body-font'>아이디: <%=reviewList.get(i).getReviewCommnetWriter() %></span> 
                                 <!--아이디부여-->
                               </div>
-                              <div class="col-xs-6 date-padding">
+                              <div class="col-md-6 date-padding">
                                 <span class='panel-2-body-font'>작성일:<%=reviewList.get(i).getReivewCommentDate() %></span><br>
                                 <!--date 부여 -->
                               </div>
                             </div>
                             <span class="rating">
                             <label>
-                             <span class="icon">평점:</span>
+                             <span class="icon">평점: <%=reviewList.get(i).getReviewStar() %></span>
                             </label>
                             </span>
                             <div class="row">
@@ -60,8 +42,8 @@
 
                           </div>
                           <div class='col-xs-3 col-md-3-body-center'>
-                          <%if(reviewList.get(i).getRviewCommentRimage()==null){ %>
-                            <img class='comment-check-img' src="images/review/"+<%=reviewList.get(i).getRviewCommentRimage() %> alt="Card image cap" width=100% height=150%><br>
+                          <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
+                            <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150%><br>
                           <%} %>
                           </div>
                         </div>
@@ -78,7 +60,7 @@
                                 <span class='panel-2-body-font'>사장님: <%=reviewList.get(i).getReviewCommnetWriter() %></span> 
                                 <!--아이디부여-->
                               </div>
-                              <div class="col-xs-6 date-padding">
+                              <div class="col-md-6 date-padding">
                                 <span class='panel-2-body-font'>작성일:<%=reviewList.get(i).getReivewCommentDate() %></span><br>
                                 <!--date 부여 -->
                               </div>
@@ -192,50 +174,55 @@
                     <!--댓글달기-->
                     
                     <li id='comment-list'>
-                      <form name="TruckCommentFrm" action="<%=request.getContextPath()%>/TruckCommentInsert" method="post">
+                      <form name="TruckCommentFrm" action="<%=request.getContextPath()%>/truckCommentInsert" method="post" enctype="multipart/form-data">
                         <!--form클래스 아이디부여-->
-                        <div clas='row'>
+                        <div class='row'>
                           <div class="col-xs-9">
                             <div class="row">
                               <div class="col-md-6 ">
-                               <input type="hidden" name="truckPk" value="" />
+                               <input type="hidden" name="truckPk" value="<%=truckPk%>"/>                               
+          				      	<input type="hidden" name="reviewCommentWriter" value="admin" />                         
+          				      	<input type="hidden" name="reviewCommentRef" value="0" />                   
+          				      	<input type="hidden" name="reviewCommentLevel" value="1" />
+          				      	<input type="hidden" name="memberPk" value="1" />                    
+                                
                                 <span class='panel-2-body-font' name="reviewCommentWriter">아이디: 세션아이디~</span> 
                                
                                 <!--아이디부여-->
                               </div>
                               <div class="col-md-6 date-padding">
-                                <span id="localTime" class='panel-2-body-font'>작성날짜: 2012/12/11</span><br>
+                                <span id="localTime" class='panel-2-body-font'></span><br>
                                 <!--date 부여 -->
                               </div>
                             </div>
 
                             <span class="rating">
                             <label>
-                                    <input type="radio" name="stars" value="1" />
+                                    <input type="radio" name="reviewStar" value="1" />
                                     <span class="icon">★</span>
                             </label>
                             <label>
-                                    <input type="radio" name="stars" value="2" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                            </label>
-
-                            <label>
-                                    <input type="radio" name="stars" value="3" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                            </label>
-                            <label>
-                                    <input type="radio" name="stars" value="4" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
+                                    <input type="radio" name="reviewStar" value="2" />
                                     <span class="icon">★</span>
                                     <span class="icon">★</span>
                             </label>
 
                             <label>
-                                    <input type="radio" name="stars" value="5" />
+                                    <input type="radio" name="reviewStar" value="3" />
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                            </label>
+                            <label>
+                                    <input type="radio" name="reviewStar" value="4" />
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                            </label>
+
+                            <label>
+                                    <input type="radio" name="reviewStar" value="5" />
                                     <span class="icon">★</span>
                                     <span class="icon">★</span>
                                     <span class="icon">★</span>
@@ -246,11 +233,7 @@
                             <br>
                             <div class="row">
                               <div class="col-xs-12">
-
-                                <textarea class="form-control" id="content" name="content" placeholder="내용을 입력하세요." rows="2" cols="100" style="resize: none;"></textarea>
-
-
-
+                                <textarea class="form-control" id="content" name="reviewCommentContent" placeholder="내용을 입력하세요." rows="2" cols="100" style="resize: none;"></textarea>
                               </div>
 
                             </div>
@@ -261,10 +244,9 @@
                           <div class='col-xs-3 col-md-3-body-center'>
 
                             <img id='comment-check-img' src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=100% height=100><br>
-
                             <button class="btn-success replace">사진등록</button>
                             <div class='test'>
-                              <input id='comment-input-img' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name='comment-img'>
+                              <input id='comment-input-img' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name='up_file'>
                             </div>
                           </div>
                         </div>

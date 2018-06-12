@@ -36,6 +36,7 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+		System.out.println(truckPk);
 		
 
 		//List<TruckMenu> menuList=new TruckService().selectMenu(truckpk);
@@ -47,6 +48,7 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 			System.out.println("reviewList:"+reviewList);
 	        request.setAttribute("reviewList", reviewList);
 	        request.setAttribute("truckPk", truckPk);
+
 		}
 		else{
 			view="/views/common/msg.jsp";

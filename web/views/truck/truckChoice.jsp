@@ -43,6 +43,7 @@ $(function() {
 	});
 })
 
+
 	$(function() {
 	$.ajax({
 			url:"<%=request.getContextPath()%>/truckChoiceMenu",

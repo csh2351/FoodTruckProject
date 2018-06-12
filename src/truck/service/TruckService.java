@@ -60,4 +60,17 @@ public class TruckService {
 		return list;
 	}
 
+	
+
+	public int insertTruckComment(TruckReviewComment comment) {
+		int result=new TruckDao().insertTruckComment(conn, comment);
+		if(result>0){
+			commit(conn);
+		}
+		else{
+			rollback(conn);
+		}
+		return result;
+	}
+
 }
