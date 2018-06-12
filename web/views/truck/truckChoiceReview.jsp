@@ -5,14 +5,15 @@
 	pageEncoding="UTF-8"%>
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
-
- <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList"); %>
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 
+ <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList"); 
+ 	%>
+
 
  		
  		
-           <ul id='comment-main'>
+           <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
                     <!-- <li  class='level1'>
                     <label for="content">아이디: &nbsp;쏴주기</label>
@@ -68,7 +69,7 @@
                     </li>
                     <%}if(reviewList.get(i).getReviewCommentLevel()==2) {%>
                     
-                    <li class='comment-reply' textalign="right"> 
+                    <li class='comment-reply level2' textalign="right"> 
                      <div class='row'>
                      <div class="col-xs-2">	↘</div>
                           <div class="col-xs-10">
@@ -189,18 +190,21 @@
                     </li>
  -->
                     <!--댓글달기-->
+                    
                     <li id='comment-list'>
-                      <form>
+                      <form name="TruckCommentFrm" action="<%=request.getContextPath()%>/TruckCommentInsert" method="post">
                         <!--form클래스 아이디부여-->
                         <div clas='row'>
                           <div class="col-xs-9">
                             <div class="row">
                               <div class="col-md-6 ">
-                                <span class='panel-2-body-font'>아이디: jazzhong111111</span> 
+                               <input type="hidden" name="truckPk" value="" />
+                                <span class='panel-2-body-font' name="reviewCommentWriter">아이디: 세션아이디~</span> 
+                               
                                 <!--아이디부여-->
                               </div>
                               <div class="col-md-6 date-padding">
-                                <span class='panel-2-body-font'>작성날짜: 2012/12/11</span><br>
+                                <span id="localTime" class='panel-2-body-font'>작성날짜: 2012/12/11</span><br>
                                 <!--date 부여 -->
                               </div>
                             </div>
@@ -351,6 +355,14 @@
       })
     })
 	//미리보기 수정 스크립트
+	
+
+	$(function() {
+		function fn_localTime() {
+			return new Date().toLocaleString(); 
+		}
+			$("#localTime").html(fn_localTime());
+	})
   </script>
 
 </html>

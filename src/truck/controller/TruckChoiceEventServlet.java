@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import truck.service.TruckService;
+import truck.vo.Truck;
 import truck.vo.TruckMenu;
-import truck.vo.TruckReviewComment;
 
 /**
- * Servlet implementation class TruckChoiceReviewServlet
+ * Servlet implementation class TruckChoiceEventServlet
  */
-@WebServlet("/truckChoiceReview")
-public class TruckChoiceReviewServlet extends HttpServlet {
+@WebServlet("/truckChoiceEvent")
+public class TruckChoiceEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TruckChoiceReviewServlet() {
+    public TruckChoiceEventServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +32,18 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		String view="";
 		
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
-		
-
 		//List<TruckMenu> menuList=new TruckService().selectMenu(truckpk);
 		
-		String view="";
 		if(truckPk>0){
-			List<TruckReviewComment> reviewList=new TruckService().selectReviewCommnetList(truckPk);
-			view="/views/truck/truckChoiceReview.jsp";
-			System.out.println("reviewList:"+reviewList);
-	        request.setAttribute("reviewList", reviewList);
-	        request.setAttribute("truckPk", truckPk);
+			Truck truck=new TruckService().selectOne(truckPk);
+			view="/views/truck/truckChoiceEvent.jsp";
+			request.setAttribute("truck", truck);
 		}
 		else{
 			view="/views/common/msg.jsp";

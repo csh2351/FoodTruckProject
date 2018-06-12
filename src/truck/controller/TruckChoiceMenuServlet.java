@@ -10,28 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import truck.service.TruckService;
+import truck.vo.Truck;
 import truck.vo.TruckMenu;
 import truck.vo.TruckReviewComment;
 
-/**
- * Servlet implementation class TruckChoiceReviewServlet
- */
-@WebServlet("/truckChoiceReview")
-public class TruckChoiceReviewServlet extends HttpServlet {
+@WebServlet("/truckChoiceMenu")
+public class TruckChoiceMenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TruckChoiceReviewServlet() {
+    public TruckChoiceMenuServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
@@ -42,11 +34,10 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 		
 		String view="";
 		if(truckPk>0){
-			List<TruckReviewComment> reviewList=new TruckService().selectReviewCommnetList(truckPk);
-			view="/views/truck/truckChoiceReview.jsp";
-			System.out.println("reviewList:"+reviewList);
-	        request.setAttribute("reviewList", reviewList);
-	        request.setAttribute("truckPk", truckPk);
+			List<TruckMenu> menuList=new TruckService().selectMenu(truckPk);
+			view="/views/truck/truckChoiceMenu.jsp";
+			System.out.println("reviewList:"+menuList);
+	        request.setAttribute("menuList", menuList);
 		}
 		else{
 			view="/views/common/msg.jsp";
@@ -55,7 +46,6 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 
 		}
 		request.getRequestDispatcher(view).forward(request, response);
-
 	}
 
 	/**

@@ -7,40 +7,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import truck.service.TruckService;
-import truck.vo.Truck;
-
 /**
- * Servlet implementation class TruckBasicServlet
+ * Servlet implementation class TruckCommentInsert
  */
-@WebServlet("/truckBasic")
-public class TruckBasicServlet extends HttpServlet {
+@WebServlet("/truckCommentInsert")
+public class TruckCommentInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TruckBasicServlet() {
+    public TruckCommentInsert() {
         super();
         // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
-		
-		String view="";
-		if(truckPk>0){
-			Truck truck=new TruckService().selectOne(truckPk);
-			view="/views/truck/truckBasic.jsp";
-			request.setAttribute("truck", truck);
-		}
-		else{
-			view="/views/common/msg.jsp";
-			request.setAttribute("msg", "[기본키가 비었습니다.]");
-			request.setAttribute("loc", "/");
-
-		}
-		request.getRequestDispatcher(view).forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

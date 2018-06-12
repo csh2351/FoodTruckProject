@@ -5,8 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ include file="/views/common/header.jsp" %>
-<%Truck truck=(Truck)request.getAttribute("truck");
-ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("truckMenuList");%>	
+<%Truck truck=(Truck)request.getAttribute("truck");%>	
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
   
@@ -46,9 +45,9 @@ $(function() {
 
 	$(function() {
 	$.ajax({
-			url:"<%=request.getContextPath()%>/truckChoice",
+			url:"<%=request.getContextPath()%>/truckChoiceMenu",
 			type : "POST",
-			data:{truckPk :<%=truck.getTruckPk()%>,choice:"menu"},
+			data:{truckPk :<%=truck.getTruckPk()%>},
 			success : function(data){ 
 			$("#choice-body").html(data);
 			}, 
@@ -91,9 +90,9 @@ $(function() {
                 
                 $("#choiceMenu").on("click", function() {
 					$.ajax({
-						url:"<%=request.getContextPath()%>/truckChoice",
+						url:"<%=request.getContextPath()%>/truckChoiceMenu",
 						type : "POST",
-						data:{truckPk :<%=truck.getTruckPk()%>,choice:"menu"},
+						data:{truckPk :<%=truck.getTruckPk()%>},
 						success : function(data){ 
 							$("#choice-body").html(data);
 						}, 
@@ -106,9 +105,9 @@ $(function() {
 				
                 $("#choiceReview").on("click", function() {
 						$.ajax({
-							url:"<%=request.getContextPath()%>/truckChoice",
+							url:"<%=request.getContextPath()%>/truckChoiceReview",
 							type : "POST",
-							data:{truckPk :<%=truck.getTruckPk()%>,choice:"review"},
+							data:{truckPk :<%=truck.getTruckPk()%>},
 							success : function(data){ 
 								$("#choice-body").html(data);
 							}, 
@@ -120,9 +119,9 @@ $(function() {
 					
 					$("#choiceEvent").on("click", function() {
 						$.ajax({
-							url:"<%=request.getContextPath()%>/truckChoice",
+							url:"<%=request.getContextPath()%>/truckChoiceEvent",
 							type : "POST",
-							data:{truckPk :<%=truck.getTruckPk()%>,choice:"event"},
+							data:{truckPk :<%=truck.getTruckPk()%>},
 							success : function(data){ 
 								$("#choice-body").html(data);
 							}, 
