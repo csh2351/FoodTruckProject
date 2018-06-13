@@ -145,17 +145,10 @@ $.ajax({
 				
 				
                 $("#choiceReview").on("click", function() {
-                	 var obj = new Object();
-                	 obj.truckPk=<%=truck.getTruckPk()%>;
-                	 if(<%=member.getMemberId()%>!=null){
-                	 obj.memberId=<%=member.getMemberId()%>
-                	 }
-                	 
-                	 
 						$.ajax({
 							url:"<%=request.getContextPath()%>/truckChoiceReview",
 							type : "POST",
-							data:{json:obj},
+							data:{truckPk :<%=truck.getTruckPk()%>},
 							success : function(data){ 
 								$("#choice-body").html(data);
 							}, 

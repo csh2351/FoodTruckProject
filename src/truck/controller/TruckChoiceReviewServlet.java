@@ -8,7 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
+import member.model.vo.Member;
 import truck.service.TruckService;
 import truck.vo.TruckMenu;
 import truck.vo.TruckReviewComment;
@@ -34,11 +38,23 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+
+		
+		HttpSession session=request.getSession();
+		Member member=(Member)session.getAttribute("memberLoggedIn");
+		System.out.println("session : "+member);
+		String memberId="";
+		if(member!=null){
+			memberId=member.getMemberId();
+		}
 		
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
-		String memberId=request.getParameter("memberId");
+		//String memberId=request.getParameter("memberId");
 		System.out.println(truckPk);
-		System.out.println(memberId);
+		
+		//System.out.println(memberId);
+		
+
 		
 
 		//List<TruckMenu> menuList=new TruckService().selectMenu(truckpk);
@@ -48,17 +64,19 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 			List<TruckReviewComment> reviewList=new TruckService().selectReviewCommnetList(truckPk);
 			view="/views/truck/truckChoiceReview.jsp";
 			System.out.println("reviewList:"+reviewList);
+			
 			request.setAttribute("memberId", memberId);
 	        request.setAttribute("reviewList", reviewList);
 	        request.setAttribute("truckPk", truckPk);
 
 		}
+		
 		else{
 			view="/views/common/msg.jsp";
 			request.setAttribute("msg", "[기본키가 비었습니다.]");
 			request.setAttribute("loc", "/");
-
 		}
+		
 		request.getRequestDispatcher(view).forward(request, response);
 
 	}

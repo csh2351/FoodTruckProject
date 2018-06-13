@@ -1,3 +1,4 @@
+<%@page import="member.model.vo.Member"%>
 <%@page import="truck.vo.TruckReviewComment"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -9,8 +10,8 @@
 
  <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList");%>
  <%int truckPk=(int)(request.getAttribute("truckPk"));%>
- <%String memberId=(String)request.getAttribute("memberId"); %>
-
+ <%String memberId=(String)request.getAttribute("memberId");%>
+	
  		
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
@@ -47,9 +48,33 @@
                             <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150%><br>
                           <%} %>
                           </div>
+                                   
+                        <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
+                        <div class="row">
+                          <div class="col-xs-12 result-btn-positon">
+							<br>
+                             <button id="delete-button" class='btn btn-success result-btn' type="button">삭제</button>
+							<hr>
+                          </div>
+                          <%} %>
                         </div>
                        <hr>
                     </li>
+                    <script type="text/javascript">
+						$("#delete-button").on("click", function() {
+							$.ajax({
+									url:"<%=request.getContextPath()%>/",
+									type : "POST",
+									data:{truckPk :<%=truck.getTruckPk()%>},
+									success : function(data){ 
+									$("#choice-body").html(data);
+									}, 
+									error : function(request,status,error) { 
+									alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+									}
+							})								
+						});					
+					</script>
                     <%}if(reviewList.get(i).getReviewCommentLevel()==2) {%>
                     
                     <li class='comment-reply level2' textalign="right"> 
@@ -71,18 +96,6 @@
 								<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
                               </div>
                             </div>
-                          
-                         <%if(reviewList.get(i).getReviewCommnetWriter().equals(memberId)){ %>
-                        <div class="row">
-                          <div class="col-xs-12 result-btn-positon">
-							<br>
-                            <button id="modify-button" class='btn btn-success result-btn' type="submit">수정</button>
-                             <button id="reset-modify-button" class='btn btn-success result-btn' type="reset">취소</button>
-                             <button id="delete-button" class='btn btn-success result-btn' type="button">삭제</button>
-							<hr>
-                          </div>
-                          <%} %>
-                          
                         	<hr>
                           </div>
                         </div>
