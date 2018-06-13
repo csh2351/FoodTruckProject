@@ -55,7 +55,7 @@ public class TruckDao {
 				truck.setTruckName(rs.getString("truck_name"));
 				truck.setTruckOriginalImage(rs.getString("truck_original_image"));
 				truck.setTruckRenameImage(rs.getString("truck_rename_image"));
-				truck.setTrucklocation(rs.getString("truck_location"));
+				truck.setTruckLocation(rs.getString("truck_Location"));
 				truck.setTruckInfoName(rs.getString("truck_info_name"));
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
@@ -101,7 +101,7 @@ public class TruckDao {
 				truck.setTruckName(rs.getString("truck_name"));
 				truck.setTruckOriginalImage(rs.getString("truck_original_image"));
 				truck.setTruckRenameImage(rs.getString("truck_rename_image"));
-				truck.setTrucklocation(rs.getString("truck_location"));
+				truck.setTruckLocation(rs.getString("truck_Location"));
 				truck.setTruckInfoName(rs.getString("truck_info_name"));
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
@@ -142,7 +142,7 @@ public class TruckDao {
 				truck.setTruckName(rs.getString("truck_name"));
 				truck.setTruckOriginalImage(rs.getString("truck_original_image"));
 				truck.setTruckRenameImage(rs.getString("truck_rename_image"));
-				truck.setTrucklocation(rs.getString("truck_location"));
+				truck.setTruckLocation(rs.getString("truck_Location"));
 				truck.setTruckInfoName(rs.getString("truck_info_name"));
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
@@ -206,7 +206,7 @@ public class TruckDao {
 				truck.setTruckName(rs.getString("truck_name"));
 				truck.setTruckOriginalImage(rs.getString("truck_original_image"));
 				truck.setTruckRenameImage(rs.getString("truck_rename_image"));
-				truck.setTrucklocation(rs.getString("truck_location"));
+				truck.setTruckLocation(rs.getString("truck_Location"));
 				truck.setTruckInfoName(rs.getString("truck_info_name"));
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));

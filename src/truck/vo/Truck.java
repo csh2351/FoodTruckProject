@@ -14,7 +14,7 @@ public class Truck implements Serializable{
 	private String truckName;
 	private String truckOriginalImage;
 	private String truckRenameImage;
-	private String trucklocation;
+	private String truckLocation;
 	private String truckInfoName;
 	private int truckInfoRegisterNumber;
 	private String truckContent;
@@ -59,11 +59,11 @@ public class Truck implements Serializable{
 	public void setTruckRenameImage(String truckRenameImage) {
 		this.truckRenameImage = truckRenameImage;
 	}
-	public String getTrucklocation() {
-		return trucklocation;
+	public String getTruckLocation() {
+		return truckLocation;
 	}
-	public void setTrucklocation(String trucklocation) {
-		this.trucklocation = trucklocation;
+	public void setTruckLocation(String truckLocation) {
+		this.truckLocation = truckLocation;
 	}
 	public String getTruckInfoName() {
 		return truckInfoName;
@@ -146,7 +146,7 @@ public class Truck implements Serializable{
 	@Override
 	public String toString() {
 		return "Truck [truckPk=" + truckPk + ", truckName=" + truckName + ", truckOriginalImage=" + truckOriginalImage
-				+ ", truckRenameImage=" + truckRenameImage + ", trucklocation=" + trucklocation + ", truckInfoName="
+				+ ", truckRenameImage=" + truckRenameImage + ", truckLocation=" + truckLocation + ", truckInfoName="
 				+ truckInfoName + ", truckInfoRegisterNumber=" + truckInfoRegisterNumber + ", truckContent="
 				+ truckContent + ", truckStatus=" + truckStatus + ", truckOpenTime=" + truckOpenTime
 				+ ", truckCloseTime=" + truckCloseTime + ", truckApprove=" + truckApprove + ", truckCategory="
