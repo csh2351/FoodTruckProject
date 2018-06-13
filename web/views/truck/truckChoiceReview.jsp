@@ -66,18 +66,19 @@
                            <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
                     
                     
-                    	<form action="<%=request.getContextPath()%>/truckCommentDelete">
+                    	<form action="<%=request.getContextPath()%>/truckCommentDelete" method="post">
           				      	<input type="hidden" name="reviewCommentPk" value="<%=reviewList.get(i).getReviewCommentPk()%>" />                         
           				      	<input type="hidden" name="fileName" value="<%=reviewList.get(i).getReviewCommentRimage()%>" />                   
+                                <input type="hidden" name="truckPk" value="<%=reviewList.get(i).getTruckPk()%>" />                   
                         <div class="row">
                          <div class="col-xs-8">
                           </div>
                           <div class="col-xs-4 result-btn-positon">
                              <button id="delete-button<%=i%>"  class='btn btn-success result-btn delete-button' type="submit" >삭제</button>
-                            <hr>
                           </div>
                         </div>
                         </form>
+                       
                         
                           <%} %>
                     </li>
@@ -108,6 +109,7 @@
                     </li>
                   
                   	  <%} %>
+                  	   <hr>
                     <%} %>
                     
                   

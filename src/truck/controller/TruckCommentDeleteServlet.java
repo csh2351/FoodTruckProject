@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import truck.service.TruckService;
+import truck.vo.Truck;
 
 /**
  * Servlet implementation class TruckCommentDeleteServlet
@@ -32,7 +33,9 @@ public class TruckCommentDeleteServlet extends HttpServlet {
 		System.out.println("진입");
 		int reviewCommentPk=Integer.parseInt(request.getParameter("reviewCommentPk"));
 		String filename=(String)request.getParameter("fileName");
-
+		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+		Truck truck=new TruckService().selectOne(truckPk);
+		
 		String saveDir=getServletContext().getRealPath("/images"+File.separator+"truckReview");
 		System.out.println("경로"+saveDir);
 		System.out.println("reviewCommentPk : "+reviewCommentPk);
@@ -49,17 +52,19 @@ public class TruckCommentDeleteServlet extends HttpServlet {
 			flag=true;
 		}
 		
-		System.out.println("결과"+result);
-		String view="/views/common/msg.jsp";
-		
+		String view="";		
 		if(result>0&&flag){
 			view="/views/truck/truckChoice.jsp";
+			request.setAttribute("truck", truck);
+			request.setAttribute("truckChoice", "truckChoiceReview");
 		}
-		else{
-			request.setAttribute("msg", "삭제실패[관리자에게문의하세요]");
-			request.setAttribute("loc", "/views/truck/truckChoice.jsp");
+		
+		else {
+			view="/views/common/msg.jsp";
+			request.setAttribute("msg","삭제하지 못했습니다.");
+			request.setAttribute("loc", "/");
 		}
-		request.setAttribute("truckChoice", "truckChoiceReview");
+		
 		request.getRequestDispatcher(view).forward(request, response);
 		
 	}
