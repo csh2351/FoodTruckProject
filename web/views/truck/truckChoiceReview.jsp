@@ -64,14 +64,34 @@
                           </div>
                                    
                         <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
-                        <div class="row">
+<%--                         <form action="<%=request.getContextPath()%>/truckCommentDelete">
+ --%>                        <div class="row">
                          <div class="col-xs-9">
                           </div>
                           <div class="col-xs-3 result-btn-positon">
                              <button id="delete-button" class='btn btn-success result-btn' type="button" value="<%=%>">삭제</button>
+                       		<%--   <input type="hidden" name="reviewCommentPk" value="<%=reviewList.get(i).getReviewCommentPk()%>"/>                               
+          				      <input type="hidden" name="fileName" value="<%=reviewList.get(i).getReviewCommentRimage()%>" />                         
+						  --%>  
+						  </div>
+						   <script type="text/javascript">
+						   		$("#delete-button").on("click", function() {
+						   			$.ajax({
+						   					url:"<%=request.getContextPath()%>/truckCommentDelete",
+						   					type : "POST",
+						   					data:{reviewCommentPk :<%=reviewList.get(i).getReviewCommentPk()%>, fileName :<%=reviewList.get(i).getReviewCommentRimage()%> },
+						   					success : function(data){ 
+						   						alert("삭제성공");
+						   					}, 
+						   					error : function(request,status,error) { 
+						   					alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+						   					}
+						   			})
+								})
+						   </script>
                           <%} %>
                         </div>
-                        </div>
+                        </form>
                        <hr>
                     </li>
                     
