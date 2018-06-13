@@ -8,6 +8,23 @@
 <%Truck truck=(Truck)request.getAttribute("truck");%>
 <%String serlvet=(String)request.getAttribute("truckChoice"); %>
 
+<script type="text/javascript">
+
+$(function() {
+$.ajax({
+		url:"<%=request.getContextPath()%>/<%=serlvet%>",
+		type : "POST",
+		data:{truckPk :<%=truck.getTruckPk()%>},
+		success : function(data){ 
+		$("#choice-body").html(data);
+		}, 
+		error : function(request,status,error) { 
+		alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+		}
+})
+})
+</script>
+
 <link rel="stylesheet"
 	href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
 
