@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="views/common/header.jsp" %>
 <%@ page import = "truck.vo.Truck" %>
-<% Truck truck = (Truck)request.getParameter("truck") %>
+<% Truck truck = (Truck)request.getParameter("truck"); %>
 	<section>
     <div class="container">
 

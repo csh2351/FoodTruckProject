@@ -63,8 +63,8 @@ public class TruckDao {
 				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
 				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
-			truck.setLatitude(rs.getInt("truck_latitude"));
-			truck.setLogitude(rs.getInt("truck_logitude"));
+			truck.setLatitude(rs.getDouble("truck_latitude"));
+			truck.setLogitude(rs.getDouble("truck_logitude"));
 				truck.setTruckStar(rs.getInt("truck_star"));
 			truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckCategory(rs.getString("truck_category"));
@@ -109,8 +109,8 @@ public class TruckDao {
 				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
 				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
-				truck.setLatitude(rs.getInt("truck_latitude"));
-				truck.setLogitude(rs.getInt("truck_logitude"));
+				truck.setLatitude(rs.getDouble("truck_latitude"));
+				truck.setLogitude(rs.getDouble("truck_logitude"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setTruckStar(rs.getInt("truck_star"));
 				truck.setTruckPrice(rs.getInt("truck_price"));
@@ -150,8 +150,8 @@ public class TruckDao {
 				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
 				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
-				truck.setLatitude(rs.getInt("truck_latitude"));
-				truck.setLogitude(rs.getInt("truck_logitude"));
+				truck.setLatitude(rs.getDouble("truck_latitude"));
+				truck.setLogitude(rs.getDouble("truck_logitude"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setTruckStar(rs.getInt("truck_star"));
 				truck.setTruckPrice(rs.getInt("truck_price"));
@@ -214,8 +214,8 @@ public class TruckDao {
 				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
 				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
-				truck.setLatitude(rs.getInt("truck_latitude"));
-				truck.setLogitude(rs.getInt("truck_logitude"));
+				truck.setLatitude(rs.getDouble("truck_latitude"));
+				truck.setLogitude(rs.getDouble("truck_logitude"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setTruckStar(rs.getInt("truck_star"));
 				truck.setTruckPrice(rs.getInt("truck_price"));

@@ -9,7 +9,7 @@
 
  <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList");%>
  <%int truckPk=(int)(request.getAttribute("truckPk"));%>
-
+ 
  		
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
