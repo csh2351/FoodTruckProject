@@ -57,46 +57,30 @@
                             </div>
 
                           </div>
-                          <div class='col-xs-4 col-md-3-body-center'>
+                          <div class='col-xs-3 col-md-3-body-center'>
                           <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
-                            <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=90% height=150%><br>
+                            <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150%><br>
                           <%} %>
                           </div>
-                                   
-                        <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
-<%--                         <form action="<%=request.getContextPath()%>/truckCommentDelete">
- --%>                        <div class="row">
-                         <div class="col-xs-9">
+                        </div>
+                           <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
+                    
+                    
+                    	<form action="<%=request.getContextPath()%>/truckCommentDelete">
+          				      	<input type="hidden" name="reviewCommentPk" value="<%=reviewList.get(i).getReviewCommentPk()%>" />                         
+          				      	<input type="hidden" name="fileName" value="<%=reviewList.get(i).getReviewCommentRimage()%>" />                   
+                        <div class="row">
+                         <div class="col-xs-8">
                           </div>
-                          <div class="col-xs-3 result-btn-positon">
-                             <button id="delete-button" class='btn btn-success result-btn' type="button" value="<%=%>">삭제</button>
-                       		<%--   <input type="hidden" name="reviewCommentPk" value="<%=reviewList.get(i).getReviewCommentPk()%>"/>                               
-          				      <input type="hidden" name="fileName" value="<%=reviewList.get(i).getReviewCommentRimage()%>" />                         
-						  --%>  
-						  </div>
-						   <script type="text/javascript">
-						   		$("#delete-button").on("click", function() {
-						   			$.ajax({
-						   					url:"<%=request.getContextPath()%>/truckCommentDelete",
-						   					type : "POST",
-						   					data:{reviewCommentPk :<%=reviewList.get(i).getReviewCommentPk()%>, fileName :<%=reviewList.get(i).getReviewCommentRimage()%> },
-						   					success : function(data){ 
-						   						alert("삭제성공");
-						   					}, 
-						   					error : function(request,status,error) { 
-						   					alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-						   					}
-						   			})
-								})
-						   </script>
-                          <%} %>
+                          <div class="col-xs-4 result-btn-positon">
+                             <button id="delete-button<%=i%>"  class='btn btn-success result-btn delete-button' type="submit" >삭제</button>
+                            <hr>
+                          </div>
                         </div>
                         </form>
-                       <hr>
+                        
+                          <%} %>
                     </li>
-                    
-                 
-					
                     <%}if(reviewList.get(i).getReviewCommentLevel()==2) {%>
                     
                     <li class='comment-reply level2' textalign="right"> 
@@ -105,7 +89,7 @@
                           <div class="col-xs-10">
                             <div class="row">
                               <div class="col-xs-6 ">
-                                <span class='panel-2-body-font'>사장님: <%=reviewList.get(i).getReviewCommnetWriter()%></span> 
+                                <span class='panel-2-body-font'>사장님: <%=reviewList.get(i).getReviewCommnetWriter() %></span> 
                                 <!--아이디부여-->
                               </div>
                               <div class="col-md-6 date-padding">
@@ -122,7 +106,8 @@
                           </div>
                         </div>
                     </li>
-                    <%} %>
+                  
+                  	  <%} %>
                     <%} %>
                     
                   
@@ -221,6 +206,8 @@
  -->
                     <!--댓글달기-->
                     
+                   
+					<%if(memberId.length()>0){ %>                   
                     <li id='comment-list'>
                       <form name="TruckCommentFrm" action="<%=request.getContextPath()%>/truckCommentInsert" method="post" enctype="multipart/form-data">
                         <!--form클래스 아이디부여-->
@@ -229,7 +216,7 @@
                             <div class="row">
                               <div class="col-md-6 ">
                                <input type="hidden" name="truckPk" value="<%=truckPk%>"/>                               
-          				      	<input type="hidden" name="reviewCommentWriter" value="admin" />                         
+          				      	<input type="hidden" name="reviewCommentWriter" value="<%=memberId%>" />                         
           				      	<input type="hidden" name="reviewCommentRef" value="0" />                   
           				      	<input type="hidden" name="reviewCommentLevel" value="1" />
           				      	<input type="hidden" name="memberPk" value="1" />                    
@@ -313,6 +300,7 @@
                       </form>
 
                     </li>
+                    <%} %>
                   </ul>
   
   

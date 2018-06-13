@@ -77,6 +77,7 @@ public class TruckService {
 
 	public int deleteTruckComment(int reviewCommentPk) {
 		int result=new TruckDao().deleteTruckComment(conn, reviewCommentPk);
+		System.out.println("결과:"+result);
 		if(result>0){
 			commit(conn);
 		}

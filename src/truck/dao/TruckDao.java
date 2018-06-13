@@ -333,13 +333,12 @@ public class TruckDao {
 	public int deleteTruckComment(Connection conn, int reviewCommentPk) {
 		int result=0;
 		try {
-			pstmp=conn.prepareStatement(prop.getProperty("deleteTruckComment"));
+			pstmp=conn.prepareStatement("delete from review_comment where review_comment_pk=24");
 			pstmp.setInt(1, reviewCommentPk);
 			result=pstmp.executeUpdate();
+			System.out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			close(pstmp);
 		}
 		return result;
 	}
