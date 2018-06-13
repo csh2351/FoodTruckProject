@@ -9,6 +9,7 @@
 
  <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList");%>
  <%int truckPk=(int)(request.getAttribute("truckPk"));%>
+ <%String memberId=(String)request.getAttribute("memberId"); %>
 
  		
            <ul id='comment-main level1'>
@@ -70,6 +71,18 @@
 								<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
                               </div>
                             </div>
+                          
+                         <%if(reviewList.get(i).getReviewCommnetWriter().equals(memberId)){ %>
+                        <div class="row">
+                          <div class="col-xs-12 result-btn-positon">
+							<br>
+                            <button id="modify-button" class='btn btn-success result-btn' type="submit">수정</button>
+                             <button id="reset-modify-button" class='btn btn-success result-btn' type="reset">취소</button>
+                             <button id="delete-button" class='btn btn-success result-btn' type="button">삭제</button>
+							<hr>
+                          </div>
+                          <%} %>
+                          
                         	<hr>
                           </div>
                         </div>
