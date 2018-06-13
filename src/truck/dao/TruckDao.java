@@ -318,8 +318,29 @@ public class TruckDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			close(pstmp);
 		}
 		
+		return result;
+	}
+
+
+
+
+
+
+	public int deleteTruckComment(Connection conn, int reviewCommentPk) {
+		int result=0;
+		try {
+			pstmp=conn.prepareStatement(prop.getProperty("deleteTruckComment"));
+			pstmp.setInt(1, reviewCommentPk);
+			result=pstmp.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmp);
+		}
 		return result;
 	}
 	

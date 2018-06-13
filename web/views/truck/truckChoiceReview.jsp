@@ -12,6 +12,20 @@
  <%int truckPk=(int)(request.getAttribute("truckPk"));%>
  <%String memberId=(String)request.getAttribute("memberId");%>
 	
+	<!-- 지우지마셈... -->
+	<style>
+	.replace {
+      position: absolute;
+      width: 90%;
+      height: 30px;
+      border-radius: 3px;
+      border-color: transparent;
+      background: green;
+      color: #fff;
+      cursor: pointer;
+    }
+	</style>
+	
  		
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
@@ -43,38 +57,26 @@
                             </div>
 
                           </div>
-                          <div class='col-xs-3 col-md-3-body-center'>
+                          <div class='col-xs-4 col-md-3-body-center'>
                           <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
-                            <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150%><br>
+                            <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=90% height=150%><br>
                           <%} %>
                           </div>
                                    
                         <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
                         <div class="row">
-                          <div class="col-xs-12 result-btn-positon">
-							<br>
-                             <button id="delete-button" class='btn btn-success result-btn' type="button">삭제</button>
-							<hr>
+                         <div class="col-xs-9">
                           </div>
+                          <div class="col-xs-3 result-btn-positon">
+                             <button id="delete-button" class='btn btn-success result-btn' type="button" value="<%=%>">삭제</button>
                           <%} %>
+                        </div>
                         </div>
                        <hr>
                     </li>
-                    <script type="text/javascript">
-						$("#delete-button").on("click", function() {
-							$.ajax({
-									url:"<%=request.getContextPath()%>/",
-									type : "POST",
-									data:{truckPk :<%=truck.getTruckPk()%>},
-									success : function(data){ 
-									$("#choice-body").html(data);
-									}, 
-									error : function(request,status,error) { 
-									alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-									}
-							})								
-						});					
-					</script>
+                    
+                 
+					
                     <%}if(reviewList.get(i).getReviewCommentLevel()==2) {%>
                     
                     <li class='comment-reply level2' textalign="right"> 
@@ -83,7 +85,7 @@
                           <div class="col-xs-10">
                             <div class="row">
                               <div class="col-xs-6 ">
-                                <span class='panel-2-body-font'>사장님: <%=reviewList.get(i).getReviewCommnetWriter() %></span> 
+                                <span class='panel-2-body-font'>사장님: <%=reviewList.get(i).getReviewCommnetWriter()%></span> 
                                 <!--아이디부여-->
                               </div>
                               <div class="col-md-6 date-padding">
@@ -203,7 +205,7 @@
                       <form name="TruckCommentFrm" action="<%=request.getContextPath()%>/truckCommentInsert" method="post" enctype="multipart/form-data">
                         <!--form클래스 아이디부여-->
                         <div class='row'>
-                          <div class="col-xs-9">
+                          <div class="col-xs-8">
                             <div class="row">
                               <div class="col-md-6 ">
                                <input type="hidden" name="truckPk" value="<%=truckPk%>"/>                               
@@ -267,9 +269,9 @@
 
 
                           </div>
-                          <div class='col-xs-3 col-md-3-body-center'>
+                          <div class='col-xs-4 col-md-3-body-center'>
 
-                            <img id='comment-check-img' src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=100% height=100><br>
+                            <img id='comment-check-img' src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=90% height=100><br>
                             <button class="btn-success replace">사진등록</button>
                             <div class='test'>
                               <input id='comment-input-img' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name='up_file'>
@@ -371,6 +373,8 @@
 		}
 			$("#localTime").html(fn_localTime());
 	})
+    
+    	
   </script>
 
 </html>

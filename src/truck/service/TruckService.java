@@ -73,4 +73,17 @@ public class TruckService {
 		return result;
 	}
 
+	
+
+	public int deleteTruckComment(int reviewCommentPk) {
+		int result=new TruckDao().deleteTruckComment(conn, reviewCommentPk);
+		if(result>0){
+			commit(conn);
+		}
+		else{
+			rollback(conn);
+		}
+		return result;
+	}
+
 }
