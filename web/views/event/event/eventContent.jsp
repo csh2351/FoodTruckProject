@@ -47,10 +47,10 @@
                       <table class="table">
                         <tr>
                           <td>
-                            제목
+                               	제목
                           </td>
                           <td colspan="5">
-                            아아아아아아아아아
+                          	아아아아아아아아아
                           </td>
                         </tr>
                         <tr>
@@ -88,7 +88,6 @@
                             <button type="button" class="btn btn-default"><a href="<%=request.getContextPath()%>/eventForm.do">목록으로</a></button>
                     </form>
           </div>
-          
         
         </div>
     </div>

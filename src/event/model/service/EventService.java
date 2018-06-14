@@ -17,10 +17,25 @@ public class EventService {
 		return eventList;
 	}
 	
+	public List<Event> selectOneList(int cPage, int numPerPage,int truckPk){
+		Connection conn=getConnection();
+		List<Event> eventList=new EventDao().selectOneList(conn,cPage,numPerPage,truckPk);
+		close(conn);
+		return eventList;
+	}
+	
 	
 	public int selectCount() {
 		Connection conn=getConnection();
 		int result=new EventDao().selectCount(conn);
+		close(conn);
+		return result;
+	}
+	
+
+	public int selectOneCount(int truckPk) {
+		Connection conn=getConnection();
+		int result=new EventDao().selectOneCount(conn,truckPk);
 		close(conn);
 		return result;
 	}
@@ -71,4 +86,6 @@ public class EventService {
 			close(conn);
 			return result;
 	}
+
+
 }

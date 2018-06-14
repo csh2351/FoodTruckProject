@@ -56,9 +56,9 @@
 						%>
 					</tbody>
 				</table>
-				<%if(memberLoggedIn==null) {%>
-				<%}else if(memberLoggedIn!=null){
-      		    	if(memberLoggedIn.getMemberLevel().equals("1")){ %>
+				<%if(member==null) {%>
+				<%}else if(member!=null){
+      		    	if(member.getMemberLevel()==1){ %>
 				<div class="row">
 					<div class="form-group">
 						<div class="col-sm-12 text-right">

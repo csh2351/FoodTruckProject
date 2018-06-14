@@ -76,7 +76,7 @@
             <ul class="nav navbar-nav">
                <li><a href="<%=request.getContextPath() %>/intro.do">소개<span class='sr-only'></span></a></li>
                <li><a href="<%=request.getContextPath() %>/">STORE</a></li>
-               <li><a href="<%=request.getContextPath() %>/event.do">EVENT</a></li>
+               <li><a href="<%=request.getContextPath() %>/eventForm.do">EVENT</a></li>
                <li><a href="<%=request.getContextPath() %>/customer.do">고객센터</a></li>
                <%if(member!=null){
                   if(member.getMemberLevel()==1) { %>
