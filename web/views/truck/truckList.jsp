@@ -46,7 +46,10 @@
 									
 							</div>
 							
-                  
+                  <div class="ratings">
+      <div class="empty-stars"></div>
+      <div class="full-stars" style="width:70%"></div>
+    </div>
                     
 							<div class="col-xs-7">
 								<br>
