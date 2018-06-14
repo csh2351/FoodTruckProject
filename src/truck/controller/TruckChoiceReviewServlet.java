@@ -52,10 +52,6 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 		System.out.println(truckPk);
 		
 		
-
-		
-
-		
 		String view="";
 		if(truckPk>0){
 			List<TruckReviewComment> reviewList=new TruckService().selectReviewCommnetList(truckPk);

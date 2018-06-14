@@ -221,9 +221,11 @@ public class EventDao {
 				Event event=new Event();
 				event.setEventPk(rs.getInt("event_pk"));
 				event.setEventTitle(rs.getString("event_title"));
-				event.setEventImg(rs.getString("event_img"));
 				event.setEventDate(rs.getDate("event_date"));
 				event.setEventContent(rs.getString("event_content"));
+				event.setOriginalFileName(rs.getString("event_original_image"));
+				event.setRenameFileName(rs.getString("event_rename_image"));
+				event.setTruckPk(rs.getInt("truck_pk"));
 				list.add(event);
 			}
 		} catch (SQLException e) {

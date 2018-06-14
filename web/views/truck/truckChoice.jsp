@@ -51,10 +51,11 @@ $.ajax({
 											src="images/truck/<%=truck.getTruckOriginalImage()%>" alt=""
 											width="200" height="200"></a> <br> <br>
 									</div>
+									
 
 									<!--모달 틀-->
 									<div class="modal fade pop-up-1" tabindex="-1" role="dialog"
-										aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+										aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
 										<div class="modal-dialog modal-lg">
 											<div class="modal-content">
 
@@ -75,6 +76,9 @@ $.ajax({
 										<!-- /.modal-dialog -->
 									</div>
 									<!-- /.modal mixer image -->
+									
+									
+									
 
 									<div class="col-md-6">
 										<p class='truck-basic-font'>

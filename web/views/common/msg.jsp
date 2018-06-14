@@ -6,7 +6,6 @@
 	String script=(String)request.getAttribute("script");
 %>
 <script>
-	alert("<%=loc%>");
 	location.href="<%=loc%>";
 	alert("<%= msg %>");
 	<%=script %>!=null?<%=script%>:"";

@@ -4,27 +4,6 @@
 <!DOCTYPE html">
 <%Truck truck=(Truck)request.getAttribute("truck");
 	String star="";%>
-<%switch (truck.getTruckStar()) {
-            				case 1:
-            					star="★";
-            				break;
-            				case 2:
-            					star="★★";
-            				break;
-            				case 3:
-            					star="★★★";
-            				break;
-            				case 4:
-            					star="★★★★";
-            				break;
-            				case 5:
-            					star="★★★★★";
-            				break;
-            				default:
-            					star="★★★★★";
-            				break;
-            			}	
-            			%>
   <div class='panel panel-default'>
                 <div class='panel-heading'>
                   <h3 class='panel-title truck-panel-header'>기본정보</h3>

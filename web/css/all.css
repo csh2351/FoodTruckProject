@@ -73,6 +73,9 @@ section ul {
           width: 130px;
           height: 130px;
         }
+        #select_sort{
+        margin-left: 15px;
+        }
       }
       
       /* 구글 맵 상세정보 css*/

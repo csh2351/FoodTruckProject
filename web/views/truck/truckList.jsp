@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
  
-    
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/all.css">
 <% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("List");
 	//String saveDir=(String)request.getAttribute("saveDir");%>
   
@@ -15,7 +15,6 @@
 
 
 
-		</style>
 				<li class='store_list' value=<%=list.get(i).getTruckPk() %>>
 					<div class="col-sm-6 col-md-4 padding">
 						<div class="thumbnail thumnail-botton">
@@ -39,7 +38,6 @@
 									<!--클릭이벤트제거-->
 								</div>
 								<!--고정값으로 할수있는 checkd찾기-->
-
 							</div>
 							<div class="col-xs-5">
 								<br> <img class="truck_img_size"src="images/truck/<%=list.get(i).getTruckOriginalImage()%>"

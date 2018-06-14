@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
+
+<style>
+  @media(max-width:480px) {
+        #select_sort{
+        margin-left: 15px;
+        }
+      }
+</style>	
+	
 <script type="text/javascript">
 	 $(function() {
 			 $.ajax({
