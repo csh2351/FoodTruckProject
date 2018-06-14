@@ -80,10 +80,11 @@ $.ajax({
 										<p class='truck-basic-font'>
 											주소:
 											<%=truck.getTrucklocation() %></p>
-
-										<span class='truck-basic-font'>평점 : <%=truck.getTruckStar()%>
-										</span> <br> <span class='truck-basic-font'>최소금액: <%=truck.getTruckPrice() %></span>
-										<br>
+													<div class="ratings">
+      														<div class="empty-stars"></div>
+      														<div class="full-stars" style="width:<%=truck.getTruckStar()*20%>%"></div>
+    												  </div>
+										<br> <span class='truck-basic-font'>최소금액: <%=truck.getTruckPrice() %>원</span>
 										<br>
 										<br>
 										<p class='truck-basic-font'>
@@ -254,7 +255,10 @@ $.ajax({
 	</div>
 </section>
 <script type="text/javascript">
-  
+//on/off스위치
+$("#myonoffswitch").on('click', function(e) {
+	e.preventDefault();
+})
   
 	 	function fn_modal(oriName) {
 	 		oName=encodeURIComponent(oriName);
