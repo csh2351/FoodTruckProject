@@ -28,19 +28,30 @@ public class TruckSelectOneServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+		String temp=request.getParameter("truckChoice");
+
 		System.out.println(truckPk);
-		Truck truck=new TruckService().selectOne(truckPk);
-		List<TruckMenu>list=new TruckService().selectMenu(truckPk);
-		System.out.println(truck);
-		System.out.println(list);
+		System.out.println(temp);
 		
+		//처음은 무조건 menu
+		String truckChoice="truckChoiceMenu";
+		
+		
+		//댓글삭제로직~
+		
+		if(temp!=null){
+			truckChoice=temp;
+		}
+		//댓글삭제로직~
+		
+		Truck truck=new TruckService().selectOne(truckPk);
+		System.out.println(truck);
 		String view="";
 		
-		if(truck!=null&&list.size()>0){
+		if(truck!=null){
 			view="/views/truck/truckChoice.jsp";
 			request.setAttribute("truck", truck);
-			request.setAttribute("truckMenuList", list);
-			request.setAttribute("truckChoice", "truckChoiceMenu");
+			request.setAttribute("truckChoice", truckChoice);
 		}
 		else {
 			view="/views/commom/msg.jsp";

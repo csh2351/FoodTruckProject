@@ -66,7 +66,7 @@
                            <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
                     
                     
-                    	<form action="<%=request.getContextPath()%>/truckCommentDelete" method="post">
+                    	<form action="<%=request.getContextPath()%>/truckCommentDelete" method="get">
           				      	<input type="hidden" name="reviewCommentPk" value="<%=reviewList.get(i).getReviewCommentPk()%>" />                         
           				      	<input type="hidden" name="fileName" value="<%=reviewList.get(i).getReviewCommentRimage()%>" />                   
                                 <input type="hidden" name="truckPk" value="<%=reviewList.get(i).getTruckPk()%>" />                   
