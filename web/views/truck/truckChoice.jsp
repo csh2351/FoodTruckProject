@@ -49,7 +49,7 @@ $.ajax({
 										<a href="#" data-toggle="modal" data-target=".pop-up-1"><img
 											class='trcuk-img img-responsive center-block'
 											src="images/truck/<%=truck.getTruckOriginalImage()%>" alt=""
-											width="200" height="200"></a> <br> <br>
+											width="200" height="200" onclick="fn_modal('<%=truck.getTruckOriginalImage()%>')"></a> <br> <br>
 									</div>
 									
 
@@ -66,7 +66,7 @@ $.ajax({
 														이미지</h4>
 												</div>
 												<div class="modal-body">
-													<img src="images/truck/<%=truck.getTruckOriginalImage()%>"
+													<img id="truckbasic-modal" src="images/truck/<%=truck.getTruckOriginalImage()%>"
 														class="img-responsive img-rounded center-block" alt=""
 														width="800" height="800">
 												</div>
@@ -76,7 +76,7 @@ $.ajax({
 										<!-- /.modal-dialog -->
 									</div>
 									<!-- /.modal mixer image -->
-									
+								
 									
 									
 
@@ -264,14 +264,7 @@ $("#myonoffswitch").on('click', function(e) {
 	e.preventDefault();
 })
   
-	 	function fn_modal(oriName) {
-	 		oName=encodeURIComponent(oriName);
-	 		//console.log(oName);
-	  		var menu_modal=$("#modal-img");	
-	  		menu_modal.attr("src","/images/truckMenu/"+oriName);
-	  		console.log("src","/images/truckMenu/"+oriName); 
-		}
- 
+
 </script>
 
 <%@ include file="/views/common/footer.jsp"%>

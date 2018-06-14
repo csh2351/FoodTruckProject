@@ -51,7 +51,7 @@
                 <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
               </div>
               <div class="modal-body">
-                 <img id="modal-img" src="" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
+                 <img id="modal-menu-img" src="" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
               </div>
             </div>
             <!-- /.modal-content -->
@@ -86,10 +86,10 @@
   
 	 	function fn_modal(oriName) {
 	 		oName=encodeURIComponent(oriName);
-	 		//console.log(oName);
-	  		var menu_modal=$("#modal-img");	
+	  		var menu_modal=$("#	-img");	
 	  		menu_modal.attr("src","/images/truckMenu/"+oriName);
 	  		console.log("src","/images/truckMenu/"+oriName); 
+	  		console.log(oriName); 
 		}
  
 </script>
