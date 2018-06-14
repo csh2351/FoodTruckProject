@@ -9,6 +9,11 @@
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
  
+ 	<style>
+ 		.event-font{
+ 			color: "black";
+ 		}
+ 	</style>
  
                   <div class="page-header">
                     <p style="font-size:14pt; font-weight:bold;">&nbsp;&nbsp;&nbsp;이벤트</p>
@@ -16,9 +21,9 @@
                   <table class="table">
                                 <thead id='tablehead'>
                                         <tr>
-                                            <td>번호</td>
-                                            <td>제목</td>
-                                            <td>기간</td>
+                                            <td style="color: black;">번호</td>
+                                            <td style="color: black;">제목</td>
+                                            <td style="color: black;">기간</td>
                                            
                                         </tr>
                                     </thead>
