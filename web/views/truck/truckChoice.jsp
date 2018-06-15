@@ -46,10 +46,10 @@ $.ajax({
 									<div class="col-md-4 panel-1">
 										<p id='truck-title-p'>
 											점포명:<%=truck.getTruckName() %></p>
-										<a href="#" data-toggle="modal" data-target=".pop-up-1"><img
-											class='trcuk-img img-responsive center-block'
+										<a href="#" data-toggle="modal" data-target=".pop-up-1">
+										<img class='trcuk-img img-responsive center-block'
 											src="images/truck/<%=truck.getTruckOriginalImage()%>" alt=""
-											width="200" height="200" onclick="fn_modal('<%=truck.getTruckOriginalImage()%>')"></a> <br> <br>
+											width="200" height="200"></a><br><br>
 									</div>
 									
 

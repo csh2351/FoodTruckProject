@@ -29,11 +29,10 @@
                           </ul>
                         </div>
                         <div class="col-xs-6" align="center">
-                          <a id="menu-modal" href="javascript:fn_modal('<%= menuList.get(i).getMenuRimage()%>');" data-toggle="modal" data-target=".pop-up-2" >
-                            
+                          <a id="menu-modal" data-toggle="modal" data-target=".pop-up-2" >
                                 <br>
                                 <%if(menuList.get(i).getMenuRimage()!=null){ %>
-                                <img src="images/truckMenu/<%=menuList.get(i).getMenuRimage()%>" alt="" width=120 height=100></a>
+                                <img src="images/truckMenu/<%=menuList.get(i).getMenuRimage()%>" alt="" width=120 height=100 onclick="fn_modal('images/truckMenu/<%=menuList.get(i).getMenuRimage()%>');"></a>
 	                          <%} %>
                         </div>
                         
@@ -43,7 +42,7 @@
       <%} %>
                     <!--메뉴종료-->
                         <!--모달 틀-->
-        <div  class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+        <div  class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
@@ -51,7 +50,7 @@
                 <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
               </div>
               <div class="modal-body">
-                 <img id="modal-menu-img" src="" class="img-responsive img-rounded center-block" alt="" width="800" height="800">
+                 <img id="modal-menu-img"class="img-responsive img-rounded center-block" alt="" width="800" height="800">
               </div>
             </div>
             <!-- /.modal-content -->
@@ -59,6 +58,12 @@
           <!-- /.modal-dialog -->
         </div>
         <!-- /.modal mixer image -->
+        <script type="text/javascript">
+			 function fn_modal(rimage) {
+				console.log(rimage);
+				$("#modal-menu-img").attr("src",rimage);
+			}
+		</script>
                     
                   </ul>
                 </div>
@@ -81,17 +86,8 @@
       </div>
     </div>
   </section>
-  <script type="text/javascript">
   
-  
-	 	function fn_modal(oriName) {
-	 		oName=encodeURIComponent(oriName);
-	  		var menu_modal=$("#	-img");	
-	  		menu_modal.attr("src","/images/truckMenu/"+oriName);
-	  		console.log("src","/images/truckMenu/"+oriName); 
-	  		console.log(oriName); 
-		}
- 
-</script>
+	
+
   
   
