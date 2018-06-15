@@ -1,6 +1,7 @@
 package truck.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -88,7 +89,6 @@ public class TruckChoiceEventServlet extends HttpServlet {
 				}else {
 					pageBar+="<li><a href='"+request.getContextPath()+"/truckChoiceEvent?cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>»</span></a></li>";
 				}
-				
 				
 				request.setAttribute("pageBar", pageBar);
 				request.setAttribute("cPage", cPage);

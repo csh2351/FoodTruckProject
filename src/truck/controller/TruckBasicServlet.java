@@ -42,7 +42,6 @@ public class TruckBasicServlet extends HttpServlet {
 		}
 		request.getRequestDispatcher(view).forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -6,7 +6,7 @@
  
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css">
     
-    <style>
+  <style>
      @media(max-width:1199px) {
         .truck_img_size{
           width: 110px;
@@ -30,7 +30,7 @@
           height: 160px;
         }
       }
-</style>
+</style> 
     
     
 <% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("List");
@@ -42,8 +42,8 @@
 				<!--클릭리스너 만들기-->
 
 
-
-				<li class='store_list' value=<%=list.get(i).getTruckPk() %>>
+                 <div class="more-list" style="display: none;"> 
+				<li class='store-list' value=<%=list.get(i).getTruckPk() %>>
 					<div class="col-sm-6 col-md-4 padding">
 						<div class="thumbnail thumnail-botton">
 							<div class="col-xs-12">
@@ -96,7 +96,15 @@
 						</div>
 					</div>
 				</li>
+				</div>
 				<%} %>
+				
+				   <div class="row">
+             <div class="col-xs-12 more-btn-positon">
+				<br>
+               <button id="load-list-button" class='btn btn-success more-btn' type="button">더보기</button>
+             </div>
+          </div>
 				
 				
 <script>
@@ -105,7 +113,7 @@
 		e.preventDefault();
 	})
 	// 눌럿을떄 바로 이동
-	$(".store_list").on('click', function(e) {
+	$(".store-list").on('click', function(e) {
 		
 		var truck_no=$(this).val();
 		console.log(truck_no);
@@ -113,5 +121,18 @@
 		location.href = "<%=request.getContextPath()%>/truckSelectOne?truckPk="+truck_no;	
 
 	});
+	
+	 $(function(){
+			$(".more-list").slice(0, 8).show(); // 최초 10개 선택
+			$("#load-list-button").click(function(e){ // Load More를 위한 클릭 이벤트e
+			e.preventDefault();
+			$(".more-list:hidden").slice(0, 8).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+			
+			/* if($(".more-menu:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
+			alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
+			} */
+			
+			});
+		});
 </script>
     

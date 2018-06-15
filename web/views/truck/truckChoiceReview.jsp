@@ -13,25 +13,16 @@
  <%String memberId=(String)request.getAttribute("memberId");%>
 	
 	<!-- 지우지마셈... -->
-	<style>
-	.replace {
-      position: absolute;
-      width: 90%;
-      height: 30px;
-      border-radius: 3px;
-      border-color: transparent;
-      background: green;
-      color: #fff;
-      cursor: pointer;
-    }
-	</style>
+	
 	
  		
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
-             
                     <%if(reviewList.get(i).getReviewCommentLevel()==1){ %>
-                    <li id='comment-modify-list'>
+                   <div class="more-comment" style="display: none;"> 
+               
+                    
+                    <li id='comment-modify-list<%=i%>'>
                       <!--댓글보기-->
                         <div class='row'>
                           <div class="col-xs-8">
@@ -109,10 +100,19 @@
                           </div>
                         </div>
                     </li>
-                  
                   	  <%} %>
                   	   <hr>
+                  	   </div>
                     <%} %>
+                    
+                     <div class="row">
+                          <div class="col-xs-12 result-btn-positon">
+							<br>
+                            <button id="load-review-button" class='btn btn-success result-btn' type="button">더보기</button>
+                          </div>
+                        </div>
+                      
+                    
                     
                                      <!--모달 틀-->
         <div  class="modal fade pop-up-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
@@ -132,6 +132,9 @@
         </div>
         <!-- /.modal mixer image -->
                     
+                    
+                    
+           
                   
                     
                   <!--댓글달기 --> 
@@ -309,13 +312,23 @@
 			$("#localTime").html(fn_localTime());
 	})
     
+    //모달주석
 	 function fn_modal_review(rimage) {
 		console.log(rimage);
 		$("#modal-review-img").attr("src",rimage);
 	}
     	
-    
-    
+   //더보기
+    $(function(){
+		$(".more-comment").slice(0, 2).show(); // 최초 10개 선택
+		$("#load-review-button").click(function(e){ // Load More를 위한 클릭 이벤트e
+		e.preventDefault();
+		$(".more-comment:hidden").slice(0, 2).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+		/* if($(".more-comment:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
+		alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
+		}*/
+		}); 
+	});
     	
   </script>
 

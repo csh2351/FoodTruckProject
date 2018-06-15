@@ -37,6 +37,16 @@
     .truck-basic-font-bold {
       font-weight: bold;
     }
+    
+    .result-btn-positon {
+      text-align: center;
+    }
+      .result-btn {
+      width: 90px;
+      border-radius: 3px;
+      border-color: transparent;
+      background: green;
+    }
 
     .icon {
       color: blue;

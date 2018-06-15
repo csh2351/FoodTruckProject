@@ -6,7 +6,11 @@
 	pageEncoding="UTF-8"%>
 <%ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("menuList");%>	
 	
-  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
+  <!--건들지마셈...-->
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css">
+
   
  
 
@@ -14,6 +18,7 @@
 
                     <!--메뉴시작-->
                     <%for(int i=0; i<menuList.size(); i++){ %>
+                 <div class="more-menu" style="display: none;"> 
                     <li>
                       <div class="row">
                       <div class="col-xs-1" ></div>
@@ -39,7 +44,18 @@
                       </div>
                       <hr>
                     </li>
+                  </div>
+                  
+              
+                    
+                    
       <%} %>
+          <div class="row">
+             <div class="col-xs-12 more-btn-positon">
+				<br>
+               <button id="load-menu-button" class='btn btn-success more-btn' type="button">더보기</button>
+             </div>
+          </div>
                     <!--메뉴종료-->
                         <!--모달 틀-->
         <div  class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
@@ -58,12 +74,7 @@
           <!-- /.modal-dialog -->
         </div>
         <!-- /.modal mixer image -->
-        <script type="text/javascript">
-			 function fn_modal_menu(rimage) {
-				console.log(rimage);
-				$("#modal-menu-img").attr("src",rimage);
-			}
-		</script>
+     
                     
                   </ul>
                 </div>
@@ -86,6 +97,26 @@
       </div>
     </div>
   </section>
+  
+     <script type="text/javascript">
+			 function fn_modal_menu(rimage) {
+				console.log(rimage);
+				$("#modal-menu-img").attr("src",rimage);
+			}
+			 
+			 $(function(){
+					$(".more-menu").slice(0, 2).show(); // 최초 10개 선택
+					$("#load-menu-button").click(function(e){ // Load More를 위한 클릭 이벤트e
+					e.preventDefault();
+					$(".more-menu:hidden").slice(0, 2).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+					
+					/* if($(".more-menu:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
+					alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
+					} */
+					
+					});
+				});
+		</script>
   
 	
 

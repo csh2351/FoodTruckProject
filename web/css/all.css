@@ -9,7 +9,16 @@ section ul {
   padding-bottom: 15px;
 }
 
+   .more-btn {
+      width: 90px;
+      border-radius: 3px;
+      border-color: transparent;
+      background: green;
+    }
 
+    .more-btn-positon {
+      text-align: center;
+    }
 
      /*on/off스위치*/
 
@@ -61,10 +70,20 @@ section ul {
   
  
      /*스위치*/
-   @media(max-width:1200px) {
+     @media(max-width:1199px) {
         .truck_img_size{
           width: 110px;
           height: 160px;
+        }
+      }
+      
+       @media(max-width:765px) {
+        .truck_img_size{
+          width: 280px;
+          height: 160px;
+        }
+          #select_sort{
+        margin-left: 15px;
         }
       }
       
@@ -72,9 +91,6 @@ section ul {
         .truck_img_size{
           width: 130px;
           height: 160px;
-        }
-        #select_sort{
-        margin-left: 15px;
         }
       }
       
