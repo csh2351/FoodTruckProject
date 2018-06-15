@@ -59,7 +59,7 @@
         </div>
         <!-- /.modal mixer image -->
         <script type="text/javascript">
-			 function fn_modal(rimage) {
+			 function fn_modal_menu(rimage) {
 				console.log(rimage);
 				$("#modal-menu-img").attr("src",rimage);
 			}

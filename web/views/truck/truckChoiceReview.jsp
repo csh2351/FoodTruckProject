@@ -59,7 +59,8 @@
                           </div>
                           <div class='col-xs-3 col-md-3-body-center'>
                           <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
-                            <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150%><br>
+                     <a id="menu-modal" data-toggle="modal" data-target=".pop-up-3" >       
+                            <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150% onclick="fn_modal_review('images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>');"></a><br>
                           <%} %>
                           </div>
                         </div>
@@ -112,103 +113,27 @@
                   	   <hr>
                     <%} %>
                     
+                                     <!--모달 틀-->
+        <div  class="modal fade pop-up-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
+              </div>
+              <div class="modal-body">
+                 <img id="modal-review-img"class="img-responsive img-rounded center-block" alt="" width="800" height="800">
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal mixer image -->
+                    
                   
-                   
                     
-              <!--       <li id='comment-modify-list'>
-                      댓글수정
-                      <form>
-                        form클래스 아이디부여
-                        <div clas='row'>
-                          <div class="col-xs-9">
-                            <div class="row">
-                            <div class="col-md-6 ">
-                                <span class='panel-2-body-font'>아이디: jazzhong111111</span> 
-                                아이디부여
-                              </div>
-                              <div class="col-md-6 date-padding">
-                                <span class='panel-2-body-font'>작성날짜: 2012/12/11</span><br>
-                                date 부여
-                              </div>
-                            </div>
-
-                            <span class="rating">
-                            <label>
-                                    <input type="radio" name="stars" value="1" />
-                                    <span class="icon">★</span>
-                            </label>
-                            <label>
-                                    <input type="radio" name="stars" value="2" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                            </label>
-
-                            <label>
-                                    <input type="radio" name="stars" value="3" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                            </label>
-                            <label>
-                                    <input type="radio" name="stars" value="4" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                            </label>
-
-                            <label>
-                                    <input type="radio" name="stars" value="5" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                          </label>
-                            </span>
-                            <br>
-                            <div class="row">
-                              <div class="col-xs-12">
-
-                                <textarea class="form-control" id="content" name="content" placeholder="내용을 입력하세요." rows="2" cols="100" style="resize: none;"></textarea>
-
-
-
-                              </div>
-
-                            </div>
-
-
-
-                          </div>
-                          <div class='col-xs-3 col-md-3-body-center'>
-
-                            <img id='comment-modify-check-img' src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=100% height=100><br>
-
-                            <button class="btn-success replace">사진등록</button>
-                            <div class='test'>
-                              <input id='comment-modify-input-img' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name='comment-img'>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-xs-12 result-btn-positon">
-							<br>
-                            <button id="modify-button" class='btn btn-success result-btn' type="submit">수정</button>
-                             <button id="reset-modify-button" class='btn btn-success result-btn' type="reset">취소</button>
-							<hr>
-                          </div>
-
-                        </div>
-
-                      </form>
-
-                    </li>
- -->
-                    <!--댓글달기-->
-                    
-                   
+                  <!--댓글달기 --> 
 					<%if(memberId.length()>0){ %>                   
                     <li id='comment-list'>
                       <form name="TruckCommentFrm" action="<%=request.getContextPath()%>/truckCommentInsert" method="post" enctype="multipart/form-data">
@@ -279,7 +204,6 @@
 
                           </div>
                           <div class='col-xs-4 col-md-3-body-center'>
-
                             <img id='comment-check-img' src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=90% height=100><br>
                             <button class="btn-success replace">사진등록</button>
                             <div class='test'>
@@ -383,6 +307,13 @@
 		}
 			$("#localTime").html(fn_localTime());
 	})
+    
+	 function fn_modal_review(rimage) {
+		console.log(rimage);
+		$("#modal-review-img").attr("src",rimage);
+	}
+    	
+    
     
     	
   </script>

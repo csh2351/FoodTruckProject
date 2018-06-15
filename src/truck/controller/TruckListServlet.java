@@ -50,7 +50,6 @@ public class TruckListServlet extends HttpServlet {
 				list=new TruckService().selectByReviewList();
 				break;
 			}
-			System.out.println("영업순:"+selectSort);
 			System.out.println(list);
 			request.setAttribute("list", list);
 		}
