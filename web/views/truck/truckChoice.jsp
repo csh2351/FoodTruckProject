@@ -28,7 +28,6 @@ $.ajax({
 <link rel="stylesheet"
 	href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
 
-<br>
 <section>
 	<div class="container">
 
@@ -49,7 +48,7 @@ $.ajax({
 										<a href="#" data-toggle="modal" data-target=".pop-up-1">
 										<img class='trcuk-img img-responsive center-block'
 											src="images/truck/<%=truck.getTruckOriginalImage()%>" alt=""
-											width="200" height="200"></a><br><br>
+											style="width: 200px; height: 200px" ></a><br><br>
 									</div>
 									
 

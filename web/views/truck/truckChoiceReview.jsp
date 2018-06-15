@@ -60,7 +60,7 @@
                           <div class='col-xs-3 col-md-3-body-center'>
                           <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
                      <a id="menu-modal" data-toggle="modal" data-target=".pop-up-3" >       
-                            <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150% onclick="fn_modal_review('images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>');"></a><br>
+                            <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150px onclick="fn_modal_review('images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>');"></a><br>
                           <%} %>
                           </div>
                         </div>
@@ -75,6 +75,7 @@
                          <div class="col-xs-8">
                           </div>
                           <div class="col-xs-4 result-btn-positon">
+                          	<br>
                              <button id="delete-button<%=i%>"  class='btn btn-success result-btn delete-button' type="submit" >삭제</button>
                           </div>
                         </div>
@@ -122,7 +123,7 @@
                 <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
               </div>
               <div class="modal-body">
-                 <img id="modal-review-img"class="img-responsive img-rounded center-block" alt="" width="800" height="800">
+                 <img id="modal-review-img"class="img-responsive img-rounded center-block" alt="" width="500" height="500">
               </div>
             </div>
             <!-- /.modal-content -->
