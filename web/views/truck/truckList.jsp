@@ -4,7 +4,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
  
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/all.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css">
+    
+    <style>
+     @media(max-width:1199px) {
+        .truck_img_size{
+          width: 110px;
+          height: 160px;
+        }
+      }
+      
+       @media(max-width:765px) {
+        .truck_img_size{
+          width: 280px;
+          height: 160px;
+        }
+          #select_sort{
+        margin-left: 15px;
+        }
+      }
+      
+        @media(max-width:480px) {
+        .truck_img_size{
+          width: 130px;
+          height: 160px;
+        }
+      }
+</style>
+    
+    
 <% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("List");
 	//String saveDir=(String)request.getAttribute("saveDir");%>
   
@@ -41,7 +69,7 @@
 							</div>
 							<div class="col-xs-5">
 								<br> <img class="truck_img_size"src="images/truck/<%=list.get(i).getTruckOriginalImage()%>"
-									alt=""  width=130px; height=130px;>
+									alt=""  width=130px; height=160px;>
 									
 							</div>
 							
@@ -56,6 +84,7 @@
     						  </div>
 								<p>최소금액: <%=list.get(i).getTruckPrice() %>원</p>
 								<p>업종: <%=list .get(i).getTruckCategory()%></p>
+								<p>리뷰: <%=list .get(i).getReviewCount()%>개</p>
 							</div>
 							<div class='col-xs-4'></div>
 							<div class='col-xs-4'></div>

@@ -29,6 +29,8 @@ public class Truck implements Serializable{
 	private double logitude;
 	private String truckHoliday;
 	private int truckPrice;
+	private int reviewCount;
+	
 	public int getTruckPk() {
 		return truckPk;
 	}
@@ -155,6 +157,14 @@ public class Truck implements Serializable{
 				+ ", truckCloseTime=" + truckCloseTime + ", truckApprove=" + truckApprove + ", truckCategory="
 				+ truckCategory + ", truckStar=" + truckStar + ", memberPk=" + memberPk + ", latitude=" + latitude
 				+ ", logitude=" + logitude + ", truckHoliday=" + truckHoliday + ", truckPrice=" + truckPrice + "]";
+	}
+	
+	//리뷰카운트..
+	public int getReviewCount() {
+		return reviewCount;
+	}
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 	
 }

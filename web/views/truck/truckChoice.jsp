@@ -126,7 +126,7 @@ $.ajax({
 										<li role="presentation"><a id="choiceMenu"
 											class='truck-panel-header'>메뉴</a></li>
 										<li role="presentation"><a id="choiceReview"
-											class='truck-panel-header'>리뷰</a></li>
+											class='truck-panel-header'>리뷰(<%=truck.getReviewCount()%>개)</a></li>
 										<li role="presentation"><a id="choiceEvent"
 											class='truck-panel-header'>이벤트</a></li>
 									</ul>

@@ -46,6 +46,7 @@ public class TruckSelectOneServlet extends HttpServlet {
 		
 		Truck truck=new TruckService().selectOne(truckPk);
 		System.out.println(truck);
+		System.out.println(truck.getReviewCount());
 		String view="";
 		
 		if(truck!=null){

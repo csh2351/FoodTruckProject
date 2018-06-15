@@ -70,6 +70,7 @@ public class TruckDao {
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("member_pk"));
+				truck.setReviewCount(rs.getInt("count"));
 				list.add(truck);
 			}
 		} catch (SQLException e) {
@@ -116,6 +117,7 @@ public class TruckDao {
 				truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("member_pk"));
+				truck.setReviewCount(rs.getInt("count"));
 				list.add(truck);
 			}
 		} catch (SQLException e) {
@@ -157,6 +159,7 @@ public class TruckDao {
 				truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("member_pk"));
+				truck.setReviewCount(rs.getInt("count"));
 				list.add(truck);
 			}
 		} catch (SQLException e) {
@@ -197,6 +200,7 @@ public class TruckDao {
 				truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("member_pk"));
+				truck.setReviewCount(rs.getInt("count"));
 				list.add(truck);
 			}
 		} catch (SQLException e) {
@@ -240,7 +244,7 @@ public class TruckDao {
 				truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("member_pk"));
-				
+				truck.setReviewCount(rs.getInt("count"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
