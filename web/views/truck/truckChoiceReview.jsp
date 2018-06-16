@@ -67,7 +67,8 @@
                           </div>
                         </div>
                         
-                         <script type="text/javascript">
+                        <!--댓글삭제 ajax-->
+                        <script type="text/javascript">
 						$("#delete-button<%=i%>").on("click", function() {
 							$.ajax({
 								url:"<%=request.getContextPath()%>/truckCommentDelete",
@@ -82,7 +83,6 @@
 								}
 						})
 						})
-                      
                       </script>
 
                     
