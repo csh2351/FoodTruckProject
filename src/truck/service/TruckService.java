@@ -104,5 +104,23 @@ public class TruckService {
 		return result;
 	}
 
+	public int updateTruck(Truck truck) {
+		int result = new TruckDao().truckUpdate(conn, truck);
+		close(conn);
+		if(result>0){
+			commit(conn);
+		}
+		else{
+			rollback(conn);
+		}
+		return result;
+	}
+
+	public Truck manageTruck(int memberPk) {
+		Truck truck = new TruckDao().manageTruck(conn,memberPk);
+		close(conn);
+		return truck;
+	}
+
 
 }
