@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 /**
  * Servlet implementation class TruckOnOffCheckedServlet
  */
@@ -29,6 +31,21 @@ public class TruckOnOffCheckedServlet extends HttpServlet {
 
 		String onoffswitch=request.getParameter("onoffswitch");
 		System.out.println("onoffswitch"+onoffswitch);
+		
+		//메시지로직으로 처리하기
+		
+		String truckStatus="영업종료";
+		if(onoffswitch.equals("t")){
+			truckStatus="영업시작";
+		}
+		
+		JSONObject obj= new JSONObject();
+		obj.put("truckStatus", truckStatus);
+		
+		response.setContentType("application/x-json; charset=UTF-8");
+		response.getWriter().println(obj);
+		
+		
 	}
 
 	/**

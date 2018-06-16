@@ -192,21 +192,7 @@
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 <script src='js/bootstrap.js'></script>
 <script type="text/javascript">
-  // 스위치토글
-/*   $(document).ready(function() {
-    var onoffswitch = $("#myonoffswitch");
-    onoffswitch.click(function() {
-      if (onoffswitch.is(":checked")) {
-        onoffswitch.val("on")
-        console.log(onoffswitch.val());
-      } else {
-        onoffswitch.val("off")
-        console.log(onoffswitch.val());
 
-      }
-    })
-  }); */
-  // 스위치토글
   
   	$("#myonoffswitch").on("click", function() {
   	    var onoffswitch = $("#myonoffswitch");
@@ -218,15 +204,13 @@
 	        onoffswitch.val("f")
 	        console.log(onoffswitch.val());
 	      }
-  		
-  		var value=onoffswitch.val();
 
 		$.ajax({
 			url:"<%=request.getContextPath()%>/truckOnOff",
 			type:"POST",
-			data:{onoffswitch:value},
+			data:{onoffswitch:onoffswitch.val()},
 			success : function(data){
-					alert("영업시작");
+					alert(data.truckStatus);
 			},
 			error : function(request,status,error) {
 					alert("code:"+request.status+"\n"+ "message:"+request.responseText
