@@ -40,38 +40,38 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
-		System.out.println("진입");
-		int reviewCommentPk=Integer.parseInt(request.getParameter("reviewCommentPk"));
-		String filename=(String)request.getParameter("fileName");
+		
+		HttpSession session=request.getSession();
+		Member member=(Member)session.getAttribute("memberLoggedIn");
+		System.out.println("session : "+member);
+		String memberId="";
+		if(member!=null){
+			memberId=member.getMemberId();
+		}
+		
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+		System.out.println(truckPk);
 		
-		String saveDir=getServletContext().getRealPath("/images"+File.separator+"truckReview");
-		System.out.println("경로"+saveDir);
-		System.out.println("reviewCommentPk : "+reviewCommentPk);
+		
+		String view="";
+		if(truckPk>0){
+			List<TruckReviewComment> reviewList=new TruckService().selectReviewCommnetList(truckPk);
+			view="/views/truck/truckChoiceReview.jsp";
+			System.out.println("reviewList:"+reviewList);
+			
+			request.setAttribute("memberId", memberId);
+	        request.setAttribute("reviewList", reviewList);
+	        request.setAttribute("truckPk", truckPk);
 
-		System.out.println(filename);
-		boolean flag=false;
-		
-		if(filename!=null && filename.length()>0) {
-		File deleteFile=new File(saveDir+"/"+filename);
-		flag=deleteFile.delete();
 		}
 		
-		
-		int result=new TruckService().deleteTruckComment(reviewCommentPk);
-		if(result>0){
-			flag=true;
+		else{
+			view="/views/common/msg.jsp";
+			request.setAttribute("msg", "[기본키가 비었습니다.]");
+			request.setAttribute("loc", "/");
 		}
 		
-		String msg="삭제실패";	
-		if(result>0&&flag){
-			msg="삭제성공";
-		}
-		JSONObject obj= new JSONObject();
-		obj.put("msg", msg);
-		
-		response.setContentType("application/x-json; charset=UTF-8");
-		response.getWriter().println(obj);
+		request.getRequestDispatcher(view).forward(request, response);
 
 	}
 
