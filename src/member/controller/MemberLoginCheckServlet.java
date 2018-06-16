@@ -53,9 +53,8 @@ public class MemberLoginCheckServlet extends HttpServlet {
 			
 			//session객체를 받아서 login데이터를 삽입
 			HttpSession session=request.getSession();
-			
 			session.setAttribute("memberLoggedIn", member);
-			session.setMaxInactiveInterval(30);			
+			session.setMaxInactiveInterval(3000);			
 			
 			//request.setAttribute("memberLoggedIn",member);
 			view="/";

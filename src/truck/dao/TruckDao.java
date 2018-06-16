@@ -406,6 +406,26 @@ public class TruckDao {
 		}
 		return truck;
 	}
+
+
+
+
+
+	public int updateTruckStatus(Connection conn, String truckStatus, int truckPk) {
+		int result=0;
+		try {
+			pstmp=conn.prepareStatement(prop.getProperty("updateTruckStatus"));
+			pstmp.setString(1, truckStatus);
+			pstmp.setInt(2, truckPk);
+			result=pstmp.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmp);
+		}
+		return result;
+	}
 	
 
 }

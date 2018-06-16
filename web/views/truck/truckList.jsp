@@ -14,9 +14,9 @@
         }
       }
       
-       @media(max-width:765px) {
+       @media(max-width:768px) {
         .truck_img_size{
-          width: 280px;
+          width: 100%;
           height: 160px;
         }
           #select_sort{
@@ -24,9 +24,10 @@
         }
       }
       
+      
         @media(max-width:480px) {
         .truck_img_size{
-          width: 130px;
+          width: 100%;
           height: 160px;
         }
       }

@@ -93,4 +93,16 @@ public class TruckService {
 		return truck;
 	}
 
+	public int updateTruckStatus(String truckStatus, int truckPk) {
+		int result=new TruckDao().updateTruckStatus(conn,truckStatus,truckPk);
+		if(result>0){
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		return result;
+	}
+
+
 }

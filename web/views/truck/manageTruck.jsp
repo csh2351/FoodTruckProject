@@ -24,7 +24,7 @@
                   <h3 class='panel-title truck-panel-header'>기본정보</h3>
                 </div>
                 <div class='panel-body pannel-basic'>
-                  <form name="truckUpdateFrm" action="<%=request.getContextPath() %>/truckUpdate" method="post" enctype="multipart/form-data">
+                  <form name="truckUpdateFrm" action="#" method="post" enctype="multipart/form-data">
 
                     <div class="row">
                       <div class="col-md-4">
@@ -48,8 +48,9 @@
                       </div>
 
                       <div class="col-md-6">
-						<p class='truck-basic-font'>주소:<%=truck.getTrucklocation() %></p>                        <span class='truck-basic-font'>평점:</span>
-                      <div class="ratings">
+						<p class='truck-basic-font'>주소:<%=truck.getTrucklocation() %></p>
+						<span class='truck-basic-font'>평점:</span>
+                      		<div class="ratings">
       							<div class="empty-stars"></div>
       								<div class="full-stars" style="width:<%=truck.getTruckStar()*20%>%"></div>
     							</div>
@@ -85,7 +86,7 @@
                     </div>
                     <div align="center">
                       <br>
-                      <button class="btn btn-success basic-btn" type="submit">완료</button>
+                      <button id="basic-submit" class="btn btn-success basic-btn" type="submit">완료</button>
                       <button class="btn btn-success basic-btn reset-button" type="reset">취소</button>
                     </div>
                 </div>
@@ -120,7 +121,7 @@
                   <ul id='comment-main'>
                     <li id="addr0">
                       <form action="#" method="get">
-                        <div clas="row">
+                        <div class="row">
                           <div class="col-xs-9"><br>
                             <div class="row">
                               <div class="col-xs-12">
@@ -147,8 +148,8 @@
                   </ul>
 
                   <div align="center">
-                    <button id="addBtn" type="button" class='btn' name "button">+</button>
-                    <button id="addBtnRemove" type="button" class='btn ' name="button">-</button>
+                    <button id="addBtn" type="button" class='btn'>+</button>
+                    <button id="addBtnRemove" type="button" class='btn' >-</button>
 
                   </div>
 
@@ -194,6 +195,7 @@
 <script type="text/javascript">
 
   
+  //영업,종료 ajax
   	$("#myonoffswitch").on("click", function() {
   	    var onoffswitch = $("#myonoffswitch");
   	    
@@ -208,7 +210,7 @@
 		$.ajax({
 			url:"<%=request.getContextPath()%>/truckOnOff",
 			type:"POST",
-			data:{onoffswitch:onoffswitch.val()},
+			data:{onoffswitch:onoffswitch.val(),truckPk:<%=truck.getTruckPk()%>},
 			success : function(data){
 					alert(data.truckStatus);
 			},
@@ -218,7 +220,35 @@
 			})
   	    
 	})
+
+	
+	/* $("form#truckUpdateFrm").submint(function(e) {
 		
+				 location.reload();
+	}) */
+
+	
+	//form으로 한번에 보내보기
+	
+	//truckOriginalImage
+	
+	$("#basic-submit").click(function(e) {
+		e.preventDefault();
+        var formData = new FormData();
+        formData.append('truckOriginalImage',$('input[name=truckOriginalImage]')[0].files[0]);
+        
+        $.ajax({
+            type : 'post',
+            url: "<%=request.getContextPath()%>/truckBasicUpdate",
+            data: formData,
+            dataType:'json',
+            cache: false,
+            processData : false,
+            contentType : false,
+            success: function (data) {
+            }
+        });
+	})
 	
 	
 
@@ -304,7 +334,6 @@
 
     var menu_check_img = document.getElementById(checkimg); //menu_check_img
     var reset_btn = document.getElementById(id); //menu_input_img
-
 
     console.log(menu_check_img);
     console.log(reset_btn);
