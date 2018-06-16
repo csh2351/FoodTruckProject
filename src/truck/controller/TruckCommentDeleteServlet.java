@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import truck.service.TruckService;
 import truck.vo.Truck;
 
@@ -53,21 +55,15 @@ public class TruckCommentDeleteServlet extends HttpServlet {
 			flag=true;
 		}
 		
-		String view="";		
+		String msg="삭제실패";	
 		if(result>0&&flag){
-			view="/views/common/msg.jsp";
-			request.setAttribute("msg","삭제성공.");
-			request.setAttribute("loc", "/truckSelectOne?truckPk="+truckPk+"&truckChoice=truckChoiceReview");
+			msg="삭제성공";
 		}
+		JSONObject obj= new JSONObject();
+		obj.put("msg", msg);
 		
-		else {
-			view="/views/common/msg.jsp";
-			request.setAttribute("msg","삭제하지 못했습니다.");
-			request.setAttribute("loc", "/");
-		}
-		
-		request.getRequestDispatcher(view).forward(request, response);
-		
+		response.setContentType("application/x-json; charset=UTF-8");
+		response.getWriter().println(obj);
 	}
 
 	/**

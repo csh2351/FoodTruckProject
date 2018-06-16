@@ -19,10 +19,9 @@
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
                     <%if(reviewList.get(i).getReviewCommentLevel()==1){ %>
-                   <div class="more-comment" style="display: none;"> 
+                   <div id='comment-modify-list<%=i%>' class="more-comment" style="display: none;"> 
                
-                    
-                    <li id='comment-modify-list<%=i%>'>
+                    <li>
                       <!--댓글보기-->
                         <div class='row'>
                           <div class="col-xs-8">
@@ -58,19 +57,35 @@
                            <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
                     
                     
-                    	<form action="<%=request.getContextPath()%>/truckCommentDelete" method="get">
-          				      	<input type="hidden" name="reviewCommentPk" value="<%=reviewList.get(i).getReviewCommentPk()%>" />                         
-          				      	<input type="hidden" name="fileName" value="<%=reviewList.get(i).getReviewCommentRimage()%>" />                   
-                                <input type="hidden" name="truckPk" value="<%=reviewList.get(i).getTruckPk()%>" />                   
-                        <div class="row">
+                    	
+                         <div class="row">
                          <div class="col-xs-8">
                           </div>
                           <div class="col-xs-4 result-btn-positon">
                           	<br>
-                             <button id="delete-button<%=i%>"  class='btn btn-success result-btn delete-button' type="submit" >삭제</button>
+                             <button id="delete-button<%=i%>"  class='btn btn-success result-btn delete-button' type="button" >삭제</button>
                           </div>
                         </div>
-                        </form>
+                        
+                         <script type="text/javascript">
+						$("#delete-button<%=i%>").on("click", function() {
+							$.ajax({
+								url:"<%=request.getContextPath()%>/truckCommentDelete",
+								type : "POST",
+								data:{reviewCommentPk :<%=reviewList.get(i).getReviewCommentPk()%>,fileName:"<%=reviewList.get(i).getReviewCommentRimage()%>",truckPk:<%=reviewList.get(i).getTruckPk()%>},
+								success : function(data){ 
+									alert(data.msg);
+									$("#comment-modify-list<%=i%>").remove();
+								}, 
+								error : function(request,status,error) { 
+								alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+								}
+						})
+						})
+                      
+                      </script>
+
+                    
                        
                         
                           <%} %>
@@ -113,7 +128,7 @@
                           <br>
                         </div>
                       
-                    
+                   
                     
                                      <!--모달 틀-->
         <div  class="modal fade pop-up-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
