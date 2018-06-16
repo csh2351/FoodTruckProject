@@ -32,8 +32,15 @@ public class TruckBasicUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		String truckName=request.getParameter("truckName");
+		String truckPrice=request.getParameter("truckPrice");
 		String truckOriginalImage=request.getParameter("truckOriginalImage");
+		System.out.println(truckName);
 		System.out.println(truckOriginalImage);
+		System.out.println(truckPrice);
+
 		
 	
 	}

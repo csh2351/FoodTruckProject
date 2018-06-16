@@ -24,7 +24,7 @@
                   <h3 class='panel-title truck-panel-header'>기본정보</h3>
                 </div>
                 <div class='panel-body pannel-basic'>
-                  <form name="truckUpdateFrm" action="#" method="post" enctype="multipart/form-data">
+                  <form name="truckUpdateFrm" action="<%=request.getContextPath()%>/truckBasicUpdate" method="post">
 
                     <div class="row">
                       <div class="col-md-4">
@@ -56,7 +56,7 @@
     							</div>
                         <!--갯수를 입력받아야함.-->
                         <br>
-                        <span class='truck-basic-font'>최소금액: <input id="basic-input" type="text" name="truckPrice" value="" placeholder="ex)2000원~" size="10" class="form-control"> </span>
+                        <span class='truck-basic-font'>최소금액: <input id="basic-input" type="number" name="truckPrice" value="" placeholder="ex)2000원~" size="10" class="form-control"> </span>
                         <br>
                        <p class='truck-basic-font'>사업자정보 : <%=truck.getTruckInfoName() %></p>
                         <span class='truck-basic-font'>상호명: <%=truck.getTruckName() %></span>
@@ -222,38 +222,6 @@
 	})
 
 	
-	/* $("form#truckUpdateFrm").submint(function(e) {
-		
-				 location.reload();
-	}) */
-
-	
-	//form으로 한번에 보내보기
-	
-	//truckOriginalImage
-	
-	$("#basic-submit").click(function(e) {
-		e.preventDefault();
-        var formData = new FormData();
-        formData.append('truckOriginalImage',$('input[name=truckOriginalImage]')[0].files[0]);
-        
-        $.ajax({
-            type : 'post',
-            url: "<%=request.getContextPath()%>/truckBasicUpdate",
-            data: formData,
-            dataType:'json',
-            cache: false,
-            processData : false,
-            contentType : false,
-            success: function (data) {
-            }
-        });
-	})
-	
-	
-
-
-
 
   //트럭 사진 미리보기 스크립트.
 
