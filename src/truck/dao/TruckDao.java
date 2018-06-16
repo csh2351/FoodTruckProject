@@ -365,6 +365,47 @@ public class TruckDao {
 		}
 		return result;
 	}
+
+
+
+
+
+	public Truck selectOneManageStore(Connection conn, int memberPk) {
+		Truck truck =null;
+		try {
+			truck =new Truck();
+			pstmp=conn.prepareStatement(prop.getProperty("selectOneManageStore"));
+			pstmp.setInt(1, memberPk);
+			rs=pstmp.executeQuery();
+			while(rs.next()){
+				truck.setTruckPk(rs.getInt("truck_pk"));
+				truck.setTruckName(rs.getString("truck_name"));
+				truck.setTruckOriginalImage(rs.getString("truck_original_image"));
+				truck.setTruckRenameImage(rs.getString("truck_rename_image"));
+				truck.setTrucklocation(rs.getString("truck_location"));
+				truck.setTruckInfoName(rs.getString("truck_info_name"));
+				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
+				truck.setTruckContent(rs.getString("truck_content"));
+				truck.setTruckStatus(rs.getString("truck_status"));
+				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
+				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckApprove(rs.getString("truck_approve"));
+				truck.setLatitude(rs.getDouble("truck_latitude"));
+				truck.setLogitude(rs.getDouble("truck_logitude"));
+				truck.setTruckCategory(rs.getString("truck_category"));
+				truck.setTruckStar(rs.getInt("truck_star"));
+				truck.setTruckPrice(rs.getInt("truck_price"));
+				truck.setTruckHoliday(rs.getString("truck_holiday"));
+				truck.setMemberPk(rs.getInt("member_pk"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmp);
+		}
+		return truck;
+	}
 	
 
 }

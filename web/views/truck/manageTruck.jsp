@@ -24,52 +24,51 @@
                   <h3 class='panel-title truck-panel-header'>기본정보</h3>
                 </div>
                 <div class='panel-body pannel-basic'>
-                  <form name=form1="" action="#" method="get">
+                  <form name="truckUpdateFrm" action="<%=request.getContextPath() %>/truckUpdate" method="post" enctype="multipart/form-data">
 
                     <div class="row">
                       <div class="col-md-4">
                         <div align="center">
-                          <input id="basic-input" type="text" name="truck-name" value="" placeholder="점포명" class="form-control">
+                          <input id="basic-input" type="text" name="truckName" placeholder="<%=truck.getTruckName() %>" class="form-control">
                         </div>
                         <br>
                         <!-- <div class='col-md-3-body-center'> -->
 
-                        <img id='truck-check-img' src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=100% height=100>
+                        <img id='truck-check-img' src="images/truck/<%=truck.getTruckRenameImage() %>" alt="Card image cap" width=100% height=100>
                         <br>
 
                         <div class="">
 
                         </div>
                         <button class="truck-img-replace">사진등록</button>
-                        <input id='truck-input-img' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name='truck-img'>
-
+                        <input id='truck-input-img' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name='truckOriginalImage'>
+						
                         <br>
                         <br>
                       </div>
 
                       <div class="col-md-6">
-                        <p class='truck-basic-font'>경기도구리시등등id입력</p>
-                        <span class='truck-basic-font'>평점:</span>
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                        <span class="icon">★ name부여</span>
+						<p class='truck-basic-font'>주소:<%=truck.getTrucklocation() %></p>                        <span class='truck-basic-font'>평점:</span>
+                      <div class="ratings">
+      							<div class="empty-stars"></div>
+      								<div class="full-stars" style="width:<%=truck.getTruckStar()*20%>%"></div>
+    							</div>
                         <!--갯수를 입력받아야함.-->
                         <br>
-                        <span class='truck-basic-font'>최소금액:&nbsp;</span><input id="basic-input" type="text" name="min_price" value="" placeholder="ex)2000원~" size="10" class="form-control">
-                        <br><br>
-                        <p class='truck-basic-font'>사업자정보</p>
-                        <span class='truck-basic-font'>상호명: <span class='truck-basic-font'>상호명뿌려줌 id부여</span></span>
+                        <span class='truck-basic-font'>최소금액: <input id="basic-input" type="text" name="truckPrice" value="" placeholder="ex)2000원~" size="10" class="form-control"> </span>
                         <br>
-                        <span class='truck-basic-font'>사업자등록번호:<span class='truck-basic-font'>등록번호뿌려줌 id부여</span></span>
+                       <p class='truck-basic-font'>사업자정보 : <%=truck.getTruckInfoName() %></p>
+                        <span class='truck-basic-font'>상호명: <%=truck.getTruckName() %></span>
+                        <br><span class='truck-basic-font'>사업자등록번호: <%=truck.getTruckInfoRegisterNumber() %></span>
 
                       </div>
+                      <!--ajax처리....-->
+
 
                       <div class="col-md-2" align="center">
                         <br>
                         <div class="onoffswitch" >
-                          <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                          <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" <%=truck.getTruckStatus().equals("t")?"checked":"" %>>
                           <label class="onoffswitch-label" for="myonoffswitch" align="left">
                               <span class="onoffswitch-inner"></span>
                               <span class="onoffswitch-switch"></span>
@@ -77,6 +76,11 @@
                           <!--클릭이벤트제거-->
                         </div>
                       </div>
+                      
+					<script type="text/javascript">
+						
+						
+						</script> 
 
                     </div>
                     <div align="center">
@@ -189,7 +193,7 @@
 <script src='js/bootstrap.js'></script>
 <script type="text/javascript">
   // 스위치토글
-  $(document).ready(function() {
+/*   $(document).ready(function() {
     var onoffswitch = $("#myonoffswitch");
     onoffswitch.click(function() {
       if (onoffswitch.is(":checked")) {
@@ -201,8 +205,38 @@
 
       }
     })
-  });
+  }); */
   // 스위치토글
+  
+  	$("#myonoffswitch").on("click", function() {
+  	    var onoffswitch = $("#myonoffswitch");
+  	    
+  		if(onoffswitch.is(":checked")) {
+	        onoffswitch.val("t")
+	        console.log(onoffswitch.val());
+	      } else {
+	        onoffswitch.val("f")
+	        console.log(onoffswitch.val());
+	      }
+  		
+  		var value=onoffswitch.val();
+
+		$.ajax({
+			url:"<%=request.getContextPath()%>/truckOnOff",
+			type:"POST",
+			data:{onoffswitch:value},
+			success : function(data){
+					alert("영업시작");
+			},
+			error : function(request,status,error) {
+					alert("code:"+request.status+"\n"+ "message:"+request.responseText
+							+"\n"+"error:"+error); }
+			})
+  	    
+	})
+		
+	
+	
 
 
 

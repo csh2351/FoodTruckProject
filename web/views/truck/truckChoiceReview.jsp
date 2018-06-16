@@ -107,9 +107,10 @@
                     
                      <div class="row">
                           <div class="col-xs-12 result-btn-positon">
-							<br>
                             <button id="load-review-button" class='btn btn-success result-btn' type="button">더보기</button>
                           </div>
+                          <br>
+                          <br>
                         </div>
                       
                     

@@ -87,4 +87,10 @@ public class TruckService {
 		return result;
 	}
 
+	public Truck selectOneManageStore(int memberPk) {
+		Truck truck = new TruckDao().selectOneManageStore(conn,memberPk);
+		close(conn);
+		return truck;
+	}
+
 }

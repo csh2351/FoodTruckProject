@@ -88,7 +88,7 @@
                   if(member.getMemberLevel()==1) { %>
                   <li><a href="<%=request.getContextPath() %>/admin.do">개발자영역</a></li>
                <% }
-                  else if(member.getMemberLevel()==2){%>
+                  if(member.getMemberLevel()<3){%>
                <li><a href="<%=request.getContextPath() %>/managestore.do">점포관리</a></li>
                <% }
                } %>
