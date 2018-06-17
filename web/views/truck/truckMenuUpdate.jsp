@@ -214,7 +214,7 @@
 	 $(function() {
 		var i = <%=temp%>;
 		var list;
-		$("#addBtn").one('click', function() {
+		$("#addBtn").on('click', function() {
 							list = $('<li id='
 									+ "addr"
 									+ (i + 1) 

@@ -7,7 +7,6 @@
 <%ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("menuList");%>	
 	
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
-  <!--건들지마셈...-->
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
 <link rel="stylesheet"
    href="<%=request.getContextPath() %>/css/bootstrap.min.css">
@@ -55,7 +54,7 @@
           <div class="row">
              <div class="col-xs-12 more-btn-positon">
 				<br>
-               <button id="load-menu-button" class='btn btn-success more-btn' type="button">더보기</button>
+               <button id="load-menu-button" class='btn btn-success result-btn' type="button">더보기</button>
              </div>
           </div>
                     <!--메뉴종료-->
