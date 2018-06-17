@@ -586,6 +586,25 @@ public class TruckDao {
 		}
 		return result;
 	}
+
+
+
+
+
+	public int deleteTruckMenu(Connection conn, int menuPk) {
+		int result=0;
+		try {
+			pstmp=conn.prepareStatement(prop.getProperty("deleteTruckMenu"));
+			pstmp.setInt(1, menuPk);
+			result=pstmp.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmp);
+		}
+		return result;
+	}
 	
 	
 

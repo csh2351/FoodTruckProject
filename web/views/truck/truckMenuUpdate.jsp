@@ -69,13 +69,34 @@
 					<button id="result-button<%=i%>" class="btn btn-success result-btn"
 						type="submit">완료</button>
 					<button id="menu-reset-btn<%=i%>" class="btn btn-success result-btn"
-						type="reset" onclick="reset_img(this)">취소</button>
+						type="reset" onclick="fn_menuDelete(<%=menuList.get(i).getMenuPk()%>,'<%=menuList.get(i).getMenuRimage()%>',<%=i%>)">삭제</button>
 					<hr>
 				</div>
 			</div>
 		</form>
 	</li>
-<%
+		<script type="text/javascript">
+			function fn_menuDelete(menuPk,fileName,index) {
+				var menuPk=menuPk;
+				var fileName=fileName;
+				console.log(menuPk);
+				console.log(fileName);
+				console.log(index);
+						 $.ajax({
+							url:"<%=request.getContextPath()%>/truckMenuDelete",
+							type : "POST",
+							data:{menuPk : menuPk,fileName:fileName},
+							success : function(data){ 
+								alert(data.msg);
+								$("#addr"+index).remove();
+							}, 
+							error : function(request,status,error) { 
+							alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+							}
+				}) 
+			}
+		</script>
+<%	
 	//마지막 인덱스 카운터변수
 	temp=i;
 	}
@@ -125,11 +146,16 @@
 
 
 <div align="center">
-	<button id="addBtn" type="button" class='btn'>+</button>
-	<button id="addBtnRemove" type="button" class='btn'>-</button>
-</div>
+	<button id="addBtn" type="button" class='btn btn-success result-btn'>메뉴추가</button>
+<%--<button id="addBtnRemove" type="button" class='btn' onclick="fn_menuDelete(<%=menuList.get(temp).getMenuPk()%>,'<%=menuList.get(temp).getMenuRimage()%>',<%=temp%>)">-</button>
+ --%>
+ </div>
+
+
 
 <script type="text/javascript">
+
+
 	function view_img(input) {
 
 		var id = $(input).attr('id');
@@ -159,7 +185,6 @@
 			reader.onload = function(e) {
 				menu_check_img.setAttribute('src', e.target.result);
 			}
-
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
@@ -189,7 +214,7 @@
 	 $(function() {
 		var i = <%=temp%>;
 		var list;
-		$("#addBtn").click( function() {
+		$("#addBtn").one('click', function() {
 							list = $('<li id='
 									+ "addr"
 									+ (i + 1) 
@@ -206,18 +231,17 @@
 							i++;
 						});
 
-		$('#addBtnRemove').click(function() {
+	/* 	$('#addBtnRemove').click(function() {
 			var menuRemove=confirm("삭제하시겠습니까?");
 			if(menuRemove==true){
 				$("#addr" + (i)).remove();
 				i--;
 			}
 			//ajax처리
-		})
+		}) */
 		
 		
 	}); 
-	
 	
 	
 	 

@@ -170,5 +170,17 @@ public class TruckService {
 		return result;
 	}
 
+	public int deleteTruckMenu(int menuPk) {
+		int result=new TruckDao().deleteTruckMenu(conn, menuPk);
+		if(result>0){
+			commit(conn);
+		}
+		else{
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 
 }
