@@ -146,9 +146,9 @@
 
 
 <div align="center">
-	<button id="addBtn" type="button" class='btn btn-success result-btn'>메뉴추가</button>
-<%--<button id="addBtnRemove" type="button" class='btn' onclick="fn_menuDelete(<%=menuList.get(temp).getMenuPk()%>,'<%=menuList.get(temp).getMenuRimage()%>',<%=temp%>)">-</button>
- --%>
+	<button id="addBtn" type="button" class='btn '>+</button>
+	<button id="addBtnRemove" type="button" class='btn'>-</button>
+
  </div>
 
 
@@ -231,14 +231,20 @@
 							i++;
 						});
 
-	/* 	$('#addBtnRemove').click(function() {
+		$('#addBtnRemove').click(function() {
+			if(i==<%=temp%>){
+				alert("삭제할수 없습니다[-버튼으로 삭제불가]");				
+			}
+			else{
 			var menuRemove=confirm("삭제하시겠습니까?");
 			if(menuRemove==true){
 				$("#addr" + (i)).remove();
 				i--;
 			}
+			}
+			
 			//ajax처리
-		}) */
+		}) 
 		
 		
 	}); 
