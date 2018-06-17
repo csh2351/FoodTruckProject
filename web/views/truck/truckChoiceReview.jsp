@@ -294,7 +294,7 @@
 
     //미리보기 스크립트.
 
-    //미리보기 수정  스크립트
+    //미리보기 수정  스크립a트
  $(function() {
       $("#comment-modify-input-img").on('change', function() {
         readURL1(this);

@@ -9,11 +9,64 @@
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
   <!--건들지마셈...-->
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css">
+<link rel="stylesheet"
+   href="<%=request.getContextPath() %>/css/bootstrap.min.css">
 
-  
+
+
+<style>
+  @media(max-width:1197px) {
+      .menu-check-img{
+        width: 93%;
+      }
+      .menu-img-replace{
+        width: 93%;
+      }
+    }
+    
+    @media(max-width:991px) {
+      /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을때*/
+      .truck-img-replace {
+        width: 100%;
+        height: 20;
+      }
+      .truck-img-replace{
+        width: 96%;
+      }
+
+      #truck-check-img{
+        height: 200px;
+      }
+      .menu-check-img{
+          width: 110%;
+      }
+      .menu-img-replace{
+        width: 92%;
+      }
+
+    }
+
+    @media(max-width:480px) {
+      .truck-img-replace {
+        width: 94%;
+        height: 20;
+      }
+      .menu-img-replace{
+        width: 90%;
+      }
+      .menu-check-img{
+          width: 122%;
+      }
+      #truck-check-img{
+        height: 200px;
+      }
+    }
+</style>
+  						
  
-
+			<div class="page-header">
+					<p style="font-size: 14pt; font-weight: bold;">&nbsp;&nbsp;&nbsp;메뉴</p>
+			</div>
                   <ul class='menu-ul-main'>
 
                     <!--메뉴시작-->

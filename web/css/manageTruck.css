@@ -83,11 +83,6 @@
     }
 
 
-    .menu-check-img {
-      margin: 0px;
-        width: 100%;
-    }
-
     .menu-body {
       text-align: center;
     }
@@ -98,73 +93,6 @@
 
 
 
-    /*작아졌을떄*/
-
-    @media(max-width:1199px) {
-      /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을때*/
-      .menu-check-img{
-          width: 110%;
-      }
-      .truck-img-replace{
-        width: 84%;
-      }
-
-      .menu-check-img{
-          width:120%;
-      }
-      .menu-img-replace{
-        width: 93%;
-      }
-
-    }
-
-
-    @media(max-width:991px) {
-      /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을때*/
-      .truck-img-replace {
-        width: 100%;
-        height: 20;
-      }
-      .truck-img-replace{
-        width: 96%;
-      }
-
-      #truck-check-img{
-        height: 200px;
-      }
-      .menu-check-img{
-          width: 110%;
-      }
-      .menu-img-replace{
-        width: 92%;
-      }
-
-    }
-
-    @media(max-width:700px) {
-      /*세부적 해도되고 안해도됨*/
-    }
-
-
-
-    @media(max-width:480px) {
-      /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을때*/
-      .truck-img-replace {
-        width: 94%;
-        height: 20;
-      }
-      .menu-img-replace{
-        width: 90%;
-      }
-      .menu-check-img{
-          width: 122%;
-      }
-      #truck-check-img{
-        height: 200px;
-      }
-    }
-
-    /*테스트*/
 
     .file {
       width: 0;
