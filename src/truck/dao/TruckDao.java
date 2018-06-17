@@ -523,6 +523,69 @@ public class TruckDao {
 		}
 		return result;
 	}
+
+
+
+
+
+	public int insertTruckMenu(Connection conn, TruckMenu menu) {
+		int result=0;
+		try {
+			pstmp=conn.prepareStatement(prop.getProperty("InsertTruckMenu"));
+			pstmp.setString(1, menu.getMenuName());
+			pstmp.setInt(2, menu.getMenuPrice());
+			pstmp.setString(3, menu.getMenuOimage());
+			pstmp.setString(4, menu.getMenuRimage());
+			result=pstmp.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmp);
+		}
+		return result;
+	}
+
+
+
+
+
+	public int selectOneMenuPk(Connection conn, String menuRimage) {
+		int menuPk=0;
+		try {
+			pstmp=conn.prepareStatement(prop.getProperty("selectOneMenuPk"));
+			pstmp.setString(1, menuRimage);
+			rs=pstmp.executeQuery();
+			if(rs.next()){
+				menuPk=rs.getInt("menu_pk");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmp);
+		}
+		return menuPk;
+	}
+
+
+
+
+
+	public int insertTruckMenuForeign(Connection conn, int menuPk, int truckPk) {
+		int result=0;
+		try {
+			pstmp=conn.prepareStatement(prop.getProperty("insertTruckMenuForeign"));
+			pstmp.setInt(1, truckPk);
+			pstmp.setInt(2, menuPk);
+			result=pstmp.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmp);
+		}
+		return result;
+	}
 	
 	
 

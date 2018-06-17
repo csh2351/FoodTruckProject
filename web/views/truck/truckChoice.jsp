@@ -11,7 +11,7 @@
 
 $(function() {
 $.ajax({
-		url:"<%=request.getContextPath()%>/<%=serlvet%>",
+		url:"<%=request.getContextPath()%>/truckMenuUpdate",
 		type : "POST",
 		data:{truckPk :<%=truck.getTruckPk()%>},
 		success : function(data){ 

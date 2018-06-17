@@ -7,18 +7,19 @@
 	Truck truck = (Truck) request.getAttribute("truck");
 %>
 <%String serlvet=(String)request.getAttribute("truckChoice"); %>
+
+
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/manageTruck.css">
 
 <script type="text/javascript">
-
 $(function() {
-$.ajax({
+		$.ajax({
 		url:"<%=request.getContextPath()%>/<%=serlvet%>",
-		type : "POST",
 		data:{truckPk :<%=truck.getTruckPk()%>},
+		type : "POST",
 		success : function(data){ 
 		$("#choice-body").html(data);
 		}, 
@@ -27,7 +28,6 @@ $.ajax({
 		}
 })
 })
-
 	
 
 </script>
@@ -111,11 +111,6 @@ $.ajax({
 											</div>
 										</div>
 
-										<script type="text/javascript">
-						
-						
-						</script>
-
 									</div>
 									<div align="center">
 										<br>
@@ -125,7 +120,6 @@ $.ajax({
 											type="reset">취소</button>
 									</div>
 							</div>
-
 							</form>
 						</div>
 					</div>

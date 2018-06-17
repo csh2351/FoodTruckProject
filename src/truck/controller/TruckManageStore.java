@@ -27,6 +27,16 @@ public class TruckManageStore extends HttpServlet {
 		
 		
 		
+		//처음 메뉴로가기위한 별도처리
+		String truckChoice="truckMenuUpdate";
+		System.out.println(truckChoice);
+		
+		String temp=request.getParameter("truckChoice");
+		if(temp!=null){
+			truckChoice=temp;
+		}
+		//처음 메뉴로가기위한 별도처리
+		
 		HttpSession session=request.getSession();
 		Member member=(Member)session.getAttribute("memberLoggedIn");
 		System.out.println("session : "+member);
@@ -38,7 +48,11 @@ public class TruckManageStore extends HttpServlet {
 			System.out.println("truck_session"+truck);
 			view="/views/truck/manageTruck.jsp";
 			request.setAttribute("truck", truck);
+			request.setAttribute("truckChoice", truckChoice);
+
 		}
+		
+		
 		else{
 			view="/views/common/msg.jsp";
 			request.setAttribute("msg", "점포관리 트럭을 불러올수 없습니다.");

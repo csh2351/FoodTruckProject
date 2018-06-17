@@ -70,6 +70,7 @@ public class TruckService {
 		else{
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 
@@ -84,6 +85,7 @@ public class TruckService {
 		else{
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 
@@ -101,21 +103,24 @@ public class TruckService {
 		else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 
+	//모가몬지 확인
 	public int updateTruck(Truck truck) {
 		int result = new TruckDao().updateTruck(conn, truck);
-		close(conn);
 		if(result>0){
 			commit(conn);
 		}
 		else{
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
-
+	
+	//모가몬지 확인
 	public Truck manageTruck(int memberPk) {
 		Truck truck = new TruckDao().manageTruck(conn,memberPk);
 		close(conn);
@@ -125,13 +130,43 @@ public class TruckService {
 	
 	public int UpdateTruckMenu(TruckMenu menu) {
 		int result = new TruckDao().UpdateTruckMenu(conn, menu);
-		close(conn);
 		if(result>0){
 			commit(conn);
 		}
 		else{
 			rollback(conn);
 		}
+		close(conn);
+		return result;
+	}
+
+	public int insertTruckMenu(TruckMenu menu) {
+		int result = new TruckDao().insertTruckMenu(conn, menu);
+		if(result>0){
+			commit(conn);
+		}
+		else{
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public int selectOneMenuPk(String menuRimage) {
+		int menuPk=new TruckDao().selectOneMenuPk(conn,menuRimage);	close(conn);
+		close(conn);
+		return menuPk;
+	}
+
+	public int insertTruckMenuForeign(int menuPk, int truckPk) {
+		int result=new TruckDao().insertTruckMenuForeign(conn, menuPk,truckPk);
+		if(result>0){
+			commit(conn);
+		}
+		else{
+			rollback(conn);
+		}
+		close(conn);
 		return result;
 	}
 
