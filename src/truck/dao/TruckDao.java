@@ -431,7 +431,7 @@ public class TruckDao {
 
 
 
-	public int truckUpdate(Connection conn, Truck truck) {
+	public int updateTruck(Connection conn, Truck truck) {
 		
 		int result =0;
 		try {
@@ -499,6 +499,29 @@ public class TruckDao {
 			close(pstmp);
 		}
 		return truck;
+	}
+
+
+
+
+
+	public int UpdateTruckMenu(Connection conn, TruckMenu menu) {
+		int result=0;
+		try {
+			pstmp=conn.prepareStatement(prop.getProperty("UpdateTruckMenu"));
+			pstmp.setString(1, menu.getMenuName());
+			pstmp.setInt(2, menu.getMenuPrice());
+			pstmp.setString(3, menu.getMenuOimage());
+			pstmp.setString(4, menu.getMenuRimage());
+			pstmp.setInt(5, menu.getMenuPk());
+			result=pstmp.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmp);
+		}
+		return result;
 	}
 	
 	

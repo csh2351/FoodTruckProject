@@ -42,6 +42,7 @@ public class TruckUpdateMenuServlet extends HttpServlet {
 			view="/views/truck/truckMenuUpdate.jsp";
 			System.out.println("menuList:"+menuList);
 	        request.setAttribute("menuList", menuList);
+	        request.setAttribute("truckPk", truckPk);
 		}
 		else{
 			view="/views/common/msg.jsp";

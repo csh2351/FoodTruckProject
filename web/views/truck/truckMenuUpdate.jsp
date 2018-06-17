@@ -1,3 +1,4 @@
+<%@page import="org.apache.catalina.Session"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="truck.vo.TruckMenu"%>
@@ -6,7 +7,8 @@
 	pageEncoding="UTF-8"%>
 
 <%ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("menuList");
- int temp=0;%>	
+ int temp=0;
+ int truckPk=(int)request.getAttribute("truckPk");%>	
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/manageTruck.css">
@@ -26,17 +28,19 @@
 <%if(menuList.size()>0){ 
 	for(int i=0; i<menuList.size(); i++){%>
 	<li id="addr<%=i%>">
-		<form action="#" method="get">
+		<form action="<%=request.getContextPath()%>/truckMenuUpdate" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-xs-9">
 					<br>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="form-group">
-								<input name="menu-name" class="form-control" type="text"
+								<input name="menuName" class="form-control" type="text" value="<%=menuList.get(i).getMenuName()%>"
 									placeholder=<%=menuList.get(i).getMenuName()%> required="required"><br>
-								<input name="menu-price"
-									class="form-control" type="text" placeholder="<%=menuList.get(i).getMenuPrice() %>" required="required">
+								<input name="menuPrice" class="form-control" type="number" value="<%=menuList.get(i).getMenuPrice()%>" 
+									placeholder=<%=menuList.get(i).getMenuPrice()%> required="required">
+							    <input type="hidden" name="menuPk" value="<%=menuList.get(i).getMenuPk()%>" />
+							    <input type="hidden" name="truckPk" value="<%=truckPk%>" />
 							</div>
 						</div>
 					</div>
@@ -55,7 +59,7 @@
 					<div class="test">
 						<input id="menu-input-img<%=i%>" type="file" value="사진등록"
 							class="upload menu-input-img"
-							accept="image/gif, image/jpeg, image/png" name="menu-img" style="width: 82%; height: 33px;"
+							accept="image/gif, image/jpeg, image/png" name="up_file" style="width: 82%; height: 33px;"
 							onclick="view_img(this)">
 					</div>
 					<br>
@@ -63,9 +67,9 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12 result-btn-positon">
-					<button id="result-button" class="btn btn-success result-btn"
-						type="button">완료</button>
-					<button id="menu-reset-btn0" class="btn btn-success result-btn"
+					<button id="result-button<%=i%>" class="btn btn-success result-btn"
+						type="submit">완료</button>
+					<button id="menu-reset-btn<%=i%>" class="btn btn-success result-btn"
 						type="reset" onclick="reset_img(this)">취소</button>
 					<hr>
 				</div>
@@ -107,7 +111,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12 result-btn-positon">
-					<button id="result-button" class="btn btn-success result-btn"
+					<button id="result-button0" class="btn btn-success result-btn"
 						type="button">완료</button>
 					<button id="menu-reset-btn0" class="btn btn-success result-btn"
 						type="reset" onclick="reset_img(this)">취소</button>
@@ -118,7 +122,6 @@
 	</li>
 <%} %>
 </ul>
-
 
 
 <div align="center">
@@ -161,6 +164,8 @@
 		}
 	}
 	//메뉴 사진 미리보기 스크립트.
+	
+	//취소 스크립트
 
 	function reset_img(reset_btn) {
 
@@ -181,7 +186,7 @@
 	//메뉴 사진 미리보기 스크립트.
 
 	//누르면추가
-	$(function() {
+	 $(function() {
 		var i = <%=temp%>;
 		var list;
 		$("#addBtn").click( function() {
@@ -194,9 +199,8 @@
 									+ ' class="menu-check-img" src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=81% height=100><br><button class="btn-success menu-img-replace">사진등록</button><div class="test"><input id='
 									+ "menu-input-img"
 									+ (i + 1)
-									+ ' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name="menu-img"  style="width: 82%; height: 33px;" onclick="view_img(this)"></div></div></div><div class="row"><div class="col-xs-12 result-btn-positon"><button id="result-button" class="btn btn-success result-btn" type="submit">완료</button> <button id='
-									+ "menu-reset-btn"
-									+ (i + 1)
+									+ ' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name="menu-img"  style="width: 82%; height: 33px;" onclick="view_img(this)"></div></div></div><div class="row"><div class="col-xs-12 result-btn-positon"><button id='+"result-button"+(i+1)+' class="btn btn-success result-btn" type="submit">완료</button> <button id='
+									+ "menu-reset-btn" + (i + 1)
 									+ ' class="btn btn-success result-btn" type="reset" onclick="reset_img(this)">취소</button><hr></div></div></form></li>');
 							$('#comment-main').append(list);
 							i++;
@@ -206,6 +210,42 @@
 			$("#addr" + (i)).remove();
 			i--;
 		})
+		
+		
+	}); 
+	$(function() {
+		
+	})
+	
+	
+	
+	 
+	
+	<%--  $(function() {
+		var i = <%=temp%>;
+		$("#addBtn").click( function() {
+			var list=$('<li id='+ "addr"+ (i + 1)+ '><li>');
+			var html='<form action="#" method="get"><div class="row"><div class="col-xs-9"><br>';
+			html+='<div class="row"><div class="col-xs-12"><div class="form-group">';
+			html+='<input name="menu-name"class="form-control" type="text" placeholder="메뉴입력"><br>';
+			html+='<input name="menu-price" class="form-control" type="text" placeholder="가격입력">';
+			html+='</div></div></div></div>';
+			html+='<div class="col-xs-3 col-md-3-body-center">';
+			html+='<img id='+ "menu-check-img"+ (i + 1)+ ' class="menu-check-img" src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=81% height=100><br>';
+			html+='<button class="btn-success menu-img-replace">사진등록</button>';
+			html+='<div class="test"><input id='+ "menu-input-img"+ (i + 1)+ ' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name="menu-img"  style="width: 82%; height: 33px;" onclick="view_img(this)">';
+			html+='</div></div></div><div class="row"><div class="col-xs-12 result-btn-positon">';
+			html+='<button id="result-button" class="btn btn-success result-btn" type="submit">완료</button> ';
+			html+='<button id='+ "menu-reset-btn"+ (i + 1)+' class="btn btn-success result-btn" type="reset" onclick="reset_img(this)">취소</button>';
+			html+='<hr></div></div></form>';
+			list.html(html);
+			$('#comment-main').append(list);
+			i++;
+		});
 
-	});
+		$('#addBtnRemove').click(function() {
+			$("#addr" + (i)).remove();
+			i--;
+		})
+	});  --%>
 </script>

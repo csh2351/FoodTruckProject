@@ -105,7 +105,7 @@ public class TruckService {
 	}
 
 	public int updateTruck(Truck truck) {
-		int result = new TruckDao().truckUpdate(conn, truck);
+		int result = new TruckDao().updateTruck(conn, truck);
 		close(conn);
 		if(result>0){
 			commit(conn);
@@ -120,6 +120,19 @@ public class TruckService {
 		Truck truck = new TruckDao().manageTruck(conn,memberPk);
 		close(conn);
 		return truck;
+	}
+
+	
+	public int UpdateTruckMenu(TruckMenu menu) {
+		int result = new TruckDao().UpdateTruckMenu(conn, menu);
+		close(conn);
+		if(result>0){
+			commit(conn);
+		}
+		else{
+			rollback(conn);
+		}
+		return result;
 	}
 
 

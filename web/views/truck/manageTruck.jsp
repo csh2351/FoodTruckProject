@@ -6,6 +6,7 @@
 <%
 	Truck truck = (Truck) request.getAttribute("truck");
 %>
+<%String serlvet=(String)request.getAttribute("truckChoice"); %>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
 <link rel="stylesheet"
@@ -15,7 +16,7 @@
 
 $(function() {
 $.ajax({
-		url:"<%=request.getContextPath()%>/truckMenuUpdate",
+		url:"<%=request.getContextPath()%>/<%=serlvet%>",
 		type : "POST",
 		data:{truckPk :<%=truck.getTruckPk()%>},
 		success : function(data){ 
