@@ -204,21 +204,11 @@
 
     /*파일 버튼으로올리기종료*/
 
-    /*푸드트럭정보*/
 
-    /*댓글*/
-    
-      #textarea-reply {
-      resize: none;
-      padding-bottom: 100px;
-    }
-
-    .btn-reply,.btn-cancel {
+/*     .btn-reply,.btn-cancel {
       display: none;
-    }
+    } */
 
-    li#li-comment button.btn-reply{display:none;}
-    li#li-comment button.btn-delete{display:none;}
     li#li-comment tr:hover {background:lightgray;}
     li#li-comment tr:hover button.btn-reply{display:inline;}
     li#li-comment tr:hover button.btn-delete{display:inline;}

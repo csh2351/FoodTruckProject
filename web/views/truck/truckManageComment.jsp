@@ -12,16 +12,14 @@
  <%int truckPk=(int)(request.getAttribute("truckPk"));%>
  <%String memberId=(String)request.getAttribute("memberId");%>
 	
-	<!-- 지우지마셈... -->
-	
-	
+
  		
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
                     <%if(reviewList.get(i).getReviewCommentLevel()==1){ %>
                    <div id='comment-modify-list<%=i%>' class="more-comment" style="display: none;"> 
                
-                    <li>
+                    <li id='review-view<%=i%>' class='comment-reply level1'>
                       <!--댓글보기-->
                         <div class='row'>
                           <div class="col-xs-8">
@@ -45,10 +43,38 @@
 								<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
 								<br>
 								<br>
-								<button type="button" class="btn btn-success btn-reply basic-btn">답글</button>
-                                <button type="button" class="btn btn-success btn-cancel basic-btn">취소</button>
+								<button id='addComment<%=i%>' type="button" class="btn btn-success  basic-btn">답글</button>
                               </div>
                             </div>
+                            
+                            <script type="text/javascript">
+                            
+                            
+    						$("#addComment<%=i%>").one("click", function() {
+                         	   var li = $('<li id='+"comment-reply"+<%=i%>+'</li>'); //태그생성
+                                var html = "<div class='col-xs-12' align='right'>";
+                                html += '<form action="<%=request.getContextPath()%>/truckReviewCommentEnd" method="post">';
+                                html += "<input type='hidden' name='name부여' value='속성부여'/>";
+                                html += "<input type='hidden' name='name부여' value='속성부여'/>";
+                                html += "<input type='hidden' name='name부여' value='속성부여'/>";
+                                html += "<input type='hidden' name='name부여' value=''/>";
+                                html += " ↴<textarea class='form-control' style='resize: none;'></textarea>";
+                                html += "<button type='submit' class='btn btn-success basic-btn'>등록</button>&nbsp;";
+                                html += "<button type='reset' class='btn btn-success basic-btn'>취소</button>";
+                                html += "<br><hr></form></div>";
+                                //위에서 작성한 html구문을li변수 text노드에 삽입
+                                li.html(html);
+                                //작성된 lir태그(객체)를 원본 html구문의
+                                //(li class=leve1)뒤에 삽입
+                                var reviewList=$("#review-view"+<%=i%>);
+                                reviewList.after(li).slideDown(500);
+                         	  return li;
+                         	});
+    						
+    						
+    					
+                            
+                            </script>
 
                           </div>
                           <div class='col-xs-3 col-md-3-body-center'>
@@ -183,6 +209,15 @@
 		}*/
 		}); 
 	});
+   
+
+   
+	
+
+    /*   $(".btn-cancel").on('click', function(e) {
+        $(".comment-reply").detach();
+      }); */
+
     	
   </script>
 
