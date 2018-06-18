@@ -23,6 +23,7 @@
                
                     <li id='review-view<%=i%>' class='comment-reply level1'>
                       <!--댓글보기-->
+                      <hr>
                         <div class='row'>
                           <div class="col-xs-8">
                             <div class="row">
@@ -60,22 +61,7 @@
                           <%} %>
                           </div>
                         </div>
-                           <%if((reviewList.get(i).getReviewCommnetWriter()).equals(member.getMemberId())){ %>
-                         <div class="row">
-                         <div class="col-xs-8">
-                          </div>
-                          <div class="col-xs-4 result-btn-positon">
-                          	<br>
-                             <button id="delete-button<%=i%>"  class='btn btn-success result-btn delete-button' type="button" >삭제</button>
-                          </div>
-                        </div>
-                        
-                
-
-                    
-                       
-                        
-                          <%} %>
+                      
                     </li>
                     <%}if(reviewList.get(i).getReviewCommentLevel()==2) {%>
                     
@@ -130,8 +116,7 @@
                       </script>
                       
                   	  <%} %>
-                  	   <hr>
-                  	   </div>
+                    </div>
                   	   
                   	     <script type="text/javascript">
                             $("#addComment<%=i%>").one('click', function() {

@@ -16,7 +16,7 @@ import truck.vo.Truck;
 /**
  * Servlet implementation class TruckCommentDeleteServlet
  */
-@WebServlet("/truckCommentDelete")
+@WebServlet("/truckCommentDelete")//truckCommentDelete 댓글삭제
 public class TruckCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
