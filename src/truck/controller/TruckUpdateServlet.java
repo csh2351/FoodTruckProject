@@ -72,8 +72,8 @@ public class TruckUpdateServlet extends HttpServlet {
 			truck.setTruckHoliday(mpr.getParameter("truck-holiday"));
 			truck.setTrucklocation(mpr.getParameter("truck-address"));
 			try {
-				Date date = (Date) new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date")); 
-				Date date2 = (Date) new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-close-date"));
+				java.util.Date date = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date")); 
+				java.util.Date date2 = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-close-date"));
 				Timestamp time1 = new Timestamp(date.getTime());
 				truck.setTruckOpenTime(time1);
 				Timestamp sqldate2 = new Timestamp(date2.getTime());
