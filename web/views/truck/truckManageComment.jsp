@@ -87,8 +87,8 @@
                             </div>
                             
                               <div class="row">
-                              <div class="col-xs-12">
-                             <button id="delete-button<%=i%>"  class='btn btn-success result-btn delete-button' type="button" >삭제</button>
+                              <div class="col-xs-12"  align='right'>
+                             <button id="delete-button<%=i%>"  class='btn btn-success basic-btn' type="button" >삭제</button>
                               </div>
                             </div>
                         	<hr>
