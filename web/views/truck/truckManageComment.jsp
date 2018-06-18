@@ -60,7 +60,7 @@
                           <%} %>
                           </div>
                         </div>
-                           <%if((reviewList.get(i).getReviewCommnetWriter()).equals(truck.getMemberPk())){ %>
+                           <%if((reviewList.get(i).getReviewCommnetWriter()).equals(member.getMemberId())){ %>
                          <div class="row">
                          <div class="col-xs-8">
                           </div>
@@ -116,6 +116,8 @@
                             </div>
                         	<hr>
                           </div>
+                          
+                        </div>
                         </div>
                     </li>
                   	  <%} %>
