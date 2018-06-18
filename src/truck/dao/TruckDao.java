@@ -60,8 +60,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 			truck.setLatitude(rs.getDouble("truck_latitude"));
 			truck.setLogitude(rs.getDouble("truck_logitude"));
@@ -107,8 +107,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setLatitude(rs.getDouble("truck_latitude"));
 				truck.setLogitude(rs.getDouble("truck_logitude"));
@@ -149,8 +149,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setLatitude(rs.getDouble("truck_latitude"));
 				truck.setLogitude(rs.getDouble("truck_logitude"));
@@ -190,8 +190,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setLatitude(rs.getDouble("truck_latitude"));
 				truck.setLogitude(rs.getDouble("truck_logitude"));
@@ -234,8 +234,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setLatitude(rs.getDouble("truck_latitude"));
 				truck.setLogitude(rs.getDouble("truck_logitude"));
@@ -387,8 +387,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setLatitude(rs.getDouble("truck_latitude"));
 				truck.setLogitude(rs.getDouble("truck_logitude"));
@@ -443,8 +443,8 @@ public class TruckDao {
 			pstmp.setString(5, truck.getTrucklocation());
 			pstmp.setString(6, truck.getTruckContent());
 			pstmp.setString(7, truck.getTruckStatus());
-			pstmp.setDate(8, truck.getTruckOpenTime());
-			pstmp.setDate(9, truck.getTruckCloseTime());
+			pstmp.setTimestamp(8, truck.getTruckOpenTime());
+			pstmp.setTimestamp(9, truck.getTruckCloseTime());
 			pstmp.setDouble(10, truck.getLatitude());
 			pstmp.setDouble(11, truck.getLogitude());
 			pstmp.setInt(12,truck.getTruckPrice());
@@ -481,8 +481,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setLatitude(rs.getDouble("truck_latitude"));
 				truck.setLogitude(rs.getDouble("truck_logitude"));

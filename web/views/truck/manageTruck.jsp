@@ -32,6 +32,14 @@ $(function() {
 
 </script>
 
+<style>
+#truck-location{
+    height : 300px;
+    width: 100%;
+    border: 1px solid black;
+    }
+  
+</style>
 <br>
 <section>
 	<div class="container">
@@ -46,7 +54,7 @@ $(function() {
 								<h3 class='panel-title truck-panel-header'>기본정보</h3>
 							</div>
 							<div class='panel-body pannel-basic'>
-								<form name="truckBasicInsert" action="<%=request.getContextPath()%>/truckUpdate" method="post">
+								<form name="truckBasicInsert" action="<%=request.getContextPath()%>/truckUpdate" method="post" enctype="multipart/form-data">
 									<input type="hidden" value="<%=truck.getTruckPk()%>"name="truck-pk">
 									<div class="row">
 										<div class="col-md-4">
@@ -199,38 +207,37 @@ $(function() {
 							<h3 class="panel-title truck-panel-header">푸드트럭 상세 정보</h3>
 						</div>
 						<div class="panel-body">
-						<form action="<%=request.getContextPath()%>/truckUpdate"
-				enctype="multipart/form-data" name="truck-detail-insert"
-				method="post">
+						<form action="<%=request.getContextPath()%>/truckUpdate" enctype="multipart/form-data" name="truck-detail-insert" method="post">
 				<input name="truck-pk" type="hidden" value="<%=truck.getTruckPk()%>">
-				<input name="truck-name" type="hidden" value="detail"> <input
-					id="truckLatitude" name="truck-latitude" type="hidden"
-					value="<%=truck.getLatitude()%>"> <input id="truckLogitude"
-					name="truck-logitude" type="hidden"
-					value="<%=truck.getLogitude()%>">
+				<input name="truck-name" type="hidden" value="detail">
+				<input id="truckLatitude" name="truck-latitude" type="hidden" value="<%=truck.getLatitude()%>"> <input id="truckLogitude" name="truck-logitude" type="hidden" value="<%=truck.getLogitude()%>">
 						
-						<div id="truck-location" style="height: 300px; width: 360px" align="center"></div>
+						<!--크기...최선..-->
+						<div align="center">
+						<div id="truck-location">
+						</div>
+						</div>
 								<!-- 주소 입력 위치 확인 -->
 								<br>
 								
 								<input type="button" class='btn btn-warning	'onclick="findCurrentLocation()" value="현재 위치 확인">
 								<br>
 								<br> 직접입력:&nbsp;<input type="button" class="btn btn-warning" onclick="Postcode()" value="주소찾기" >
-									<input type="button" class="btn btn-info" onclick="findL()"value="확인" style="display: ">
+									<input type="button" class="btn btn-info" onclick="findL()"value="확인" style="display:inline-block;">
 									<br><br>    
 									<input type="text" class="form-control" id="Address" placeholder="주소" value="<%=truck.getTrucklocation() %>" required> 
 									<input type="text" class="form-control" id="AddressDetail" placeholder="상세주소"><br> 
 									<input type="hidden" name="truck-address" id='truck-address' value="<%=truck.getTrucklocation() %>">
 								<p>
-									오픈시간 : <input type="time" id="truck-open-date" class="form-control" name="truck-open-date" value=<%=request.getAttribute("openTime")%>>
+									오픈시간 : <input type="time" id="truck-open-date" class="form-control" name="truck-open-date" style="display:inline-block;" value=<%=request.getAttribute("openTime")%>>
 								</p>
 								<br>
 								<p>
-									마감시간 : <input type="time" id="truck-close-date" class="form-control" name="truck-close-date" value=<%=request.getAttribute("closeTime")%>>
+									마감시간 : <input type="time" id="truck-close-date" class="form-control" name="truck-close-date" style="display:inline-block;" value=<%=request.getAttribute("closeTime")%>>
 								</p>
 								<br>
 								<p>
-									휴무일 : <input type="text" id="truck-holiday" class="form-control" name="truck-holiday" value=<%=truck.getTruckHoliday() %>>
+									휴무일 : <input type="text" id="truck-holiday" class="form-control" name="truck-holiday" style="display:inline-block;" value=<%=truck.getTruckHoliday() %>>
 								</p>
 								<div align="center">
 									<br>
