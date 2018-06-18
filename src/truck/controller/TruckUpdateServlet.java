@@ -41,8 +41,21 @@ public class TruckUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		if(!ServletFileUpload.isMultipartContent(request)) {// 파일 불러오기 실패시
+			request.setAttribute("msg", "사진을불러올수없습니다[관리자에 문의하세요]");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);	
+		}
+		
 		
 		String saveDir = getServletContext().getRealPath("/") + "/images" + File.separator +"truck";
+		
+		
+		System.out.println(saveDir);
+
 		int maxSize = 1024*1024*10;
 		MultipartRequest mpr =new MultipartRequest(request, saveDir, maxSize,"UTF-8", new MyFileRenamePolicy());
 		String CheckDetail = mpr.getParameter("truck-name");
@@ -51,18 +64,15 @@ public class TruckUpdateServlet extends HttpServlet {
 		int truckPk = Integer.parseInt(mpr.getParameter("truck-pk"));
 		
 		Truck truck = new TruckService().selectOne(truckPk);
+		
 		int result = 0;// 업데이트 결과값 수신
 		String view = "/";
-		if(!ServletFileUpload.isMultipartContent(request)) {// 파일 불러오기 실패시
-			request.setAttribute("msg", "사진을불러올수없습니다[관리자에 문의하세요]");
-			request.setAttribute("loc", "/");
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);	
-		}
+		
 		if (CheckDetail.equals("detail")) { // 디테일단에서 폼 전송했을시
-	
-			
 			truck.setTruckHoliday(mpr.getParameter("truck-holiday"));
-			truck.setTrucklocation(mpr.getParameter("truck-address"));
+			String truck_address=mpr.getParameter("truck-address");
+			truck_address=truck_address.substring(5);
+			truck.setTrucklocation(truck_address);
 			
 			try {
 				Date date = (Date) new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date")); 
@@ -75,7 +85,6 @@ public class TruckUpdateServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-				
 			truck.setLatitude(Double.parseDouble(mpr.getParameter("truck-latitude")));
 			truck.setLogitude(Double.parseDouble(mpr.getParameter("truck-logitude")));
 			result = new TruckService().updateTruck(truck);

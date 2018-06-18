@@ -49,7 +49,7 @@ $.ajax({
 											점포명:<%=truck.getTruckName() %></p>
 										<a href="#" data-toggle="modal" data-target=".pop-up-1">
 										<img class='trcuk-img img-responsive center-block'
-											src="images/truck/<%=truck.getTruckOriginalImage()%>" alt=""
+											src="images/truck/<%=truck.getTruckRenameImage()%>" alt=""
 											style="width: 200px; height: 200px" ></a><br><br>
 									</div>
 									

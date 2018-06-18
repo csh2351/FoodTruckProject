@@ -69,7 +69,7 @@
 								<!--고정값으로 할수있는 checkd찾기-->
 							</div>
 							<div class="col-xs-5">
-								<br> <img class="truck_img_size"src="images/truck/<%=list.get(i).getTruckOriginalImage()%>"
+								<br> <img class="truck_img_size"src="images/truck/<%=list.get(i).getTruckRenameImage()%>"
 									alt=""  width=130px; height=160px;>
 									
 							</div>
@@ -78,7 +78,7 @@
                     
 							<div class="col-xs-7">
 								<br>
-								<p>위치: <%=list.get(i).getTrucklocation()%></p>
+								<p><%=list.get(i).getTrucklocation()%></p>
 								<div class="ratings">
      								 <div class="empty-stars"></div>
       								 평점:<div class="full-stars" style="width:<%=list.get(i).getTruckStar()*20%>%"></div>
@@ -91,6 +91,7 @@
 							<div class='col-xs-4'></div>
 							<div class='col-xs-4'></div>
 							<!--지우지마셈 꺠짐-->
+							
 							<div>
 								<a>&nbsp;</a>
 							</div>
