@@ -8,8 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import member.model.vo.Member;
 import truck.service.TruckService;
+import truck.vo.Truck;
 import truck.vo.TruckMenu;
 import truck.vo.TruckReviewComment;
 
@@ -32,13 +35,26 @@ public class TruckReviwCommentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
 
+		HttpSession session = request.getSession(); // 유지되어 있는 세션이 있으면 가져오고 없으면 null값을 리턴한다.
+		Truck truck = null;
+	
+		if (session != null) {// 세션이 존재할때 (점주가 접근)
+			Member member = (Member)session.getAttribute("memberLoggedIn");
+			System.out.println("member :  "+member);
+			
+			int memberPk = member.getMemberPk();
+			truck = new TruckService().manageTruck(memberPk);
+			System.out.println(truck);
+		}
+		
+		
 		String view="";
 		if(truckPk>0){
 			List<TruckReviewComment> reviewList=new TruckService().selectReviewCommnetList(truckPk);
 			view="/views/truck/truckManageComment.jsp";
 			System.out.println("reviewList:"+reviewList);
 	        request.setAttribute("reviewList", reviewList);
-	        request.setAttribute("truckPk", truckPk);
+	        request.setAttribute("truck", truck);
 		}
 		else{
 			view="/views/common/msg.jsp";

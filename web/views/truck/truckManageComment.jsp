@@ -1,3 +1,4 @@
+<%@page import="truck.vo.Truck"%>
 <%@page import="member.model.vo.Member"%>
 <%@page import="truck.vo.TruckReviewComment"%>
 <%@page import="java.util.ArrayList"%>
@@ -9,8 +10,7 @@
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 
  <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList");%>
- <%int truckPk=(int)(request.getAttribute("truckPk"));%>
- <%String memberId=(String)request.getAttribute("memberId");%>
+ <%Truck truck=(Truck)(request.getAttribute("truck"));%>
 	
 
  		
@@ -41,7 +41,7 @@
                             <div class="row">
                               <div class="col-xs-12">
 								<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
-								<br>
+								<br><%=reviewList.get(i).getReviewCommentPk() %>
 								<br>
 								<button id='addComment<%=i%>' type="button" class="btn btn-success  basic-btn">답글</button>
                               </div>
@@ -54,10 +54,11 @@
                          	   var li = $('<li id='+"comment-reply"+<%=i%>+'</li>'); //태그생성
                                 var html = "<div class='col-xs-12' align='right'>";
                                 html += '<form action="<%=request.getContextPath()%>/truckReviewCommentEnd" method="post">';
-                                html += "<input type='hidden' name='name부여' value='속성부여'/>";
-                                html += "<input type='hidden' name='name부여' value='속성부여'/>";
-                                html += "<input type='hidden' name='name부여' value='속성부여'/>";
-                                html += "<input type='hidden' name='name부여' value=''/>";
+                                html += "<input type='hidden' name='reviewCommentLevel' value='2'/>";
+                                html += "<input type='hidden' name='reviewCommentWriter' value="<%=memberId%>"/>";
+                                html += "<input type='hidden' name='reviewCommentRef' value='<%=reviewList.get(i).getReviewCommentPk()%>'/>"; 
+                                html += "<input type='hidden' name='memberPk' value='<%=truck.getMemberPk()%>'/>";
+                                html += "<input type='hidden' name='truckPk' value='<%=truck.getTruckPk()%>'/>";
                                 html += " ↴<textarea class='form-control' style='resize: none;'></textarea>";
                                 html += "<button type='submit' class='btn btn-success basic-btn'>등록</button>&nbsp;";
                                 html += "<button type='reset' class='btn btn-success basic-btn'>취소</button>";
@@ -73,7 +74,7 @@
     						
     						
     					
-                            
+                            <%=truck.getTruckPk()%>
                             </script>
 
                           </div>
@@ -84,10 +85,8 @@
                           <%} %>
                           </div>
                         </div>
-                           <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
+                           <%if((reviewList.get(i).getReviewCommnetWriter()).equals(truck.getMemberPk())){ %>
                     
-                    
-                    	
                          <div class="row">
                          <div class="col-xs-8">
                           </div>
