@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +18,6 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 
 import common.MyFileRenamePolicy;
-import oracle.sql.TIMESTAMP;
 import truck.service.TruckService;
 import truck.vo.Truck;
 
@@ -71,8 +71,8 @@ public class TruckUpdateServlet extends HttpServlet {
 			truck.setTruckHoliday(mpr.getParameter("truck-holiday"));
 			truck.setTrucklocation(mpr.getParameter("truck-address"));
 			try {
-				java.util.Date date = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date")); 
-				java.util.Date date2 = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-close-date"));
+				Date date = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date")); 
+				Date date2 = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-close-date"));
 				Timestamp time1 = new Timestamp(date.getTime());
 				truck.setTruckOpenTime(time1);
 				Timestamp sqldate2 = new Timestamp(date2.getTime());
