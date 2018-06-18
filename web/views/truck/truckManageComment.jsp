@@ -18,8 +18,8 @@
  		
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
+                   <div id='comment-modify-list' class="more-comment" style="display: none;"> 
                     <%if(reviewList.get(i).getReviewCommentLevel()==1){ %>
-                   <div id='comment-modify-list<%=i%>' class="more-comment" style="display: none;"> 
                
                     <li id='review-view<%=i%>' class='comment-reply level1'>
                       <!--댓글보기-->
@@ -131,8 +131,8 @@
                                    html += "<input type='hidden' name='reivewCommentWriter' value='<%=member.getMemberId()%>'/>";
                                    html += "<input type='hidden' name='reviewCommentRef' value='<%=reviewList.get(i).getReviewCommentPk()%>'/>";
                                    html += "<input type='hidden' name='memberPk' value='<%=member.getMemberPk()%>'/>";
-                                   html += "<input type='hidden' name='truckPk' value='<%=truck.getTruckPk()%>'/>"; 
-                                   html += " ↴<textarea class='form-control' style='resize: none;'></textarea>";
+                                   html += "<input type='hidden' name='truckPk' value='<%=reviewList.get(i).getTruckPk()%>'/>"; 
+                                   html += " ↴<textarea name='truckCommentContent' class='form-control' style='resize: none;'></textarea>";
                                    html += "<button type='submit' class='btn btn-success basic-btn'>등록</button>&nbsp;";
                                    html += "<button type='reset' class='btn btn-success basic-btn'>취소</button>";
                                    html += "<br><hr></form></div>";
@@ -198,10 +198,10 @@
     	
    //더보기
     $(function(){
-		$(".more-comment").slice(0, 2).show(); // 최초 10개 선택
+		$(".more-comment").slice(0, 10).show(); // 최초 10개 선택
 		$("#load-review-button").click(function(e){ // Load More를 위한 클릭 이벤트e
 		e.preventDefault();
-		$(".more-comment:hidden").slice(0, 2).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+		$(".more-comment:hidden").slice(0, 10).show(); // 숨김 설정된 다음 10개를 선택하여 표시
 		/* if($(".more-comment:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
 		alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
 		}*/

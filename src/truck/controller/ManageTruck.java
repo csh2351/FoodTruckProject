@@ -51,9 +51,9 @@ public class ManageTruck extends HttpServlet {
 		
 	
 		String truckChoice="truckMenuUpdate";
-		System.out.println(truckChoice);
 		
 		String temp=request.getParameter("truckChoice");
+		System.out.println("temp"+temp);
 		if(temp!=null){
 			truckChoice=temp;
 		}

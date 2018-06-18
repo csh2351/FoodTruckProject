@@ -20,13 +20,13 @@ import truck.vo.TruckReviewComment;
  * Servlet implementation class TruckReviwCommentServlet
  */
 @WebServlet("/truckReviewComment")
-public class TruckReviwCommentServlet extends HttpServlet {
+public class TruckReviewCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TruckReviwCommentServlet() {
+    public TruckReviewCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

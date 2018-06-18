@@ -605,6 +605,32 @@ public class TruckDao {
 		}
 		return result;
 	}
+
+
+
+
+
+	public int insertTruckReviewComment(Connection conn, TruckReviewComment comment) {
+		int result=0;
+		try {
+			pstmp=conn.prepareStatement(prop.getProperty("insertTruckReviewComment"));
+			//INSERT INTO REVIEW_COMMENT VALUES(REVIEW_COMMENT_SEQ.NEXTVAL, 2,?,?,NULL,?,DEFAULT,NULL,NULL,0,?,?);
+			pstmp.setInt(1, comment.getReviewCommentLevel());
+			pstmp.setString(2, comment.getReviewCommnetWriter());
+			pstmp.setString(3, comment.getReviewCommnetContent());
+			pstmp.setInt(4, comment.getReviewCommentRef());
+			pstmp.setInt(5, comment.getMemberPk());
+			pstmp.setInt(6, comment.getTruckPk());
+			result=pstmp.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmp);
+		}
+		return result;
+	}
+
 	
 	
 
