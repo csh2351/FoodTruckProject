@@ -58,7 +58,7 @@
                         	$("#addComment<%=i%>").one("click", function() {
                                                  	   var li = $('<li id='+"comment-reply"+<%=i%>+'</li>'); //태그생성
                                                         var html = "<div class='col-xs-12' align='right'>";
-                                                        html += '<form action="<%=request.getContextPath()%>/truckReviewCommentEnd" method="post">';
+                                                        html += "<form action='#' method='post'>';
                                                         html += "<input type='hidden' name='name부여' value='속성부여'/>";
                                                         html += "<input type='hidden' name='name부여' value='속성부여'/>";
                                                         html += "<input type='hidden' name='name부여' value='속성부여'/>";
@@ -75,7 +75,6 @@
                                                         reviewList.after(li).slideDown(500);
                                                  	  return li;
                                                  	});
-    					
                             </script>
 
                           </div>

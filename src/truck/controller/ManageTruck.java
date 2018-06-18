@@ -67,7 +67,7 @@ public class ManageTruck extends HttpServlet {
 		} 
 		
 		else {
-			view = "views/truck/managetruck.jsp";
+			view = "views/truck/manageTruck.jsp";
 			request.setAttribute("truck", truck);
 			request.setAttribute("truckChoice", truckChoice);
 
