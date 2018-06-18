@@ -23,7 +23,6 @@
 
 
 
-
 <ul id='comment-main'>
 <%if(menuList.size()>0){ 
 	for(int i=0; i<menuList.size(); i++){%>

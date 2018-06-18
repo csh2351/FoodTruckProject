@@ -491,6 +491,7 @@ public class TruckDao {
 				truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("member_pk"));
+				truck.setReviewCount(rs.getInt("count"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

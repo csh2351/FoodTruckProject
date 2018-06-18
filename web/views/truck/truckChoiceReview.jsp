@@ -15,7 +15,11 @@
 	<!-- 지우지마셈... -->
 	
 	
- 		
+ 			
+			<div class="page-header">
+					<p style="font-size: 14pt; font-weight: bold;">&nbsp;&nbsp;&nbsp;리뷰</p>
+			</div>
+ 			
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
                    <div id='comment-modify-list<%=i%>' class="more-comment" style="display: none;"> 
