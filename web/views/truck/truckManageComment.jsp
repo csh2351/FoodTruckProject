@@ -55,10 +55,10 @@
                                 var html = "<div class='col-xs-12' align='right'>";
                                 html += '<form action="<%=request.getContextPath()%>/truckReviewCommentEnd" method="post">';
                                 html += "<input type='hidden' name='reviewCommentLevel' value='2'/>";
-                                html += "<input type='hidden' name='reviewCommentWriter' value="<%=memberId%>"/>";
-                                html += "<input type='hidden' name='reviewCommentRef' value='<%=reviewList.get(i).getReviewCommentPk()%>'/>"; 
-                                html += "<input type='hidden' name='memberPk' value='<%=truck.getMemberPk()%>'/>";
-                                html += "<input type='hidden' name='truckPk' value='<%=truck.getTruckPk()%>'/>";
+                                html += "<input type='hidden' name='reviewCommentWriter' value=""/>";
+                                html += "<input type='hidden' name='reviewCommentRef' value=''/>"; 
+                                html += "<input type='hidden' name='memberPk' value=''/>";
+                                html += "<input type='hidden' name='truckPk' value=''/>";
                                 html += " ↴<textarea class='form-control' style='resize: none;'></textarea>";
                                 html += "<button type='submit' class='btn btn-success basic-btn'>등록</button>&nbsp;";
                                 html += "<button type='reset' class='btn btn-success basic-btn'>취소</button>";

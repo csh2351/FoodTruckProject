@@ -37,13 +37,13 @@ public class TruckReviwCommentServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(); // 유지되어 있는 세션이 있으면 가져오고 없으면 null값을 리턴한다.
 		Truck truck = null;
-	
+		Member member=null;
 		if (session != null) {// 세션이 존재할때 (점주가 접근)
-			Member member = (Member)session.getAttribute("memberLoggedIn");
+			member = (Member)session.getAttribute("memberLoggedIn");
 			System.out.println("member :  "+member);
 			
 			int memberPk = member.getMemberPk();
-			truck = new TruckService().manageTruck(memberPk);
+			truck = new TruckService().selectOne(truckPk);
 			System.out.println(truck);
 		}
 		
@@ -55,6 +55,7 @@ public class TruckReviwCommentServlet extends HttpServlet {
 			System.out.println("reviewList:"+reviewList);
 	        request.setAttribute("reviewList", reviewList);
 	        request.setAttribute("truck", truck);
+	        request.setAttribute("member", member);
 		}
 		else{
 			view="/views/common/msg.jsp";
