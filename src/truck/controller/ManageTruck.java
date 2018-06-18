@@ -1,6 +1,7 @@
 package truck.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import truck.vo.Truck;
 /**
  * Servlet implementation class ManageTruck
  */
-@WebServlet(urlPatterns="/managetruck")
+@WebServlet(urlPatterns="/managestore.do")
 public class ManageTruck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,6 +46,12 @@ public class ManageTruck extends HttpServlet {
 			int memberPk = member.getMemberPk();
 			truck = new TruckService().manageTruck(memberPk);
 			System.out.println(truck);
+			String openTime = new SimpleDateFormat("HH:mm:ss").format(truck.getTruckOpenTime()); 
+			String closeTime = new SimpleDateFormat("HH:mm:ss").format(truck.getTruckOpenTime());
+			request.setAttribute("openTime", openTime);
+			request.setAttribute("closeTime", closeTime);
+			System.out.println(openTime);
+			System.out.println(closeTime);
 		}
 		
 		String view = "/";

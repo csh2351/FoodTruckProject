@@ -1,6 +1,7 @@
 package truck.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -45,10 +46,13 @@ public class TruckSelectOneServlet extends HttpServlet {
 		//댓글삭제로직~
 		
 		Truck truck=new TruckService().selectOne(truckPk);
-		System.out.println(truck);
-		System.out.println(truck.getReviewCount());
-		String view="";
+		String openTime = new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(truck.getTruckOpenTime()); 
+		String closeTime = new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(truck.getTruckOpenTime());
+		request.setAttribute("openTime", openTime);
+		request.setAttribute("closeTime", closeTime);
+
 		
+		String view="";
 		if(truck!=null){
 			view="/views/truck/truckChoice.jsp";
 			request.setAttribute("truck", truck);

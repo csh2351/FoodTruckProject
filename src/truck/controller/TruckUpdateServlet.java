@@ -70,10 +70,7 @@ public class TruckUpdateServlet extends HttpServlet {
 		
 		if (CheckDetail.equals("detail")) { // 디테일단에서 폼 전송했을시
 			truck.setTruckHoliday(mpr.getParameter("truck-holiday"));
-			String truck_address=mpr.getParameter("truck-address");
-			truck_address=truck_address.substring(5);
-			truck.setTrucklocation(truck_address);
-			
+			truck.setTrucklocation(mpr.getParameter("truck-address"));
 			try {
 				Date date = (Date) new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date")); 
 				Date date2 = (Date) new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-close-date"));

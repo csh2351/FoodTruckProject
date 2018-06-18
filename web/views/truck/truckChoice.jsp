@@ -243,13 +243,17 @@ $.ajax({
 								상세 위치 :
 								<%=truck.getTrucklocation() %></p>
 							<br>
-							<p id="truck_oponTime">
-								오픈시간 :
-								<%=truck.getTruckOpenTime()%></p>
-							<br>
-							<p id="truck_holiday">
-								휴일 :
-								<%=truck.getTruckHoliday() %></p>
+								<p>
+									오픈시간 : <%=request.getAttribute("openTime")%>
+								</p>
+								<br>
+								<p>
+									마감시간 : <%=request.getAttribute("closeTime")%> 
+								</p>
+								<br>
+								<p>
+									휴무일 :<%=truck.getTruckHoliday() %>
+								</p>
 
 						</div>
 					</div>
