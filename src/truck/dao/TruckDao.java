@@ -25,7 +25,7 @@ public class TruckDao {
 	private List<Truck> list;
 	
 	public TruckDao() {
-		pstmp=null;
+	pstmp=null;
 		rs=null;
 		list=new ArrayList<>();
 		prop=new Properties();
@@ -35,9 +35,6 @@ public class TruckDao {
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmp);
 		}
 	}
 	
@@ -60,8 +57,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 			truck.setLatitude(rs.getDouble("truck_latitude"));
 			truck.setLogitude(rs.getDouble("truck_logitude"));
@@ -106,8 +103,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setLatitude(rs.getDouble("truck_latitude"));
 				truck.setLogitude(rs.getDouble("truck_logitude"));
@@ -147,8 +144,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setLatitude(rs.getDouble("truck_latitude"));
 				truck.setLogitude(rs.getDouble("truck_logitude"));
@@ -211,8 +208,8 @@ public class TruckDao {
 				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
 				truck.setTruckContent(rs.getString("truck_content"));
 				truck.setTruckStatus(rs.getString("truck_status"));
-				truck.setTruckOpenTime(rs.getDate("truck_open_time"));
-				truck.setTruckCloseTime(rs.getDate("truck_close_time"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
 				truck.setLatitude(rs.getDouble("truck_latitude"));
 				truck.setLogitude(rs.getDouble("truck_logitude"));
@@ -314,6 +311,84 @@ public class TruckDao {
 			pstmp.setDouble(6, comment.getReviewStar());
 			pstmp.setInt(7, comment.getMemberPk());
 			pstmp.setInt(8, comment.getTruckPk());
+			result=pstmp.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+
+
+
+
+	public Truck manageTruck(Connection conn, int memberPk) {
+		Truck truck = null;
+		
+
+		try {
+			truck =new Truck();
+		
+			
+			pstmp=conn.prepareStatement(prop.getProperty("manageTruck"));
+			pstmp.setInt(1, memberPk);
+			rs=pstmp.executeQuery();
+			while(rs.next()){
+				truck.setTruckPk(rs.getInt("truck_pk"));
+				truck.setTruckName(rs.getString("truck_name"));
+				truck.setTruckOriginalImage(rs.getString("truck_original_image"));
+				truck.setTruckRenameImage(rs.getString("truck_rename_image"));
+				truck.setTrucklocation(rs.getString("truck_location"));
+				truck.setTruckInfoName(rs.getString("truck_info_name"));
+				truck.setTruckInfoRegisterNumber(rs.getInt("truck_info_register_number"));
+				truck.setTruckContent(rs.getString("truck_content"));
+				truck.setTruckStatus(rs.getString("truck_status"));
+				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
+				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
+				truck.setTruckApprove(rs.getString("truck_approve"));
+				truck.setLatitude(rs.getDouble("truck_latitude"));
+				truck.setLogitude(rs.getDouble("truck_logitude"));
+				truck.setTruckCategory(rs.getString("truck_category"));
+				truck.setTruckStar(rs.getInt("truck_star"));
+				truck.setTruckPrice(rs.getInt("truck_price"));
+				truck.setTruckHoliday(rs.getString("truck_holiday"));
+				truck.setMemberPk(rs.getInt("member_pk"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmp);
+		}
+		return truck;
+	}
+
+
+
+
+
+	public int truckUpdate(Connection conn, Truck truck) {
+		
+		int result =0;
+		try {
+			pstmp = conn.prepareStatement(prop.getProperty("updateTruck"));
+			pstmp.setInt(1, truck.getTruckPk());
+			pstmp.setString(2, truck.getTruckName());
+			pstmp.setString(3, truck.getTruckOriginalImage());
+			pstmp.setString(4, truck.getTruckRenameImage());
+			pstmp.setString(5, truck.getTrucklocation());
+			pstmp.setString(6, truck.getTruckContent());
+			pstmp.setString(7, truck.getTruckStatus());
+			pstmp.setTimestamp(8, truck.getTruckOpenTime());
+			pstmp.setTimestamp(9, truck.getTruckCloseTime());
+			pstmp.setDouble(10, truck.getLatitude());
+			pstmp.setDouble(11, truck.getLogitude());
+			pstmp.setInt(12,truck.getTruckPrice());
+			pstmp.setString(13, truck.getTruckHoliday());
+			pstmp.setInt(14, truck.getTruckPk());
 			result=pstmp.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

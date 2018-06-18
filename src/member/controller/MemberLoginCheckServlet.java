@@ -55,7 +55,7 @@ public class MemberLoginCheckServlet extends HttpServlet {
 			HttpSession session=request.getSession();
 			
 			session.setAttribute("memberLoggedIn", member);
-			session.setMaxInactiveInterval(30);			
+			session.setMaxInactiveInterval(3000);			
 			
 			//request.setAttribute("memberLoggedIn",member);
 			view="/";

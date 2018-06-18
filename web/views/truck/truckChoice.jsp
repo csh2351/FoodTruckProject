@@ -101,7 +101,7 @@ $.ajax({
 												class="onoffswitch-checkbox" id="myonoffswitch"
 												<%=truck.getTruckStatus().equals("t")?"checked":"" %>>
 											<label class="onoffswitch-label" for="myonoffswitch"
-												align="left"> <span class="onoffswitch-inner"></span>
+												> <span class="onoffswitch-inner"></span>
 												<span class="onoffswitch-switch"></span>
 											</label>
 											<!--클릭이벤트제거-->
@@ -235,11 +235,15 @@ $.ajax({
 							<br> <br> <br> <br>
 							<p id="truck_address">
 								상세 위치 :
-								<%=truck.getTrucklocation() %></p>
+								<%=truck.getTrucklocation()%></p>
 							<br>
-							<p id="truck_oponTime">
+							<p id="truck_openTime">
 								오픈시간 :
-								<%=truck.getTruckOpenTime()%></p>
+								<%=request.getAttribute("openTime")%></p>
+							<br>
+							<p id="truck_closeTime">
+								마감시간 :
+								<%=request.getAttribute("closeTime")%></p>
 							<br>
 							<p id="truck_holiday">
 								휴일 :

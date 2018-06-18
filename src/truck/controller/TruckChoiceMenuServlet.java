@@ -30,7 +30,6 @@ public class TruckChoiceMenuServlet extends HttpServlet {
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
 		
 
-		//List<TruckMenu> menuList=new TruckService().selectMenu(truckpk);
 		
 		String view="";
 		if(truckPk>0){
