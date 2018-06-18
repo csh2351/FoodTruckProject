@@ -50,31 +50,32 @@
                             <script type="text/javascript">
                             
                             
-    						$("#addComment<%=i%>").one("click", function() {
-                         	   var li = $('<li id='+"comment-reply"+<%=i%>+'</li>'); //태그생성
-                                var html = "<div class='col-xs-12' align='right'>";
-                                html += '<form action="<%=request.getContextPath()%>/truckReviewCommentEnd" method="post">';
-                                html += "<input type='hidden' name='reviewCommentLevel' value='2'/>";
-                                html += "<input type='hidden' name='reviewCommentWriter' value=""/>";
-                                html += "<input type='hidden' name='reviewCommentRef' value=''/>"; 
-                                html += "<input type='hidden' name='memberPk' value=''/>";
-                                html += "<input type='hidden' name='truckPk' value=''/>";
-                                html += " ↴<textarea class='form-control' style='resize: none;'></textarea>";
-                                html += "<button type='submit' class='btn btn-success basic-btn'>등록</button>&nbsp;";
-                                html += "<button type='reset' class='btn btn-success basic-btn'>취소</button>";
-                                html += "<br><hr></form></div>";
-                                //위에서 작성한 html구문을li변수 text노드에 삽입
-                                li.html(html);
-                                //작성된 lir태그(객체)를 원본 html구문의
-                                //(li class=leve1)뒤에 삽입
-                                var reviewList=$("#review-view"+<%=i%>);
-                                reviewList.after(li).slideDown(500);
-                         	  return li;
-                         	});
-    						
-    						
+
+
+
+
+
+                        	$("#addComment<%=i%>").one("click", function() {
+                                                 	   var li = $('<li id='+"comment-reply"+<%=i%>+'</li>'); //태그생성
+                                                        var html = "<div class='col-xs-12' align='right'>";
+                                                        html += '<form action="<%=request.getContextPath()%>/truckReviewCommentEnd" method="post">';
+                                                        html += "<input type='hidden' name='name부여' value='속성부여'/>";
+                                                        html += "<input type='hidden' name='name부여' value='속성부여'/>";
+                                                        html += "<input type='hidden' name='name부여' value='속성부여'/>";
+                                                        html += "<input type='hidden' name='name부여' value=''/>";
+                                                        html += " ↴<textarea class='form-control' style='resize: none;'></textarea>";
+                                                        html += "<button type='submit' class='btn btn-success basic-btn'>등록</button>&nbsp;";
+                                                        html += "<button type='reset' class='btn btn-success basic-btn'>취소</button>";
+                                                        html += "<br><hr></form></div>";
+                                                        //위에서 작성한 html구문을li변수 text노드에 삽입
+                                                        li.html(html);
+                                                        //작성된 lir태그(객체)를 원본 html구문의
+                                                        //(li class=leve1)뒤에 삽입
+                                                        var reviewList=$("#review-view"+<%=i%>);
+                                                        reviewList.after(li).slideDown(500);
+                                                 	  return li;
+                                                 	});
     					
-                            <%=truck.getTruckPk()%>
                             </script>
 
                           </div>
