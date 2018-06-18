@@ -97,6 +97,13 @@
                               <div class="col-xs-12">
 								<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
                               </div>
+                              <br><br>
+                            </div>
+                            
+                              <div class="row">
+                              <div class="col-xs-12">
+                             <button id="delete-button<%=i%>"  class='btn btn-success result-btn delete-button' type="button" >삭제</button>
+                              </div>
                             </div>
                         	<hr>
                           </div>
@@ -108,12 +115,12 @@
                         <script type="text/javascript">
 						$("#delete-button<%=i%>").on("click", function() {
 							$.ajax({
-								url:"<%=request.getContextPath()%>/truckCommentDelete",
+								url:"<%=request.getContextPath()%>/truckReviewCommentDelete",
 								type : "POST",
-								data:{reviewCommentPk :<%=reviewList.get(i).getReviewCommentPk()%>,fileName:"<%=reviewList.get(i).getReviewCommentRimage()%>",truckPk:<%=reviewList.get(i).getTruckPk()%>},
+								data:{reviewCommentPk :<%=reviewList.get(i).getReviewCommentPk()%>},
 								success : function(data){ 
 									alert(data.msg);
-									$("#comment-modify-list<%=i%>").remove();
+									$(".review-comment-view<%=i%>").remove();
 								}, 
 								error : function(request,status,error) { 
 								alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
