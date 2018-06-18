@@ -46,15 +46,13 @@ $(function() {
 								<h3 class='panel-title truck-panel-header'>기본정보</h3>
 							</div>
 							<div class='panel-body pannel-basic'>
-								<form name="truckUpdateFrm" action="<%=request.getContextPath()%>/truckBasicUpdate" method="post">
-
+								<form name="truckBasicInsert" action="<%=request.getContextPath()%>/truckUpdate" method="post">
+									<input type="hidden" value="<%=truck.getTruckPk()%>"name="truck-pk">
 									<div class="row">
 										<div class="col-md-4">
 											<div align="center">
-												<input id="basic-input" type="text" name="truckName"
+												<input id="basic-input" type="text" name="truck-name"
 													placeholder="<%=truck.getTruckName()%>"
-													class="form-control"> <input type="hidden"
-													name="truckPk" value="<%=truck.getTruckPk()%>"
 													class="form-control">
 
 											</div>
@@ -69,7 +67,7 @@ $(function() {
 											<button class="truck-img-replace">사진등록</button>
 											<input id='truck-input-img' type="file" value="사진등록"
 												class="upload" accept="image/gif, image/jpeg, image/png"
-												name='truckOriginalImage'> <br> <br>
+												name='truck-img'> <br> <br>
 										</div>
 
 										<div class="col-md-6">
@@ -201,19 +199,54 @@ $(function() {
 							<h3 class="panel-title truck-panel-header">푸드트럭 상세 정보</h3>
 						</div>
 						<div class="panel-body">
-							<img id="truck-location"
-								class="card-img-top img-responsive center-block"
-								src="http://proxyprivat.com/images/noimage.jpeg"
-								alt="Card image cap" width=300 height=300> <br> <br>
-							<br> <br>
-							<p>상세 위치 :</p>
-							<br>
-							<p>오픈시간 :</p>
-							<br>
-							<p>주요 동선 :</p>
-							<br>
-							<p>휴무일 :</p>
+						<form action="<%=request.getContextPath()%>/truckUpdate"
+				enctype="multipart/form-data" name="truck-detail-insert"
+				method="post">
+				<input name="truck-pk" type="hidden" value="<%=truck.getTruckPk()%>">
+				<input name="truck-name" type="hidden" value="detail"> <input
+					id="truckLatitude" name="truck-latitude" type="hidden"
+					value="<%=truck.getLatitude()%>"> <input id="truckLogitude"
+					name="truck-logitude" type="hidden"
+					value="<%=truck.getLogitude()%>">
+						
+						<div id="truck-location" style="height: 300px; width: 300px"></div>
+								<!-- 주소 입력 위치 확인 -->
+								<br> <br> <input type="button" onclick="findL()"
+									value="주소입력 위치 확인"> <input type="button"
+									onclick="findCurrentLocation()" value="현재 위치 확인"><br>
+							<br><br> 상세 위치 : <input type="button" class="btn btn-warning"
+									onclick="Postcode()" value="주소찾기"> <input type="text"
+									class="form-control" id="Address" placeholder="주소"
+									value="<%=truck.getTrucklocation() %>" required> <input
+									type="text" class="form-control" id="AddressDetail"
+									placeholder="상세주소"> <br> <br> <input
+									type="hidden" name="truck-address" id='truck-address'
+									value="<%=truck.getTrucklocation() %>">
+								<p>
+									오픈시간 : <input type="time" id="truck-open-date"
+										name="truck-open-date"
+										value=<%=request.getAttribute("openTime")%>>
+								</p>
+								<br>
+								<p>
+									마감시간 : <input type="time" id="truck-close-date"
+										name="truck-close-date"
+										value=<%=request.getAttribute("closeTime")%>>
+								</p>
+								<br>
+								<p>
+									휴무일 : <input type="text" id="truck-holiday"
+										name="truck-holiday" value=<%=truck.getTruckHoliday() %>>
+								</p>
+								<div align="center">
+									<br>
+									<button class="btn btn-success basic-btn" type="submit"
+										id="detailsubmit">완료</button>
+									<button class="btn btn-success basic-btn reset-button"
+										type="reset">취소</button>
+								</div>
 
+						</form>	
 						</div>
 					</div>
 				</div>
@@ -284,7 +317,188 @@ $(function() {
 							"http://proxyprivat.com/images/noimage.jpeg");
 				})
 	})
+	
+	
+	
+	
+	// 구글 맵 부분
+	// 현재 위치 확인
+function findCurrentLocation(){
+		var latitude = 0;
+		var longitude = 0;
+		var mapOptions = {
+				zoom : 17
+			};
+		var map = new google.maps.Map(document.getElementById('truck-location'),
+				mapOptions);
+		//map div에 구글 맵을 붙여쥼
+		var contentString = '<div id="content">'+
+	      '푸드트럭 : <%=truck.getTruckName()%>'+
+	      '</div>'+
+	      '<div id="content">' +
+	      '상세 설명 : <%=truck.getTruckContent()%>'+
+	      '</div>';
+		var geocoder = new google.maps.Geocoder;
+		var infowindow = new google.maps.InfoWindow({
+			content: contentString
+		});
+		var address = document.getElementById("truck-address").value;
+		// 기본 세팅
+		
+		// 현재 위치 확인하는 위도와 경도를 구하는 시작점
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function updateLocation(position) {
 
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+          accuracy = position.coords.accuracy;
+          // 위도 경도 정확도 불러옴
+          map.setCenter(new google.maps.LatLng(latitude, longitude));
+          // 가져온 위치를 기반으로 map의 center부분 set
+         //히든 인풋값에 위도,경도 추가해줌
+			document.getElementById("truckLatitude").value = latitude;
+			document.getElementById("truckLogitude").value = longitude;
+		      // 현재 위치의 주소 구함
+			  var latlngStr = latitude + "," + longitude;
+		      var latlng = {
+		        lat: latitude,
+		        lng: longitude
+		      };
+		      console.log(latlng);
+		      geocoder.geocode({
+		        'location': latlng
+		      }, function(results, status) {
+		        if (status === 'OK') {
+		          if (results[1]) {
+		            map.setZoom(18);
+		            var marker = new google.maps.Marker({
+		              position: latlng,
+		              map: map
+		            });
+		            map.setCenter(new google.maps.LatLng(latitude, longitude))
+		            //  results[1].formatted_address = 위도,경도로 구한 주소
+		            
+		            document.getElementById("Address").value = results[1].formatted_address;
+		            document.getElementById("truck-address").value = results[1].formatted_address;
+		            // 찾은 주소경로 value 에 입력
+		            infowindow.open(map, marker);
+		          }
+		        } else {
+		          window.alert('No results found');
+		          window.alert('Geocoder failed due to: ' + status);
+		        } //  오류표시
+		      });
+
+        }, function handlerLocationError(error) {
+          alert(error.code);
+        });
+      } 
+      }
+
+	// 주소값으로 위도 경도 구하기
+
+	function findL() {
+		var latitude = null;
+		var longitude = null;
+		var mapOptions = {
+				zoom : 17
+			};
+		var map = new google.maps.Map(document.getElementById('truck-location'),
+				mapOptions);
+		//map div에 구글 맵을 붙여쥼
+		var contentString = '<div id="content">'+
+	      '푸드트럭 : <%=truck.getTruckName()%>'+
+	      '</div>'+
+	      '<div id="content">' +
+	      '상세 설명 : <%=truck.getTruckContent()%>'+
+	      '</div>';
+		var geocoder = new google.maps.Geocoder;
+		var infowindow = new google.maps.InfoWindow({
+			content: contentString
+		});
+		var marker = null;
+		var address = document.getElementById("truck-address").value;
+		var LatLng ="";
+		geocoder.geocode({
+			'address' : address
+		}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				map.setCenter(results[0].geometry.location);
+				marker = new google.maps.Marker({
+					map : map,
+					// icon: image, // 마커로 사용할 이미지(변수)
+					title :'<%=truck.getTruckName()%>',
+	// 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
+					position : results[0].geometry.location
+				});
+				LatLng = ""+ results[0].geometry.location;
+			}
+			infowindow.open(map, marker); // 마커에 정보표시
+
+			  var latitude = LatLng.substring(1,LatLng.indexOf(','));
+			  var longitude = LatLng.substring(LatLng.indexOf(',')+2,LatLng.indexOf(')'));
+		
+			//히든 인풋값에 위도,경도 추가해줌
+			document.getElementById("truckLatitude").value = latitude;
+			document.getElementById("truckLogitude").value = longitude;
+			// if 문 마무리
+		}); // 주소값 마커 찍어주기
+	}
+
+	
+	//주소찾기 스크립트
+	function Postcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var fullAddr = ''; // 최종 주소 변수
+						var extraAddr = ''; // 조합형 주소 변수
+						var address ='';// 전송되는 변수
+						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							fullAddr = data.roadAddress;
+							address=fullAddr;
+
+						} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							fullAddr = data.jibunAddress;
+							address=fullAddr;
+						}
+
+						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+						if (data.userSelectedType === 'R') {
+							//법정동명이 있을 경우 추가한다.
+							if (data.bname !== '') {
+								extraAddr += data.bname;
+							}
+							// 건물명이 있을 경우 추가한다.
+							if (data.buildingName !== '') {
+								extraAddr += (extraAddr !== '' ? ', '
+										+ data.buildingName : data.buildingName);
+							}
+							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
+									+ ')' : '');
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+
+						document.getElementById('Address').value = fullAddr;
+						document.getElementById('truck-address').value = address;
+						// 커서를 상세주소 필드로 이동한다.
+						document.getElementById('AddressDetail').focus();
+					}
+				}).open();
+	}
+	$(function() {
+		$('#detailsubmit').on('click', function() {
+			findL();
+		});
+	})
+	// 확인버튼 누르면 자동으로 위도,경도값 구함
 
 </script>
 
