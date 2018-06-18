@@ -393,7 +393,6 @@ function findCurrentLocation(){
       }
 
 	// 주소값으로 위도 경도 구하기
-
 	function findL() {
 		var latitude = null;
 		var longitude = null;

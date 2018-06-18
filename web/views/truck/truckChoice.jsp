@@ -187,7 +187,7 @@ $.ajax({
 
 
 			<div id="truckDetail" class="col-md-4 col-md-offset-1">
-				<script>
+<script>
     // 맵에 찍어주기
    $(function geocodeLatLng() {
 	   		var mapOptions = {
