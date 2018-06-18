@@ -197,7 +197,7 @@ $(function geocodeLatLng() {
 	 //googlemap div에 구글 맵을 붙여쥼
 
 		var geocoder = new google.maps.Geocoder;
-		var infowindow = new google.maps.InfoWindow;
+			 var infowindow = new google.maps.InfoWindow;
  	
  		 var latitude = <%=truck.getLatitude()%>;
  		 var longitude = <%=truck.getLogitude()%>;
