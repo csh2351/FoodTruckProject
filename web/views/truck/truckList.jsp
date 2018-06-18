@@ -84,7 +84,6 @@
       								 평점:<div class="full-stars" style="width:<%=list.get(i).getTruckStar()*20%>%"></div>
     						  </div>
 								<p>최소금액: <%=list.get(i).getTruckPrice() %>원</p>
-								<p>업종: <%=list .get(i).getTruckCategory()%></p>
 								<p>리뷰: <%=list .get(i).getReviewCount()%>개</p>
 							</div>
 							<div class='col-xs-4'></div>
