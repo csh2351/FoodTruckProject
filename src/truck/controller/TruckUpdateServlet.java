@@ -2,7 +2,6 @@ package truck.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,6 +77,8 @@ public class TruckUpdateServlet extends HttpServlet {
 				truck.setTruckOpenTime(time1);
 				Timestamp sqldate2 = new Timestamp(date2.getTime());
 				truck.setTruckCloseTime(sqldate2);
+				System.out.println(time1);
+				System.out.println(sqldate2);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
