@@ -255,7 +255,6 @@ $(function geocodeLatLng() {
 								<p>
 									휴무일 :<%=truck.getTruckHoliday() %>
 								</p>
-
 						</div>
 					</div>
 				</div>
