@@ -36,14 +36,14 @@ public class TruckReviwCommentServlet extends HttpServlet {
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
 
 		HttpSession session = request.getSession(); // 유지되어 있는 세션이 있으면 가져오고 없으면 null값을 리턴한다.
+		
 		Truck truck = null;
 		Member member=null;
 		if (session != null) {// 세션이 존재할때 (점주가 접근)
 			member = (Member)session.getAttribute("memberLoggedIn");
 			System.out.println("member :  "+member);
-			
 			int memberPk = member.getMemberPk();
-			truck = new TruckService().selectOne(truckPk);
+			truck = new TruckService().selectOne(memberPk);
 			System.out.println(truck);
 		}
 		
