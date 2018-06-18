@@ -11,6 +11,8 @@
 
  <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList");%>
  <%Truck truck=(Truck)(request.getAttribute("truck"));%>
+  <%Member member=(Member)(request.getAttribute("member"));%>
+ 
 	
 
  		
@@ -93,7 +95,7 @@
                     </li>
                     <%}if(reviewList.get(i).getReviewCommentLevel()==2) {%>
                     
-                    <li class='comment-reply level2' textalign="right"> 
+                    <li class='review-comment-view<%=i%> level2' textalign="right"> 
                      <div class='row'>
                      <div class="col-xs-2">	↘</div>
                           <div class="col-xs-10">
@@ -124,11 +126,12 @@
                             $("#addComment<%=i%>").one('click', function() {
                             	   var li = $('<li id='+"comment-reply"+<%=i%>+'</li>'); //태그생성
                                    var html = "<div class='col-xs-12' align='right'>";
-                                   html += "<form action='#' method='post'>";
-                                   html += "<input type='hidden' name='name부여' value='속성부여'/>";
-                                   html += "<input type='hidden' name='name부여' value='속성부여'/>";
-                                   html += "<input type='hidden' name='name부여' value='속성부여'/>";
-                                   html += "<input type='hidden' name='name부여' value=''/>";
+                                   html += "<form action='<%=request.getContextPath()%>/truckReviewCommentEnd' method='post'>";
+                                   html += "<input type='hidden' name='reviewCommentLevel' value='2'/>";
+                                   html += "<input type='hidden' name='reivewCommentWriter' value='<%=member.getMemberId()%>'/>";
+                                   html += "<input type='hidden' name='reviewCommentRef' value='<%=reviewList.get(i).getReviewCommentPk()%>'/>";
+                                   html += "<input type='hidden' name='memberPk' value='<%=member.getMemberPk()%>'/>";
+                                   html += "<input type='hidden' name='truckPk' value='<%=truck.getTruckPk()%>'/>"; 
                                    html += " ↴<textarea class='form-control' style='resize: none;'></textarea>";
                                    html += "<button type='submit' class='btn btn-success basic-btn'>등록</button>&nbsp;";
                                    html += "<button type='reset' class='btn btn-success basic-btn'>취소</button>";
@@ -140,6 +143,7 @@
                                    var reviewList=$("#review-view"+<%=i%>);
                                    reviewList.after(li).slideDown(500);
                             	  return li;
+                            	  /*수정해주기*/
 							});
                             </script> 
                     <%} %>
