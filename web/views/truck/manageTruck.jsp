@@ -209,34 +209,28 @@ $(function() {
 					name="truck-logitude" type="hidden"
 					value="<%=truck.getLogitude()%>">
 						
-						<div id="truck-location" style="height: 300px; width: 300px"></div>
+						<div id="truck-location" style="height: 300px; width: 360px" align="center"></div>
 								<!-- 주소 입력 위치 확인 -->
-								<br> <br> <input type="button" onclick="findL()"
-									value="주소입력 위치 확인"> <input type="button"
-									onclick="findCurrentLocation()" value="현재 위치 확인"><br>
-							<br><br> 상세 위치 : <input type="button" class="btn btn-warning"
-									onclick="Postcode()" value="주소찾기"> <input type="text"
-									class="form-control" id="Address" placeholder="주소"
-									value="<%=truck.getTrucklocation() %>" required> <input
-									type="text" class="form-control" id="AddressDetail"
-									placeholder="상세주소"> <br> <br> <input
-									type="hidden" name="truck-address" id='truck-address'
-									value="<%=truck.getTrucklocation() %>">
+								<br>
+								
+								<input type="button" class='btn btn-warning	'onclick="findCurrentLocation()" value="현재 위치 확인">
+								<br>
+								<br> 직접입력:&nbsp;<input type="button" class="btn btn-warning" onclick="Postcode()" value="주소찾기" >
+									<input type="button" class="btn btn-info" onclick="findL()"value="확인" style="display: ">
+									<br><br>    
+									<input type="text" class="form-control" id="Address" placeholder="주소" value="<%=truck.getTrucklocation() %>" required> 
+									<input type="text" class="form-control" id="AddressDetail" placeholder="상세주소"><br> 
+									<input type="hidden" name="truck-address" id='truck-address' value="<%=truck.getTrucklocation() %>">
 								<p>
-									오픈시간 : <input type="time" id="truck-open-date"
-										name="truck-open-date"
-										value=<%=request.getAttribute("openTime")%>>
+									오픈시간 : <input type="time" id="truck-open-date" class="form-control" name="truck-open-date" value=<%=request.getAttribute("openTime")%>>
 								</p>
 								<br>
 								<p>
-									마감시간 : <input type="time" id="truck-close-date"
-										name="truck-close-date"
-										value=<%=request.getAttribute("closeTime")%>>
+									마감시간 : <input type="time" id="truck-close-date" class="form-control" name="truck-close-date" value=<%=request.getAttribute("closeTime")%>>
 								</p>
 								<br>
 								<p>
-									휴무일 : <input type="text" id="truck-holiday"
-										name="truck-holiday" value=<%=truck.getTruckHoliday() %>>
+									휴무일 : <input type="text" id="truck-holiday" class="form-control" name="truck-holiday" value=<%=truck.getTruckHoliday() %>>
 								</p>
 								<div align="center">
 									<br>
@@ -255,11 +249,8 @@ $(function() {
 	</div>
 </section>
 
-<script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
-<script src='js/bootstrap.js'></script>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
-
-  
   //영업,종료 ajax
   	$("#myonoffswitch").on("click", function() {
   	    var onoffswitch = $("#myonoffswitch");
@@ -318,10 +309,9 @@ $(function() {
 				})
 	})
 	
-	
-	
-	
-	// 구글 맵 부분
+</script>
+<script>
+// 구글 맵 부분
 	// 현재 위치 확인
 function findCurrentLocation(){
 		var latitude = 0;
@@ -499,7 +489,6 @@ function findCurrentLocation(){
 		});
 	})
 	// 확인버튼 누르면 자동으로 위도,경도값 구함
-
 </script>
 
 
