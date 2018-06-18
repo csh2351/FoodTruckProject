@@ -2,15 +2,13 @@
     /*푸드트럭 메인사진파일 버튼으로올리기*/
 
     #truck-input-img {
-
       position: relative;
-      width: 94%;
+      width: 100%;
+      height: 40px;
       cursor: pointer;
       display: inline;
       margin: 0;
-
     }
-
     .upload {
       width: 94%;
       opacity: 0;
@@ -91,4 +89,47 @@
     .file {
       width: 0;
       height: 0;
+    }
+    
+    
+#truck-location{
+    height : 300px;
+    width: 100%;
+    border: 1px solid black;
+    }
+  
+@media(max-width:1199px) {
+      .truck-img-replace{
+        width: 84%;
+      }
+
+    }
+
+    @media(max-width:991px) {
+      /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을때*/
+      .truck-img-replace {
+        width: 100%;
+        height: 20;
+      }
+      .truck-img-replace{
+        width: 96%;
+      }
+
+      #truck-check-img{
+        height: 200px;
+      }
+
+    }
+
+
+    @media(max-width:480px) {
+      /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을때*/
+      .truck-img-replace {
+        width: 94%;
+        height: 20;
+      }
+     
+      #truck-check-img{
+        height: 200px;
+      }
     }

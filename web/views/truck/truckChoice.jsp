@@ -243,11 +243,11 @@ $(function geocodeLatLng() {
 								<%=truck.getTrucklocation() %></p>
 							<br>
 								<p>
-									오픈시간 : <%=truck.getTruckOpenTime()%>
+									오픈시간 : <%=request.getAttribute("openTime")%>
 								</p>
 								<br>
 								<p>
-									마감시간 : <%=truck.getTruckCloseTime()%> 
+									마감시간 : <%=request.getAttribute("closeTime")%>
 								</p>
 								<br>
 								<p>

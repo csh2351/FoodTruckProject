@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,9 +17,9 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 
 import common.MyFileRenamePolicy;
+import oracle.sql.TIMESTAMP;
 import truck.service.TruckService;
 import truck.vo.Truck;
-
 /**
  * Servlet implementation class TruckUpdateServlet
  */
@@ -66,23 +65,29 @@ public class TruckUpdateServlet extends HttpServlet {
 		
 		int result = 0;// 업데이트 결과값 수신
 		String view = "/";
+		//바로쏴주기
+		String openTime ="";
+		String closeTime = new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(truck.getTruckCloseTime());
+	
 		
 		if (CheckDetail.equals("detail")) { // 디테일단에서 폼 전송했을시
 			truck.setTruckHoliday(mpr.getParameter("truck-holiday"));
 			truck.setTrucklocation(mpr.getParameter("truck-address"));
+			
 			try {
-				Date date = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date")); 
-				Date date2 = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-close-date"));
+				java.util.Date date = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date")); 
+				java.util.Date date2 = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-close-date"));
 				Timestamp time1 = new Timestamp(date.getTime());
 				truck.setTruckOpenTime(time1);
 				Timestamp sqldate2 = new Timestamp(date2.getTime());
 				truck.setTruckCloseTime(sqldate2);
-				System.out.println(time1);
-				System.out.println(sqldate2);
+				openTime= new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(time1); 
+				closeTime=new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(sqldate2); 
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+				
 			truck.setLatitude(Double.parseDouble(mpr.getParameter("truck-latitude")));
 			truck.setLogitude(Double.parseDouble(mpr.getParameter("truck-logitude")));
 			result = new TruckService().updateTruck(truck);
@@ -99,6 +104,8 @@ public class TruckUpdateServlet extends HttpServlet {
 			view ="/views/truck/truckChoice.jsp";
 			request.setAttribute("truck",truck);
 			request.setAttribute("truckChoice", "truckChoiceMenu");
+			request.setAttribute("openTime", openTime);
+			request.setAttribute("closeTime", closeTime);
 		}else {
 				view = "/views/common/msg.jsp";
 				request.setAttribute("msg", "입력 오류입니다. [관리자에게 문의 error : updateTruck]");

@@ -53,3 +53,40 @@
       font-size: 15px;
       /*추후수정*/
     }
+    
+    
+@media(max-width:1199px) {
+      .truck-img-replace{
+        width: 84%;
+      }
+
+    }
+
+    @media(max-width:991px) {
+      /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을때*/
+      .truck-img-replace {
+        width: 100%;
+        height: 20;
+      }
+      .truck-img-replace{
+        width: 96%;
+      }
+
+      #truck-check-img{
+        height: 200px;
+      }
+
+    }
+
+
+    @media(max-width:480px) {
+      /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을때*/
+      .truck-img-replace {
+        width: 94%;
+        height: 20;
+      }
+     
+      #truck-check-img{
+        height: 200px;
+      }
+    }

@@ -32,14 +32,8 @@ $(function() {
 
 </script>
 
-<style>
-#truck-location{
-    height : 300px;
-    width: 100%;
-    border: 1px solid black;
-    }
+
   
-</style>
 <br>
 <section>
 	<div class="container">
