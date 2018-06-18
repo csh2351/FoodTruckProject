@@ -67,7 +67,7 @@ $.ajax({
 														이미지</h4>
 												</div>
 												<div class="modal-body">
-													<img id="truckbasic-modal" src="images/truck/<%=truck.getTruckOriginalImage()%>"
+													<img id="truckbasic-modal" src="images/truck/<%=truck.getTruckRenameImage()%>"
 														class="img-responsive img-rounded center-block" alt=""
 														width="800" height="800">
 												</div>
