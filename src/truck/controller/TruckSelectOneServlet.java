@@ -1,6 +1,7 @@
 package truck.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.glass.ui.Menu;
 
 import truck.service.TruckService;
 import truck.vo.Truck;
@@ -28,6 +28,7 @@ public class TruckSelectOneServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+<<<<<<< HEAD
 		String temp=request.getParameter("truckChoice");
 
 		System.out.println(truckPk);
@@ -50,6 +51,17 @@ public class TruckSelectOneServlet extends HttpServlet {
 		String view="";
 		
 		if(truck!=null){
+=======
+		Truck truck=new TruckService().selectOne(truckPk);
+		List<TruckMenu>list=new TruckService().selectMenu(truckPk);
+		String openTime = new SimpleDateFormat("HH:mm:ss").format(truck.getTruckOpenTime()); 
+		String closeTime = new SimpleDateFormat("HH:mm:ss").format(truck.getTruckOpenTime());
+		String view="";
+		System.out.println("오픈타임"+openTime);
+		request.setAttribute("openTime", openTime);
+		request.setAttribute("closeTime", closeTime);
+		if(truck!=null&&list.size()>0){
+>>>>>>> origin/semi_foodtruck_1.9
 			view="/views/truck/truckChoice.jsp";
 			request.setAttribute("truck", truck);
 			request.setAttribute("truckChoice", truckChoice);

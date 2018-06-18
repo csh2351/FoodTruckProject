@@ -1,6 +1,10 @@
 package truck.controller;
 
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+import java.text.SimpleDateFormat;
+>>>>>>> origin/semi_foodtruck_1.9
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,7 +39,10 @@ public class ManageTruck extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+<<<<<<< HEAD
 		
+=======
+>>>>>>> origin/semi_foodtruck_1.9
 		HttpSession session = request.getSession(); // 유지되어 있는 세션이 있으면 가져오고 없으면 null값을 리턴한다.
 		Truck truck = null;
 	
@@ -44,6 +51,7 @@ public class ManageTruck extends HttpServlet {
 			System.out.println("member :  "+member);
 			int memberPk = member.getMemberPk();
 			truck = new TruckService().manageTruck(memberPk);
+<<<<<<< HEAD
 			System.out.println(truck);
 		}
 		
@@ -58,12 +66,22 @@ public class ManageTruck extends HttpServlet {
 			truckChoice=temp;
 		}
 		
+=======
+			System.out.println(truck);			
+			String openTime = new SimpleDateFormat("HH:mm:ss").format(truck.getTruckOpenTime()); 
+			String closeTime = new SimpleDateFormat("HH:mm:ss").format(truck.getTruckOpenTime());
+			request.setAttribute("openTime", openTime);
+			request.setAttribute("closeTime", closeTime);
+		}
+		String view = "/";
+>>>>>>> origin/semi_foodtruck_1.9
 		if (truck == null) {
 			view = "/views/common/msg.jsp";
 			String msg = "오류가 발생했습니다. 다시 시도해보시고 \n 관리자에게 문의해주세요 [점주접근오류:managetruck]";
 			String loc = "/";
 			request.setAttribute("msg", msg);
 			request.setAttribute("loc", loc);
+<<<<<<< HEAD
 		} 
 		
 		else {
@@ -71,6 +89,11 @@ public class ManageTruck extends HttpServlet {
 			request.setAttribute("truck", truck);
 			request.setAttribute("truckChoice", truckChoice);
 
+=======
+		} else {
+			view = "views/truck/managetruck.jsp";
+			request.setAttribute("truck", truck);
+>>>>>>> origin/semi_foodtruck_1.9
 		}
 		request.getRequestDispatcher(view).forward(request, response);
 

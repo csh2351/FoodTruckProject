@@ -2,11 +2,11 @@ package truck.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Truck implements Serializable{
 	
 	public Truck() {
-		super();
 	}
 
 	private static final long serialVersionUID = 1967483248967652055L;
@@ -19,8 +19,8 @@ public class Truck implements Serializable{
 	private int truckInfoRegisterNumber;
 	private String truckContent;
 	private String truckStatus;
-	private Date truckOpenTime;
-	private Date truckCloseTime;
+	private Timestamp truckOpenTime;
+	private Timestamp truckCloseTime;
 	private String truckApprove;
 	private String truckCategory;
 	private int truckStar;
@@ -29,7 +29,12 @@ public class Truck implements Serializable{
 	private double logitude;
 	private String truckHoliday;
 	private int truckPrice;
+<<<<<<< HEAD
 	private int reviewCount;
+=======
+	
+	
+>>>>>>> origin/semi_foodtruck_1.9
 	
 	public int getTruckPk() {
 		return truckPk;
@@ -85,16 +90,16 @@ public class Truck implements Serializable{
 	public void setTruckStatus(String truckStatus) {
 		this.truckStatus = truckStatus;
 	}
-	public Date getTruckOpenTime() {
+	public Timestamp getTruckOpenTime() {
 		return truckOpenTime;
 	}
-	public void setTruckOpenTime(Date truckOpenTime) {
+	public void setTruckOpenTime(Timestamp truckOpenTime) {
 		this.truckOpenTime = truckOpenTime;
 	}
-	public Date getTruckCloseTime() {
+	public Timestamp getTruckCloseTime() {
 		return truckCloseTime;
 	}
-	public void setTruckCloseTime(Date truckCloseTime) {
+	public void setTruckCloseTime(Timestamp truckCloseTime) {
 		this.truckCloseTime = truckCloseTime;
 	}
 	public String getTruckApprove() {

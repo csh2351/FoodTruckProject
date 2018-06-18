@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" import="member.model.vo.Member"%>
 <%
-   Member member=(Member)session.getAttribute("memberLoggedIn");
+   Member memberLoggedIn=(Member)session.getAttribute("memberLoggedIn");
    Cookie[] cookie=request.getCookies();
    boolean saveId=false;
    String userIdSaved="";
@@ -84,12 +84,18 @@
                <li><a href="<%=request.getContextPath() %>/">STORE</a></li>
                <li><a href="<%=request.getContextPath() %>/eventForm.do">EVENT</a></li>
                <li><a href="<%=request.getContextPath() %>/customer.do">고객센터</a></li>
+<<<<<<< HEAD
                <%if(member!=null){
                   if(member.getMemberLevel()==1) { %>
                   <li><a href="<%=request.getContextPath() %>/admin.do">개발자영역</a></li>
                <% }
                   if(member.getMemberLevel()<3){%>
                <li><a href="<%=request.getContextPath() %>/managestore.do">점포관리</a></li>
+=======
+               <%if(memberLoggedIn!=null){
+                	if(memberLoggedIn.getMemberLevel()==1){%>
+               <li><a href="<%=request.getContextPath() %>/managetruck">점포관리</a></li>
+>>>>>>> origin/semi_foodtruck_1.9
                <% }
                } %>
             </ul>
@@ -110,7 +116,7 @@
                <button type="submit" class="btn btn-default">검색</button>
             </form>
 
-            <% if(member==null) { %>
+            <% if(memberLoggedIn==null) { %>
             <ul class="nav navbar-nav navbar-right">
                <li><a href="<%=request.getContextPath() %>/join.do"><span
                      class="glyphicon glyphicon-user"></span>회원가입</a></li>
@@ -122,8 +128,8 @@ else {
    %>
             <ul class="nav navbar-nav navbar-right">
                <li><a href="Main.html"><span
-                     class="glyphicon glyphicon-user"></span><%= member.getMemberName() %>님</a></li>
-               <li><a href="<%=request.getContextPath() %>/mypage.do">마이페이지</a></li>
+                     class="glyphicon glyphicon-user"></span><%= memberLoggedIn.getMemberName() %>님</a></li>
+               <li><a href="<%=request.getContextPath() %>/mypageQuestionForm.do">마이페이지</a></li>
                <li><a href="<%=request.getContextPath() %>/logout.do"><span
                      class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
             </ul>

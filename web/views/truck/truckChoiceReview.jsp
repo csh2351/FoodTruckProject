@@ -10,11 +10,15 @@
 
  <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList");%>
  <%int truckPk=(int)(request.getAttribute("truckPk"));%>
+<<<<<<< HEAD
  <%String memberId=(String)request.getAttribute("memberId");%>
 	
 	<!-- 지우지마셈... -->
 	
 	
+=======
+ 
+>>>>>>> origin/semi_foodtruck_1.9
  		
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
