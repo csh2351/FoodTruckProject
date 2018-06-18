@@ -43,18 +43,23 @@
                             <div class="row">
                               <div class="col-xs-12">
 								<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
+								<br>
+								<br>
+								<button type="button" class="btn btn-success btn-reply basic-btn">답글</button>
+                                <button type="button" class="btn btn-success btn-cancel basic-btn">취소</button>
                               </div>
                             </div>
 
                           </div>
                           <div class='col-xs-3 col-md-3-body-center'>
                           <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
-                     <a id="menu-modal" data-toggle="modal" data-target=".pop-up-3" >       
+                     		<a id="menu-modal" data-toggle="modal" data-target=".pop-up-3" >       
                             <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150px onclick="fn_modal_review('images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>');"></a><br>
                           <%} %>
                           </div>
                         </div>
                            <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
+                    
                     
                     	
                          <div class="row">
@@ -148,176 +153,10 @@
         <!-- /.modal mixer image -->
                     
                     
-                    
-           
-                  
-                    
-                  <!--댓글달기 --> 
-					<%if(memberId.length()>0){ %>                   
-                    <li id='comment-list'>
-                      <form name="TruckCommentFrm" action="<%=request.getContextPath()%>/truckCommentInsert" method="post" enctype="multipart/form-data">
-                        <!--form클래스 아이디부여-->
-                        <div class='row'>
-                          <div class="col-xs-8">
-                            <div class="row">
-                              <div class="col-md-6 ">
-                               <input type="hidden" name="truckPk" value="<%=truckPk%>"/>                               
-          				      	<input type="hidden" name="reviewCommentWriter" value="<%=memberId%>" />                         
-          				      	<input type="hidden" name="reviewCommentRef" value="0" />                   
-          				      	<input type="hidden" name="reviewCommentLevel" value="1" />
-          				      	<input type="hidden" name="memberPk" value="1" />                    
-                                
-                                <span class='panel-2-body-font' name="reviewCommentWriter">아이디: 세션아이디~</span> 
-                               
-                                <!--아이디부여-->
-                              </div>
-                              <div class="col-md-6 date-padding">
-                                <span id="localTime" class='panel-2-body-font'></span><br>
-                                <!--date 부여 -->
-                              </div>
-                            </div>
-
-                            <span class="rating">
-                            <label>
-                                    <input type="radio" name="reviewStar" value="1" />
-                                    <span class="icon">★</span>
-                            </label>
-                            <label>
-                                    <input type="radio" name="reviewStar" value="2" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                            </label>
-
-                            <label>
-                                    <input type="radio" name="reviewStar" value="3" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                            </label>
-                            <label>
-                                    <input type="radio" name="reviewStar" value="4" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                            </label>
-
-                            <label>
-                                    <input type="radio" name="reviewStar" value="5" />
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                                    <span class="icon">★</span>
-                          </label>
-                            </span>
-                            <br>
-                            <div class="row">
-                              <div class="col-xs-12">
-                                <textarea class="form-control" id="content" name="reviewCommentContent" placeholder="내용을 입력하세요." rows="2" cols="100" style="resize: none;" autofocus required="required"></textarea>
-                              </div>
-
-                            </div>
-
-
-
-                          </div>
-                          <div class='col-xs-4 col-md-3-body-center'>
-                            <img id='comment-check-img' src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=90% height=100><br>
-                            <button class="btn-success replace">사진등록</button>
-                            <div class='test'>
-                              <input id='comment-input-img' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name='up_file'>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-xs-12 result-btn-positon">
-							<br>
-                            <button id="result-button" class='btn btn-success result-btn' type="submit">완료</button>
-
-                            <button id="reset-button" class='btn btn-success result-btn' type="reset">취소</button>
-                            <hr>
-                          </div>
-
-                        </div>
-
-                      </form>
-
-                    </li>
-                    <%} %>
-                  </ul>
+   
   
   
 <script>
-  $("#myonoffswitch").on('click', function(e) {
-    e.preventDefault();
-  });
-
-    //별 스크립트
-    $(':radio').change(function() {
-      console.log('New star rating: ' + this.value);
-    });
-
-    //이미지파일 올리기 스크립트
-
-
-
-    //미리보기 스크립트.
-
-    $(function() {
-      $("#comment-input-img").on('change', function() {
-        readURL(this);
-      });
-    });
-
-    function readURL(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-          $('#comment-check-img').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-
-
-    $(function() {
-      $("#reset-button").click(function() {
-          $('#comment-check-img').attr('src', "https://pingendo.com/assets/photos/wireframe/photo-1.jpg");
-
-      })
-    })
-
-    //미리보기 스크립트.
-
-    //미리보기 수정  스크립a트
- $(function() {
-      $("#comment-modify-input-img").on('change', function() {
-        readURL1(this);
-      });
-    });
-
-    function readURL1(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-          $('#comment-modify-check-img').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-
-    $(function() {
-      $("#reset-modify-button").click(function() {
-          $('#comment-modify-check-img').attr('src', "https://pingendo.com/assets/photos/wireframe/photo-1.jpg");
-
-      })
-    })
-	//미리보기 수정 스크립트
 	
 
 	$(function() {

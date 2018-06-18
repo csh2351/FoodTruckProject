@@ -75,27 +75,7 @@
 			</div>
 		</form>
 	</li>
-		<script type="text/javascript">
-			function fn_menuDelete(menuPk,fileName,index) {
-				var menuPk=menuPk;
-				var fileName=fileName;
-				console.log(menuPk);
-				console.log(fileName);
-				console.log(index);
-						 $.ajax({
-							url:"<%=request.getContextPath()%>/truckMenuDelete",
-							type : "POST",
-							data:{menuPk : menuPk,fileName:fileName},
-							success : function(data){ 
-								alert(data.msg);
-								$("#addr"+index).remove();
-							}, 
-							error : function(request,status,error) { 
-							alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-							}
-				}) 
-			}
-		</script>
+		
 <%	
 	//마지막 인덱스 카운터변수
 	temp=i;
@@ -248,6 +228,27 @@
 		
 		
 	}); 
+	
+	//메뉴삭제쿼리
+	function fn_menuDelete(menuPk,fileName,index) {
+				var menuPk=menuPk;
+				var fileName=fileName;
+				console.log(menuPk);
+				console.log(fileName);
+				console.log(index);
+						 $.ajax({
+							url:"<%=request.getContextPath()%>/truckMenuDelete",
+							type : "POST",
+							data:{menuPk : menuPk,fileName:fileName},
+							success : function(data){ 
+								alert(data.msg);
+								$("#addr"+index).remove();
+							}, 
+							error : function(request,status,error) { 
+							alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+							}
+				}) 
+			}
 	
 	
 	 

@@ -123,10 +123,7 @@ $(function() {
 							</form>
 						</div>
 					</div>
-
 					<br> <br>
-
-
 					<div class="row">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -158,7 +155,7 @@ $(function() {
 								
 				                $("#choiceUpdateReview").on("click", function() {
 										$.ajax({
-											url:"<%=request.getContextPath()%>/truckReviewUpdate",
+											url:"<%=request.getContextPath()%>/truckReviewComment",
 											type : "POST",
 											data:{truckPk :<%=truck.getTruckPk()%>},
 											success : function(data){ 
