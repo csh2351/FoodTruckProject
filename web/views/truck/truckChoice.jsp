@@ -8,7 +8,6 @@
 <%Truck truck=(Truck)request.getAttribute("truck");%>
 <%String serlvet=(String)request.getAttribute("truckChoice"); %>
 <script type="text/javascript">
-
 $(function() {
 $.ajax({
 		url:"<%=request.getContextPath()%>/<%=serlvet%>",
