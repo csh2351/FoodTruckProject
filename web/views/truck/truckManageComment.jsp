@@ -70,23 +70,7 @@
                           </div>
                         </div>
                         
-                        <!--댓글삭제 ajax-->
-                        <script type="text/javascript">
-						$("#delete-button<%=i%>").on("click", function() {
-							$.ajax({
-								url:"<%=request.getContextPath()%>/truckCommentDelete",
-								type : "POST",
-								data:{reviewCommentPk :<%=reviewList.get(i).getReviewCommentPk()%>,fileName:"<%=reviewList.get(i).getReviewCommentRimage()%>",truckPk:<%=reviewList.get(i).getTruckPk()%>},
-								success : function(data){ 
-									alert(data.msg);
-									$("#comment-modify-list<%=i%>").remove();
-								}, 
-								error : function(request,status,error) { 
-								alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-								}
-						})
-						})
-                      </script>
+                
 
                     
                        
@@ -120,6 +104,24 @@
                         </div>
                         </div>
                     </li>
+                            <!--댓글삭제 ajax-->
+                        <script type="text/javascript">
+						$("#delete-button<%=i%>").on("click", function() {
+							$.ajax({
+								url:"<%=request.getContextPath()%>/truckCommentDelete",
+								type : "POST",
+								data:{reviewCommentPk :<%=reviewList.get(i).getReviewCommentPk()%>,fileName:"<%=reviewList.get(i).getReviewCommentRimage()%>",truckPk:<%=reviewList.get(i).getTruckPk()%>},
+								success : function(data){ 
+									alert(data.msg);
+									$("#comment-modify-list<%=i%>").remove();
+								}, 
+								error : function(request,status,error) { 
+								alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+								}
+						})
+						})
+                      </script>
+                      
                   	  <%} %>
                   	   <hr>
                   	   </div>
