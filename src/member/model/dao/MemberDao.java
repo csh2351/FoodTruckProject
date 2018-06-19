@@ -81,7 +81,7 @@ public class MemberDao {
 				member=new Member();
 				member.setMemberPk(rs.getInt("member_pk"));
 				member.setMemberId(rs.getString("member_id"));
-				member.setMemberPw(rs.getString("member_pw"));
+				
 				member.setMemberName(rs.getString("member_name"));
 				member.setMemberPhone(rs.getString("member_phone"));
 				member.setMemberEmail(rs.getString("member_email"));
