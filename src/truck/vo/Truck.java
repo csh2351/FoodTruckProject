@@ -84,6 +84,9 @@ public class Truck implements Serializable{
 		return truckStatus;
 	}
 	public void setTruckStatus(String truckStatus) {
+		if(truckStatus==null){
+			this.truckStatus = "f";
+		}
 		this.truckStatus = truckStatus;
 	}
 	public Timestamp getTruckOpenTime() {

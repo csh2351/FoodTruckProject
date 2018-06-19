@@ -67,12 +67,16 @@ public class TruckUpdateServlet extends HttpServlet {
 		String view = "/";
 		//바로쏴주기
 		String openTime ="";
-		String closeTime = new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(truck.getTruckCloseTime());
+		String closeTime="";
 	
 		
 		if (CheckDetail.equals("detail")) { // 디테일단에서 폼 전송했을시
 			truck.setTruckHoliday(mpr.getParameter("truck-holiday"));
 			truck.setTrucklocation(mpr.getParameter("truck-address"));
+			
+			System.out.println(truck.getTruckOpenTime());
+			System.out.println(truck.getTruckCloseTime());
+			
 			
 			try {
 				java.util.Date date = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date")); 
@@ -98,6 +102,10 @@ public class TruckUpdateServlet extends HttpServlet {
 			truck.setTruckRenameImage(mpr.getFilesystemName("truck-img"));
 			truck.setTruckContent(mpr.getParameter("truck-content"));
 			truck.setTruckPrice(Integer.parseInt(mpr.getParameter("min-price")));
+			String truckStatus=mpr.getParameter("onoffswitch");
+			if(truckStatus==null){
+				truck.setTruckStatus("f");
+			}
 			result = new TruckService().updateTruck(truck);
 		}
 		if(result>0) {

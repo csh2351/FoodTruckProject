@@ -52,10 +52,21 @@ $.ajax({
 									<div class="col-md-4 panel-1">
 										<p id='truck-title-p'>
 											점포명:<%=truck.getTruckName() %></p>
-										<a href="#" data-toggle="modal" data-target=".pop-up-1">
+										
+										
+										<% if(truck.getTruckRenameImage()==null){%>
+												<a href="#" data-toggle="modal" data-target=".pop-up-1">
+										<img class='trcuk-img img-responsive center-block'
+											src="http://proxyprivat.com/images/noimage.jpeg" alt=""
+											style="width: 200px; height: 200px" ></a><br><br>
+											<%	}
+											else{ %>
+											<a href="#" data-toggle="modal" data-target=".pop-up-1">
 										<img class='trcuk-img img-responsive center-block'
 											src="images/truck/<%=truck.getTruckRenameImage()%>" alt=""
 											style="width: 200px; height: 200px" ></a><br><br>
+											<%} %>
+										
 									</div>
 									
 

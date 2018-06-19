@@ -53,6 +53,7 @@ public class TruckListServlet extends HttpServlet {
 
 		else {
 			list = new TruckService().selectAllList();
+			System.out.println(list);
 		}
 		
 		
