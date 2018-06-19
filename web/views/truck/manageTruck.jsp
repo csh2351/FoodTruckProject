@@ -6,7 +6,9 @@
 <%
 	Truck truck = (Truck) request.getAttribute("truck");
 %>
-<%String serlvet=(String)request.getAttribute("truckChoice"); %>
+<%
+	String serlvet = (String) request.getAttribute("truckChoice");
+%>
 
 
 <link rel="stylesheet"
@@ -33,7 +35,7 @@ $(function() {
 </script>
 
 
-  
+
 <br>
 <section>
 	<div class="container">
@@ -48,8 +50,11 @@ $(function() {
 								<h3 class='panel-title truck-panel-header'>기본정보</h3>
 							</div>
 							<div class='panel-body pannel-basic'>
-								<form name="truckBasicInsert" action="<%=request.getContextPath()%>/truckUpdate" method="post" enctype="multipart/form-data">
-									<input type="hidden" value="<%=truck.getTruckPk()%>"name="truck-pk">
+								<form name="truckBasicInsert"
+									action="<%=request.getContextPath()%>/truckUpdate"
+									method="post" enctype="multipart/form-data">
+									<input type="hidden" value="<%=truck.getTruckPk()%>"
+										name="truck-pk">
 									<div class="row">
 										<div class="col-md-4">
 											<div align="center">
@@ -90,8 +95,7 @@ $(function() {
 												사업자정보 :
 												<%=truck.getTruckInfoName()%></p>
 											<span class='truck-basic-font'>상호명: <%=truck.getTruckName()%></span>
-											<br>
-											<span class='truck-basic-font'>사업자등록번호: <%=truck.getTruckInfoRegisterNumber()%></span>
+											<br> <span class='truck-basic-font'>사업자등록번호: <%=truck.getTruckInfoRegisterNumber()%></span>
 
 										</div>
 										<!--ajax처리....-->
@@ -129,13 +133,17 @@ $(function() {
 							<div class="panel-heading">
 								<div class="row">
 									<ul class="nav nav-pills nav-justified">
-										<li role="presentation"><a id="choiceUpdateMenu" class='truck-panel-header'>메뉴</a></li>
-										<li role="presentation"><a id="choiceUpdateReview" class='truck-panel-header'>리뷰(<%=truck.getReviewCount()%>개)</a></li>
-										<li role="presentation"><a id="choiceEvent" class='truck-panel-header'>이벤트</a></li>
+										<li role="presentation"><a id="choiceUpdateMenu"
+											class='truck-panel-header'>메뉴</a></li>
+										<li role="presentation"><a id="choiceUpdateReview"
+											class='truck-panel-header'>리뷰(<%=truck.getReviewCount()%>개)
+										</a></li>
+										<li role="presentation"><a id="choiceEvent"
+											class='truck-panel-header'>이벤트</a></li>
 									</ul>
 								</div>
 							</div>
-							
+
 							<script type="text/javascript">
 
 							   $("#choiceUpdateMenu").on("click", function() {
@@ -183,9 +191,7 @@ $(function() {
 							
 							</script>
 
-							<div id="choice-body" class="panel-body">
-						
-							</div>
+							<div id="choice-body" class="panel-body"></div>
 
 						</div>
 					</div>
@@ -201,37 +207,53 @@ $(function() {
 							<h3 class="panel-title truck-panel-header">푸드트럭 상세 정보</h3>
 						</div>
 						<div class="panel-body">
-						<form action="<%=request.getContextPath()%>/truckUpdate" enctype="multipart/form-data" name="truck-detail-insert" method="post">
-				<input name="truck-pk" type="hidden" value="<%=truck.getTruckPk()%>">
-				<input name="truck-name" type="hidden" value="detail">
-				<input id="truckLatitude" name="truck-latitude" type="hidden" value="<%=truck.getLatitude()%>"> <input id="truckLogitude" name="truck-logitude" type="hidden" value="<%=truck.getLogitude()%>">
-						
-						<!--크기...최선..-->
-						<div align="center">
-						<div id="truck-location">
-						</div>
-						</div>
+							<form action="<%=request.getContextPath()%>/truckUpdate"
+								enctype="multipart/form-data" name="truck-detail-insert"
+								method="post">
+								<input name="truck-pk" type="hidden"
+									value="<%=truck.getTruckPk()%>"> <input
+									name="truck-name" type="hidden" value="detail"> <input
+									id="truckLatitude" name="truck-latitude" type="hidden"
+									value="<%=truck.getLatitude()%>"> <input
+									id="truckLogitude" name="truck-logitude" type="hidden"
+									value="<%=truck.getLogitude()%>">
+
+								<!--크기...최선..-->
+								<div align="center">
+									<div id="truck-location"></div>
+								</div>
 								<!-- 주소 입력 위치 확인 -->
-								<br>
-								
-								<input type="button" class='btn btn-warning	'onclick="findCurrentLocation()" value="현재 위치 확인">
-								<br>
-								<br> 직접입력:&nbsp;<input type="button" class="btn btn-warning" onclick="Postcode()" value="주소찾기" >
-									<input type="button" class="btn btn-info" onclick="findL()"value="확인" style="display:inline-block;">
-									<br><br>    
-									<input type="text" class="form-control" id="Address" placeholder="주소" value="<%=truck.getTrucklocation() %>" required> 
-									<input type="text" class="form-control" id="AddressDetail" placeholder="상세주소"><br> 
-									<input type="hidden" name="truck-address" id='truck-address' value="<%=truck.getTrucklocation() %>">
+								<br> <input type="button" class='btn btn-warning	'
+									onclick="findCurrentLocation()" value="현재 위치 확인"> <br>
+								<br> 직접입력:&nbsp;<input type="button"
+									class="btn btn-warning" onclick="Postcode()" value="주소찾기">
+								<input type="button" class="btn btn-info" onclick="findL()"
+									value="확인" style="display: inline-block;"> <br> <br>
+								<input type="text" class="form-control" id="Address"
+									placeholder="주소" value="<%=truck.getTrucklocation()%>" required>
+								<input type="text" class="form-control" id="AddressDetail"
+									placeholder="상세주소"><br> <input type="hidden"
+									name="truck-address" id='truck-address'
+									value="<%=truck.getTrucklocation()%>">
 								<p>
-									오픈시간 : <input type="time" id="truck-open-date" class="form-control" name="truck-open-date" style="display:inline-block;" value=<%=request.getAttribute("openTime")%> required>
+									오픈시간 : <input type="time" id="truck-open-date"
+										class="form-control" name="truck-open-date"
+										style="display: inline-block;"
+										value=<%=request.getAttribute("openTime")%> required>
 								</p>
 								<br>
 								<p>
-									마감시간 : <input type="time" id="truck-close-date" class="form-control" name="truck-close-date" style="display:inline-block;" value=<%=request.getAttribute("closeTime")%> required>
+									마감시간 : <input type="time" id="truck-close-date"
+										class="form-control" name="truck-close-date"
+										style="display: inline-block;"
+										value=<%=request.getAttribute("closeTime")%> required>
 								</p>
 								<br>
 								<p>
-									휴무일 : <input type="text" id="truck-holiday" class="form-control" name="truck-holiday" style="display:inline-block;" value=<%=truck.getTruckHoliday() %> required>
+									휴무일 : <input type="text" id="truck-holiday"
+										class="form-control" name="truck-holiday"
+										style="display: inline-block;"
+										value=<%=truck.getTruckHoliday()%> required>
 								</p>
 								<div align="center">
 									<br>
@@ -241,7 +263,7 @@ $(function() {
 										type="reset">취소</button>
 								</div>
 
-						</form>	
+							</form>
 						</div>
 					</div>
 				</div>
@@ -369,8 +391,16 @@ function findCurrentLocation(){
 		            map.setCenter(new google.maps.LatLng(latitude, longitude))
 		            //  results[1].formatted_address = 위도,경도로 구한 주소
 		            
-		            document.getElementById("Address").value = results[1].formatted_address;
-		            document.getElementById("truck-address").value = results[1].formatted_address;
+		            document.getElementById("Address").value =
+results[1].address_components[3].long_name + " "
++results[1].address_components[2].long_name + " "
++results[1].address_components[1].long_name + " "
++results[1].address_components[0].long_name;
+		            document.getElementById("truck-address").value = 
+results[1].address_components[3].long_name + " "
++results[1].address_components[2].long_name + " "
++results[1].address_components[1].long_name + " "
++results[1].address_components[0].long_name;
 		            // 찾은 주소경로 value 에 입력
 		            infowindow.open(map, marker);
 		          }
@@ -417,17 +447,19 @@ function findCurrentLocation(){
 				marker = new google.maps.Marker({
 					map : map,
 					// icon: image, // 마커로 사용할 이미지(변수)
-					title :'<%=truck.getTruckName()%>',
-	// 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
+					title :'<%=truck.getTruckName()%>
+	',
+					// 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
 					position : results[0].geometry.location
 				});
-				LatLng = ""+ results[0].geometry.location;
+				LatLng = "" + results[0].geometry.location;
 			}
 			infowindow.open(map, marker); // 마커에 정보표시
 
-			  var latitude = LatLng.substring(1,LatLng.indexOf(','));
-			  var longitude = LatLng.substring(LatLng.indexOf(',')+2,LatLng.indexOf(')'));
-		
+			var latitude = LatLng.substring(1, LatLng.indexOf(','));
+			var longitude = LatLng.substring(LatLng.indexOf(',') + 2, LatLng
+					.indexOf(')'));
+
 			//히든 인풋값에 위도,경도 추가해줌
 			document.getElementById("truckLatitude").value = latitude;
 			document.getElementById("truckLogitude").value = longitude;
@@ -435,7 +467,6 @@ function findCurrentLocation(){
 		}); // 주소값 마커 찍어주기
 	}
 
-	
 	//주소찾기 스크립트
 	function Postcode() {
 		new daum.Postcode(
@@ -447,15 +478,15 @@ function findCurrentLocation(){
 						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 						var fullAddr = ''; // 최종 주소 변수
 						var extraAddr = ''; // 조합형 주소 변수
-						var address ='';// 전송되는 변수
+						var address = '';// 전송되는 변수
 						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 							fullAddr = data.roadAddress;
-							address=fullAddr;
+							address = fullAddr;
 
 						} else { // 사용자가 지번 주소를 선택했을 경우(J)
 							fullAddr = data.jibunAddress;
-							address=fullAddr;
+							address = fullAddr;
 						}
 
 						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
