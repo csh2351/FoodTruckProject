@@ -82,7 +82,6 @@ public class TruckCommentInsert extends HttpServlet {
 		String checkFile = mpr.getOriginalFileName("up_file");
 		if (checkFile != null) {
 			if (checkFile.contains(".jsp") || checkFile.contains(".exe") || checkFile.contains(".html")) {
-
 				// 삭제로직
 				File deleteFile = new File(saveDir + "/" + checkFile);
 				deleteFile.delete();
@@ -90,20 +89,20 @@ public class TruckCommentInsert extends HttpServlet {
 				request.setAttribute("msg", "올릴수 없는파일입니다.[확장자명 확인]");
 
 				System.out.println("결과" + result);
-
 			}
 		}
 		String view = "/views/common/msg.jsp";
 		if (result > 0) { 
-		request.setAttribute("msg", "리뷰작성완료");
-		request.setAttribute("loc", "/managestore.do?truckChoice=truckChoiceReview");
+		view="/views/truck/manageTruck.jsp";
+		request.setAttribute("truckChoice", "truckChoiceReview");
+		request.setAttribute("truck", truck);
+		
 		} else {
 			request.setAttribute("msg", "사진은 크기를 확인하세요");
 			request.setAttribute("loc", "/");
 		}
 
 		request.getRequestDispatcher(view).forward(request, response);
-
 	}
 
 	/**

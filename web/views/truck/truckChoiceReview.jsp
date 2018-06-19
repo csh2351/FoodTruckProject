@@ -251,6 +251,21 @@
                     </li>
                     <%} %>
                   </ul>
+                  
+               		  <script type="text/javascript">
+						$("#result-button").on("click", function() {
+							$.ajax({
+								url:"<%=request.getContextPath()%>/managestore.do?truckChoice=truckChoiceReview",
+								type : "POST",
+								success : function(data){ 
+									alert("작성완료")
+								}, 
+								error : function(request,status,error) { 
+								alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+								}
+							})
+						})
+                      </script> 
   
   
 <script>
