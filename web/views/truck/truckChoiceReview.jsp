@@ -171,7 +171,7 @@
           				      	<input type="hidden" name="reviewCommentLevel" value="1" />
           				      	<input type="hidden" name="memberPk" value="1" />                    
                                 
-                                <span class='panel-2-body-font' name="reviewCommentWriter">아이디: 세션아이디~</span> 
+                                <span class='panel-2-body-font' name="reviewCommentWriter"><%=memberId%></span> 
                                
                                 <!--아이디부여-->
                               </div>
