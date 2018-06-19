@@ -37,6 +37,7 @@ public class TruckCommentDeleteServlet extends HttpServlet {
 		String filename=(String)request.getParameter("fileName");
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
 		
+		
 		String saveDir=getServletContext().getRealPath("/images"+File.separator+"truckReview");
 		System.out.println("경로"+saveDir);
 		System.out.println("reviewCommentPk : "+reviewCommentPk);
@@ -44,13 +45,15 @@ public class TruckCommentDeleteServlet extends HttpServlet {
 		System.out.println(filename);
 		boolean flag=false;
 		
-		if(filename!=null && filename.length()>0) {
+		if(filename.length()>0) {
 		File deleteFile=new File(saveDir+"/"+filename);
 		flag=deleteFile.delete();
+		System.out.println("삭제결과"+flag);
 		}
 		
 		
 		int result=new TruckService().deleteTruckComment(reviewCommentPk);
+		System.out.println("결과"+result);
 		if(result>0){
 			flag=true;
 		}

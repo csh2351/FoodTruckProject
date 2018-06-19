@@ -79,7 +79,6 @@ public class TruckCommentInsert extends HttpServlet {
 		int result = new TruckService().insertTruckComment(comment);
 		System.out.println("결과 :" + result);
 
-		String view = "";
 		String checkFile = mpr.getOriginalFileName("up_file");
 		if (checkFile != null) {
 			if (checkFile.contains(".jsp") || checkFile.contains(".exe") || checkFile.contains(".html")) {
@@ -94,12 +93,11 @@ public class TruckCommentInsert extends HttpServlet {
 
 			}
 		}
-		if (result > 0) {
-			view = "/views/truck/truckChoice.jsp";
-			request.setAttribute("truck", truck);
-			request.setAttribute("truckChoice", "truckChoiceReview");
+		String view = "/views/common/msg.jsp";
+		if (result > 0) { 
+		request.setAttribute("msg", "리뷰작성완료");
+		request.setAttribute("loc", "/managestore.do?truckChoice=truckChoiceReview");
 		} else {
-			view = "/views/common/msg.jsp";
 			request.setAttribute("msg", "사진은 크기를 확인하세요");
 			request.setAttribute("loc", "/");
 		}

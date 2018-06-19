@@ -85,20 +85,18 @@ public class TruckMenuInsertEndServlet extends HttpServlet {
 		// insert했을때만...
 		// 메뉴pk가져와서
 		// truck_menu에 넣자~
-		String view = "";
+		String view = "/views/common/msg.jsp";
 		if (result > 0) {
 			int menuPk = new TruckService().selectOneMenuPk(menuRimage);
 			result = new TruckService().insertTruckMenuForeign(menuPk, truckPk);
 			if (result > 0) {
 				System.out.println("삽입성공");
-				view = "/views/common/msg.jsp";
 				request.setAttribute("msg", "메뉴작성완료");
 				request.setAttribute("loc", "/managestore.do?truckChoice=truckMenuUpdate");
 			} else {
 				System.out.println("삽입실패");
 			}
 		} else {
-			view = "/views/common/msg.jsp";
 			request.setAttribute("msg", "사진은 크기를 확인하세요");
 			request.setAttribute("loc", "/");
 		}
