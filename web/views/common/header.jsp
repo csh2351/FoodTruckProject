@@ -57,9 +57,9 @@
           <li><a href="<%=request.getContextPath() %>/customer.do">고객센터</a></li>
           <%if (memberLoggedIn!=null) {%>
           
-          <%if(memberLoggedIn.getMemberLevel().equals("1") ) {%>
+          <%if(memberLoggedIn.getMemberLevel().equals("1")) {%>
           <li><a href="<%=request.getContextPath() %>/adminStoreManagementForm.do">개발자영역</a></li>
-          <%}if(memberLoggedIn.getMemberLevel().equals("1")) {%>
+          <%}if(memberLoggedIn.getMemberLevel().equals("1")||memberLoggedIn.getMemberLevel().equals("2")) {%>
           <li><a href="<%=request.getContextPath() %>/managestore.do">점포관리</a></li>
           <%} }%>
         </ul>

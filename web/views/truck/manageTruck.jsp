@@ -5,6 +5,8 @@
 <%@ page import="truck.vo.Truck"%>
 <%
 	Truck truck = (Truck) request.getAttribute("truck");
+	
+
 %>
 <%
 	String serlvet = (String) request.getAttribute("truckChoice");
@@ -15,10 +17,10 @@
 	href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/manageTruck.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css">
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/all.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
-	<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
+	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
 <script src='js/bootstrap.js'></script>
 
 <script type="text/javascript">
@@ -65,7 +67,8 @@ $(function() {
 											<div align="center">
 												<input id="basic-input" type="text" name="truck-name"
 													placeholder="<%=truck.getTruckName()%>"
-													class="form-control">
+													class="form-control" value="<%=truck.getTruckName()%>"
+													required="required">
 
 											</div>
 											<br>
@@ -73,7 +76,8 @@ $(function() {
 
 											<img id='truck-check-img'
 												src="images/truck/<%=truck.getTruckRenameImage()%>"
-												alt="Card image cap" width=100% height=100> <br>
+												alt="Card image cap" width=100% height=100
+												required="required"> <br>
 
 											<div class=""></div>
 											<button class="truck-img-replace btn btn-success">사진등록</button>
@@ -93,8 +97,9 @@ $(function() {
 											</div>
 											<!--갯수를 입력받아야함.-->
 											<br> <span class='truck-basic-font'>최소금액: <input
-												id="basic-input" type="number" name="min-price" value="<%=truck.getTruckPrice()%>"
-												placeholder="ex)2000원~" size="10" class="form-control" required="required">
+												id="basic-input" type="number" name="min-price"
+												value="<%=truck.getTruckPrice()%>" placeholder="ex)2000원~"
+												size="10" class="form-control" required="required">
 											</span> <br>
 											<p class='truck-basic-font'>
 												사업자정보 :
@@ -125,8 +130,7 @@ $(function() {
 										<br>
 										<button id="basic-submit" class="btn btn-success "
 											type="submit">완료</button>
-										<button class="btn btn-success  reset-button"
-											type="reset">취소</button>
+										<button id="reset-button" class="btn btn-success  reset-button" type="reset">취소</button>
 									</div>
 							</div>
 							</form>
@@ -262,10 +266,8 @@ $(function() {
 								</p>
 								<div align="center">
 									<br>
-									<button class="btn btn-success" type="submit"
-										id="detailsubmit">완료</button>
-									<button class="btn btn-success reset-button"
-										type="reset">취소</button>
+									<button class="btn btn-success" type="submit" id="detailsubmit">완료</button>
+									<button class="btn btn-success reset-button" type="reset">취소</button>
 								</div>
 
 							</form>
@@ -332,8 +334,7 @@ $(function() {
 	$(function() {
 		$("#reset-button").click(
 				function() {
-					$('#truck-check-img').attr('src',
-							"http://proxyprivat.com/images/noimage.jpeg");
+					$('#truck-check-img').attr('src',"http://proxyprivat.com/images/noimage.jpeg");
 				})
 	})
 	
@@ -452,7 +453,8 @@ results[1].address_components[3].long_name + " "
 				marker = new google.maps.Marker({
 					map : map,
 					// icon: image, // 마커로 사용할 이미지(변수)
-					title :'<%=truck.getTruckName()%>',
+					title :'<%=truck.getTruckName()%>
+	',
 					// 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
 					position : results[0].geometry.location
 				});
