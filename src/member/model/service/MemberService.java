@@ -1,7 +1,9 @@
 package member.model.service;
 
 import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
 import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
@@ -14,17 +16,17 @@ public class MemberService {
 	public static int WRONG_PASSWORD=0;
 	public static int ID_NOT_EXIST=-1;
 	
-	public int loginCheck(String userId, String password)
+	public int loginCheck(String memberId, String memberPw)
 	{
 		Connection conn=getConnection();
-		int result=new MemberDao().loginCheck(conn,userId,password);
+		int result=new MemberDao().loginCheck(conn,memberId,memberPw);
 		
 		close(conn);
 		
 		return result;
 	}
 	
-	public Member selectOne(String id)
+	public Member selectOne(String memberId)
 	{
 		//1. DB와의 연결 객체를 생성 : connection
 		//2. 데이터 CRUD(삽입, 수정, 삭제)가 
@@ -33,9 +35,80 @@ public class MemberService {
 		//   **객체 삭제
 		
 		Connection conn=getConnection();
-		Member m=new MemberDao().selectOne(conn, id);
+		Member m=new MemberDao().selectOne(conn, memberId);
 		close(conn);
 		return m;
 	}
+	
+	public int insertMember(Member member)
+	{
+		Connection conn=getConnection();
+		int result=new MemberDao().insertMember(conn, member);
+		if(result>0) 
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public boolean duplicateId(String memberId)
+	   {
+	      Connection conn=getConnection();
+	      
+	      boolean flag = new MemberDao().duplicateId(conn, memberId);
+	      
+	      close(conn);
+	      
+	      return flag;
+	   }
+	
+	public int updateLevel(int memberPk) {
+		Connection conn=getConnection();
+		int result= new MemberDao().updateLevel(conn,memberPk);
+				
+		if(result>0) 
+		{
+			commit(conn);
+			int result2 = new MemberDao().updateApprove(conn, memberPk);
+			if(result2>0) {
+				commit(conn);
+			}
+			else {
+				rollback(conn);
+			}
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	
+	}
+	
+	public int refuseApprove(int memberPk) {
+		Connection conn=getConnection();
+		int result= new MemberDao().refuseApprove(conn,memberPk);
+		
+		if(result>0) 
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+	
+	
 
 }

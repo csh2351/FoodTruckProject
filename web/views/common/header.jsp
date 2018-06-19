@@ -2,24 +2,7 @@
     pageEncoding="UTF-8"  import="member.model.vo.Member"%>
 <%
 	Member memberLoggedIn=(Member)session.getAttribute("memberLoggedIn");
-	Cookie[] cookie=request.getCookies();
-	boolean saveId=false;
-	String userIdSaved="";
-	if(cookie!=null)
-	{
-		
-		for(Cookie c:cookie)
-		{
-			String key=c.getName();
-			String value=c.getValue();
-			if("saveId".equals(key))
-			{
-				saveId=true;
-				userIdSaved=value;
-			}
-		}
-		
-	}
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,16 +16,20 @@
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap-theme.min.css">
   <!-- 회원가입로그인캐러셀아이콘에 필요한것 -->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  
   <!-- 푸터아이콘에 필요한것 -->
   <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/all.css">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/navbar.css">
-  
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/truckStar.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
   <script src='js/bootstrap.js'></script>
-
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDmfjiMcgfcCVI6QKs42Kk4AvHUVdOQtso"></script>
+	
   <title>Main</title>
 
 </head>
@@ -67,23 +54,28 @@
 	
       <div class="collapse navbar-collapse" id='bs-example-navbar-collapse-1'>
         <ul class="nav navbar-nav">
-          <li><a href="<%=request.getContextPath() %>/intro.do">소개<span class-'sr-only'></span></a></li>
-          <li><a href="<%=request.getContextPath() %>/">STORE</a></li>
-          <li><a href="<%=request.getContextPath() %>/event.do">EVENT</a></li>
+          <li><a href="<%=request.getContextPath() %>/intro.do">소개<span class='sr-only'></span></a></li>
+          <li><a href="<%=request.getContextPath() %>/truckStore.do">STORE</a></li>
+          <li><a href="<%=request.getContextPath() %>/eventForm.do">EVENT</a></li>
           <li><a href="<%=request.getContextPath() %>/customer.do">고객센터</a></li>
+          <%if (memberLoggedIn!=null) {%>
+          
+          <%if(memberLoggedIn.getMemberLevel().equals("1") ) {%>
+          <li><a href="<%=request.getContextPath() %>/adminStoreManagementForm.do">개발자영역</a></li>
+          <%}else if(memberLoggedIn.getMemberLevel().equals("2")) {%>
+          <li><a href="<%=request.getContextPath() %>/managestore.do">점포관리</a></li>
+          <%} }%>
         </ul>
         
-        <form class="navbar-form navbar-left" role="search">
+        <form action="<%=request.getContextPath() %>/" method="post" class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <select class="form-control" name="">
               <option value="">지역명</option>
-              <option value="">음식명</option>
               <option value="">상호명</option>
             </select>
           </div>
-
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="음식명/상호명을 입력하세요">
+            <input type="text" name="search" class="form-control" placeholder="음식명/상호명을 입력하세요">
           </div>
           <button type="submit" class="btn btn-default">검색</button>
         </form>
@@ -94,14 +86,29 @@
           <li><a href="<%=request.getContextPath() %>/login.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
         </ul>
  <% }
-else {
+else if(memberLoggedIn.getMemberLevel().equals("3")){
 	%>
 	<ul class="nav navbar-nav navbar-right">
-		  <li><a href="Main.html"><span class="glyphicon glyphicon-user"></span><%= memberLoggedIn.getMemberName() %>님</a></li>
-		  <li><a href="<%=request.getContextPath() %>/mypage.do">마이페이지</a></li>
+		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do"><span class="glyphicon glyphicon-user"></span><%= memberLoggedIn.getMemberName() %>님</a></li>
+		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do">마이페이지</a></li>
           <li><a href="<%=request.getContextPath() %>/logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
      </ul>
-	<% } %>
+	<% }
+else if(memberLoggedIn.getMemberLevel().equals("1")){
+	%>
+	<ul class="nav navbar-nav navbar-right">
+		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do"><span class="glyphicon glyphicon-user"></span><%= memberLoggedIn.getMemberName() %>관리자님</a></li>
+		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do">마이페이지</a></li>
+          <li><a href="<%=request.getContextPath() %>/logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
+     </ul>
+	<% }
+	else if(memberLoggedIn.getMemberLevel().equals("2")) {%>
+		<ul class="nav navbar-nav navbar-right">
+		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do"><span class="glyphicon glyphicon-user"></span><%= memberLoggedIn.getMemberName() %>점주님</a></li>
+		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do">마이페이지</a></li>
+          <li><a href="<%=request.getContextPath() %>/logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
+     </ul>
+     <% } %>
       </div>
     </div>
   </nav>

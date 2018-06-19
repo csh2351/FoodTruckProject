@@ -53,9 +53,9 @@
                           <div class="frontside">
                               <div class="card">
                                   <div class="card-body text-center">
-                                      <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></p>
+                                      <p><img src="images/captin.jpg" class=" img-fluid"  alt="card image"></p>
                                       <h4 class="card-title">박혜은</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">Team Leader</p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                   </div>
                               </div>
@@ -64,7 +64,7 @@
                               <div class="card">
                                   <div class="card-body text-center mt-4">
                                       <h4 class="card-title">박혜은</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">전반적 프론트엔드와 로그인,회원가입,회원정보수정,탈퇴,암호화,점포가입신청 기능구현</p>
                                       <ul class="list-inline">
                                           <li class="list-inline-item">
                                               <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -101,9 +101,9 @@
                           <div class="frontside">
                               <div class="card">
                                   <div class="card-body text-center">
-                                      <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_02.png" alt="card image"></p>
+                                      <p><img src="images/iron.jpg" class=" img-fluid"  alt="card image"></p>
                                       <h4 class="card-title">김재홍</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">The old man</p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                   </div>
                               </div>
@@ -112,7 +112,7 @@
                               <div class="card">
                                   <div class="card-body text-center mt-4">
                                       <h4 class="card-title">김재홍</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">전반적인 프론트엔드와 공지사항 1대1문의 이벤트 게시판, 검색 기능구현</p>
                                       <ul class="list-inline">
                                           <li class="list-inline-item">
                                               <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -149,9 +149,9 @@
                           <div class="frontside">
                               <div class="card">
                                   <div class="card-body text-center">
-                                      <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_03.png" alt="card image"></p>
+                                      <p><img src="images/doctor.jpg" class=" img-fluid" alt="card image"></p>
                                       <h4 class="card-title">최승훈</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">Broken heart</p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                   </div>
                               </div>
@@ -160,7 +160,7 @@
                               <div class="card">
                                   <div class="card-body text-center mt-4">
                                       <h4 class="card-title">최승훈</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">데이터베이스 기획 및 설계와 MAP API기능적용</p>
                                       <ul class="list-inline">
                                           <li class="list-inline-item">
                                               <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -197,9 +197,9 @@
                           <div class="frontside">
                               <div class="card">
                                   <div class="card-body text-center">
-                                      <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_04.jpg" alt="card image"></p>
+                                      <p><img src="images/antman.jpg" class=" img-fluid" alt="card image"></p>
                                       <h4 class="card-title">홍성진</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">I am on diet</p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                   </div>
                               </div>
@@ -208,7 +208,7 @@
                               <div class="card">
                                   <div class="card-body text-center mt-4">
                                       <h4 class="card-title">홍성진</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">메인화면 푸드트럭리스트 Store, 점포관리 기능구현</p>
                                       <ul class="list-inline">
                                           <li class="list-inline-item">
                                               <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -247,7 +247,7 @@
                                   <div class="card-body text-center">
                                       <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_05.png" alt="card image"></p>
                                       <h4 class="card-title">장민오</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">도중하차 (취업부럽다)                                                                     </p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                   </div>
                               </div>
@@ -256,7 +256,7 @@
                               <div class="card">
                                   <div class="card-body text-center mt-4">
                                       <h4 class="card-title">장민오</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">DB설계 MAP API하는중에 취업으로 인한 중도하차</p>
                                       <ul class="list-inline">
                                           <li class="list-inline-item">
                                               <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -293,9 +293,9 @@
                           <div class="frontside">
                               <div class="card">
                                   <div class="card-body text-center">
-                                      <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_06.jpg" alt="card image"></p>
+                                      <p><img src="images/tanos.jpg" class=" img-fluid"  alt="card image"></p>
                                       <h4 class="card-title">안지훈</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">A weak person</p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                   </div>
                               </div>
@@ -304,7 +304,7 @@
                               <div class="card">
                                   <div class="card-body text-center mt-4">
                                       <h4 class="card-title">안지훈</h4>
-                                      <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                      <p class="card-text">자주묻는질문,이벤트기능구현, 문서 작업기능담당</p>
                                       <ul class="list-inline">
                                           <li class="list-inline-item">
                                               <a class="social-icon text-xs-center" target="_blank" href="#">

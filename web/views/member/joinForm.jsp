@@ -1,79 +1,309 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script>
+
+//아이디 중복검사
+$(function(){
+	$('#memberId').blur(function(){
+	       $.ajax({
+	          url: "<%=request.getContextPath()%>/memberIdCheck.do",
+	            type:"post",
+	            data:{memberId:$('#memberId').val()},
+	            success : function(data){
+	            	   var id=$("#memberId").val();
+	            	   var num = id.search(/[0-9]/g);
+	            	   var eng = id.search(/[a-z]/ig);
+					   var spe = id.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+					  
+					   
+	                  if(id.length!=0&&data=='true'){
+	                	  if((id.search(/\s/) != -1)||(id.length < 6 || id.length > 12)||(num < 0 || eng < 0 || spe > 0)){
+	                			$("#idCheck").html("아이디는 영문,숫자조합의 6~12자리의 조합(특수문자제외)");
+	                			$("#idCheck").css("color","red");
+	                			$("#memberId").val("");
+	                			$("#memberId").focus();
+	                		}else{
+	                			$("#idCheck").css("color","green");
+	                   			$("#idCheck").html("*해당 아이디는 사용이 가능합니다.");
+	                		}
+	                 		
+	                  }else if(id.length!=0){
+	                	  $("#idCheck").html("이미 등록된 아이디입니다.");
+	                	  $("#idCheck").css("color","red");
+	                	  $("#memberId").val("");
+	                	  
+	                  }      
+	                  
+	            }
+	          });
+	      });
+	});
+
+
+
+
+
+//비밀번호 blur시 비밀번호 유효성 확인
+function chkPwd(){
+
+ var pw = $("#memberPw").val();
+
+ var num = pw.search(/[0-9]/g);
+
+ var eng = pw.search(/[a-z]/ig);
+
+ var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+	
+
+
+if(pw.length!=0&&(pw.search(/\s/) != -1)){
+
+	 $("#pwCheck").html("비밀번호는 공백없이 입력하세요.");
+	 $("#memberPw").val("");
+	 $("#memberPw").focus();
+
+
+ }else if(pw.length!=0&&(pw.length < 8 || pw.length > 15)){
+	$("#pwCheck").html("비밀번호를 8자 이상 15자 이하로 입력하세요.");
+	 $("#memberPw").val("");
+	 $("#memberPw").focus();
+
+ }else if(pw.length!=0&&(num < 0 || eng < 0 || spe < 0) ){
+	
+	 $("#pwCheck").html("비밀번호는 영문, 숫자, 특수문자를 조합해야 합니다.");
+	 $("#memberPw").val("");
+	 $("#memberPw").focus();
+  
+
+ }else if(pw.length!=0){
+	 $("#pwCheck").html("올바른 형식의 비밀번호 입니다.");
+ }
+
+}
+
+
+//비밀번호와 비밀번호 확인의 일치 여부 유효성
+$(function(){
+	$("#memberPw_2").blur(function(){
+		var p1=$("#memberPw").val();
+		var p2=$("#memberPw_2").val();
+	
+		if(p1.length!=0&&p2.length!=0&&p1!=p2){
+			$("#memberPw_2").val("");
+			$("#memberPw_2").focus();
+			alert("입력하신 비밀번호와 일치하지 않습니다.");
+		}
+		
+	});
+});
+//submit할시 이용약관 확인 펑션
+function fn_enroll_validate(){
+   
+
+    var check1_1=$("input:checkbox[id='check1_1']").is(":checked"); 
+    var check1_2=$("input:checkbox[id='check1_2']").is(":checked"); 
+    var check1_3=$("input:checkbox[id='check1_3']").is(":checked"); 
+    var check2=$("input:checkbox[id='check2']").is(":checked"); 
+    
+  
+    if(check1_1==false||check1_2==false){
+
+       alert("필수 이용약관을 체크 하세요.");
+        $("input:checkbox[id='check1_1']").focus();
+        return false;
+       
+    }
+    
+    
+    
+   /*  if($("#memberName").val()==''){
+    	$("#memberName").val().focus();
+    	alert('필수 항목을 기입해주세요!');
+          
+		return false;
+    }  
+	   if($("#memberPhone").val()==''){
+	    	$("#memberPhone").val().focus();
+	    	alert('필수 항목을 기입해주세요!');
+	          
+			return false;
+	    }
+	   
+	   if($("#memberEmail").val()==''){
+	    	$("#memberEmail").val().focus();
+	    	alert('필수 항목을 기입해주세요!');
+	          
+			return false;
+	    }
+	   
+	   if($("#memberAddress").val()==''){
+	    	$("#memberAddress").val().focus();
+	    	alert('필수 항목을 기입해주세요!');
+	          
+			return false;
+	    } */
+	
+    return true;
+ }
+
+
+
+
+//주소찾기 스크립트
+function Postcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullAddr = ''; // 최종 주소 변수
+            var extraAddr = ''; // 조합형 주소 변수
+
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                fullAddr = data.roadAddress;
+
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                fullAddr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+            if(data.userSelectedType === 'R'){
+                //법정동명이 있을 경우 추가한다.
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있을 경우 추가한다.
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('post').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('memberAddress').value = fullAddr;
+
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById('memberAddressDetail').focus();
+        }
+    }).open();
+}
+
+
+
+//모두 선택/해제 펑션
+function check_all() {
+   var check1 = document.getElementsByName('check1');
+   var check2 = document.getElementById('check2');
+
+   for (var i = 0; i < check1.length; i++) {
+      if (check2.checked == true) {
+         check1[i].checked = true;
+      } else {
+         check1[i].checked = false;
+      }
+   }
+}
+//모두 선택이후 하나라도 선택해제시 모두선택 버튼 해제
+function check_del() {
+   var check1 = document.getElementsByName('check1');
+   var check2 = document.getElementById('check2');
+
+   for (var i = 0; i < check1.length; i++) {
+      if (check2.checked && !check1[i].checked) {
+         check2.checked = false;
+         break;
+      }
+   }
+}
+
+
+      
+</script>
+
 <section>
-	<article class="container">
-		<div class="col-md-12">
-			<div class="page-header">
-				<h1>회원가입</h1>
-			</div>
-			<form action="" method="" class="form-horizontal">
-				<div class="form-group">
-					<label class="col-sm-3 control-label" for="inputId">아이디</label>
-					<div class="col-sm-6">
-						<input class="form-control" id="userId" type="text"
-							placeholder="아이디">
-					</div>
-					<div class="col-sm-3">
-						<button class="btn btn-warning" type="submit">중복확인</button>
-					</div>
-				</div>
+   <article class="container">
+      <div class="col-md-12">
+         <div class="page-header">
+            <h1>회원가입</h1>
+         </div>
+         <form action="<%=request.getContextPath()%>/joinEnd.do" method="post" class="form-horizontal">
+         	<p class="text-left" style="font-size:13px;color:red;">*가 표시된 내용은 필수 입력 사항입니다.</p>
+         	<br><br>
+            <div class="form-group">
+               <label class="col-sm-3 control-label" for="memberId"><span class="text-danger">*</span>아이디</label>
+               <div class="col-sm-6">
+                  <input class="form-control" id="memberId" name="memberId" type="text" placeholder="아이디는 영문,숫자조합의 6~12자리의 조합(특수문자제외)" required>
+                  <p id="idCheck"></p>
+               </div>
+             
+            </div>
 
-				<div class="form-group">
-					<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
-					<div class="col-sm-6">
-						<input class="form-control" id="inputPassword" type="password"
-							placeholder="비밀번호">
-						<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호
-						확인</label>
-					<div class="col-sm-6">
-						<input class="form-control" id="inputPasswordCheck"
-							type="password" placeholder="비밀번호 확인">
-						<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
-					</div>
-				</div>
+            <div class="form-group">
+               <label class="col-sm-3 control-label" for="memberPw"><span class="text-danger">*</span>비밀번호</label>
+               <div class="col-sm-6">
+                  <input class="form-control" id="memberPw" name="memberPw" type="password" placeholder="공백없이 영문,숫자,특수문자를 조합한 8~15자의 비밀번호" required onblur="chkPwd();">
+               	 <p id="pwCheck"></p>
+               </div>
+            </div>
+            <div class="form-group">
+               <label class="col-sm-3 control-label" for="memberPw_2">비밀번호 확인</label>
+               <div class="col-sm-6">
+                  <input class="form-control" id="memberPw_2" name="passwordCheck" type="password" placeholder="비밀번호 확인" required>
+                 
+               </div>
+            </div>
 
-				<div class="form-group">
-					<label class="col-sm-3 control-label" for="inputName">이름</label>
-					<div class="col-sm-6">
-						<input class="form-control" id="inputName" type="text"
-							placeholder="이름">
-					</div>
-				</div>
+            <div class="form-group">
+               <label class="col-sm-3 control-label" for="inputName"><span class="text-danger">*</span>이름</label>
+               <div class="col-sm-6">
+                  <input class="form-control" id="memberName" name="memberName" type="text" placeholder="이름" required>
+               </div>
+            </div>
 
-				<div class="form-group">
-					<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
-					<div class="col-sm-6">
-					<input type="email" class="form-control" id="inputNumber" placeholder="이메일을 입력해 주세요" />
-					</div>
-				</div>
+			 <div class="form-group">
+               <label class="col-sm-3 control-label" for="inputNumber"><span class="text-danger">*</span>휴대폰번호</label>
+               <div class="col-sm-6">
+                  <input class="form-control" id="memberPhone" name="memberPhone" type="text" placeholder="- 없이 입력해 주세요" required>
+               </div>
+            </div>
+			
+            <div class="form-group">
+               <label class="col-sm-3 control-label" for="inputEmail"><span class="text-danger">*</span>이메일</label>
+               <div class="col-sm-6">
+               <input type="email" class="form-control" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해 주세요" required>
+               </div>
+            </div>
 
-				<div class="form-group">
-					<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
-					<div class="col-sm-6">
-						<input class="form-control" id="inputNumber" type="text" placeholder="- 없이 입력해 주세요">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label" for="inputAddress">주소</label>
-					<div class="col-sm-6">
-						<input class="form-control" id="inputAddress" type="text" placeholder="주소를 입력해 주세요">
-					</div>
-				</div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" for="memberAddrress"><span class="text-danger">*</span>주소</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="post" placeholder="우편번호" required>
+              </div>
+              <div class="col-sm-3">
+                  <input type="button" class="btn btn-warning" onclick="Postcode()" value="주소찾기">
+              </div>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="memberAddress" name="memberAddress" placeholder="주소" required>
+                <input type="text" class="form-control" id="memberAddressDetail" placeholder="상세주소">
+              </div>
+            </div>
 
 
-				<div class="form-group">
-					<label class="col-sm-3 control-label" for="inputAgree">약관동의</label>
-					<div class="panel panel-default col-sm-6">
-						<div class="panel-body">
-							<div class="form-group">
-								<label for=""><h4>이용약관 1</h4></label>
-								<textarea class="form-control" rows="5"
-									style="resize: none; cursor: text;" readonly>
+
+            <div class="form-group">
+               <label class="col-sm-3 control-label" for="inputAgree">약관동의</label>
+               <div class="panel panel-default col-sm-6">
+                  <div class="panel-body">
+                     <div class="form-group">
+                        <label for=""><h4>이용약관 1</h4></label>
+                        <textarea class="form-control" rows="5"
+                           style="resize: none; cursor: text;" readonly>
 전자상거래(인터넷사이버몰) 표준약관
 제1조(목적)
          이 약관은 OO 회사(전자상거래 사업자)가 운영하는 OO 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
@@ -104,16 +334,16 @@
 
   ⑥ 이 약관에서 정하지 아니한 사항과 이 약관의 해석에 관하여는 전자상거래 등에서의 소비자보호에 관한 법률, 약관의 규제 등에 관한 법률, 공정거래위원회가 정하는 전자상거래 등에서의 소비자 보호지침 및 관계법령 또는 상관례에 따릅니다.
                         </textarea>
-								<br>
-								<h4 class="text-right">
-									위 약관에 동의 합니다. <input type="checkbox" name='check1'
-										onclick="check_del()">
-								</h4>
+                        <br>
+                        <h4 class="text-right">
+                           위 약관에 동의 합니다.(필수) <input type="checkbox" name='check1' id='check1_1'
+                              onclick="check_del()">
+                        </h4>
 
-								<hr>
-								<label for=""><h4>이용약관 2</h4></label>
-								<textarea class="form-control" rows="5"
-									style="resize: none; cursor: text;" readonly>
+                        <hr>
+                        <label for=""><h4>이용약관 2</h4></label>
+                        <textarea class="form-control" rows="5"
+                           style="resize: none; cursor: text;" readonly>
 제4조(서비스의 제공 및 변경) 
 
   ① “몰”은 다음과 같은 업무를 수행합니다.
@@ -178,15 +408,15 @@
                           
   ② “몰”은 불특정다수 회원에 대한 통지의 경우 1주일이상 “몰” 게시판에 게시함으로서 개별 통지에 갈음할 수 있습니다. 다만, 회원 본인의 거래와 관련하여 중대한 영향을 미치는 사항에 대하여는 개별통지를 합니다.     
                         </textarea>
-								<br>
-								<h4 class="text-right">
-									위 약관에 동의 합니다. <input type="checkbox" name='check1'
-										onclick="check_del()">
-								</h4>
-								<hr>
-								<label for=""><h4>이용약관 3</h4></label>
-								<textarea class="form-control" rows="5"
-									style="resize: none; cursor: text;" readonly>
+                        <br>
+                        <h4 class="text-right">
+                           위 약관에 동의 합니다.(필수) <input type="checkbox" name='check1' id='check1_2'
+                              onclick="check_del()">
+                        </h4>
+                        <hr>
+                        <label for=""><h4>이용약관 3</h4></label>
+                        <textarea class="form-control" rows="5"
+                           style="resize: none; cursor: text;" readonly>
 제9조(구매신청 및 개인정보 제공 동의 등) 
 
   ① “몰”이용자는 “몰”상에서 다음 또는 이와 유사한 방법에 의하여 구매를 신청하며, “몰”은 이용자가 구매신청을 함에 있어서 다음의 각 내용을 알기 쉽게 제공하여야 합니다.
@@ -301,65 +531,43 @@
                           
   ⑨ “몰”은 개인정보의 수집·이용·제공에 관한 동의 란을 미리 선택한 것으로 설정해두지 않습니다. 또한 개인정보의 수집·이용·제공에 관한 이용자의 동의거절시 제한되는 서비스를 구체적으로 명시하고, 필수수집항목이 아닌 개인정보의 수집·이용·제공에 관한 이용자의 동의 거절을 이유로 회원가입 등 서비스 제공을 제한하거나 거절하지 않습니다.                                
                         </textarea>
-								<br>
-								<h4 class="text-right">
-									위 약관에 동의 합니다.(선택) <input type="checkbox" name='check1'
-										onclick="check_del()">
-								</h4>
-								<hr>
-								<h4 class="text-right">
-									모든 약관에 동의 합니다. <input type="checkbox" id='check2'
-										onclick="check_all()">
-								</h4>
+                        <br>
+                        <h4 class="text-right">
+                           위 약관에 동의 합니다.(선택) <input type="checkbox" name='check1' id='check1_3'
+                              onclick="check_del()">
+                        </h4>
+                        <hr>
+                        <h4 class="text-right">
+                           모든 약관에 동의 합니다. <input type="checkbox" id='check2'
+                              onclick="check_all()">
+                        </h4>
 
-							</div>
+                     </div>
 
-						</div>
-					</div>
-				</div>
+                  </div>
+               </div>
+            </div>
 
-				<div class="form-group">
-					<div class="col-sm-12 text-center">
-						<button class="btn btn-primary" type="submit">
-							회원가입<i class="fa fa-check spaceLeft"></i>
-						</button>
-						<button class="btn btn-danger" type="submit">
-							가입취소<i class="fa fa-times spaceLeft"></i>
-						</button>
-					</div>
-				</div>
-			</form>
-			<hr>
-		</div>
+            <div class="form-group">
+               <div class="col-sm-12 text-center">
+               	  <input class="btn btn-primary" type="submit" value="회원가입" onclick="return fn_enroll_validate();">
+               	  <input class="btn btn-danger" type="reset" value="가입취소">
+               </div>
+            </div>
+         </form>
+         <form name="checkIdDuplicateFrm" method="post">
+            <input type="hidden" name="memberId">
+         </form>
+         <hr>
+      </div>
 
-	</article>
+   </article>
 </section>
 
-<script>
-	//모두 선택/해제 펑션
-	function check_all() {
-		var check1 = document.getElementsByName('check1');
-		var check2 = document.getElementById('check2');
 
-		for (var i = 0; i < check1.length; i++) {
-			if (check2.checked == true) {
-				check1[i].checked = true;
-			} else {
-				check1[i].checked = false;
-			}
-		}
-	}
-	//모두 선택이후 하나라도 선택해제시 모두선택 버튼 해제
-	function check_del() {
-		var check1 = document.getElementsByName('check1');
-		var check2 = document.getElementById('check2');
 
-		for (var i = 0; i < check1.length; i++) {
-			if (check2.checked && !check1[i].checked) {
-				check2.checked = false;
-				break;
-			}
-		}
-	}
-</script>
+
+
+
+
 <%@ include file="/views/common/footer.jsp"%>

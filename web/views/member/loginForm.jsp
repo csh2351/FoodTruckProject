@@ -10,11 +10,14 @@
 		<div class="avatar"></div>
 		<div class="form-box">
 			<form action="<%=request.getContextPath()%>/loginCheck.do" method="post">
-				<input name="id" type="text" placeholder="username"> 
-				<input name="pw" type="password" placeholder="password">
-				<button class="btn btn-info btn-block login" type="submit" onclick='fn_submit();'>로그인</button>
-			</form>
 
+				<input name="memberId" type="text" placeholder="username" required> 
+				<input name="memberPw" type="password" placeholder="password" required>
+				<button class="btn btn-info btn-block login" type="submit" onclick='fn_submit();'>로그인</button>	
+				<button class="btn btn-info btn-block login" type="button" onclick="location.href='<%=request.getContextPath()%>/join.do'">회원가입</button>
+			</form>
+			
+		
 		</div>
 	</div>
 </div>

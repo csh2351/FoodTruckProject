@@ -1,86 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+	
+
+<style>
+  @media(max-width:480px) {
+        #select_sort{
+        margin-left: 15px;
+        }
+      }
+</style>	
+	
+<script type="text/javascript">
+	 $(function() {
+			 $.ajax({
+					//xml requset가 자동으로 생성된다고 볼수있다.
+				url:"<%=request.getContextPath()%>/truckList",
+				type : "post",
+				dataType : "html",
+				success : function(data) { //success완료가됬을떄 별도의 
+					//data변수를 명수하지않아도 알아서 받아서 넣는다.
+					//readyState:4번
+					//sataus:200일때 작용한다.
+					$('#store_ul').html(data);
+					//text는 태그를 인식하지못한다.
+					//html로 하면 태그를인식해 파싱처리해서인식한다.
+				}
+			});
+	});
+
+	 //selection바뀌었을떄
+	$(function() {
+		$('#select_sort').on('change', function(e) {
+		 $.ajax({
+				//xml requset가 자동으로 생성된다고 볼수있다.
+			url:"<%=request.getContextPath()%>/truckList",
+			type : "post",
+			data :{"select_sort":$("#select_sort").val()},
+			dataType : "html",
+			success : function(data) { //success완료가됬을떄 별도의 
+				//data변수를 명수하지않아도 알아서 받아서 넣는다.
+				//readyState:4번
+				//sataus:200일때 작용한다.
+				//$('#store_ul').remove();
+				$('#store_ul').html(data);
+				//text는 태그를 인식하지못한다.
+				//html로 하면 태그를인식해 파싱처리해서인식한다.
+			}
+		});
+		});
+	})
+</script>
+
+</script>
 <section>
-    <div class="container">
-      <div class="row" id='row_padding'>
-        <div class="col-md-5">
-          <p>홈><span>(지역 입력)</span>지역에 총<span>(검색된수 입력)</span>개의 푸드트럭이 검색</p>
-        </div>
-        <div class="col-md-7">
-          <div class="form-group nav navbar-nav">
-            <select class="form-control" id="sel1">
-                                   <option>추천순</option>
-                                   <option>영업순</option>
-                                   <option>리뷰순</option>
-                                   <option>이벤트순</option>
-              </select>
-          </div>
-          <div class="input-group">
-            <span class="input-group-addon" id="sizing-addon2">현재위치</span>
-            <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
-          </div>
-        </div>
-      </div>
-      <div class='row'>
-        <ul class='store_ul'>
-          <!--클릭리스너 만들기-->
-          <li class='store_list'>
-            <div class="col-sm-6 col-md-4 padding">
-              <div class="thumbnail thumnail-botton">
-                <div class="col-xs-12">
-                    <br>
-                </div>
+	<div class="container">
+		<div class="row" id='row_padding'>
+			<div class="col-md-12">
+				<div class="form-group nav navbar-nav">
+					<form name="sort_group" id="sort_group" action=	"#">
+					<input type="hidden" name="sort_option" value="">
+					<select name="selectSort" id="select_sort">
+						<option value='basic' >기본</option>
+						<option value='grade' >평점순</option>
+						<option value='onOff'>영업순</option>
+						<option value='review'>리뷰순</option>
+					</select>
+				</form>
+				</div>
+			</div>
+		</div>
+		
+		<div class='row'>
+		<ul id='store_ul' class='store_ul'>
+		
+		</ul>
+		
+		</div>
+</section>
 
-                <div class="col-xs-8" align="left">
-                    <span class='truck_name'>점포명</span>
-                </div>
-                <div class="col-xs-4">
-                  <!--고정값으로 할수있는 checkd찾기-->
-                  <div class="onoffswitch">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                <label class="onoffswitch-label" for="myonoffswitch">
-                    <span class="onoffswitch-inner"></span>
-                    <span class="onoffswitch-switch"></span>
-                  </label>
-                  <!--클릭이벤트제거-->
-            </div>
-                    <!--고정값으로 할수있는 checkd찾기-->
-
-                </div>
-                <div class="col-xs-5">
-                  <br>
-                  <img src="http://proxyprivat.com/images/noimage.jpeg" alt="" class='img_size'>
-                </div>
-                <div class="col-xs-7">
-                  <br>
-                  <p>주소</p>
-                  <p>평점</p>
-                  <p>평균금액</p>
-                </div>
-                <div class='col-xs-4'></div>
-                <div class='col-xs-4'></div>
-                <div class='col-xs-4'></div>
-                <!--지우지마셈 꺠짐-->
-                <div>
-                  <a>&nbsp;</a>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-  </section>
-
-  <script>
-
-
-      //on/off스위치
-      $("#myonoffswitch").on('click', function(e) {
-          e.preventDefault();
-        })
-        // 눌럿을떄 바로 이동
-        $(".store_list").click(function() {
-            location.href="FoodTruck_Menu.html";
-        });
-      
-      </script>

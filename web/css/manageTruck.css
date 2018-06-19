@@ -1,0 +1,135 @@
+
+    /*푸드트럭 메인사진파일 버튼으로올리기*/
+
+    #truck-input-img {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      cursor: pointer;
+      display: inline;
+      margin: 0;
+    }
+    .upload {
+      width: 94%;
+      opacity: 0;
+      position: relative;
+      display: inline;
+    }
+
+    .truck-img-replace {
+      display: inline-block:;
+      position: absolute;
+      width: 87%;
+      height: 20;
+      border-radius: 3px;
+      border-color: transparent;
+      background: green;
+      color: #fff;
+      cursor: pointer;
+    }
+
+
+    .truck-check-img {
+      margin: 0px;
+    }
+
+    .menu-body {
+      text-align: center;
+    }
+
+    .view-menu {
+      margin-bottom: 5px;
+    }
+    .basic-btn{
+      background: green;
+    }
+    .result-btn {
+      width: 90px;
+      border-radius: 3px;
+      border-color: transparent;
+      background: green;
+    }
+
+    .result-btn-positon {
+      text-align: center;
+    }
+
+    }
+
+    /*푸드트럭 메인사진파일 버튼으로올리기*/
+
+    /*푸드트럭메뉴*/
+
+    .menu-input-img {
+      border-radius: 3px;
+      border-color: transparent;
+      background: green;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .menu-img-replace {
+      position: absolute;
+      width: 82%;
+      height: 30px;
+      border-radius: 3px;
+      border-color: transparent;
+      background: green;
+      color: #fff;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .menu-body {
+      text-align: center;
+    }
+    .view-menu {
+      margin-bottom: 5px;
+    }
+    .file {
+      width: 0;
+      height: 0;
+    }
+    
+    
+#truck-location{
+    height : 300px;
+    width: 100%;
+    border: 1px solid black;
+    }
+  
+@media(max-width:1199px) {
+      .truck-img-replace{
+        width: 84%;
+      }
+
+    }
+
+    @media(max-width:991px) {
+      /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을때*/
+      .truck-img-replace {
+        width: 100%;
+        height: 20;
+      }
+      .truck-img-replace{
+        width: 96%;
+      }
+
+      #truck-check-img{
+        height: 200px;
+      }
+
+    }
+
+
+    @media(max-width:480px) {
+      /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을때*/
+      .truck-img-replace {
+        width: 94%;
+        height: 20;
+      }
+     
+      #truck-check-img{
+        height: 200px;
+      }
+    }

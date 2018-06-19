@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import member.model.vo.Member;
@@ -26,7 +27,7 @@ public class MemberDao {
 		}
 	}
 	
-	public int loginCheck(Connection conn, String id, String pw)
+	public int loginCheck(Connection conn, String memberId, String memberPw)
 	{
 		int result=-1;
 		PreparedStatement pstmt=null;
@@ -36,14 +37,14 @@ public class MemberDao {
 			
 			sql=prop.getProperty("selectOne");
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, memberId);
 			rs=pstmt.executeQuery();
 			if(rs.next())
 			{
-				if(rs.getString("member_id").equals(id)
-						&&rs.getString("member_pw").equals(pw))
+				if(rs.getString("member_id").equals(memberId)
+						&&rs.getString("member_pw").equals(memberPw))
 					return 1;
-				else if(rs.getString("member_id").equals(id))
+				else if(rs.getString("member_id").equals(memberId))
 				{
 					return 0;
 				}	
@@ -61,7 +62,7 @@ public class MemberDao {
 		return result;
 	}
 	
-	public Member selectOne(Connection conn, String id)
+	public Member selectOne(Connection conn, String memberId)
 	{
 		PreparedStatement pstmt=null;
 		Member member=null;
@@ -71,7 +72,7 @@ public class MemberDao {
 		{
 			sql=prop.getProperty("selectOne");
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, memberId);
 			rs=pstmt.executeQuery();
 			if(rs.next())
 			{
@@ -83,7 +84,7 @@ public class MemberDao {
 				member.setMemberPhone(rs.getString("member_phone"));
 				member.setMemberEmail(rs.getString("member_email"));
 				member.setMemberAddress(rs.getString("member_address"));
-				member.setMemberLevel(rs.getInt("member_level"));
+				member.setMemberLevel(rs.getString("member_level"));
 							
 			}
 			
@@ -99,5 +100,136 @@ public class MemberDao {
 		}
 		return member;
 	}
+
+	public int insertMember(Connection conn, Member member)
+	{
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insert"); 
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setString(1, member.getMemberId());
+			pstmt.setString(2, member.getMemberPw());
+			pstmt.setString(3, member.getMemberName());
+			pstmt.setString(4, member.getMemberPhone());
+			pstmt.setString(5, member.getMemberEmail());
+			pstmt.setString(6, member.getMemberAddress());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public boolean duplicateId(Connection conn, String memberId)
+	   {
+	      boolean flag=false;
+	      PreparedStatement pstmt=null;
+	      ResultSet rs = null;
+	      int cnt=0;
+	      String sql=prop.getProperty("checkIdDuplicate");
+	      
+	      try {
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, memberId);
+	         rs=pstmt.executeQuery();
+	         
+	         if(rs.next())
+	         {
+	            cnt=rs.getInt("cnt");
+	         }
+	         if(cnt==0)
+	         {
+	            flag=true;
+	         }
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      } finally
+	      {
+	         close(rs);
+	         close(pstmt);
+	      }
+	      return flag;   
+	   }
+	
+	public int updateLevel(Connection conn, int memberPk) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="";
+		try
+		{
+			sql=prop.getProperty("updateLevel");
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, memberPk);
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally
+		{
+			close(pstmt);
+		}
+		return result;	
+	}
+	
+	public int updateApprove(Connection conn, int memberPk) {
+		PreparedStatement pstmt=null;
+		int result2=0;
+		String sql="";
+		try
+		{
+			sql=prop.getProperty("updateApprove");
+			//System.out.println(sql);
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, memberPk);
+			
+			result2=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally
+		{
+			close(pstmt);
+		}
+		
+		return result2;
+	}
+	
+	public int refuseApprove(Connection conn, int memberPk) {
+		PreparedStatement pstmt=null;
+		int result2=0;
+		String sql="";
+		try
+		{
+			sql=prop.getProperty("refuseApprove");
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, memberPk);
+			
+			result2=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally
+		{
+			close(pstmt);
+		}
+		
+		return result2;
+	}
+	
+	
+	
+	
+
+
 
 }
