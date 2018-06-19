@@ -58,7 +58,31 @@
              </div>
           </div>
 
-		<!--모달-->
+	<!-- test Modal -->
+	
+	
+	
+<div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+		<!--모달-/->
         <div  class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -70,9 +94,9 @@
                  <img id="modal-menu-img"class="img-responsive img-rounded center-block" src="" alt="" width="800" height="800">
               </div>
             </div>
-            <!-- /.modal-content -->
+            <!-- /.modal-content -/->
           </div>
-          <!-- /.modal-dialog -->
+          <!-- /.modal-dialog -/->
         </div>
         <!-- /.modal mixer image -->
      
@@ -116,6 +140,9 @@
 					
 					});
 				});
+			 $('#menu-modal').on('click',function(){
+				 $('.modal').addClass('show');
+			 });
 		</script>
   
 	

@@ -17,6 +17,8 @@
 	href="<%=request.getContextPath()%>/css/manageTruck.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/all.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
+	
 
 <script type="text/javascript">
 $(function() {
