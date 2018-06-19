@@ -223,15 +223,15 @@ $(function() {
 									<input type="text" class="form-control" id="AddressDetail" placeholder="상세주소"><br> 
 									<input type="hidden" name="truck-address" id='truck-address' value="<%=truck.getTrucklocation() %>">
 								<p>
-									오픈시간 : <input type="time" id="truck-open-date" class="form-control" name="truck-open-date" style="display:inline-block;" value=<%=request.getAttribute("openTime")%>>
+									오픈시간 : <input type="time" id="truck-open-date" class="form-control" name="truck-open-date" style="display:inline-block;" value=<%=request.getAttribute("openTime")%> required>
 								</p>
 								<br>
 								<p>
-									마감시간 : <input type="time" id="truck-close-date" class="form-control" name="truck-close-date" style="display:inline-block;" value=<%=request.getAttribute("closeTime")%>>
+									마감시간 : <input type="time" id="truck-close-date" class="form-control" name="truck-close-date" style="display:inline-block;" value=<%=request.getAttribute("closeTime")%> required>
 								</p>
 								<br>
 								<p>
-									휴무일 : <input type="text" id="truck-holiday" class="form-control" name="truck-holiday" style="display:inline-block;" value=<%=truck.getTruckHoliday() %>>
+									휴무일 : <input type="text" id="truck-holiday" class="form-control" name="truck-holiday" style="display:inline-block;" value=<%=truck.getTruckHoliday() %> required>
 								</p>
 								<div align="center">
 									<br>
