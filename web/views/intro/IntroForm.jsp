@@ -53,7 +53,7 @@
                           <div class="frontside">
                               <div class="card">
                                   <div class="card-body text-center">
-                                      <p><img src="images/captin.jpg" class=" img-fluid"  alt="card image"></p>
+                                      <p><img src="images/intro/captin.jpg" class=" img-fluid"  alt="card image"></p>
                                       <h4 class="card-title">박혜은</h4>
                                       <p class="card-text">Team Leader</p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
@@ -101,7 +101,7 @@
                           <div class="frontside">
                               <div class="card">
                                   <div class="card-body text-center">
-                                      <p><img src="images/iron.jpg" class=" img-fluid"  alt="card image"></p>
+                                      <p><img src="images//intro/iron.jpg" class=" img-fluid"  alt="card image"></p>
                                       <h4 class="card-title">김재홍</h4>
                                       <p class="card-text">The old man</p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
@@ -149,7 +149,7 @@
                           <div class="frontside">
                               <div class="card">
                                   <div class="card-body text-center">
-                                      <p><img src="images/doctor.jpg" class=" img-fluid" alt="card image"></p>
+                                      <p><img src="images/intro/doctor.jpg" class=" img-fluid" alt="card image"></p>
                                       <h4 class="card-title">최승훈</h4>
                                       <p class="card-text">Broken heart</p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
@@ -197,7 +197,7 @@
                           <div class="frontside">
                               <div class="card">
                                   <div class="card-body text-center">
-                                      <p><img src="images/antman.jpg" class=" img-fluid" alt="card image"></p>
+                                      <p><img src="images/intro/antman.jpg" class=" img-fluid" alt="card image"></p>
                                       <h4 class="card-title">홍성진</h4>
                                       <p class="card-text">I am on diet</p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
@@ -293,7 +293,7 @@
                           <div class="frontside">
                               <div class="card">
                                   <div class="card-body text-center">
-                                      <p><img src="images/tanos.jpg" class=" img-fluid"  alt="card image"></p>
+                                      <p><img src="images/intro/tanos.jpg" class=" img-fluid"  alt="card image"></p>
                                       <h4 class="card-title">안지훈</h4>
                                       <p class="card-text">A weak person</p>
                                       <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
