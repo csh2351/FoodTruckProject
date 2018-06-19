@@ -34,6 +34,11 @@ public class CustomerStoreSignupFormServlet extends HttpServlet {
 	         request.setAttribute("loc", "/customer.do");
 	         request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	         return;
+	      }else if(memberLoggedIn.getMemberLevel().equals("2")){
+	    	  request.setAttribute("msg", "점주님은 이미 점주 승인을 받으셨습니다.");
+		      request.setAttribute("loc", "/customer.do");
+		      request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+	    	  
 	      }
 		request.getRequestDispatcher("/views/customer/customerStoreSignup/customerStoreSignupForm.jsp").forward(request,response);
 	}
