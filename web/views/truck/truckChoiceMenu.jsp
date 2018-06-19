@@ -62,28 +62,24 @@
 	
 	
 	
-<div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
-  <div class="modal-dialog" role="document">
+<!-- <div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+       	<h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
           <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body">
-        ...
+        <img id="modal-menu-img"class="img-responsive img-rounded center-block" src="" alt="" width="800" height="800">
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+     
     </div>
   </div>
-</div>
-
-		<!--모달-/->
-        <div  class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
+</div> 
+ -->
+                      
+	<!--모달 틀-->
+        <div  class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
@@ -91,12 +87,12 @@
                 <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
               </div>
               <div class="modal-body">
-                 <img id="modal-menu-img"class="img-responsive img-rounded center-block" src="" alt="" width="800" height="800">
+                 <img id="modal-review-img"class="img-responsive img-rounded center-block" alt="" width="500" height="500">
               </div>
             </div>
-            <!-- /.modal-content -/->
+            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -/->
+          <!-- /.modal-dialog -->
         </div>
         <!-- /.modal mixer image -->
      
@@ -140,9 +136,13 @@
 					
 					});
 				});
-			 $('#menu-modal').on('click',function(){
+			 
+			 /* $('#menu-modal').on('click',function(){
 				 $('.modal').addClass('show');
 			 });
+			 $(".modal").on("hidden.bs.modal", function () {
+				    // put your default event here
+				}); */
 		</script>
   
 	
