@@ -447,8 +447,7 @@ results[1].address_components[3].long_name + " "
 				marker = new google.maps.Marker({
 					map : map,
 					// icon: image, // 마커로 사용할 이미지(변수)
-					title :'<%=truck.getTruckName()%>
-	',
+					title :'<%=truck.getTruckName()%>',
 					// 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
 					position : results[0].geometry.location
 				});
