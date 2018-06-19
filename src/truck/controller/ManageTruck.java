@@ -44,6 +44,7 @@ public class ManageTruck extends HttpServlet {
 			Member member = (Member)session.getAttribute("memberLoggedIn");
 			System.out.println("member :  "+member);
 			int memberPk = member.getMemberPk();
+			System.out.println("memberPk"+memberPk);
 			truck = new TruckService().manageTruck(memberPk);
 			System.out.println(truck);
 			String openTime = new SimpleDateFormat("HH:mm:ss").format(truck.getTruckOpenTime()); 

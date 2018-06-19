@@ -5,13 +5,7 @@
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckEvent.css">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/event.css">
-  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-
-  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-  <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
- 
- 
+  
  
 <%
 	int cPage = (int) request.getAttribute("cPage");
@@ -23,8 +17,6 @@
 
 	
 %>
- 
- 	
  
                   <div class="page-header">
                     <p style="font-size:14pt; font-weight:bold;">&nbsp;&nbsp;&nbsp;이벤트</p>
@@ -46,7 +38,7 @@
                                     	%>
                                         <tr>
                                             <td><%=e.getEventPk() %></td>
-                                            <td><a href="<%=request.getContextPath()%>/eventContent.do?truckPk=<%=truckPk%>"><%=e.getEventTitle() %></a></td>
+                                            <td><a href="<%=request.getContextPath()%>/eventContent.do?eventPk=<%=e.getEventPk()%>"><%=e.getEventTitle() %></a></td>
                                             <td><%=e.getEventDate()%></td>
                                             <!--트럭에서 pk가져와서 제목이랑 기간쏴주기~-->
                                         </tr>
