@@ -6,40 +6,40 @@
 
 //아이디 중복검사
 $(function(){
-	$('#memberId').blur(function(){
-	       $.ajax({
-	          url: "<%=request.getContextPath()%>/memberIdCheck.do",
-	            type:"post",
-	            data:{memberId:$('#memberId').val()},
-	            success : function(data){
-	            	   var id=$("#memberId").val();
-	            	   var num = id.search(/[0-9]/g);
-	            	   var eng = id.search(/[a-z]/ig);
-					   var spe = id.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-					  
-					   
-	                  if(id.length!=0&&data=='true'){
-	                	  if((id.search(/\s/) != -1)||(id.length < 6 || id.length > 12)||(num < 0 || eng < 0 || spe > 0)){
-	                			$("#idCheck").html("아이디는 영문,숫자조합의 6~12자리의 조합(특수문자제외)");
-	                			$("#idCheck").css("color","red");
-	                			$("#memberId").val("");
-	                			$("#memberId").focus();
-	                		}else{
-	                			$("#idCheck").css("color","green");
-	                   			$("#idCheck").html("*해당 아이디는 사용이 가능합니다.");
-	                		}
-	                 		
-	                  }else if(id.length!=0){
-	                	  $("#idCheck").html("이미 등록된 아이디입니다.");
-	                	  $("#idCheck").css("color","red");
-	                	  $("#memberId").val("");
-	                	  
-	                  }      
-	                  
-	            }
-	          });
-	      });
-	});
+   $('#memberId').blur(function(){
+          $.ajax({
+             url: "<%=request.getContextPath()%>/memberIdCheck.do",
+               type:"post",
+               data:{memberId:$('#memberId').val()},
+               success : function(data){
+                     var id=$("#memberId").val();
+                     var num = id.search(/[0-9]/g);
+                     var eng = id.search(/[a-z]/ig);
+                  var spe = id.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+                 
+                  
+                     if(id.length!=0&&data=='true'){
+                        if((id.search(/\s/) != -1)||(id.length < 6 || id.length > 12)||(num < 0 || eng < 0 || spe > 0)){
+                            $("#idCheck").html("아이디는 영문,숫자조합의 6~12자리의 조합(특수문자제외)");
+                            $("#idCheck").css("color","red");
+                            $("#memberId").val("");
+                            $("#memberId").focus();
+                        }else{
+                            $("#idCheck").css("color","green");
+                               $("#idCheck").html("*해당 아이디는 사용이 가능합니다.");
+                         }
+                          
+                     }else if(id.length!=0){
+                        $("#idCheck").html("이미 등록된 아이디입니다.");
+                        $("#idCheck").css("color","red");
+                        $("#memberId").val("");
+                        
+                     }      
+                     
+               }
+             });
+         });
+   });
 
 
 
@@ -55,30 +55,30 @@ function chkPwd(){
  var eng = pw.search(/[a-z]/ig);
 
  var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-	
+   
 
 
 if(pw.length!=0&&(pw.search(/\s/) != -1)){
 
-	 $("#pwCheck").html("비밀번호는 공백없이 입력하세요.");
-	 $("#memberPw").val("");
-	 $("#memberPw").focus();
+    $("#pwCheck").html("비밀번호는 공백없이 입력하세요.");
+    $("#memberPw").val("");
+    $("#memberPw").focus();
 
 
  }else if(pw.length!=0&&(pw.length < 8 || pw.length > 15)){
-	$("#pwCheck").html("비밀번호를 8자 이상 15자 이하로 입력하세요.");
-	 $("#memberPw").val("");
-	 $("#memberPw").focus();
+   $("#pwCheck").html("비밀번호를 8자 이상 15자 이하로 입력하세요.");
+    $("#memberPw").val("");
+    $("#memberPw").focus();
 
  }else if(pw.length!=0&&(num < 0 || eng < 0 || spe < 0) ){
-	
-	 $("#pwCheck").html("비밀번호는 영문, 숫자, 특수문자를 조합해야 합니다.");
-	 $("#memberPw").val("");
-	 $("#memberPw").focus();
+   
+    $("#pwCheck").html("비밀번호는 영문, 숫자, 특수문자를 조합해야 합니다.");
+    $("#memberPw").val("");
+    $("#memberPw").focus();
   
 
  }else if(pw.length!=0){
-	 $("#pwCheck").html("올바른 형식의 비밀번호 입니다.");
+    $("#pwCheck").html("올바른 형식의 비밀번호 입니다.");
  }
 
 }
@@ -86,18 +86,35 @@ if(pw.length!=0&&(pw.search(/\s/) != -1)){
 
 //비밀번호와 비밀번호 확인의 일치 여부 유효성
 $(function(){
-	$("#memberPw_2").blur(function(){
-		var p1=$("#memberPw").val();
-		var p2=$("#memberPw_2").val();
-	
-		if(p1.length!=0&&p2.length!=0&&p1!=p2){
-			$("#memberPw_2").val("");
-			$("#memberPw_2").focus();
-			alert("입력하신 비밀번호와 일치하지 않습니다.");
-		}
-		
-	});
+   $("#memberPw_2").blur(function(){
+      var p1=$("#memberPw").val();
+      var p2=$("#memberPw_2").val();
+   
+      if(p1.length!=0&&p2.length!=0&&p1!=p2){
+         $("#memberPw_2").val("");
+         $("#memberPw_2").focus();
+         alert("입력하신 비밀번호와 일치하지 않습니다.");
+      }
+      
+   });
 });
+
+
+function fn_pwCheck2(){
+      var p1=$("#memberPw").val();
+      var p2=$("#memberPw_2").val();
+      
+      if(p1==p2){
+      
+        $("#pwcheck2").css("color","green");
+        
+         $('#pwcheck2').html('새비밀번호와 일치합니다.');
+      }else{
+         $('#pwcheck2').html('');
+      }
+
+   }
+
 //submit할시 이용약관 확인 펑션
 function fn_enroll_validate(){
    
@@ -119,32 +136,32 @@ function fn_enroll_validate(){
     
     
    /*  if($("#memberName").val()==''){
-    	$("#memberName").val().focus();
-    	alert('필수 항목을 기입해주세요!');
+       $("#memberName").val().focus();
+       alert('필수 항목을 기입해주세요!');
           
-		return false;
+      return false;
     }  
-	   if($("#memberPhone").val()==''){
-	    	$("#memberPhone").val().focus();
-	    	alert('필수 항목을 기입해주세요!');
-	          
-			return false;
-	    }
-	   
-	   if($("#memberEmail").val()==''){
-	    	$("#memberEmail").val().focus();
-	    	alert('필수 항목을 기입해주세요!');
-	          
-			return false;
-	    }
-	   
-	   if($("#memberAddress").val()==''){
-	    	$("#memberAddress").val().focus();
-	    	alert('필수 항목을 기입해주세요!');
-	          
-			return false;
-	    } */
-	
+      if($("#memberPhone").val()==''){
+          $("#memberPhone").val().focus();
+          alert('필수 항목을 기입해주세요!');
+             
+         return false;
+       }
+      
+      if($("#memberEmail").val()==''){
+          $("#memberEmail").val().focus();
+          alert('필수 항목을 기입해주세요!');
+             
+         return false;
+       }
+      
+      if($("#memberAddress").val()==''){
+          $("#memberAddress").val().focus();
+          alert('필수 항목을 기입해주세요!');
+             
+         return false;
+       } */
+   
     return true;
  }
 
@@ -233,8 +250,8 @@ function check_del() {
             <h1>회원가입</h1>
          </div>
          <form action="<%=request.getContextPath()%>/joinEnd.do" method="post" class="form-horizontal">
-         	<p class="text-left" style="font-size:13px;color:red;">*가 표시된 내용은 필수 입력 사항입니다.</p>
-         	<br><br>
+            <p class="text-left" style="font-size:13px;color:red;">*가 표시된 내용은 필수 입력 사항입니다.</p>
+            <br><br>
             <div class="form-group">
                <label class="col-sm-3 control-label" for="memberId"><span class="text-danger">*</span>아이디</label>
                <div class="col-sm-6">
@@ -248,14 +265,15 @@ function check_del() {
                <label class="col-sm-3 control-label" for="memberPw"><span class="text-danger">*</span>비밀번호</label>
                <div class="col-sm-6">
                   <input class="form-control" id="memberPw" name="memberPw" type="password" placeholder="공백없이 영문,숫자,특수문자를 조합한 8~15자의 비밀번호" required onblur="chkPwd();">
-               	 <p id="pwCheck"></p>
+                   <p id="pwCheck"></p>
                </div>
             </div>
             <div class="form-group">
                <label class="col-sm-3 control-label" for="memberPw_2">비밀번호 확인</label>
                <div class="col-sm-6">
-                  <input class="form-control" id="memberPw_2" name="passwordCheck" type="password" placeholder="비밀번호 확인" required>
-                 
+                  <input class="form-control" id="memberPw_2" name="passwordCheck" type="password" placeholder="비밀번호 확인" required
+                  oninput="fn_pwCheck2();">
+                 <p id="pwcheck2"></p>
                </div>
             </div>
 
@@ -266,13 +284,13 @@ function check_del() {
                </div>
             </div>
 
-			 <div class="form-group">
+          <div class="form-group">
                <label class="col-sm-3 control-label" for="inputNumber"><span class="text-danger">*</span>휴대폰번호</label>
                <div class="col-sm-6">
                   <input class="form-control" id="memberPhone" name="memberPhone" type="text" placeholder="- 없이 입력해 주세요" required>
                </div>
             </div>
-			
+         
             <div class="form-group">
                <label class="col-sm-3 control-label" for="inputEmail"><span class="text-danger">*</span>이메일</label>
                <div class="col-sm-6">
@@ -550,8 +568,8 @@ function check_del() {
 
             <div class="form-group">
                <div class="col-sm-12 text-center">
-               	  <input class="btn btn-primary" type="submit" value="회원가입" onclick="return fn_enroll_validate();">
-               	  <input class="btn btn-danger" type="reset" value="가입취소">
+                    <input class="btn btn-primary" type="submit" value="회원가입" onclick="return fn_enroll_validate();">
+                    <input class="btn btn-danger" type="reset" value="가입취소">
                </div>
             </div>
          </form>
@@ -563,10 +581,6 @@ function check_del() {
 
    </article>
 </section>
-
-
-
-
 
 
 

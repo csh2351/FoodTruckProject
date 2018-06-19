@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
    
@@ -16,14 +17,14 @@ $('#memberPw').blur(function(){
             type:"post",
             data:{memberId:$('#memberId').val(), memberPw:$('#memberPw').val()},
             success : function(data){
-            	   var p1=$("#memberPw").val();
+                  var p1=$("#memberPw").val();
                   if(data=='false'&&p1.length!=0){
                      alert('현재비밀번호와 일치하지 않습니다. 다시입력해주세요');
                       //$("#memberPw").focus();
                      checkInput=true;
                      $("#memberPw").val("");
                   }else{
-                	  checkInput=false;
+                     checkInput=false;
                   }       
             }
           });
@@ -35,52 +36,69 @@ function fn_pwCheck(){
    var p2=$("#memberPwNew").val();
    
    if(p1==p2){
-	
-	  $("#pwcheck").css("color","red");
-	  
+   
+     $("#pwcheck").css("color","red");
+     
       $('#pwcheck').html('현재비밀번호와 일치합니다. 다시입력해주세요');
    }else{
-	   $('#pwcheck').html('');
+      $('#pwcheck').html('');
    }
 
 }
+
+function fn_pwCheck2(){
+      var p1=$("#memberPwNew").val();
+      var p2=$("#memberPwNew_2").val();
+      
+      if(p1==p2){
+      
+        $("#pwcheck2").css("color","green");
+        
+         $('#pwcheck2').html('새비밀번호와 일치합니다.');
+      }else{
+         $('#pwcheck2').html('');
+      }
+
+   }
+
+
 $(function(){
-	$("#memberPwNew").blur(function(){
-		   var p1=$("#memberPw").val();
-		   var p2=$("#memberPwNew").val();
-		   var check=false;
-		   if(p2.length!=0 &&p1==p2){
-			   $("#memberPwNew").val("");
-			   $("#memberPwNew").focus();
-			   check=true;
-			   alert("현재비밀번호와 일치합니다 다른 비밀번호를 입력해주세요.");
-		   }
-		   
-		   var num = p2.search(/[0-9]/g);
+   $("#memberPwNew").blur(function(){
+         var p1=$("#memberPw").val();
+         var p2=$("#memberPwNew").val();
+         var check=false;
+         if(p2.length!=0 &&p1==p2){
+            $("#memberPwNew").val("");
+            $("#memberPwNew").focus();
+            check=true;
+            alert("현재비밀번호와 일치합니다 다른 비밀번호를 입력해주세요.");
+         }
+         
+         var num = p2.search(/[0-9]/g);
 
-		   var eng = p2.search(/[a-z]/ig);
+         var eng = p2.search(/[a-z]/ig);
 
-		   var spe = p2.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+         var spe = p2.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 
-		  if(check==false&&p2.length!=0&&p2.search(/\s/) != -1){
-			  $("#memberPwNew").val("");
-			  $("#memberPwNew").focus();
-			  alert("비밀번호는 공백없이 영문,숫자,특수문자를 조합한 8자 이상 15이상이어야 합니다.");
+        if(check==false&&p2.length!=0&&p2.search(/\s/) != -1){
+           $("#memberPwNew").val("");
+           $("#memberPwNew").focus();
+           alert("비밀번호는 공백없이 영문,숫자,특수문자를 조합한 8자 이상 15이상이어야 합니다.");
 
-		   }else if(check==false&&p2.length!=0&&(p2.length < 8 || p2.length > 15)){
-			   $("#memberPwNew").val("");
-			   $("#memberPwNew").focus();
-			   alert("비밀번호는 공백없이 영문,숫자,특수문자를 조합한 8자 이상 15이상이어야 합니다.");
+         }else if(check==false&&p2.length!=0&&(p2.length < 8 || p2.length > 15)){
+            $("#memberPwNew").val("");
+            $("#memberPwNew").focus();
+            alert("비밀번호는 공백없이 영문,숫자,특수문자를 조합한 8자 이상 15이상이어야 합니다.");
 
-		   }else if(check==false&&p2.length!=0&&(num < 0 || eng < 0 || spe < 0) ){
-			   $("#memberPwNew").val("");
-			   $("#memberPwNew").focus();
-			   alert("비밀번호는 공백없이 영문,숫자,특수문자를 조합한 8자 이상 15이상이어야 합니다.");
+         }else if(check==false&&p2.length!=0&&(num < 0 || eng < 0 || spe < 0) ){
+            $("#memberPwNew").val("");
+            $("#memberPwNew").focus();
+            alert("비밀번호는 공백없이 영문,숫자,특수문자를 조합한 8자 이상 15이상이어야 합니다.");
 
-		   }else{
+         }else{
  
-		   }
-	});
+         }
+   });
 });
 
 $(function(){
@@ -90,11 +108,11 @@ $("#memberPwNew_2").blur(function(){
    var p3=$("#memberPwNew_2").val();
    
    if(checkInput==true){
-	   alert("현재 비밀번호를 입력하세요.")
-	   $("#memberPw").val("");
-	   $("#memberPwNew_2").val("");
+      alert("현재 비밀번호를 입력하세요.")
+      $("#memberPw").val("");
+      $("#memberPwNew_2").val("");
        $("#memberPwNew").val("");
-	   $("#memberPw").focus();
+      $("#memberPw").focus();
    }
    
    if(p3.length!=0&&p2!=p3)
@@ -206,8 +224,10 @@ function Postcode() {
                   <label class="col-sm-3 control-label" for="newmemberPw_2">새 비밀번호 확인<span> *</span></label>
                   <div class="col-sm-6">
                      <input class="form-control" id="memberPwNew_2"
-                        name="memberPwNew_2" type="password" placeholder="비밀번호 확인" required>
-                     
+                        name="memberPwNew_2" type="password" placeholder="비밀번호 확인" required
+                        oninput="fn_pwCheck2();">
+                     <p id="pwcheck2"></p>
+
                   </div>
                </div>
 
@@ -248,10 +268,10 @@ function Postcode() {
                         value="주소찾기" >
                   </div>
                   <div class="col-sm-6">
-                     	<input type="text" class="form-control" id="memberAddress" name="memberAddress" placeholder="주소" value="<%=memberLoggedIn.getMemberAddress()%>" required> 
+                        <input type="text" class="form-control" id="memberAddress" name="memberAddress" placeholder="주소" value="<%=memberLoggedIn.getMemberAddress()%>" required> 
                         <input type="text" class="form-control" id="memberAddressDetail" placeholder="상세주소" value="">
                   </div>
-          		<br><br><br><br>
+                <br><br><br><br>
                <div class="form-group">
                   <div class="col-sm-12 text-center">
                      <input class="btn btn-primary" type="submit"  value="수정완료" onclick="fn_change_validate();">
