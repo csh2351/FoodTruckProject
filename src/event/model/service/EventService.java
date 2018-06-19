@@ -17,6 +17,7 @@ public class EventService {
 		return eventList;
 	}
 	
+	
 	public List<Event> selectOneList(int cPage, int numPerPage,int truckPk){
 		Connection conn=getConnection();
 		List<Event> eventList=new EventDao().selectOneList(conn,cPage,numPerPage,truckPk);

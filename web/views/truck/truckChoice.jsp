@@ -21,10 +21,16 @@ $.ajax({
 		}
 })
 })
-
-	
-
 </script>
+<style>
+   #googlemap {
+    	height : 300px;
+    width: 100%;
+    border: 1px solid black;
+    }
+</style>
+
+ <!--지도안나오면 all css확인-->
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath() %>/css/foodTruckMenu.css">
@@ -80,7 +86,7 @@ $.ajax({
 									
 									
 
-									<div class="col-md-6">
+									<div class="col-md-8">
 										<p class='truck-basic-font'>
 											주소:
 											<%=truck.getTrucklocation() %></p>
@@ -96,11 +102,9 @@ $.ajax({
 											<%=truck.getTruckInfoName() %></p>
 										<span class='truck-basic-font'>상호명: <%=truck.getTruckName() %></span>
 										<br> <span class='truck-basic-font'>사업자등록번호: <%=truck.getTruckInfoRegisterNumber() %></span>
-
 									</div>
-
-									<div class="col-md-2" align="center">
-										<br>
+	
+									<div class="col-xs-12" align="center">
 										<div class="onoffswitch">
 											<input type="checkbox" name="onoffswitch"
 												class="onoffswitch-checkbox" id="myonoffswitch"
@@ -237,9 +241,9 @@ $(function geocodeLatLng() {
 						</div>
 						<div class="panel-body">
 							<div id="googlemap"></div>
-							<br> <br> <br> <br>
+							<br> <br>
 							<p id="truck_address">
-								상세 위치 :
+								위치 :
 								<%=truck.getTrucklocation() %></p>
 							<br>
 								<p>
@@ -267,7 +271,6 @@ $("#myonoffswitch").on('click', function(e) {
 	e.preventDefault();
 });
   
-
 </script>
 
 <%@ include file="/views/common/footer.jsp"%>

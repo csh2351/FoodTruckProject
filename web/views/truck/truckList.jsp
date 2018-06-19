@@ -31,6 +31,9 @@
           height: 160px;
         }
       }
+      .parsing-address{
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
 </style> 
     
     
@@ -78,7 +81,7 @@
                     
 							<div class="col-xs-7">
 								<br>
-								<p><%=list.get(i).getTrucklocation()%></p>
+								<div class="parsing-address"><p><%=list.get(i).getTrucklocation()%></p></div>
 								<div class="ratings">
      								 <div class="empty-stars"></div>
       								 평점:<div class="full-stars" style="width:<%=list.get(i).getTruckStar()*20%>%"></div>
