@@ -3,10 +3,12 @@ package event.model.service;
 import java.sql.Connection;
 import java.util.List;
 
-import static common.JDBCTemplate.*;
-
 import event.model.dao.EventDao;
 import event.model.vo.Event;
+
+import static common.JDBCTemplate.*;
+
+
 
 public class EventService {
 
@@ -18,25 +20,9 @@ public class EventService {
 	}
 	
 	
-	public List<Event> selectOneList(int cPage, int numPerPage,int truckPk){
-		Connection conn=getConnection();
-		List<Event> eventList=new EventDao().selectOneList(conn,cPage,numPerPage,truckPk);
-		close(conn);
-		return eventList;
-	}
-	
-	
 	public int selectCount() {
 		Connection conn=getConnection();
 		int result=new EventDao().selectCount(conn);
-		close(conn);
-		return result;
-	}
-	
-
-	public int selectOneCount(int truckPk) {
-		Connection conn=getConnection();
-		int result=new EventDao().selectOneCount(conn,truckPk);
 		close(conn);
 		return result;
 	}
@@ -62,9 +48,9 @@ public class EventService {
 		return notice;
 	}
 	
-	public int updateEvent(int eventPk, String eventTitle, String evnetContent) {
+	public int updateEvent(Event event) {
 		Connection conn=getConnection();
-		int result= new EventDao().updateEvent(conn,eventPk, eventTitle, evnetContent);
+		int result= new EventDao().updateEvent(conn,event);
 			
 			if(result>0) {
 				commit(conn);
@@ -87,6 +73,18 @@ public class EventService {
 			close(conn);
 			return result;
 	}
-
-
+	
+	public List<Event> selectOneList(int cPage, int numPerPage,int truckPk){
+	      Connection conn=getConnection();
+	      List<Event> eventList=new EventDao().selectOneList(conn,cPage,numPerPage,truckPk);
+	      close(conn);
+	      return eventList;
+	   }
+	
+	public int selectOneCount(int truckPk) {
+	      Connection conn=getConnection();
+	      int result=new EventDao().selectOneCount(conn,truckPk);
+	      close(conn);
+	      return result;
+	   }
 }

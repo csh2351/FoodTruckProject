@@ -2,6 +2,7 @@ package event.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -53,7 +54,7 @@ public class EventNewWriteFormEndServlet extends HttpServlet {
 		//2. 작업
 		String root=getServletContext().getRealPath("/");
 		String saveDir=root+"uploadFiles"+File.separator+"event";
-		
+		//String saveDir="C:\\Users\\hong\\Desktop\\재홍\\workspace\\semiproject0612\\web\\uploadFiles\\event";
 		//3. 작업
 		int maxSize=1024*1024*10;//10MB설정		
 		
@@ -61,11 +62,13 @@ public class EventNewWriteFormEndServlet extends HttpServlet {
 		MultipartRequest mpr=new MultipartRequest(request, saveDir,	maxSize, "UTF-8", new MyFileRenamePolicy());
 		//5. 작업 데이터 삽입작업(비지니스~)
 		Event e=new Event();
-		e.setEventPk(Integer.parseInt(mpr.getParameter("event_pk")));
-		e.setEventTitle(mpr.getParameter("event_title"));
-		e.setEventContent(mpr.getParameter("event_content"));
-		e.setOriginalFileName(mpr.getOriginalFileName("up_file")); //사용자가 올린 파일명
-		e.setRenameFileName(mpr.getFilesystemName("up_file"));// Myrename~ 가져오는 것
+		e.setEventTitle(mpr.getParameter("eventTitle"));
+		e.setEventContent(mpr.getParameter("eventContent"));
+		e.setOriginalFileName(mpr.getOriginalFileName("truck-img")); //사용자가 올린 파일명
+		e.setRenameFileName(mpr.getFilesystemName("truck-img"));// Myrename~ 가져오는 것
+		e.setEventDate(Date.valueOf(mpr.getParameter("eventDate")));
+		e.setEventEndDate(Date.valueOf(mpr.getParameter("eventEndDate")));
+		
 		
 		int result = new EventService().insertEvent(e);
 		

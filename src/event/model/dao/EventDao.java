@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Properties;
 
 import event.model.vo.Event;
-import truck.vo.Truck;
 
 import static common.JDBCTemplate.*;
 
@@ -54,10 +53,13 @@ public class EventDao {
 				event = new Event();
 				event.setEventPk(rs.getInt("event_pk"));
 				event.setEventTitle(rs.getString("event_title"));
-				event.setEventImg(rs.getString("event_img"));
 				event.setEventDate(rs.getDate("event_date"));
-				event.setEventContent(rs.getString("event_content"));				
-				
+				event.setEventContent(rs.getString("event_content"));	
+				event.setOriginalFileName(rs.getString("event_original_image"));
+				event.setRenameFileName(rs.getString("event_rename_image"));
+				event.setTruckPk(rs.getInt("truck_pk"));
+				event.setEventEndDate(rs.getDate("event_enddate"));
+	
 				eventList.add(event);
 			}			
 		}
@@ -108,9 +110,11 @@ public class EventDao {
 		{
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, event.getEventTitle());
-			pstmt.setString(2, event.getEventContent());
-			pstmt.setString(3, event.getOriginalFileName());
-			pstmt.setString(4, event.getRenameFileName());
+			pstmt.setDate(2, event.getEventDate());
+			pstmt.setString(3, event.getEventContent());
+			pstmt.setString(4, event.getOriginalFileName());
+			pstmt.setString(5, event.getRenameFileName());
+			pstmt.setDate(6, event.getEventEndDate());
 			
 			result=pstmt.executeUpdate();
 		}
@@ -141,11 +145,15 @@ public class EventDao {
 			if(rs.next())
 			{
 				event = new Event();
+				
 				event.setEventPk(rs.getInt("event_pk"));
 				event.setEventTitle(rs.getString("event_title"));
-				event.setEventImg(rs.getString("event_img"));
 				event.setEventDate(rs.getDate("event_date"));
-				event.setEventContent(rs.getString("event_content"));
+				event.setEventContent(rs.getString("event_content"));	
+				event.setOriginalFileName(rs.getString("event_original_image"));
+				event.setRenameFileName(rs.getString("event_rename_image"));
+				event.setTruckPk(rs.getInt("truck_pk"));
+				event.setEventEndDate(rs.getDate("event_enddate"));
 			}						
 		}
 		catch(Exception e)
@@ -160,16 +168,20 @@ public class EventDao {
 		return event;
 	}
 		
-	public int updateEvent(Connection conn, int eventPk, String eventTitle, String eventContent) {
+	public int updateEvent(Connection conn, Event event) {
 		PreparedStatement pstmt=null;
 		int result=0;
 		String sql=prop.getProperty("updateEvent");
 		try
 		{
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, eventTitle);
-			pstmt.setString(2, eventContent);
-			pstmt.setInt(3, eventPk);
+			pstmt.setString(1, event.getEventTitle());
+			pstmt.setString(2, event.getEventContent());
+			pstmt.setDate(3, event.getEventDate());
+			pstmt.setDate(4, event.getEventEndDate());
+			pstmt.setString(5, event.getOriginalFileName());
+			pstmt.setString(6, event.getRenameFileName());
+			pstmt.setInt(7, event.getEventPk());
 			
 			result=pstmt.executeUpdate();
 		}
@@ -205,65 +217,61 @@ public class EventDao {
 		}
 		return result;
 	}
-
-
-	public List<Event> selectOneList(Connection conn, int cPage, int numPerPage, int truckPk) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		List<Event>list=new ArrayList<>();
-		try {
-			pstmt=conn.prepareStatement(prop.getProperty("selectOneList"));
-			pstmt.setInt(1, ((cPage-1)*numPerPage+1));
-			pstmt.setInt(2, cPage*numPerPage);
-			pstmt.setInt(3, truckPk);
-			rs=pstmt.executeQuery();
-			while(rs.next()){
-				Event event=new Event();
-				event.setEventPk(rs.getInt("event_pk"));
-				event.setEventTitle(rs.getString("event_title"));
-				event.setEventDate(rs.getDate("event_date"));
-				event.setEventContent(rs.getString("event_content"));
-				event.setOriginalFileName(rs.getString("event_original_image"));
-				event.setRenameFileName(rs.getString("event_rename_image"));
-				event.setTruckPk(rs.getInt("truck_pk"));
-				list.add(event);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
-	}
 	
-	
-
-
-	public int selectOneCount(Connection conn, int truckPk) {
-			PreparedStatement pstmt=null;
-			ResultSet rs=null;
-			int result=0;
-			String sql=prop.getProperty("selectOneCount");
-			try
-			{
-				pstmt=conn.prepareStatement(sql);
-				pstmt.setInt(1, truckPk);
-				rs=pstmt.executeQuery();
-				if(rs.next())
-				{
-					result=rs.getInt("cnt");
-				}			
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-			finally
-			{
-				close(rs);
-				close(pstmt);
-			}
-			return result;
-		}
+	   public List<Event> selectOneList(Connection conn, int cPage, int numPerPage, int truckPk) {
+		      PreparedStatement pstmt=null;
+		      ResultSet rs=null;
+		      List<Event>list=new ArrayList<>();
+		      try {
+		         pstmt=conn.prepareStatement(prop.getProperty("selectOneList"));
+		         pstmt.setInt(1, ((cPage-1)*numPerPage+1));
+		         pstmt.setInt(2, cPage*numPerPage);
+		         pstmt.setInt(3, truckPk);
+		         rs=pstmt.executeQuery();
+		         while(rs.next()){
+		            Event event=new Event();
+		            event.setEventPk(rs.getInt("event_pk"));
+		            event.setEventTitle(rs.getString("event_title"));
+		            event.setEventDate(rs.getDate("event_date"));
+		            event.setEventContent(rs.getString("event_content"));
+		            event.setOriginalFileName(rs.getString("event_original_image"));
+		            event.setRenameFileName(rs.getString("event_rename_image"));
+		            event.setTruckPk(rs.getInt("truck_pk"));
+		            list.add(event);
+		         }
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }finally {
+		         close(rs);
+		         close(pstmt);
+		      }
+		      return list;
+		   }
+	   
+	   public int selectOneCount(Connection conn, int truckPk) {
+       PreparedStatement pstmt=null;
+       ResultSet rs=null;
+       int result=0;
+       String sql=prop.getProperty("selectOneCount");
+       try
+       {
+          pstmt=conn.prepareStatement(sql);
+          pstmt.setInt(1, truckPk);
+          rs=pstmt.executeQuery();
+          if(rs.next())
+          {
+             result=rs.getInt("cnt");
+          }         
+       }
+       catch(Exception e)
+       {
+          e.printStackTrace();
+       }
+       finally
+       {
+          close(rs);
+          close(pstmt);
+       }
+       return result;
+    }
 }

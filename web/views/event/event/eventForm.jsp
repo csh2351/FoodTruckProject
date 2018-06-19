@@ -8,7 +8,7 @@
 	int numPerPage = (int) request.getAttribute("numPerPage");
 	String pageBar = (String) request.getAttribute("pageBar");
 	List<Event> eventList = (List)request.getAttribute("eventList");
-	Event event = (Event)request.getAttribute("event");
+	
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/event.css">
 
@@ -29,10 +29,10 @@
 				<table class="table">
 					<thead id='tablehead'>
 						<tr>
-							<td>번호</td>
-							<td><a href="<%=request.getContextPath()%>/eventContent.do">점포명</a></td>
-							<td><a href="<%=request.getContextPath()%>/eventContent.do">제목</a></td>
-							<td>종료기간</td>
+							
+							<td>제목</td>
+							
+							<td>이벤트 기간</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,10 +45,10 @@
 								for (Event e : eventList) {
 						%>
 						<tr>
-							<td><%=e.getEventPk()%></td>
-							<td><a
-								href="<%=request.getContextPath()%>/eventContent.do?eventPk=<%=e.getEventPk()%>"><%=e.getEventTitle()%></a></td>
-							<td>관리자</td>
+							<td><a href="<%=request.getContextPath()%>/eventContent.do?eventPk=<%=e.getEventPk()%>"><%=e.getEventTitle()%></a></td>
+							
+							<td><a href="<%=request.getContextPath()%>/eventContent.do?eventPk=<%=e.getEventPk()%>"><%=e.getEventDate()%> ~ <%=e.getEventEndDate() %></a></td>
+							
 						</tr>
 						<%
 							}
@@ -56,9 +56,9 @@
 						%>
 					</tbody>
 				</table>
-				<%if(member==null) {%>
-				<%}else if(member!=null){
-      		    	if(member.getMemberLevel()==1){ %>
+				<%if(memberLoggedIn==null) {%>
+				<%}else if(memberLoggedIn!=null){
+      		    	if(memberLoggedIn.getMemberLevel().equals("1")){ %>
 				<div class="row">
 					<div class="form-group">
 						<div class="col-sm-12 text-right">

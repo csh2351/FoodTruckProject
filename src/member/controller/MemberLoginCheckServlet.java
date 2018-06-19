@@ -17,7 +17,8 @@ import member.model.vo.Member;
 /**
  * Servlet implementation class MemberLoginCheckServlet
  */
-@WebServlet("/loginCheck.do")
+@WebServlet(name="MemberLoginCheckServlet", urlPatterns="/loginCheck.do")
+
 public class MemberLoginCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -35,12 +36,10 @@ public class MemberLoginCheckServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		//System.out.println(id);
-		//System.out.println(pw);
-		
-		int result=new MemberService().loginCheck(id, pw);
+		String memberId = request.getParameter("memberId");
+		String memberPw = request.getParameter("memberPw");
+
+		int result=new MemberService().loginCheck(memberId, memberPw);
 		//System.out.println(result);
 		String view="/";
 	    String msg="";
@@ -48,12 +47,14 @@ public class MemberLoginCheckServlet extends HttpServlet {
 		
 		if(result==MemberService.LOGIN_OK)
 		{
-			Member member=new MemberService().selectOne(id);
+			Member member=new MemberService().selectOne(memberId);
 			//System.out.println(member);
 			
 			//session객체를 받아서 login데이터를 삽입
 			HttpSession session=request.getSession();
+			
 			session.setAttribute("memberLoggedIn", member);
+			//session.setMaxInactiveInterval(30);			
 			
 			//request.setAttribute("memberLoggedIn",member);
 			view="/";
