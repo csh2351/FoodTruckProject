@@ -57,8 +57,8 @@
                <button id="load-menu-button" class='btn btn-success ' type="button">더보기</button>
              </div>
           </div>
-                    <!--메뉴종료-->
-                        <!--모달 틀-->
+
+		<!--모달-->
         <div  class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
