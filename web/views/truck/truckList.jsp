@@ -37,8 +37,7 @@
 </style> 
     
     
-<% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("list");
-	//String saveDir=(String)request.getAttribute("saveDir");%>
+<% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("list");%>
   
   <%//String saveDir=application.getRealPath("/uploadFiles/truck"); %>
   
@@ -61,7 +60,7 @@
 								<!--고정값으로 할수있는 checkd찾기-->
 								<div class="onoffswitch">
 									<input type="checkbox" name="onoffswitch"
-										class="onoffswitch-checkbox" id="myonoffswitch" <%=(list.get(i).getTruckStatus()).equals("t")?"CHECKED":""%>>
+										class="onoffswitch-checkbox" id="myonoffswitch"<%--  <%=(list.get(i).getTruckStatus()).equals("t")?"CHECKED":""%> --%>>
 																								<!--checked  -->
 									<label class="onoffswitch-label" for="myonoffswitch"> <span
 										class="onoffswitch-inner"></span> <span

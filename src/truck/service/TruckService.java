@@ -16,8 +16,8 @@ public class TruckService {
 		conn=getConnection();
 	}
 
-	public List<Truck> selectAllLitst() {
-		List<Truck> list=new TruckDao().selectAllLitst(conn);
+	public List<Truck> selectAllList() {
+		List<Truck> list=new TruckDao().selectAllList(conn);
 		close(conn);
 		return list;
 	}

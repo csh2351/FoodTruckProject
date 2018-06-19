@@ -45,7 +45,7 @@ public class TruckDao {
 	
 	
 
-	public List<Truck> selectAllLitst(Connection conn) {
+	public List<Truck> selectAllList(Connection conn) {
 		try {
 			pstmp=conn.prepareStatement(prop.getProperty("selectAllList"));
 			rs=pstmp.executeQuery();

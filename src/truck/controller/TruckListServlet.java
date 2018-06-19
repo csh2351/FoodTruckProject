@@ -25,7 +25,8 @@ public class TruckListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		System.out.println("진입");
 		List<Truck> list = null;
 
 		String view = "/views/truck/truckList.jsp";
@@ -33,7 +34,7 @@ public class TruckListServlet extends HttpServlet {
 		if (selectSort != null) {
 			switch (selectSort) {
 			case "basic":
-				list = new TruckService().selectAllLitst();
+				list = new TruckService().selectAllList();
 				break;
 
 			case "grade":
@@ -48,16 +49,18 @@ public class TruckListServlet extends HttpServlet {
 				list = new TruckService().selectByReviewList();
 				break;
 			}
-			System.out.println(list);
 		}
 
 		else {
 			list = new TruckService().selectAllLitst();
 		}
-
-		if (list.size() > 0) {
+		
+		
+		if (list!=null) {
 			request.setAttribute("list", list);
-		} else {
+		} 
+		
+		else {
 			view = "/views/common/msg.jsp";
 			request.setAttribute("msg", "리스트를 불러올수없습니다.[관리자문의]");
 			request.setAttribute("loc", "/");
