@@ -6,6 +6,8 @@
   .navbar-header {
     float: none;
   }
+  
+  
   .navbar-left, .navbar-right {
     float: none !important;
   }

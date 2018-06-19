@@ -6,8 +6,8 @@
 	pageEncoding="UTF-8"%>
 <%ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("menuList");%>	
 	
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
-  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
 <link rel="stylesheet"  href="<%=request.getContextPath() %>/css/bootstrap.min.css">
 
 
@@ -76,7 +76,7 @@
  -->
                       
 	<!--모달 틀-->
-        <div   class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+        <div   class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
@@ -84,7 +84,7 @@
                 <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
               </div>
               <div class="modal-body">
-                 <img id="modal-review-img"class="img-responsive img-rounded center-block" alt="" width="500" height="500">
+                 <img id="modal-menu-img"class="img-responsive img-rounded center-block" alt="" width="500" height="500">
               </div>
             </div>
             <!-- /.modal-content -->

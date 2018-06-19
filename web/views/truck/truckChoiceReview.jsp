@@ -7,7 +7,6 @@
 	
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
-<script src='js/bootstrap.js'></script>
 
  <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList");%>
  <%int truckPk=(int)(request.getAttribute("truckPk"));%>

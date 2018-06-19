@@ -74,7 +74,7 @@ $.ajax({
 												<div class="modal-body">
 													<img id="truckbasic-modal" src="images/truck/<%=truck.getTruckRenameImage()%>"
 														class="img-responsive img-rounded center-block" alt=""
-														width="800" height="800">
+														width="500" height="500">
 												</div>
 											</div>
 											<!-- /.modal-content -->
