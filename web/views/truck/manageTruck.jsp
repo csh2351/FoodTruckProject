@@ -93,8 +93,8 @@ $(function() {
 											</div>
 											<!--갯수를 입력받아야함.-->
 											<br> <span class='truck-basic-font'>최소금액: <input
-												id="basic-input" type="number" name="min-price" value=""
-												placeholder="ex)2000원~" size="10" class="form-control">
+												id="basic-input" type="number" name="min-price" value="<%=truck.getTruckPrice()%>"
+												placeholder="ex)2000원~" size="10" class="form-control" required="required">
 											</span> <br>
 											<p class='truck-basic-font'>
 												사업자정보 :
