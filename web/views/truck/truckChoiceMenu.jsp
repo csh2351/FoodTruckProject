@@ -39,7 +39,7 @@
                           </ul>
                         </div>
                         <div class="col-xs-6" align="center">
-                          <a id="menu-modal" data-toggle="modal" data-target=".pop-up-2" >
+                          <a href="#" id="menu-modal" data-toggle="modal" data-target=".pop-up-2" >
                                 <br>
                                 <%if(menuList.get(i).getMenuRimage()!=null){ %>
                                 <img src="images/truckMenu/<%=menuList.get(i).getMenuRimage()%>" alt="" width=150 height=100 onclick="fn_modal_menu('images/truckMenu/<%=menuList.get(i).getMenuRimage()%>');"></a>
