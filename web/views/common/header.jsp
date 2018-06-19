@@ -62,8 +62,8 @@
           
           <%if(memberLoggedIn.getMemberLevel().equals("1") ) {%>
           <li><a href="<%=request.getContextPath() %>/adminStoreManagementForm.do">개발자영역</a></li>
-          <%}else if(memberLoggedIn.getMemberLevel().equals("2")) {%>
-          <li><a href="<%=request.getContextPath() %>">점포관리</a></li>
+          <%}if(memberLoggedIn.getMemberLevel().equals("1")) {%>
+          <li><a href="<%=request.getContextPath() %>/managestore.do">점포관리</a></li>
           <%} }%>
         </ul>
         
