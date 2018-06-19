@@ -50,7 +50,7 @@
 								<br>
 								<br>
 								<br>
-								<button id='addComment<%=i%>' type="button" class="btn btn-success  basic-btn">답글</button>
+								<button id='addComment<%=i%>' type="button" class="btn btn-success ">답글</button>
                               </div>
                             </div>
                             
@@ -90,8 +90,8 @@
                             </div>
                             
                               <div class="row">
-                              <div class="col-xs-12">
-                             <button id="delete-button<%=i%>"  class='btn btn-success result-btn delete-button' type="button" >삭제</button>
+                              <div class="col-xs-12" align="right">
+                             <button id="delete-button<%=i%>"  class='btn btn-success delete-button' type="button" >삭제</button>
                               </div>
                             </div>
                         	<hr>
@@ -132,8 +132,8 @@
                                    html += "<input type='hidden' name='memberPk' value='<%=member.getMemberPk()%>'/>";
                                    html += "<input type='hidden' name='truckPk' value='<%=reviewList.get(i).getTruckPk()%>'/>"; 
                                    html += " ↴<textarea name='truckCommentContent' class='form-control' style='resize: none;'></textarea>";
-                                   html += "<button type='submit' class='btn btn-success basic-btn'>등록</button>&nbsp;";
-                                   html += "<button type='reset' class='btn btn-success basic-btn'>취소</button>";
+                                   html += "<button type='submit' class='btn btn-success '>등록</button>&nbsp;";
+                                   html += "<button type='reset' class='btn btn-success 'ㅁ>취소</button>";
                                    html += "<br><hr></form></div>";
                                    //위에서 작성한 html구문을li변수 text노드에 삽입
                                    li.html(html);
@@ -149,7 +149,7 @@
                     
                      <div class="row">
                           <div class="col-xs-12 result-btn-positon">
-                            <button id="load-review-button" class='btn btn-success result-btn' type="button">더보기</button>
+                            <button id="load-review-button" class='btn btn-success' type="button">더보기</button>
                           </div>
                           <br>
                           <br>

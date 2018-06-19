@@ -66,7 +66,7 @@
                           </div>
                           <div class="col-xs-4 result-btn-positon">
                           	<br>
-                             <button id="delete-button<%=i%>"  class='btn btn-success result-btn delete-button' type="button" >삭제</button>
+                             <button id="delete-button<%=i%>"  class='btn btn-success basic-btn delete-button' type="button" >삭제</button>
                           </div>
                         </div>
                         
@@ -125,7 +125,7 @@
                     
                      <div class="row">
                           <div class="col-xs-12 result-btn-positon">
-                            <button id="load-review-button" class='btn btn-success result-btn' type="button">더보기</button>
+                            <button id="load-review-button" class='btn btn-success' type="button">더보기</button>
                           </div>
                           <br>
                           <br>
@@ -133,7 +133,7 @@
                       
                    
                     
-                                     <!--모달 틀-->
+	<!--모달 틀-->
         <div  class="modal fade pop-up-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -228,7 +228,7 @@
                           </div>
                           <div class='col-xs-4 col-md-3-body-center'>
                             <img id='comment-check-img' src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=90% height=100><br>
-                            <button class="btn-success replace">사진등록</button>
+                            <button class="btn-success replace basic-btn" >사진등록</button>
                             <div class='test'>
                               <input id='comment-input-img' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name='up_file'>
                             </div>
@@ -238,9 +238,9 @@
                         <div class="row">
                           <div class="col-xs-12 result-btn-positon">
 							<br>
-                            <button id="result-button" class='btn btn-success result-btn' type="submit">완료</button>
+                            <button id="result-button" class='btn btn-success basic-btn' type="submit">완료</button>
 
-                            <button id="reset-button" class='btn btn-success result-btn' type="reset">취소</button>
+                            <button id="reset-button" class='btn btn-success basic-btn' type="reset">취소</button>
                             <hr>
                           </div>
 

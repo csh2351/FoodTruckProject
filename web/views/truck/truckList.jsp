@@ -37,7 +37,7 @@
 </style> 
     
     
-<% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("List");
+<% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("list");
 	//String saveDir=(String)request.getAttribute("saveDir");%>
   
   <%//String saveDir=application.getRealPath("/uploadFiles/truck"); %>

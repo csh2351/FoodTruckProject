@@ -54,7 +54,7 @@
           <div class="row">
              <div class="col-xs-12 more-btn-positon">
 				<br>
-               <button id="load-menu-button" class='btn btn-success result-btn' type="button">더보기</button>
+               <button id="load-menu-button" class='btn btn-success ' type="button">더보기</button>
              </div>
           </div>
                     <!--메뉴종료-->
@@ -105,10 +105,10 @@
 			}
 			 
 			 $(function(){
-					$(".more-menu").slice(0, 2).show(); // 최초 10개 선택
+					$(".more-menu").slice(0, 5).show(); // 최초 10개 선택
 					$("#load-menu-button").click(function(e){ // Load More를 위한 클릭 이벤트e
 					e.preventDefault();
-					$(".more-menu:hidden").slice(0, 2).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+					$(".more-menu:hidden").slice(0, 5).show(); // 숨김 설정된 다음 10개를 선택하여 표시
 					
 					/* if($(".more-menu:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
 					alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고

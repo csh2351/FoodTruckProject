@@ -15,6 +15,8 @@
 	href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/manageTruck.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/all.css">
 
 <script type="text/javascript">
 $(function() {
@@ -71,7 +73,7 @@ $(function() {
 												alt="Card image cap" width=100% height=100> <br>
 
 											<div class=""></div>
-											<button class="truck-img-replace">사진등록</button>
+											<button class="truck-img-replace btn btn-success">사진등록</button>
 											<input id='truck-input-img' type="file" value="사진등록"
 												class="upload" accept="image/gif, image/jpeg, image/png"
 												name='truck-img'> <br> <br>
@@ -118,9 +120,9 @@ $(function() {
 									</div>
 									<div align="center">
 										<br>
-										<button id="basic-submit" class="btn btn-success basic-btn"
+										<button id="basic-submit" class="btn btn-success "
 											type="submit">완료</button>
-										<button class="btn btn-success basic-btn reset-button"
+										<button class="btn btn-success  reset-button"
 											type="reset">취소</button>
 									</div>
 							</div>
@@ -257,9 +259,9 @@ $(function() {
 								</p>
 								<div align="center">
 									<br>
-									<button class="btn btn-success basic-btn" type="submit"
+									<button class="btn btn-success" type="submit"
 										id="detailsubmit">완료</button>
-									<button class="btn btn-success basic-btn reset-button"
+									<button class="btn btn-success reset-button"
 										type="reset">취소</button>
 								</div>
 
@@ -447,8 +449,7 @@ results[1].address_components[3].long_name + " "
 				marker = new google.maps.Marker({
 					map : map,
 					// icon: image, // 마커로 사용할 이미지(변수)
-					title :'<%=truck.getTruckName()%>
-	',
+					title :'<%=truck.getTruckName()%>',
 					// 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
 					position : results[0].geometry.location
 				});

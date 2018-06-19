@@ -53,7 +53,7 @@
 						src="http://proxyprivat.com/images/noimage.jpeg"
 						alt="Card image cap" style="width: 81%;height: 100px"><br>
 				 <%} %>
-					<button class="btn-success menu-img-replace">사진등록</button>
+					<button class="btn btn-success menu-img-replace">사진등록</button>
 					<div class="test">
 						<input id="menu-input-img<%=i%>" type="file" value="사진등록"
 							class="upload menu-input-img"
@@ -65,9 +65,9 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12 result-btn-positon">
-					<button id="result-button<%=i%>" class="btn btn-success result-btn"
+					<button id="result-button<%=i%>" class="btn btn-success"
 						type="submit">완료</button>
-					<button id="menu-reset-btn<%=i%>" class="btn btn-success result-btn"
+					<button id="menu-reset-btn<%=i%>" class="btn btn-success"
 						type="reset" onclick="fn_menuDelete(<%=menuList.get(i).getMenuPk()%>,'<%=menuList.get(i).getMenuRimage()%>',<%=i%>)">삭제</button>
 					<hr>
 				</div>
@@ -111,9 +111,9 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12 result-btn-positon">
-					<button id="result-button0" class="btn btn-success result-btn"
+					<button id="result-button0" class="btn btn-success "
 						type="submit">완료</button>
-					<button id="menu-reset-btn0" class="btn btn-success result-btn"
+					<button id="menu-reset-btn0" class="btn btn-success "
 						type="reset" onclick="reset_img(this)">취소</button>
 					<hr>
 				</div>
@@ -203,9 +203,9 @@
 									+ ' class="menu-check-img" src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=81% height=100><br><button class="btn-success menu-img-replace">사진등록</button><div class="test"><input id='
 									+ "menu-input-img"
 									+ (i + 1)
-									+ ' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name="up_file"  style="width: 82%; height: 33px;" onclick="view_img(this)" required="required"></div></div></div><div class="row"><div class="col-xs-12 result-btn-positon"><button id='+"result-button"+(i+1)+' class="btn btn-success result-btn" type="submit">완료</button> <button id='
+									+ ' type="file" value="사진등록" class="upload" accept="image/gif, image/jpeg, image/png" name="up_file"  style="width: 82%; height: 33px;" onclick="view_img(this)" required="required"></div></div></div><div class="row"><div class="col-xs-12 result-btn-positon"><button id='+"result-button"+(i+1)+' class="btn btn-success" type="submit">완료</button> <button id='
 									+ "menu-reset-btn" + (i + 1)
-									+ ' class="btn btn-success result-btn" type="reset" onclick="reset_img(this)">취소</button><hr></div></div></form></li>');
+									+ ' class="btn btn-success " type="reset" onclick="reset_img(this)">취소</button><hr></div></div></form></li>');
 							$('#comment-main').append(list);
 							i++;
 						});
