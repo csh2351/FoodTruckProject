@@ -10,7 +10,7 @@
   
   .navbar-left, .navbar-right {
     float: none !important;
-  }
+  }http://localhost:9001/semiproject/index.jsp#myCarousel
   .navbar-toggle {
     display: block;
   }
@@ -92,4 +92,9 @@ nav a {
 
 .icon-bar {
   background-color: #727171ce;
+}
+
+/*네비게이션바와 캐러셀 사이 간격 조정  */
+.navbar{
+	margin-bottom:0px;
 }

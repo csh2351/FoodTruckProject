@@ -17,9 +17,9 @@
   <!-- 푸터아이콘에 필요한것 -->
   <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/all.css">
-  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/navbar.css">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/truckStar.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/navbar.css">
  
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
   <script src='js/bootstrap.js'></script>
@@ -28,6 +28,7 @@
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDmfjiMcgfcCVI6QKs42Kk4AvHUVdOQtso"></script>
 	
   <title>Main</title>
+
 
 </head>
 
@@ -62,9 +63,9 @@
           <%}if(memberLoggedIn.getMemberLevel().equals("1")) {%>
           <li><a href="<%=request.getContextPath() %>/managestore.do">점포관리</a></li>
           <%} }%>
+         
         </ul>
-        
-          <form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath()%>/searchTruck.do" method='post'>
+         <form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath()%>/searchTruck.do" method='post'>
           <div class="form-group">
             <select class="form-control" name="searchType">
               <option value="location">지역명</option>
@@ -77,6 +78,8 @@
           </div>
           <button type="submit" class="btn btn-default" onclick="return fn_searchValidate();">검색</button>
         </form>
+          
+       
         <script>
         	function fn_searchValidate(){
         		var searchName=$("[name=searchName]").val();
