@@ -18,7 +18,8 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/all.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
-	
+	<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
+<script src='js/bootstrap.js'></script>
 
 <script type="text/javascript">
 $(function() {
