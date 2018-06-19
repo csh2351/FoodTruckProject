@@ -6,6 +6,7 @@ import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
@@ -106,6 +107,20 @@ public class MemberService {
 		}
 		close(conn);
 		
+		return result;
+	}
+	
+	public List<Member> selectAllList(int cPage, int numPerPage){
+		Connection conn=getConnection();
+		List<Member> memberList=new MemberDao().selectAllList(conn,cPage,numPerPage);
+		close(conn);
+		return memberList;
+	}
+	
+	public int selectMemberCount() {
+		Connection conn=getConnection();
+		int result=new MemberDao().selectMemberCount(conn);
+		close(conn);
 		return result;
 	}
 	

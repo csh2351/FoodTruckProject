@@ -193,6 +193,12 @@ public class TruckService {
 		close(conn);
 		return result;
 	}
+	
+	public List<Truck> selectTruckName(String searchType, String searchName){
+		List<Truck> truckList=new TruckDao().selectTruckName(conn, searchType, searchName);
+		close(conn);
+		return truckList;
+	}
 
 
 }

@@ -16,11 +16,12 @@
     <div class='container'>
         <div class="panel">
               
-            <ul class="nav nav-tabs">
-                 <%--  <li role="presentation"><a href="<%=request.getContextPath()%>/adminStoreManagementForm.do">점주관리</a></li> --%> 
+           <ul class="nav nav-tabs">
+                 <li role="presentation"><a href="<%=request.getContextPath()%>/adminStoreManagementForm.do">점주관리</a></li>
                   <li  role="presentation"><a href="<%=request.getContextPath() %>/adminStoreEnrollList.do">점포가입신청</a></li>
                   <li class="active" role="presentation"><a href="<%=request.getContextPath() %>/adminOneForm.do">1대1문의</a></li>
-            </ul>
+           		  <li role="presentation"><a href="<%=request.getContextPath() %>/adminMemberManagementList.do">회원관리</a></li>
+			</ul>
 
                     <div class="panel-body">
                             <br>

@@ -1,9 +1,16 @@
+<%@page import="customerStoreSignup.model.vo.Signup"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-<link rel="stylesheet" href="css/nav-tabs.css">
-<link rel="stylesheet" href="css/customer.css">
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/nav-tabs.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/customer.css">
+<% 
+int cPage=(int)request.getAttribute("cPage");
+int numPerPage=(int)request.getAttribute("numPerPage");
+String pageBar=(String)request.getAttribute("pageBar");
+List<Signup> signupList = (List)request.getAttribute("signupList");
+%>
 
 
  <section>
@@ -14,6 +21,7 @@
                   <li class="active"  role="presentation"><a href="<%=request.getContextPath()%>/adminStoreManagementForm.do">점주관리</a></li>
                   <li  role="presentation"><a href="<%=request.getContextPath()%>/adminStoreEnrollList.do">점포가입신청</a></li>
                   <li role="presentation"><a href="<%=request.getContextPath() %>/adminOneForm.do">1대1문의</a></li>
+                  <li role="presentation"><a href="<%=request.getContextPath() %>/adminMemberManagementList.do">회원관리</a></li>
                 </ul>
 
                 <div class="panel-body">
@@ -29,21 +37,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><a href="<%=request.getContextPath()%>/adminStoreManagementContent.do">(점포명)</a></td>
+                                   
+                                    	<%for(Signup signup: signupList){ %>
+                                     <tr>
+                                    
+                                        <td><a href="<%=request.getContextPath()%>/truckSelectOne?truckPk=<%=signup.getTruckPk()%>"><%=signup.getTruckName() %></a></td>
                                         <td></td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td><a href="<%=request.getContextPath()%>/adminStoreManagementContent.do">(점포명)</a></td>
-                                        <td></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="<%=request.getContextPath()%>/adminStoreManagementContent.do">(점포명)</a></td>
-                                        <td></td>
-                                        
-                                    </tr>
+                                      <tr>
+                                    	<%} %>
                                 </tbody>
                             </table>
                 </div>

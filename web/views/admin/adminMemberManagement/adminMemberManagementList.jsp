@@ -5,12 +5,12 @@
 <%@ include file="/views/common/header.jsp"%>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/nav-tabs.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/customer.css">
-  <%@page import="mypageQuestion.model.vo.Qna"%>
+  
 <%
 int cPage=(int)request.getAttribute("cPage");
 int numPerPage=(int)request.getAttribute("numPerPage");
 String pageBar=(String)request.getAttribute("pageBar");
-List<Qna> qnaList=(List)request.getAttribute("qnaList");
+List<Member> memberList=(List)request.getAttribute("memberList");
 
 %>
 
@@ -20,40 +20,38 @@ List<Qna> qnaList=(List)request.getAttribute("qnaList");
             <div class="panel">
               
                 <ul class="nav nav-tabs">
-                 <li role="presentation"><a href="<%=request.getContextPath()%>/adminStoreManagementForm.do">점주관리</a></li>
-                  <li  role="presentation"><a href="<%=request.getContextPath() %>/adminStoreEnrollList.do">점포가입신청</a></li>
-                  <li class="active" role="presentation"><a href="<%=request.getContextPath() %>/adminOneForm.do">1대1문의</a></li>
-           		  <li role="presentation"><a href="<%=request.getContextPath() %>/adminMemberManagementList.do">회원관리</a></li>
-			</ul>
+                  <li   role="presentation"><a href="<%=request.getContextPath() %>/adminStoreManagementForm.do">점주관리</a></li>
+                  <li role="presentation"><a href="<%=request.getContextPath()%>/adminStoreEnrollList.do">점포가입신청</a></li>
+                  <li role="presentation"><a href="<%=request.getContextPath() %>/adminOneForm.do">1대1문의</a></li>
+                  <li class="active" role="presentation"><a href="<%=request.getContextPath() %>/adminMemberManagementList.do">회원관리</a></li>
+                </ul>
 
                 <div class="panel-body">
                         <br>
-                        <h2>1대1 문의</h2>
+                        <h2>회원관리</h2>
                         <br>
                         <table class="table">
                                 <thead id='tablehead'>
                                         <tr>
                                             <td>번호</td>
-                                            <td>제목</td>
-                                            <td>작성자</td>
-                                            <td>작성일자</td>
-                                            <td>답변 여부</td>
+                                            <td>아이디</td>
+                                            <td>이름</td>
+                                            <td>구분</td>  
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<%if(qnaList==null){ %>
+                                    	<%if(memberList==null){ %>
             								<tr>
-            								<td><p>검색 결과가 없습니다.</p></td>
+            								<td colspan='4'>검색 결과가 없습니다.</td>
             								</tr>
             							<%}else{
-            								for(Qna qna: qnaList){
+            								for(Member m: memberList){
             									%>
                                         <tr>
-                                            <td><%=qna.getQnaPk() %></td>
-                                            <td><a href="<%=request.getContextPath() %>/adminOneContent.do?qnaPk=<%=qna.getQnaPk() %>"><%=qna.getQnaTitle() %></a></td>
-                                            <td><a href="<%=request.getContextPath() %>/adminOneContent.do?qnaPk=<%=qna.getQnaPk() %>"><%=qna.getQnaWriter() %></a></td>
-                                            <td><%=qna.getQnaDate() %></td>
-                                            <td><%=qna.getQnaAnswerCheck() %></td>
+                                            <td><%=m.getMemberPk()%></td>
+                                            <td><a href="<%=request.getContextPath() %>/adminMemberContent.do?memberPk=<%=m.getMemberPk() %>"><%=m.getMemberId()%></a></td>
+                                            <td><a href="<%=request.getContextPath() %>/adminMemberContent.do?memberPk=<%=m.getMemberPk() %>"><%=m.getMemberName()%></a></td>
+                                            <td><a href="<%=request.getContextPath() %>/adminMemberContent.do?memberPk=<%=m.getMemberPk() %>"><%if(m.getMemberLevel().equals("1")){%>관리자<%}else if(m.getMemberLevel().equals("2")){ %>점주<%}else{ %>일반 사용자<%} %></a></td> 
                                         </tr>
                                         <%}} %>
                                       
