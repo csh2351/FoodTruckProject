@@ -8,8 +8,7 @@
 	
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/foodTruckReview.css">
-<link rel="stylesheet"
-   href="<%=request.getContextPath() %>/css/bootstrap.min.css">
+<link rel="stylesheet"  href="<%=request.getContextPath() %>/css/bootstrap.min.css">
 
 
 
@@ -79,7 +78,7 @@
  -->
                       
 	<!--모달 틀-->
-        <div  class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+        <div   class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
