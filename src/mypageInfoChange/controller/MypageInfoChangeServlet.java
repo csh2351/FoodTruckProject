@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.model.service.MemberService;
+import member.model.vo.Member;
+
 /**
  * Servlet implementation class MypageInfoChangeServlet
  */
@@ -26,6 +29,15 @@ public class MypageInfoChangeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String memberPk=request.getParameter("memberPk");
+		
+		Member member=new MemberService().selectOnePk(memberPk);
+		if(member==null) {
+			
+		}else {
+			request.setAttribute("member", member);
+		}
+		
 		request.getRequestDispatcher("/views/mypage/mypageInfoChange/mypageInfoChange.jsp").forward(request, response);
 	}
 
