@@ -8,12 +8,14 @@
 
 <%ArrayList<TruckMenu>menuList=(ArrayList<TruckMenu>)request.getAttribute("menuList");
  int temp=0;
- int truckPk=(int)request.getAttribute("truckPk");%>	
+ int truckPk=(int)request.getAttribute("truckPk");%>
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/manageTruck.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/foodTruckReview.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/foodTruckReview.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
@@ -24,41 +26,47 @@
 
 
 <ul id='comment-main'>
-<%if(menuList.size()>0){ 
+	<%if(menuList.size()>0){ 
 	for(int i=0; i<menuList.size(); i++){%>
 	<li id="addr<%=i%>">
-		<form action="<%=request.getContextPath()%>/truckMenuUpdateEnd" method="post" enctype="multipart/form-data">
+		<form action="<%=request.getContextPath()%>/truckMenuUpdateEnd"
+			method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-xs-9">
 					<br>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="form-group">
-							    <input name="menuName" class="form-control" type="text" value="<%=menuList.get(i).getMenuName()%>"><br>
-								<input name="menuPrice" class="form-control" type="number" value="<%=menuList.get(i).getMenuPrice()%>">
-							    <input type="hidden" name="menuPk" value="<%=menuList.get(i).getMenuPk()%>" />
-							    <input type="hidden" name="truckPk" value="<%=truckPk%>" />
-								<input type="hidden" name="old_file" value="<%=menuList.get(i).getMenuRimage()%>" />
+								<input id="menu-name<%=i%>" name="menuName" class="form-control"
+									type="text" value="<%=menuList.get(i).getMenuName()%>"><br>
+								<input id="menu-price<%=i%>" name="menuPrice"
+									class="form-control" type="number"
+									value="<%=menuList.get(i).getMenuPrice()%>"> <input
+									type="hidden" name="menuPk"
+									value="<%=menuList.get(i).getMenuPk()%>" /> <input
+									type="hidden" name="truckPk" value="<%=truckPk%>" /> <input
+									type="hidden" name="old_file"
+									value="<%=menuList.get(i).getMenuRimage()%>" />
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-xs-3 col-md-3-body-center">
-				 <%if(menuList.get(i).getMenuRimage()!=null){ %>
+					<%if(menuList.get(i).getMenuRimage()!=null){ %>
 					<img id="menu-check-img<%=i%>" class="menu-check-img"
 						src="images/truckMenu/<%=menuList.get(i).getMenuRimage()%>"
-						alt="Card image cap" style="width: 81%;height: 100px"><br>
-				 <%}else{ %>
+						alt="Card image cap" style="width: 81%; height: 100px"><br>
+					<%}else{ %>
 					<img id="menu-check-img<%=i%>" class="menu-check-img"
 						src="http://proxyprivat.com/images/noimage.jpeg"
-						alt="Card image cap" style="width: 81%;height: 100px"><br>
-				 <%} %>
+						alt="Card image cap" style="width: 81%; height: 100px"><br>
+					<%} %>
 					<button class="btn btn-success menu-img-replace">사진등록</button>
 					<div class="test">
 						<input id="menu-input-img<%=i%>" type="file" value="사진등록"
 							class="upload menu-input-img"
-							accept="image/gif, image/jpeg, image/png" name="up_file" style="width: 82%; height: 33px;"
-							onclick="view_img(this)">
+							accept="image/gif, image/jpeg, image/png" name="up_file"
+							style="width: 82%; height: 33px;" onclick="view_img(this)">
 					</div>
 					<br>
 				</div>
@@ -68,29 +76,65 @@
 					<button id="result-button<%=i%>" class="btn btn-success"
 						type="submit">완료</button>
 					<button id="menu-reset-btn<%=i%>" class="btn btn-success"
-						type="reset" onclick="fn_menuDelete(<%=menuList.get(i).getMenuPk()%>,'<%=menuList.get(i).getMenuRimage()%>',<%=i%>)">삭제</button>
+						type="reset"
+						onclick="fn_menuDelete(<%=menuList.get(i).getMenuPk()%>,'<%=menuList.get(i).getMenuRimage()%>',<%=i%>)">삭제</button>
 					<hr>
 				</div>
 			</div>
 		</form>
 	</li>
-		
-<%	
+
+	<script type="text/javascript">
+                  
+                //트럭이름제한
+          		$('#menu-name<%=i%>').blur(function() {
+          					var menuName=$(this);
+          							console.log(menuName.val());
+          							if(menuName.val().length>9){
+          							alert("9자 이하로 입력하세요");
+          							menuName.val(' ');
+          							menuName.focus();
+          								}
+          							if(menuName.val().trim().length){
+          								alert("공백없이 입력하세요");
+          								}
+          							});
+                
+          		$('#menu-price<%=i%>').blur(function() {
+  					var menuPrice=$(this);
+  							console.log(menuPrice.val());
+  							if(menuPrice.val().length>9){
+  							alert("9자 이하로 입력하세요");
+  							menuPrice.val(' ');
+  							menuPrice.focus();
+  								}
+  							if(menuPrice.val().trim().length){
+  								alert("공백없이 입력하세요");
+  								}
+  							});
+				</script>
+
+
+
+	<%	
 	//마지막 인덱스 카운터변수
 	temp=i;
 	}
 	}else{%>
 	<li id="addr0">
-		<form action="<%=request.getContextPath()%>/truckMenuInsertEnd" method="post" enctype="multipart/form-data">
+		<form action="<%=request.getContextPath()%>/truckMenuInsertEnd"
+			method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-xs-9">
 					<br>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="form-group">
-								<input name="menuName" class="form-control" type="text" placeholder="메뉴입력" required="required"><br> 
-								<input name="menuPrice" class="form-control" type="number" placeholder="가격입력" required="required">
-							 	<input type="hidden" name="truckPk" value="<%=truckPk%>" />
+								<input name="menuName" class="form-control" type="text"
+									placeholder="메뉴입력" required="required"><br> <input
+									name="menuPrice" class="form-control" type="number"
+									placeholder="가격입력" required="required"> <input
+									type="hidden" name="truckPk" value="<%=truckPk%>" />
 							</div>
 						</div>
 					</div>
@@ -98,29 +142,29 @@
 				<div class="col-xs-3 col-md-3-body-center">
 					<img id="menu-check-img0" class="menu-check-img"
 						src="http://proxyprivat.com/images/noimage.jpeg"
-						alt="Card image cap" style="width: 81%;height: 100px"><br>
+						alt="Card image cap" style="width: 81%; height: 100px"><br>
 					<button class="btn-success menu-img-replace">사진등록</button>
 					<div class="test">
 						<input id="menu-input-img0" type="file" value="사진등록"
 							class="upload menu-input-img"
-							accept="image/gif, image/jpeg, image/png" name="up_file" style="width: 82%; height: 33px;"
-							onclick="view_img(this)" required="required">
+							accept="image/gif, image/jpeg, image/png" name="up_file"
+							style="width: 82%; height: 33px;" onclick="view_img(this)"
+							required="required">
 					</div>
 					<br>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12 result-btn-positon">
-					<button id="result-button0" class="btn btn-success "
-						type="submit">완료</button>
-					<button id="menu-reset-btn0" class="btn btn-success "
-						type="reset" onclick="reset_img(this)">취소</button>
+					<button id="result-button0" class="btn btn-success " type="submit">완료</button>
+					<button id="menu-reset-btn0" class="btn btn-success " type="reset"
+						onclick="reset_img(this)">취소</button>
 					<hr>
 				</div>
 			</div>
 		</form>
 	</li>
-<%} %>
+	<%} %>
 </ul>
 
 
@@ -128,7 +172,7 @@
 	<button id="addBtn" type="button" class='btn '>+</button>
 	<button id="addBtnRemove" type="button" class='btn'>-</button>
 
- </div>
+</div>
 
 
 
@@ -197,8 +241,8 @@
 							list = $('<li id='
 									+ "addr"
 									+ (i + 1) 
-									+ '><form action="<%=request.getContextPath()%>/truckMenuInsertEnd" method="post"  enctype="multipart/form-data"><div clas="row"><div class="col-xs-9"><br><div class="row"><div class="col-xs-12"><div class="form-group"><input name="menuName"class="form-control" type="text" placeholder="메뉴입력"><br><input name="menuPrice" class="form-control" type="number" placeholder="가격입력"><input type="hidden" name="truckPk" value="<%=truckPk%>" /></div></div></div></div><div class="col-xs-3 col-md-3-body-center"><img id='
-									+ "menu-check-img"
+									+ '><form action="<%=request.getContextPath()%>/truckMenuInsertEnd" method="post" enctype="multipart/form-data"><div clas="row"><div class="col-xs-9"><br><div class="row"><div class="col-xs-12"><div class="form-group"><input''name="menuName"class="form-control" type="text" placeholder="메뉴입력"><br><input name="menuPrice" class="form-control" type="number" placeholder="가격입력"><input type="hidden" name="truckPk" value="<%=truckPk%>" /></div></div></div></div><div class="col-xs-3 col-md-3-body-center"><img id='
+									+ "menu-check-img" 
 									+ (i + 1)
 									+ ' class="menu-check-img" src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=81% height=100><br><button class="btn-success menu-img-replace">사진등록</button><div class="test"><input id='
 									+ "menu-input-img"
@@ -209,7 +253,7 @@
 							$('#comment-main').append(list);
 							i++;
 						});
-
+																	
 		$('#addBtnRemove').click(function() {
 			if(i==<%=temp%>){
 				alert("삭제할수 없습니다[-버튼으로 삭제불가]");				

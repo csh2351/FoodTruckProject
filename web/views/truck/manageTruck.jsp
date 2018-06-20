@@ -73,6 +73,22 @@ $(function() {
 											<br>
 											<!-- <div class='col-md-3-body-center'> -->
 
+											<script type="text/javascript">
+											$('#basic-input').blur(function() {
+												var truckName=$(this);
+												console.log(truckName.val());
+												if(truckName.val().length>9){
+													alert("9자 이하로 입력하세요");
+													truckName.val(' ');
+													truckName.focus();
+												}
+												
+												if(truckName.val().trim().length){
+													alert("공백없이 입력하세요");
+												}
+											});
+											</script>
+
 											<%
 												if (truck.getTruckRenameImage() == null) {
 											%>
@@ -369,6 +385,21 @@ $(function() {
 				})
 	})
 	
+	
+	//트럭이름제한
+		$('#basic-input').blur(function() {
+												var truckName=$(this);
+												console.log(truckName.val());
+												if(truckName.val().length>9){
+													alert("9자 이하로 입력하세요");
+													truckName.val(' ');
+													truckName.focus();
+												}
+												
+												if(truckName.val().trim().length){
+													alert("공백없이 입력하세요");
+												}
+											});
 </script>
 <script>
 // 구글 맵 부분
@@ -484,8 +515,7 @@ results[1].address_components[3].long_name + " "
 				marker = new google.maps.Marker({
 					map : map,
 					// icon: image, // 마커로 사용할 이미지(변수)
-					title :'<%=truck.getTruckName()%>
-	',
+					title :'<%=truck.getTruckName()%>',
 					// 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
 					position : results[0].geometry.location
 				});

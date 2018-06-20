@@ -101,14 +101,16 @@
 				</li>
 				</div>
 				<%} %>
-				
+			
+			
+			<%if(!list.isEmpty()){ %>	
 				   <div class="row">
              <div class="col-xs-12 more-btn-positon">
 				<br>
                <button id="load-list-button" class='btn btn-success more-btn' type="button">더보기</button>
              </div>
           </div>
-				
+			<%} %>	
 				
 <script>
 	//on/off스위치

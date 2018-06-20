@@ -18,7 +18,6 @@
 			</div>
                   <ul class='menu-ul-main'>
 
-                    <!--메뉴시작-->
                     <%for(int i=0; i<menuList.size(); i++){ %>
                  <div class="more-menu" style="display: none;"> 
                     <li>
@@ -28,10 +27,10 @@
                           <ul class='menu-ul'>
                             <div class="menuName">
                               <br>
-                              <span class='panel-2-body-font'>메뉴명 : <%=menuList.get(i).getMenuName() %></span>
+                              <span id="menu-name<%=i%>" class='panel-2-body-font'>메뉴명 : <%=menuList.get(i).getMenuName() %></span>
                               <br>
                               <br>
-                              <span class='panel-2-body-font'>가격 : <%=menuList.get(i).getMenuPrice() %> </span>
+                              <span id="menu-price<%=i%>" class='panel-2-body-font'>가격 : <%=menuList.get(i).getMenuPrice() %> </span>
                             </div>
                           </ul>
                         </div>
@@ -57,28 +56,8 @@
              </div>
           </div>
 	<%} %>
-	<!-- test Modal -->
-	
-	
-	
-<!-- <div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-       	<h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
-          <span aria-hidden="true">&times;</span>
-      </div>
-      <div class="modal-body">
-        <img id="modal-menu-img"class="img-responsive img-rounded center-block" src="" alt="" width="800" height="800">
-      </div>
-     
-    </div>
-  </div>
-</div> 
- -->
-                      
-	<!--모달 틀-->
-        <div   class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
+
+        <div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true" data-backdrop="false">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
@@ -129,19 +108,9 @@
 					e.preventDefault();
 					$(".more-menu:hidden").slice(0, 5).show(); // 숨김 설정된 다음 10개를 선택하여 표시
 					
-					/* if($(".more-menu:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
-					alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
-					} */
-					
 					});
 				});
-			 
-			 /* $('#menu-modal').on('click',function(){
-				 $('.modal').addClass('show');
-			 });
-			 $(".modal").on("hidden.bs.modal", function () {
-				    // put your default event here
-				}); */
+		
 		</script>
   
 	
