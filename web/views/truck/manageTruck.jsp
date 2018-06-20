@@ -56,9 +56,7 @@ $(function() {
 								<h3 class='panel-title truck-panel-header'>기본정보</h3>
 							</div>
 							<div class='panel-body pannel-basic'>
-								<form name="truckBasicInsert"
-									action="<%=request.getContextPath()%>/truckUpdate"
-									method="post" enctype="multipart/form-data">
+								<form name="truckBasicInsert" action="<%=request.getContextPath()%>/truckUpdate" method="post" enctype="multipart/form-data">
 									<input type="hidden" value="<%=truck.getTruckPk()%>"
 										name="truck-pk">
 									<div class="row">
@@ -81,10 +79,6 @@ $(function() {
 													alert("9자 이하로 입력하세요");
 													truckName.val(' ');
 													truckName.focus();
-												}
-												
-												if(truckName.val().trim().length){
-													alert("공백없이 입력하세요");
 												}
 											});
 											</script>
@@ -177,8 +171,8 @@ $(function() {
 										<button id="reset-button"
 											class="btn btn-success  reset-button" type="reset">취소</button>
 									</div>
-							</div>
 							</form>
+							</div>
 						</div>
 					</div>
 					<br> <br>
@@ -316,7 +310,6 @@ $(function() {
 									<button class="btn btn-success" type="submit" id="detailsubmit">완료</button>
 									<button class="btn btn-success reset-button" type="reset">취소</button>
 								</div>
-
 							</form>
 						</div>
 					</div>
@@ -386,20 +379,6 @@ $(function() {
 	})
 	
 	
-	//트럭이름제한
-		$('#basic-input').blur(function() {
-												var truckName=$(this);
-												console.log(truckName.val());
-												if(truckName.val().length>9){
-													alert("9자 이하로 입력하세요");
-													truckName.val(' ');
-													truckName.focus();
-												}
-												
-												if(truckName.val().trim().length){
-													alert("공백없이 입력하세요");
-												}
-											});
 </script>
 <script>
 // 구글 맵 부분

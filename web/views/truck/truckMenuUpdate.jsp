@@ -84,7 +84,7 @@
 		</form>
 	</li>
 
-	<script type="text/javascript">
+			<%-- <script type="text/javascript">
                   
                 //트럭이름제한
           		$('#menu-name<%=i%>').blur(function() {
@@ -95,9 +95,7 @@
           							menuName.val(' ');
           							menuName.focus();
           								}
-          							if(menuName.val().trim().length){
-          								alert("공백없이 입력하세요");
-          								}
+          						
           							});
                 
           		$('#menu-price<%=i%>').blur(function() {
@@ -112,7 +110,7 @@
   								alert("공백없이 입력하세요");
   								}
   							});
-				</script>
+				</script> --%>
 
 
 
@@ -241,7 +239,7 @@
 							list = $('<li id='
 									+ "addr"
 									+ (i + 1) 
-									+ '><form action="<%=request.getContextPath()%>/truckMenuInsertEnd" method="post" enctype="multipart/form-data"><div clas="row"><div class="col-xs-9"><br><div class="row"><div class="col-xs-12"><div class="form-group"><input''name="menuName"class="form-control" type="text" placeholder="메뉴입력"><br><input name="menuPrice" class="form-control" type="number" placeholder="가격입력"><input type="hidden" name="truckPk" value="<%=truckPk%>" /></div></div></div></div><div class="col-xs-3 col-md-3-body-center"><img id='
+									+ '><form action="<%=request.getContextPath()%>/truckMenuInsertEnd" method="post" enctype="multipart/form-data"><div clas="row"><div class="col-xs-9"><br><div class="row"><div class="col-xs-12"><div class="form-group"><input name="menuName"class="form-control" type="text" placeholder="메뉴입력"><br><input name="menuPrice" class="form-control" type="number" placeholder="가격입력"><input type="hidden" name="truckPk" value="<%=truckPk%>" /></div></div></div></div><div class="col-xs-3 col-md-3-body-center"><img id='
 									+ "menu-check-img" 
 									+ (i + 1)
 									+ ' class="menu-check-img" src="http://proxyprivat.com/images/noimage.jpeg" alt="Card image cap" width=81% height=100><br><button class="btn-success menu-img-replace">사진등록</button><div class="test"><input id='
@@ -265,7 +263,6 @@
 				i--;
 			}
 			}
-			
 			//ajax처리
 		}) 
 		
