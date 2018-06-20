@@ -31,7 +31,7 @@ public class CustomerStoreSignupFormServlet extends HttpServlet {
 		Member memberLoggedIn=(Member)request.getSession().getAttribute("memberLoggedIn");
 	      if(memberLoggedIn==null) {
 	         request.setAttribute("msg", "점주 가입 신청은 로그인  후에 이용가능합니다.");
-	         request.setAttribute("loc", "/customer.do");
+	         request.setAttribute("loc", "/login.do");
 	         request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	         return;
 	      }

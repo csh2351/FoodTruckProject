@@ -46,7 +46,7 @@ public class MemberJoinEndServlet extends HttpServlet {
 		int result=new MemberService().insertMember(member);
 		//결과를 가지고 분기 처리
 		String msg="";
-		String loc="/";
+		String loc="/login.do";
 		String view="views/common/msg.jsp";
 		if(result>0)
 		{
