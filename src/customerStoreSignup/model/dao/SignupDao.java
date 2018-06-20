@@ -40,7 +40,6 @@ public class SignupDao {
 			pstmt.setString(3, signup.getTruckInfoName());
 			pstmt.setInt(4, signup.getTruckInfoRegisterNumber());
 			pstmt.setInt(5, signup.getMemberPk());
-
 			
 			result=pstmt.executeUpdate();
 			

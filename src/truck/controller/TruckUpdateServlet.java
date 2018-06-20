@@ -73,7 +73,6 @@ public class TruckUpdateServlet extends HttpServlet {
 		if (CheckDetail.equals("detail")) { // 디테일단에서 폼 전송했을시
 			truck.setTruckHoliday(mpr.getParameter("truck-holiday"));
 			truck.setTrucklocation(mpr.getParameter("truck-address"));
-
 			System.out.println(truck.getTruckOpenTime());
 			System.out.println(truck.getTruckCloseTime());
 
@@ -95,31 +94,33 @@ public class TruckUpdateServlet extends HttpServlet {
 			truck.setLogitude(Double.parseDouble(mpr.getParameter("truck-logitude")));
 			result = new TruckService().updateTruck(truck);
 
-		} else { // 베이직 단에서 폼 전송시
+		} else {
+			if (truck.getTruckRenameImage() != null) { // 베이직 단에서 폼 전송시
+				// 다른것만바꿧을떄 처리~
+				if (truck.getTruckRenameImage().equals(mpr.getParameter("rimage"))) {
+					truck.setTruckName(mpr.getParameter("truck-name"));
+					truck.setTruckOriginalImage(mpr.getParameter("oimage"));
+					truck.setTruckRenameImage(mpr.getParameter("rimage"));
+				}
 
-			//다른것만바꿧을떄 처리~
-			if(truck.getTruckRenameImage().equals(mpr.getParameter("rimage"))){
-				truck.setTruckName(mpr.getParameter("truck-name"));
-				truck.setTruckOriginalImage(mpr.getParameter("oimage"));
-				truck.setTruckRenameImage(mpr.getParameter("rimage"));
-			}
-			
-			else {
+				else {
+					truck.setTruckName(mpr.getParameter("truck-name"));
+					truck.setTruckOriginalImage(mpr.getOriginalFileName("truck-img"));
+					truck.setTruckRenameImage(mpr.getFilesystemName("truck-img"));
+				}
+				// 다른것만바꿧을떄 처리~
+			} else {
 				truck.setTruckName(mpr.getParameter("truck-name"));
 				truck.setTruckOriginalImage(mpr.getOriginalFileName("truck-img"));
 				truck.setTruckRenameImage(mpr.getFilesystemName("truck-img"));
 			}
-			//다른것만바꿧을떄 처리~
 
 			truck.setTruckContent(mpr.getParameter("truck-content"));
 			truck.setTruckPrice(Integer.parseInt(mpr.getParameter("min-price")));
-			String truckStatus = mpr.getParameter("onoffswitch");
-			if (truckStatus == null) {
-				truck.setTruckStatus("f");
-			}
-			result = new TruckService().updateTruck(truck);
 		}
+		result = new TruckService().updateTruck(truck);
 		if (result > 0) {
+
 			view = "/views/truck/truckChoice.jsp";
 			request.setAttribute("truck", truck);
 			request.setAttribute("truckChoice", "truckChoiceMenu");

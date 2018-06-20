@@ -46,8 +46,8 @@ public class TruckSelectOneServlet extends HttpServlet {
 		//댓글삭제로직~
 		
 		Truck truck=new TruckService().selectOne(truckPk);
-		String openTime = new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(truck.getTruckOpenTime()); 
-		String closeTime = new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(truck.getTruckCloseTime());
+		String openTime = new SimpleDateFormat("HH시 mm분 ss초").format(truck.getTruckOpenTime()); 
+		String closeTime = new SimpleDateFormat("HH시 mm분 ss초").format(truck.getTruckCloseTime());
 		request.setAttribute("openTime", openTime);
 		request.setAttribute("closeTime", closeTime);
 
