@@ -101,8 +101,16 @@ public class EventUpdateFormEndServlet extends HttpServlet {
 				e.setRenameFileName(newFile);
 				e.setEventDate(Date.valueOf(mpr.getParameter("eventDate")));
 				e.setEventEndDate(Date.valueOf(mpr.getParameter("eventEndDate")));
+				String truckPk=mpr.getParameter("truckPk");
 				
-				int result=new EventService().updateEvent(e);
+				boolean check=false;
+				if(truckPk.length()==0&&truckPk.equals("")) {
+					check=true;
+				}else {
+				e.setTruckPk(Integer.parseInt(mpr.getParameter("truckPk")));
+				}
+				
+				int result=new EventService().updateEvent(e, check);
 				
 				
 				String view="/views/common/msg.jsp";

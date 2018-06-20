@@ -16,12 +16,14 @@ List<Signup> signupList = (List)request.getAttribute("signupList");
         <div class='container'>
             <div class="panel">
               
-                <ul class="nav nav-tabs">
-                  <li  role="presentation"><a href="<%=request.getContextPath()%>/adminStoreManagementForm.do">점주관리</a></li>             
-                  <li class="active"  role="presentation"><a href="<%=request.getContextPath()%>/adminStoreEnrollList.do">점포가입신청</a></li>
-                  <li role="presentation"><a href="<%=request.getContextPath() %>/adminOneForm.do">1대1문의</a></li>
-                </ul>
-
+               <ul class="nav nav-tabs">
+				<li role="presentation"><a
+					href="<%=request.getContextPath()%>/adminStoreManagementForm.do">점주관리</a></li>
+				<li class="active" role="presentation"><a
+					href="<%=request.getContextPath()%>/adminStoreEnrollList.do">점포가입신청</a></li>
+				<li role="presentation"><a
+					href="<%=request.getContextPath() %>/adminOneForm.do">1대1문의</a></li>
+			</ul>
                 <div class="panel-body">
                         <br>
                         <h3>점포 가입 신청</h3>
@@ -42,9 +44,9 @@ List<Signup> signupList = (List)request.getAttribute("signupList");
                            				%>
                                   	<tr>
                   
-           								<td><a href="<%=request.getContextPath()%>/adminStoreEnrollContent.do?memberPk=<%=s.getMemberPk()%>"><%=s.getTruckPk()%></a></td>
-                            			<td><%=s.getMemberId() %></td>
-                            			<td><%=s.getTruckInfoName() %></td>     
+           								<td><%=s.getTruckPk()%></td>
+                            			<td><a href="<%=request.getContextPath()%>/adminStoreEnrollContent.do?memberPk=<%=s.getMemberPk()%>"><%=s.getMemberId() %></a></td>
+                            			<td><a href="<%=request.getContextPath()%>/adminStoreEnrollContent.do?memberPk=<%=s.getMemberPk()%>"><%=s.getTruckInfoName() %></a></td>     
                             			<td><%=s.getTruckApprove() %> </td>
                            			</tr>
                            			<%}

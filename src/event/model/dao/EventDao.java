@@ -101,14 +101,19 @@ public class EventDao {
 		return result;
 	}
 		
-	public int insertEvent(Connection conn, Event event)
+	public int insertEvent(Connection conn, Event event, boolean check)
 	{
 		PreparedStatement pstmt=null;
 		int result=0;
-		String sql=prop.getProperty("insertEvent");
+		
 		try
 		{
-			pstmt=conn.prepareStatement(sql);
+			if(check==true) {
+				pstmt=conn.prepareStatement(prop.getProperty("insertEvent1"));
+			}else {
+				pstmt=conn.prepareStatement(prop.getProperty("insertEvent2"));
+				pstmt.setInt(7, event.getTruckPk());
+			}
 			pstmt.setString(1, event.getEventTitle());
 			pstmt.setDate(2, event.getEventDate());
 			pstmt.setString(3, event.getEventContent());
@@ -168,20 +173,29 @@ public class EventDao {
 		return event;
 	}
 		
-	public int updateEvent(Connection conn, Event event) {
+	public int updateEvent(Connection conn, Event event, boolean check) {
 		PreparedStatement pstmt=null;
 		int result=0;
-		String sql=prop.getProperty("updateEvent");
+		
 		try
 		{
-			pstmt=conn.prepareStatement(sql);
+			//true 공란
+			if(check==true) {
+				pstmt=conn.prepareStatement(prop.getProperty("updateEvent1"));
+				pstmt.setInt(7, event.getEventPk());
+			}else {
+				pstmt=conn.prepareStatement(prop.getProperty("updateEvent2"));
+				pstmt.setInt(7, event.getTruckPk());
+				pstmt.setInt(8, event.getEventPk());
+			}
+			
 			pstmt.setString(1, event.getEventTitle());
 			pstmt.setString(2, event.getEventContent());
 			pstmt.setDate(3, event.getEventDate());
 			pstmt.setDate(4, event.getEventEndDate());
 			pstmt.setString(5, event.getOriginalFileName());
 			pstmt.setString(6, event.getRenameFileName());
-			pstmt.setInt(7, event.getEventPk());
+			
 			
 			result=pstmt.executeUpdate();
 		}
@@ -224,9 +238,10 @@ public class EventDao {
 		      List<Event>list=new ArrayList<>();
 		      try {
 		         pstmt=conn.prepareStatement(prop.getProperty("selectOneList"));
-		         pstmt.setInt(1, ((cPage-1)*numPerPage+1));
-		         pstmt.setInt(2, cPage*numPerPage);
-		         pstmt.setInt(3, truckPk);
+		         pstmt.setInt(1, truckPk);
+		         pstmt.setInt(2, ((cPage-1)*numPerPage+1));
+		         pstmt.setInt(3, cPage*numPerPage);
+		        
 		         rs=pstmt.executeQuery();
 		         while(rs.next()){
 		            Event event=new Event();
