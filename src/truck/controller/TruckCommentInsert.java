@@ -58,6 +58,7 @@ public class TruckCommentInsert extends HttpServlet {
 		TruckReviewComment comment = new TruckReviewComment();
 		int truckPk = Integer.parseInt(mpr.getParameter("truckPk"));
 		Truck truck = new TruckService().selectOne(truckPk);
+		System.out.println("트럭확인~~~~~~~~~~"+truck);
 
 		// db컬럼순으로 입력했음//
 		comment.setReviewCommentLevel(Integer.parseInt(mpr.getParameter("reviewCommentLevel")));
@@ -93,7 +94,7 @@ public class TruckCommentInsert extends HttpServlet {
 		}
 		String view = "/views/common/msg.jsp";
 		if (result > 0) { 
-		request.setAttribute("loc", "/managestore.do?truckChoice=truckChoiceReview");
+		request.setAttribute("loc", "/truckSelectOne?truckChoice=truckChoiceReview&truckPk="+truckPk);
 		
 		} else {
 			request.setAttribute("msg", "사진은 크기를 확인하세요");

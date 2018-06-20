@@ -5,7 +5,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-<%Truck truck=(Truck)request.getAttribute("truck");%>
+<%Truck truck=(Truck)request.getAttribute("truck");
+	//리뷰~때문에//
+	/* int truckPk=(int)request.getAttribute("truckPk");
+	if(truckPk<0){
+		truckPk=truck.getTruckPk();
+	} */
+%>
 <%String serlvet=(String)request.getAttribute("truckChoice");%>
 	
 <script type="text/javascript">
