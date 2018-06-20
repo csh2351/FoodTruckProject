@@ -32,12 +32,8 @@ public class MypageInfoChangeServlet extends HttpServlet {
 		String memberPk=request.getParameter("memberPk");
 		
 		Member member=new MemberService().selectOnePk(memberPk);
-		if(member==null) {
-			
-		}else {
-			request.setAttribute("member", member);
-		}
 		
+		request.setAttribute("member", member);
 		request.getRequestDispatcher("/views/mypage/mypageInfoChange/mypageInfoChange.jsp").forward(request, response);
 	}
 
