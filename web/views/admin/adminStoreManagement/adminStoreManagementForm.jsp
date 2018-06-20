@@ -42,6 +42,7 @@ List<Signup> signupList = (List)request.getAttribute("signupList");
                                      <tr>
                                     
                                         <td><a href="<%=request.getContextPath()%>/managestore.do?truckPk=<%=String.valueOf(signup.getTruckPk())%>"><%=signup.getTruckName() %></a></td>
+                                        																				<!--Integer.parseIint쓰기때문에 String로 변환후 보냈음-->
                                         <td></td>
                                       <tr>
                                     	<%} %>
