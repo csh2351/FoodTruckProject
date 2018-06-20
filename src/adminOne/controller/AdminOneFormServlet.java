@@ -93,7 +93,9 @@ public class AdminOneFormServlet extends HttpServlet {
 				}else {
 					pageBar+="<li><a href='"+request.getContextPath()+"/adminOneForm.do?cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>»</span></a></li>";
 				}
+			
 				
+
 				request.setAttribute("pageBar", pageBar);
 				request.setAttribute("cPage", cPage);
 				request.setAttribute("numPerPage", numPerPage);
