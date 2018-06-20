@@ -3,15 +3,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/nav-tabs.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/customer.css">
+
 <% 
 int cPage=(int)request.getAttribute("cPage");
 int numPerPage=(int)request.getAttribute("numPerPage");
 String pageBar=(String)request.getAttribute("pageBar");
 List<Signup> signupList = (List)request.getAttribute("signupList");
 %>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/nav-tabs.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/customer.css">
 
  <section>
         <div class='container'>
