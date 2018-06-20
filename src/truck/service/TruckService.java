@@ -123,6 +123,7 @@ public class TruckService {
 	//모가몬지 확인
 	public Truck manageTruck(int memberPk) {
 		Truck truck = new TruckDao().manageTruck(conn,memberPk);
+		
 		close(conn);
 		return truck;
 	}

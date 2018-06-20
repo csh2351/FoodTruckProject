@@ -90,18 +90,30 @@ $(function() {
 												class="upload" accept="image/gif, image/jpeg, image/png"
 												name='truck-img' required="required"> <br> <br>
 											<%	}
+											
 											else{ %>
 											<img id='truck-check-img' 
 												src="images/truck/<%=truck.getTruckRenameImage()%>"
 												alt="Card image cap" width=100% height=100> <br>
 													<button class="truck-img-replace btn btn-success">사진등록</button>
-											<input id='truck-input-img' type="file" value="사진등록"
+											<input type="hidden" name="oimage" value="<%=truck.getTruckOriginalImage() %>" />
+											<input type="hidden" name="rimage" value="<%=truck.getTruckRenameImage() %>" />
+										
+											<input id='truck-input-img' type="file"
 												class="upload" accept="image/gif, image/jpeg, image/png"
 												name='truck-img'> <br> <br>
 											<%} %>
-
+											
 										</div>
-
+	
+	
+										<script type="text/javascript">
+										
+										$(function () {
+											$('#truck-img').attr('value', $('#truck-check-img').val())
+										})
+										</script>
+	
 										<div class="col-md-6">
 											<p class='truck-basic-font'>
 												주소:<%=truck.getTrucklocation()%></p>
@@ -265,7 +277,7 @@ $(function() {
 								<p>
 									오픈시간 : <input type="time" id="truck-open-date"
 										class="form-control" name="truck-open-date"
-										style="display: inline-block;" value=<%=request.getAttribute("openTime")%> re>
+										style="display: inline-block;" value=<%=request.getAttribute("openTime")%> required="required">
 								</p>
 								<br>
 								<p>

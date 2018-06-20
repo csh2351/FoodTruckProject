@@ -20,114 +20,125 @@ import common.MyFileRenamePolicy;
 import oracle.sql.TIMESTAMP;
 import truck.service.TruckService;
 import truck.vo.Truck;
+
 /**
  * Servlet implementation class TruckUpdateServlet
  */
 @WebServlet("/truckUpdate")
 public class TruckUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TruckUpdateServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public TruckUpdateServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
-		if(!ServletFileUpload.isMultipartContent(request)) {// 파일 불러오기 실패시
+
+		if (!ServletFileUpload.isMultipartContent(request)) {// 파일 불러오기 실패시
 			request.setAttribute("msg", "사진을불러올수없습니다[관리자에 문의하세요]");
 			request.setAttribute("loc", "/");
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);	
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
-		
-		
-		String saveDir = getServletContext().getRealPath("/") + "/images" + File.separator +"truck";
-		
-		
+
+		String saveDir = getServletContext().getRealPath("/") + "/images" + File.separator + "truck";
+
 		System.out.println(saveDir);
 
-		int maxSize = 1024*1024*10;
-		MultipartRequest mpr =new MultipartRequest(request, saveDir, maxSize,"UTF-8", new MyFileRenamePolicy());
+		int maxSize = 1024 * 1024 * 10;
+		MultipartRequest mpr = new MultipartRequest(request, saveDir, maxSize, "UTF-8", new MyFileRenamePolicy());
 		String CheckDetail = mpr.getParameter("truck-name");
-		System.out.println("CheckDetail : "+CheckDetail);
-	
+		System.out.println("CheckDetail : " + CheckDetail);
+
 		int truckPk = Integer.parseInt(mpr.getParameter("truck-pk"));
-		
+
 		Truck truck = new TruckService().selectOne(truckPk);
-		
+
 		int result = 0;// 업데이트 결과값 수신
 		String view = "/";
-		//바로쏴주기
-		String openTime ="";
-		String closeTime="";
-	
-		
+		// 바로쏴주기
+		String openTime = "";
+		String closeTime = "";
+
 		if (CheckDetail.equals("detail")) { // 디테일단에서 폼 전송했을시
 			truck.setTruckHoliday(mpr.getParameter("truck-holiday"));
 			truck.setTrucklocation(mpr.getParameter("truck-address"));
-			
+
 			System.out.println(truck.getTruckOpenTime());
 			System.out.println(truck.getTruckCloseTime());
-			
-			
+
 			try {
-				java.util.Date date = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date")); 
+				java.util.Date date = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-open-date"));
 				java.util.Date date2 = new SimpleDateFormat("HH:mm").parse(mpr.getParameter("truck-close-date"));
 				Timestamp time1 = new Timestamp(date.getTime());
 				truck.setTruckOpenTime(time1);
 				Timestamp sqldate2 = new Timestamp(date2.getTime());
 				truck.setTruckCloseTime(sqldate2);
-				openTime= new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(time1); 
-				closeTime=new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(sqldate2); 
+				openTime = new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(time1);
+				closeTime = new SimpleDateFormat("EE요일 HH시 mm분 ss초").format(sqldate2);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-				
+
 			truck.setLatitude(Double.parseDouble(mpr.getParameter("truck-latitude")));
 			truck.setLogitude(Double.parseDouble(mpr.getParameter("truck-logitude")));
 			result = new TruckService().updateTruck(truck);
+
 		} else { // 베이직 단에서 폼 전송시
+
+			//다른것만바꿧을떄 처리~
+			if(truck.getTruckRenameImage().equals(mpr.getParameter("rimage"))){
+				truck.setTruckName(mpr.getParameter("truck-name"));
+				truck.setTruckOriginalImage(mpr.getParameter("oimage"));
+				truck.setTruckRenameImage(mpr.getParameter("rimage"));
+			}
 			
-			truck.setTruckName(mpr.getParameter("truck-name"));
-			truck.setTruckOriginalImage(mpr.getOriginalFileName("truck-img"));
-			truck.setTruckRenameImage(mpr.getFilesystemName("truck-img"));
+			else {
+				truck.setTruckName(mpr.getParameter("truck-name"));
+				truck.setTruckOriginalImage(mpr.getOriginalFileName("truck-img"));
+				truck.setTruckRenameImage(mpr.getFilesystemName("truck-img"));
+			}
+			//다른것만바꿧을떄 처리~
+
 			truck.setTruckContent(mpr.getParameter("truck-content"));
 			truck.setTruckPrice(Integer.parseInt(mpr.getParameter("min-price")));
-			String truckStatus=mpr.getParameter("onoffswitch");
-			if(truckStatus==null){
+			String truckStatus = mpr.getParameter("onoffswitch");
+			if (truckStatus == null) {
 				truck.setTruckStatus("f");
 			}
 			result = new TruckService().updateTruck(truck);
 		}
-		if(result>0) {
-			view ="/views/truck/truckChoice.jsp";
-			request.setAttribute("truck",truck);
+		if (result > 0) {
+			view = "/views/truck/truckChoice.jsp";
+			request.setAttribute("truck", truck);
 			request.setAttribute("truckChoice", "truckChoiceMenu");
 			request.setAttribute("openTime", openTime);
 			request.setAttribute("closeTime", closeTime);
-		}else {
-				view = "/views/common/msg.jsp";
-				request.setAttribute("msg", "입력 오류입니다. [관리자에게 문의 error : updateTruck]");
-				request.setAttribute("loc", "/");
-			}
-		request.getRequestDispatcher(view).forward(request, response);
+		} else {
+			view = "/views/common/msg.jsp";
+			request.setAttribute("msg", "입력 오류입니다. [관리자에게 문의 error : updateTruck]");
+			request.setAttribute("loc", "/");
 		}
-		
-		
-	
+		request.getRequestDispatcher(view).forward(request, response);
+	}
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

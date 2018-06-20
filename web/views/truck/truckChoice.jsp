@@ -50,8 +50,7 @@ $.ajax({
 							<div class='panel-body pannel-basic'>
 								<div class="row">
 									<div class="col-md-4 panel-1">
-										<p id='truck-title-p'>
-											점포명:<%=truck.getTruckName() %></p>
+										<p id='truck-title-p'><%=truck.getTruckName() %></p>
 										
 										
 										<% if(truck.getTruckRenameImage()==null){%>
