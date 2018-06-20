@@ -234,7 +234,7 @@
 	//메뉴 사진 미리보기 스크립트.
 
 	//누르면추가
-	 $(function() {
+ $(function() {
 		var i = <%=temp%>;
 		var list;
 		$("#addBtn").on('click', function() {
