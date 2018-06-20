@@ -31,11 +31,9 @@ public class TruckReviewCommentDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("진입");
+		
+		
 		int reviewCommentPk=Integer.parseInt(request.getParameter("reviewCommentPk"));
-		
-		
-		
 		int result=new TruckService().deleteTruckComment(reviewCommentPk);
 	
 		
@@ -43,9 +41,9 @@ public class TruckReviewCommentDelete extends HttpServlet {
 		if(result>0){
 			msg="삭제성공";
 		}
+		
 		JSONObject obj= new JSONObject();
 		obj.put("msg", msg);
-		
 		response.setContentType("application/x-json; charset=UTF-8");
 		response.getWriter().println(obj);
 	}

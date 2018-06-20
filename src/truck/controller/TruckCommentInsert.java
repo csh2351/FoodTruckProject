@@ -93,9 +93,7 @@ public class TruckCommentInsert extends HttpServlet {
 		}
 		String view = "/views/common/msg.jsp";
 		if (result > 0) { 
-		view="/views/truck/manageTruck.jsp";
-		request.setAttribute("truckChoice", "truckChoiceReview");
-		request.setAttribute("truck", truck);
+		request.setAttribute("loc", "/managestore.do?truckChoice=truckChoiceReview");
 		
 		} else {
 			request.setAttribute("msg", "사진은 크기를 확인하세요");

@@ -6,12 +6,13 @@
 <%@ page import="truck.vo.Truck"%>
 <%
 	Truck truck = (Truck) request.getAttribute("truck");
-	String truckStatus=truck.getTruckStatus();
-	String truckRenameImage=truck.getTruckRenameImage();
+	String truckHoliday=truck.getTruckHoliday();
 	 int truckPrice=(int)truck.getTruckPrice();
-	 if(truckStatus==null){
-		truckStatus="f";
+	 
+	 if(truckHoliday==null){
+		 truckHoliday=" ";
 	}
+	 
 	 
 %>
 <%
@@ -144,7 +145,7 @@ $(function() {
 											<div class="onoffswitch">
 												<input type="checkbox" name="onoffswitch"
 													class="onoffswitch-checkbox" id="myonoffswitch"
-													<%=truckStatus.equals("t") ? "checked" : ""%>>
+													<%=truck.getTruckStatus().equals("t") ? "checked" : ""%>>
 													
 												<label class="onoffswitch-label" for="myonoffswitch"
 													align="left"> <span class="onoffswitch-inner"></span>
@@ -287,10 +288,7 @@ $(function() {
 								</p>
 								<br>
 								<p>
-									휴무일 : <input type="text" id="truck-holiday"
-										class="form-control" name="truck-holiday"
-										style="display: inline-block;"
-										value=<%=truck.getTruckHoliday()%> required>
+									휴무일 : <input type="text" id="truck-holiday" class="form-control" name="truck-holiday" style="display: inline-block;" value=<%=truck.getTruckHoliday()%>>
 								</p>
 								<div align="center">
 									<br>

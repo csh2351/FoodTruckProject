@@ -14,7 +14,9 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 
 import member.model.vo.Member;
+import truck.dao.TruckDao;
 import truck.service.TruckService;
+import truck.vo.Truck;
 import truck.vo.TruckMenu;
 import truck.vo.TruckReviewComment;
 
@@ -50,6 +52,7 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 		}
 		
 		int truckPk=Integer.parseInt(request.getParameter("truckPk"));
+		Truck truck=new TruckService().selectOne(truckPk);
 		System.out.println(truckPk);
 		
 		
@@ -58,9 +61,10 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 			List<TruckReviewComment> reviewList=new TruckService().selectReviewCommnetList(truckPk);
 			view="/views/truck/truckChoiceReview.jsp";
 			System.out.println("reviewList:"+reviewList);
+
 			
+			request.setAttribute("reviewList", reviewList);
 			request.setAttribute("memberId", memberId);
-	        request.setAttribute("reviewList", reviewList);
 	        request.setAttribute("truckPk", truckPk);
 
 		}

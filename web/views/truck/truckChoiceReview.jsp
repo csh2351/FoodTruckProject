@@ -123,6 +123,8 @@
                   	   </div>
                     <%} %>
                     
+                    
+                     <%if(!reviewList.isEmpty()){%>
                      <div class="row">
                           <div class="col-xs-12 result-btn-positon">
                             <button id="load-review-button" class='btn btn-success' type="button">더보기</button>
@@ -130,7 +132,7 @@
                           <br>
                           <br>
                         </div>
-                      
+                      <%} %>
                    
                     
 	<!--모달 틀-->
@@ -252,7 +254,7 @@
                     <%} %>
                   </ul>
                   
-               		  <script type="text/javascript">
+             <%--   		  <script type="text/javascript">
 						$("#result-button").on("click", function() {
 							$.ajax({
 								url:"<%=request.getContextPath()%>/managestore.do?truckChoice=truckChoiceReview",
@@ -266,7 +268,7 @@
 							})
 						})
                       </script> 
-  
+   --%>
   
 <script>
   $("#myonoffswitch").on('click', function(e) {

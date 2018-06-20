@@ -7,6 +7,10 @@
 %>
 <script>
 	location.href="<%=loc%>";
-	alert("<%= msg %>");
+	
+	<%if(msg!=null){%>
+		alert("<%= msg %>");
+	<%}%>
+	
 	<%=script %>!=null?<%=script%>:"";
 </script>

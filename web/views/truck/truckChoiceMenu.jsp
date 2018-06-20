@@ -48,13 +48,15 @@
                     </li>
                   </div>
       <%} %>
+      
+      <%if(!menuList.isEmpty()){%>
           <div class="row">
              <div class="col-xs-12 more-btn-positon">
 				<br>
                <button id="load-menu-button" class='btn btn-success ' type="button">더보기</button>
              </div>
           </div>
-
+	<%} %>
 	<!-- test Modal -->
 	
 	

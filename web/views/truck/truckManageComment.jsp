@@ -147,6 +147,8 @@
                             </script> 
                     <%} %>
                     
+                    
+                       <%if(!reviewList.isEmpty()){%>
                      <div class="row">
                           <div class="col-xs-12 result-btn-positon">
                             <button id="load-review-button" class='btn btn-success' type="button">더보기</button>
@@ -154,6 +156,8 @@
                           <br>
                           <br>
                         </div>
+                      <%} %>
+                    
                       
                    
                     

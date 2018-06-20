@@ -7,6 +7,10 @@
 <%@ include file="/views/common/header.jsp"%>
 <%Truck truck=(Truck)request.getAttribute("truck");%>
 <%String serlvet=(String)request.getAttribute("truckChoice");%>
+<%String tuckHoliday=truck.getTruckHoliday();
+	if(tuckHoliday==null){
+	tuckHoliday=" "; } %>
+	
 <script type="text/javascript">
 $(function() {
 $.ajax({
