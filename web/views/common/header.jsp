@@ -61,18 +61,35 @@
           <%} }%>
         </ul>
         
-        <form action="<%=request.getContextPath() %>/" method="post" class="navbar-form navbar-left" role="search">
+       <form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath()%>/searchTruck.do" method='post'>
           <div class="form-group">
-            <select class="form-control" name="">
-              <option value="">지역명</option>
-              <option value="">상호명</option>
+            <select class="form-control" name="searchType">
+              <option value="location">지역명</option>
+              <option value="storeName">상호명</option>
             </select>
           </div>
+
           <div class="form-group">
-            <input type="text" name="search" class="form-control" placeholder="음식명/상호명을 입력하세요">
+            <input type="text" class="form-control" placeholder="지역명/상호명을 입력하세요" name='searchName'>
           </div>
-          <button type="submit" class="btn btn-default">검색</button>
+          <button type="submit" class="btn btn-default" onclick="return fn_searchValidate();">검색</button>
         </form>
+          
+       
+        <script>
+        	function fn_searchValidate(){
+        		var searchName=$("[name=searchName]").val();
+        		
+        		if(searchName.trim().length<2){
+        			alert("검색어는 2글자 이상 입력하세요.");
+        			return false;
+        		}else{
+        			return true;
+        		}
+        		
+        	}
+        
+        </script>
 
 <% if(memberLoggedIn==null) { %>
         <ul class="nav navbar-nav navbar-right">
