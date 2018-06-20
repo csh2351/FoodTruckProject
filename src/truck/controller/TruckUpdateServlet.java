@@ -42,6 +42,7 @@ public class TruckUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("eeeeeeeeeee진입");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
@@ -122,6 +123,7 @@ public class TruckUpdateServlet extends HttpServlet {
 			truck.setTruckPrice(Integer.parseInt(mpr.getParameter("min-price")));
 
 			result = new TruckService().updateTruck(truck);
+			System.out.println("업데이트하나 결과확인");
 		}
 		if (result > 0) {
 			view = "/views/truck/truckChoice.jsp";

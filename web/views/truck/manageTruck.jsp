@@ -12,15 +12,8 @@
 %>
 
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/manageTruck.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
-<script src='js/bootstrap.js'></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/foodTruckMenu.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/manageTruck.css">
 
 <script type="text/javascript">
 $(function() {
@@ -36,13 +29,9 @@ $(function() {
 		}
 })
 })
-	
 
 </script>
 
-
-
-<br>
 <section>
 	<div class="container">
 
@@ -56,7 +45,9 @@ $(function() {
 								<h3 class='panel-title truck-panel-header'>기본정보</h3>
 							</div>
 							<div class='panel-body pannel-basic'>
-								<form name="truckBasicInsert" action="<%=request.getContextPath()%>/truckUpdate" method="post" enctype="multipart/form-data">
+								<form name="truckBasicInsert"
+									action="<%=request.getContextPath()%>/truckUpdate"
+									method="post" enctype="multipart/form-data">
 									<input type="hidden" value="<%=truck.getTruckPk()%>"
 										name="truck-pk">
 									<div class="row">
@@ -66,29 +57,15 @@ $(function() {
 													placeholder="<%=truck.getTruckName()%>"
 													class="form-control" value="<%=truck.getTruckName()%>"
 													required="required">
-
-											</div>
 											<br>
-											<!-- <div class='col-md-3-body-center'> -->
-
-											<script type="text/javascript">
-											$('#basic-input').blur(function() {
-												var truckName=$(this);
-												console.log(truckName.val());
-												if(truckName.val().length>9){
-													alert("9자 이하로 입력하세요");
-													truckName.val(' ');
-													truckName.focus();
-												}
-											});
-											</script>
+											</div>
 
 											<%
 												if (truck.getTruckRenameImage() == null) {
 											%>
 											<img id='truck-check-img'
 												src="http://proxyprivat.com/images/noimage.jpeg"
-												alt="Card image cap" width=100% height=100> <br>
+												alt="Card image cap" width=100% height=200px> <br>
 											<button class="truck-img-replace btn btn-success">사진등록</button>
 											<input id='truck-input-img' type="file" value="사진등록"
 												class="upload" accept="image/gif, image/jpeg, image/png"
@@ -100,7 +77,7 @@ $(function() {
 											%>
 											<img id='truck-check-img'
 												src="images/truck/<%=truck.getTruckRenameImage()%>"
-												alt="Card image cap" width=100% height=100> <br>
+												alt="Card image cap" width=100% height=200px	><br>
 											<button class="truck-img-replace btn btn-success">사진등록</button>
 											<input type="hidden" name="oimage"
 												value="<%=truck.getTruckOriginalImage()%>" /> <input
@@ -116,28 +93,20 @@ $(function() {
 										</div>
 
 
-										<script type="text/javascript">
-										
-										$(function () {
-											$('#truck-img').attr('value', $('#truck-check-img').val())
-										})
-										</script>
 
 										<div class="col-md-6">
 											<p class='truck-basic-font'>
 												주소:<%=truck.getTrucklocation()%></p>
-											<span class='truck-basic-font'>평점:</span>
 											<div class="ratings">
 												<div class="empty-stars"></div>
 												<div class="full-stars"
 													style="width:<%=truck.getTruckStar() * 20%>%"></div>
 											</div>
 											<!--갯수를 입력받아야함.-->
-											<br> <span class='truck-basic-font'>최소금액: <input
-												id="basic-input" type="number" name="min-price"
+											<br>최소금액:<input id="basic-input" type="number" name="min-price"
 												value="<%=truck.getTruckPrice()%>" placeholder="ex)2000원~"
-												size="10" class="form-control" required="required">
-											</span> <br>
+												class="form-control" required="required">
+											<br><br>
 											<p class='truck-basic-font'>
 												사업자정보 :
 												<%=truck.getTruckInfoName()%></p>
@@ -171,7 +140,7 @@ $(function() {
 										<button id="reset-button"
 											class="btn btn-success  reset-button" type="reset">취소</button>
 									</div>
-							</form>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -378,6 +347,22 @@ $(function() {
 				})
 	})
 	
+	
+	//메뉴 이름갯수 예외
+		$('#basic-input').blur(function() {
+												var truckName=$(this);
+												console.log(truckName.val());
+												if(truckName.val().length>9){
+													alert("9자 이하로 입력하세요");
+													truckName.val(' ');
+													truckName.focus();
+												}
+												if(truckName.val().trim()>0){
+													alert("공백없이입력하세요");
+													truckName.val(' ');
+													truckName.focus();
+												}
+											});
 	
 </script>
 <script>
