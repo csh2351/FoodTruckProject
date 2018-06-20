@@ -71,7 +71,12 @@ public class TruckUpdateServlet extends HttpServlet {
 		String closeTime = "";
 
 		if (CheckDetail.equals("detail")) { // 디테일단에서 폼 전송했을시
-			truck.setTruckHoliday(mpr.getParameter("truck-holiday"));
+			if(mpr.getParameter("truck-holiday").length()<0){
+				truck.setTruckHoliday(" ");
+			}
+			else {
+				truck.setTruckHoliday(mpr.getParameter("truck-holiday"));
+			}
 			truck.setTrucklocation(mpr.getParameter("truck-address"));
 
 			System.out.println(truck.getTruckOpenTime());

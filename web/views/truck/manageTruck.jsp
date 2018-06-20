@@ -6,18 +6,9 @@
 <%@ page import="truck.vo.Truck"%>
 <%
 	Truck truck = (Truck) request.getAttribute("truck");
-	String truckHoliday=truck.getTruckHoliday();
-	 int truckPrice=(int)truck.getTruckPrice();
-	 
-	 if(truckHoliday==null){
-		 truckHoliday=" ";
-	}
-	 
-	 
-%>
-<%
+	String truckHoliday = truck.getTruckHoliday();
+	int truckPrice = (int) truck.getTruckPrice();
 	String serlvet = (String) request.getAttribute("truckChoice");
-	
 %>
 
 
@@ -81,40 +72,47 @@ $(function() {
 											</div>
 											<br>
 											<!-- <div class='col-md-3-body-center'> -->
-											
-											<% if(truck.getTruckRenameImage()==null){%>
-											<img id='truck-check-img' 
+
+											<%
+												if (truck.getTruckRenameImage() == null) {
+											%>
+											<img id='truck-check-img'
 												src="http://proxyprivat.com/images/noimage.jpeg"
 												alt="Card image cap" width=100% height=100> <br>
-													<button class="truck-img-replace btn btn-success">사진등록</button>
+											<button class="truck-img-replace btn btn-success">사진등록</button>
 											<input id='truck-input-img' type="file" value="사진등록"
 												class="upload" accept="image/gif, image/jpeg, image/png"
 												name='truck-img' required="required"> <br> <br>
-											<%	}
-											
-											else{ %>
-											<img id='truck-check-img' 
+											<%
+												}
+
+												else {
+											%>
+											<img id='truck-check-img'
 												src="images/truck/<%=truck.getTruckRenameImage()%>"
 												alt="Card image cap" width=100% height=100> <br>
-													<button class="truck-img-replace btn btn-success">사진등록</button>
-											<input type="hidden" name="oimage" value="<%=truck.getTruckOriginalImage() %>" />
-											<input type="hidden" name="rimage" value="<%=truck.getTruckRenameImage() %>" />
-										
-											<input id='truck-input-img' type="file"
-												class="upload" accept="image/gif, image/jpeg, image/png"
-												name='truck-img'> <br> <br>
-											<%} %>
-											
+											<button class="truck-img-replace btn btn-success">사진등록</button>
+											<input type="hidden" name="oimage"
+												value="<%=truck.getTruckOriginalImage()%>" /> <input
+												type="hidden" name="rimage"
+												value="<%=truck.getTruckRenameImage()%>" /> <input
+												id='truck-input-img' type="file" class="upload"
+												accept="image/gif, image/jpeg, image/png" name='truck-img'>
+											<br> <br>
+											<%
+												}
+											%>
+
 										</div>
-	
-	
+
+
 										<script type="text/javascript">
 										
 										$(function () {
 											$('#truck-img').attr('value', $('#truck-check-img').val())
 										})
 										</script>
-	
+
 										<div class="col-md-6">
 											<p class='truck-basic-font'>
 												주소:<%=truck.getTrucklocation()%></p>
@@ -146,7 +144,7 @@ $(function() {
 												<input type="checkbox" name="onoffswitch"
 													class="onoffswitch-checkbox" id="myonoffswitch"
 													<%=truck.getTruckStatus().equals("t") ? "checked" : ""%>>
-													
+
 												<label class="onoffswitch-label" for="myonoffswitch"
 													align="left"> <span class="onoffswitch-inner"></span>
 													<span class="onoffswitch-switch"></span>
@@ -278,17 +276,24 @@ $(function() {
 								<p>
 									오픈시간 : <input type="time" id="truck-open-date"
 										class="form-control" name="truck-open-date"
-										style="display: inline-block;" value=<%=request.getAttribute("openTime")%> required="required">
+										style="display: inline-block;"
+										value=<%=request.getAttribute("openTime")%>
+										required="required">
 								</p>
 								<br>
 								<p>
 									마감시간 : <input type="time" id="truck-close-date"
 										class="form-control" name="truck-close-date"
-										style="display: inline-block;" value=<%=request.getAttribute("closeTime")%> required="required">
+										style="display: inline-block;"
+										value=<%=request.getAttribute("closeTime")%>
+										required="required">
 								</p>
 								<br>
 								<p>
-									휴무일 : <input type="text" id="truck-holiday" class="form-control" name="truck-holiday" style="display: inline-block;" value=<%=truck.getTruckHoliday()%>>
+									휴무일 : <input type="text" id="truck-holiday"
+										class="form-control" name="truck-holiday"
+										style="display: inline-block;"
+										value=<%=truck.getTruckHoliday()%>>
 								</p>
 								<div align="center">
 									<br>
@@ -479,7 +484,8 @@ results[1].address_components[3].long_name + " "
 				marker = new google.maps.Marker({
 					map : map,
 					// icon: image, // 마커로 사용할 이미지(변수)
-					title :'<%=truck.getTruckName()%>',
+					title :'<%=truck.getTruckName()%>
+	',
 					// 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
 					position : results[0].geometry.location
 				});

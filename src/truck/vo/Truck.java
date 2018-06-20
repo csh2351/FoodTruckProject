@@ -176,7 +176,12 @@ public class Truck implements Serializable {
 	}
 
 	public void setTruckHoliday(String truckHoliday) {
-		this.truckHoliday = truckHoliday;
+		if(truckHoliday==null){
+			this.truckHoliday=" ";
+		}
+		else {
+			this.truckHoliday = truckHoliday;
+		}
 	}
 
 	public int getTruckPrice() {
