@@ -106,11 +106,19 @@
                             <form class="form-horizontal" action="<%=request.getContextPath()%>/eventUpdateFormEnd.do?eventPk=<%=event.getEventPk()%>" method='post' enctype="multipart/form-data">
                                     
                                     <div class="form-group">
-                                      <label class="col-sm-3 control-label" for="">관리자 </label>
+                                      <label class="col-sm-3 control-label" for="">작성자</label>
                                     <div class="col-sm-6">
-                                      <input class="form-control" type="text" width="100" readonly>
+                                      <input class="form-control" type="text" width="100" value="관리자" readonly>
                                     </div>
                                     </div>
+                                    
+                                     <div class="form-group">
+                                      <label class="col-sm-3 control-label" for="truckPk""> 트럭 번호 </label>
+                                    <div class="col-sm-6">
+                                      <input class="form-control" type="text" name="truckPk" id="truckPk" placeholder="트럭 번호가 있다면 입력하고 아니면 공란으로 두세요." width="100" >
+                                    </div>
+                                    </div>
+        
         
                                     
                                   <div class="form-group">
@@ -130,11 +138,11 @@
                                     </div>
                                     <div class="form-group">
                                     	  <label class="col-sm-3 control-label" for="">이벤트기간 </label>
-                                      <div class="col-sm-2">
+                                      <div class="col-sm-3">
                                         <input class="form-control" name="eventDate"type="date" required>
                                    	</div>
                                    	<div class="col-sm-1 text-center" >~</div>
- 									<div class="col-sm-2">
+ 									<div class="col-sm-3">
                                         <input class="form-control" name="eventEndDate" type="date" required>
                                    	</div>
                                    </div>

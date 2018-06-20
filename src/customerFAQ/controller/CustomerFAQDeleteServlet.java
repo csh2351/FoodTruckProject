@@ -41,9 +41,9 @@ public class CustomerFAQDeleteServlet extends HttpServlet {
 		String view = "/views/common/msg.jsp";
 
 		if (result > 0) {
-			msg = "공지사항 내용 삭제 완료.";
+			msg = "자주 묻는 질문 삭제 완료.";
 		} else {
-			msg = "공지사항 내용 삭제 실패";
+			msg = "자주 묻는 질문 삭제 실패";
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

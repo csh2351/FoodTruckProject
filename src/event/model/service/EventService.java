@@ -27,9 +27,9 @@ public class EventService {
 		return result;
 	}
 	
-	public int insertEvent(Event event) {
+	public int insertEvent(Event event, boolean check) {
 		Connection conn=getConnection();
-		int result= new EventDao().insertEvent(conn, event);
+		int result= new EventDao().insertEvent(conn, event, check);
 			
 			if(result>0) {
 				commit(conn);
@@ -48,9 +48,9 @@ public class EventService {
 		return notice;
 	}
 	
-	public int updateEvent(Event event) {
+	public int updateEvent(Event event, boolean check) {
 		Connection conn=getConnection();
-		int result= new EventDao().updateEvent(conn,event);
+		int result= new EventDao().updateEvent(conn,event,check);
 			
 			if(result>0) {
 				commit(conn);
