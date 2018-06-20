@@ -182,7 +182,7 @@ $(function(){
     
 	                     }else if(email.length!=0){
 	                    	 if(check1!=-1){
-	                        	$("#emailCheck").html("사용가능한 이메일입니다.");
+	                        	$("#emailCheck").html("사용 가능한 이메일입니다.");
 	                        	$("#emailCheck").css("color","green");
 	                    	 }else{
 	                    		$("#emailCheck").html("유효하지 않은 이메일형식입니다. 다시 입력해주세요.");
