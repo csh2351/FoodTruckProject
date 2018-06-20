@@ -40,8 +40,28 @@ public class ManageTruck extends HttpServlet {
 
 		HttpSession session = request.getSession(); // 유지되어 있는 세션이 있으면 가져오고 없으면 null값을 리턴한다.
 		Truck truck = null;
+		
+		//개발자영억->점포관리들어왔을떄 truckPk를보냄
+		String truckPk=request.getParameter("truckPk");
+		
+		 if (truckPk!=null) {// 세션이 존재할때 (점주가 접근)
+			int truckPk1=Integer.parseInt(truckPk);
+			truck = new TruckService().selectOne(truckPk1);
+			Timestamp tot = truck.getTruckOpenTime();
+			Timestamp tct = truck.getTruckCloseTime();
+			System.out.println(truck);
 
-		if (session != null) {// 세션이 존재할때 (점주가 접근)
+			if (tot != null || tct != null) {
+				String openTime = new SimpleDateFormat("HH:mm:ss").format(truck.getTruckOpenTime());
+				String closeTime = new SimpleDateFormat("HH:mm:ss").format(truck.getTruckCloseTime());
+				request.setAttribute("openTime", openTime);
+				request.setAttribute("closeTime", closeTime);
+			}
+
+		}
+		
+
+		 else if (session != null) {// 세션이 존재할때 (점주가 접근)
 			Member member = (Member) session.getAttribute("memberLoggedIn");
 			System.out.println("member :  " + member);
 			int memberPk = member.getMemberPk();
@@ -59,6 +79,8 @@ public class ManageTruck extends HttpServlet {
 			}
 
 		}
+		
+	
 
 		String view = "/";
 

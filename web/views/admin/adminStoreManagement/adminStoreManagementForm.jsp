@@ -41,7 +41,7 @@ List<Signup> signupList = (List)request.getAttribute("signupList");
                                     	<%for(Signup signup: signupList){ %>
                                      <tr>
                                     
-                                        <td><a href="<%=request.getContextPath()%>/truckSelectOne?truckPk=<%=signup.getTruckPk()%>"><%=signup.getTruckName() %></a></td>
+                                        <td><a href="<%=request.getContextPath()%>/managestore.do?truckPk=<%=String.valueOf(signup.getTruckPk())%>"><%=signup.getTruckName() %></a></td>
                                         <td></td>
                                       <tr>
                                     	<%} %>
