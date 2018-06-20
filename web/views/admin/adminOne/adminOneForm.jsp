@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/customer.css">
   <%@page import="mypageQuestion.model.vo.Qna"%>
 <%
+
 int cPage=(int)request.getAttribute("cPage");
 int numPerPage=(int)request.getAttribute("numPerPage");
 String pageBar=(String)request.getAttribute("pageBar");
@@ -48,6 +49,7 @@ List<Qna> qnaList=(List)request.getAttribute("qnaList");
             								for(Qna qna: qnaList){
             									%>
                                         <tr>
+                                        	
                                             <td><%=qna.getQnaPk() %></td>
                                             <td><a href="<%=request.getContextPath() %>/adminOneContent.do?qnaPk=<%=qna.getQnaPk() %>"><%=qna.getQnaTitle() %></a></td>
                                             <td><a href="<%=request.getContextPath() %>/adminOneContent.do?qnaPk=<%=qna.getQnaPk() %>"><%=qna.getQnaWriter() %></a></td>

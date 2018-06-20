@@ -226,6 +226,27 @@ public class MemberDao {
 		return result2;
 	}
 	
+	public boolean emailCheck(Connection conn, String memberEmail) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean check=false;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("emailCheck"));
+			pstmt.setString(1, memberEmail);
+			rs=pstmt.executeQuery();
+			//중복값 존재
+			if(rs.next()) {
+				check=true;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return check;
+	}
 	
 	
 	

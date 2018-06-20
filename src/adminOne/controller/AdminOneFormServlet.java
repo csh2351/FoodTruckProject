@@ -1,6 +1,7 @@
 package adminOne.controller;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -95,7 +96,6 @@ public class AdminOneFormServlet extends HttpServlet {
 				}
 			
 				
-
 				request.setAttribute("pageBar", pageBar);
 				request.setAttribute("cPage", cPage);
 				request.setAttribute("numPerPage", numPerPage);

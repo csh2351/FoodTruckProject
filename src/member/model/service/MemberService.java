@@ -109,6 +109,16 @@ public class MemberService {
 		return result;
 	}
 	
+	public boolean emailCheck(String memberEmail) {
+		 Connection conn=getConnection();
+	      
+	      boolean check = new MemberDao().emailCheck(conn, memberEmail);
+	      
+	      close(conn);
+	      
+	      return check;
+	}
+	
 	
 
 }
