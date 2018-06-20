@@ -6,7 +6,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <%Truck truck=(Truck)request.getAttribute("truck");%>
-<%String serlvet=(String)request.getAttribute("truckChoice"); %>
+<%String serlvet=(String)request.getAttribute("truckChoice");%>
 <script type="text/javascript">
 $(function() {
 $.ajax({
@@ -265,7 +265,7 @@ $(function geocodeLatLng() {
 								</p>
 								<br>
 								<p>
-									휴무일 :<%=truck.getTruckHoliday() %>
+									휴무일 :<%=truck.getTruckHoliday()%>
 								</p>
 						</div>
 					</div>

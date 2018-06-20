@@ -97,9 +97,6 @@ public class TruckUpdateServlet extends HttpServlet {
 
 		} else { // 베이직 단에서 폼 전송시
 			
-			System.out.println(truck.getTruckRenameImage());
-			System.out.println(mpr.getFilesystemName("truck-img"));
-			
 			String file=mpr.getFilesystemName("truck-img");
 			
 			if(file==null){
@@ -108,7 +105,6 @@ public class TruckUpdateServlet extends HttpServlet {
 				truck.setTruckRenameImage(mpr.getParameter("rimage"));
 			}
 				
-	
 			else {
 				
 				truck.setTruckName(mpr.getParameter("truck-name"));
