@@ -101,14 +101,20 @@ public class EventDao {
 		return result;
 	}
 		
-	public int insertEvent(Connection conn, Event event)
+	public int insertEvent(Connection conn, Event event,boolean check)
 	{
 		PreparedStatement pstmt=null;
 		int result=0;
-		String sql=prop.getProperty("insertEvent");
+		
 		try
 		{
-			pstmt=conn.prepareStatement(sql);
+			if(check==true) {
+				pstmt=conn.prepareStatement(prop.getProperty("insertEvent1"));
+			}else {
+				pstmt=conn.prepareStatement(prop.getProperty("insertEvent2"));
+				pstmt.setInt(7, event.getTruckPk());
+			}
+			
 			pstmt.setString(1, event.getEventTitle());
 			pstmt.setDate(2, event.getEventDate());
 			pstmt.setString(3, event.getEventContent());
@@ -181,7 +187,8 @@ public class EventDao {
 			pstmt.setDate(4, event.getEventEndDate());
 			pstmt.setString(5, event.getOriginalFileName());
 			pstmt.setString(6, event.getRenameFileName());
-			pstmt.setInt(7, event.getEventPk());
+			pstmt.setInt(7, event.getTruckPk());
+			pstmt.setInt(8, event.getEventPk());
 			
 			result=pstmt.executeUpdate();
 		}

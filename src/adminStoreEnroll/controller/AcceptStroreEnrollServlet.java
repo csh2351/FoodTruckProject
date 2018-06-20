@@ -53,7 +53,7 @@ public class AcceptStroreEnrollServlet extends HttpServlet {
 			msg="점포가입신청 실패";
 		}
 		view="views/common/msg.jsp";
-		loc="/";
+		loc="/adminStoreEnrollList.do";
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		

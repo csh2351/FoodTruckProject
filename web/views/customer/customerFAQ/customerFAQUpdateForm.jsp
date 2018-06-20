@@ -24,7 +24,7 @@
             	<div class="form-group">
                 	<label class="col-sm-3 control-label" for="">아이디 </label>
                     <div class="col-sm-6">
-                    	<input class="form-control" type="text" placeholder="아이디" width="100">
+                    	<input class="form-control" type="text" placeholder="아이디" width="100" value="<%=memberLoggedIn.getMemberId() %>" readonly>
                     </div>
                 </div>
                 <div class="form-group">

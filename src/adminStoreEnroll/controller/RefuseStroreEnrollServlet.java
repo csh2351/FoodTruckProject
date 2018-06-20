@@ -52,7 +52,7 @@ public class RefuseStroreEnrollServlet extends HttpServlet {
 			msg="승인거부실패";
 		}
 		view="views/common/msg.jsp";
-		loc="/";
+		loc="/adminStoreEnrollList.do";
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		
