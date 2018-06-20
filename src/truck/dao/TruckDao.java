@@ -65,9 +65,9 @@ public class TruckDao {
 				truck.setTruckOpenTime(rs.getTimestamp("truck_open_time"));
 				truck.setTruckCloseTime(rs.getTimestamp("truck_close_time"));
 				truck.setTruckApprove(rs.getString("truck_approve"));
-			truck.setLatitude(rs.getDouble("truck_latitude"));
-			truck.setLogitude(rs.getDouble("truck_logitude"));
-			truck.setTruckPrice(rs.getInt("truck_price"));
+				truck.setLatitude(rs.getDouble("truck_latitude"));
+				truck.setLogitude(rs.getDouble("truck_logitude"));
+				truck.setTruckPrice(rs.getInt("truck_price"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				truck.setTruckHoliday(rs.getString("truck_holiday"));
 				truck.setMemberPk(rs.getInt("member_pk"));
@@ -81,10 +81,7 @@ public class TruckDao {
 				}
 				list.add(truck);
 			}
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(rs);
@@ -252,6 +249,7 @@ public class TruckDao {
 			pstmp=conn.prepareStatement(prop.getProperty("selectOne"));
 			pstmp.setInt(1, truckPk);
 			rs=pstmp.executeQuery();
+			int truckpk =0;
 			while(rs.next()){
 				truck.setTruckPk(rs.getInt("truck_pk"));
 				truck.setTruckName(rs.getString("truck_name"));
@@ -269,7 +267,7 @@ public class TruckDao {
 				truck.setLogitude(rs.getDouble("truck_logitude"));
 				truck.setTruckCategory(rs.getString("truck_category"));
 				pstmp1=conn.prepareStatement(prop.getProperty("selectTruckStar"));
-				int truckpk = rs.getInt("truck_pk");
+				truckpk = rs.getInt("truck_pk");
 				pstmp1.setInt(1, truckpk);
 				rs1=pstmp1.executeQuery();
 				while(rs1.next()) {
@@ -281,6 +279,8 @@ public class TruckDao {
 				truck.setReviewCount(rs.getInt("count"));
 			}
 			pstmp1=conn.prepareStatement(prop.getProperty("updateTruckStar"));
+			pstmp1.setInt(1,truck.getTruckStar());
+			pstmp1.setInt(2,	 truckpk);
 			int result =pstmp1.executeUpdate();
 			if(result>0) {
 				System.out.println("Truck_Star 업데이트 성공 : ");
