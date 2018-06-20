@@ -231,9 +231,10 @@ public class EventDao {
 		      List<Event>list=new ArrayList<>();
 		      try {
 		         pstmt=conn.prepareStatement(prop.getProperty("selectOneList"));
-		         pstmt.setInt(1, ((cPage-1)*numPerPage+1));
-		         pstmt.setInt(2, cPage*numPerPage);
-		         pstmt.setInt(3, truckPk);
+		         pstmt.setInt(1, truckPk);
+		         pstmt.setInt(2, ((cPage-1)*numPerPage+1));
+		         pstmt.setInt(3, cPage*numPerPage);
+		         
 		         rs=pstmt.executeQuery();
 		         while(rs.next()){
 		            Event event=new Event();
