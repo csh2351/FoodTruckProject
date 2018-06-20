@@ -21,7 +21,6 @@ import truck.vo.TruckReviewComment;
 public class TruckDao {
 	private PreparedStatement pstmp;
 	private ResultSet rs;
-	private PreparedStatement pstmp1;
 	private ResultSet rs1;
 	private Properties prop;
 	private List<Truck> list;
@@ -48,6 +47,7 @@ public class TruckDao {
 	
 
 	public List<Truck> selectAllList(Connection conn) {
+		PreparedStatement pstmp1=null;
 		try {
 			pstmp=conn.prepareStatement(prop.getProperty("selectAllList"));
 			rs=pstmp.executeQuery();
@@ -100,6 +100,7 @@ public class TruckDao {
 
 
 	public List<Truck> selectBygradeList(Connection conn) {
+		PreparedStatement pstmp1=null;
 		try {
 			pstmp=conn.prepareStatement(prop.getProperty("selectBygradeList"));
 			rs=pstmp.executeQuery();
@@ -148,6 +149,7 @@ public class TruckDao {
 
 
 	public List<Truck> selectByonOffList(Connection conn) {
+		PreparedStatement pstmp1=null;
 		try {
 			pstmp=conn.prepareStatement(prop.getProperty("selectByonOffList"));
 			rs=pstmp.executeQuery();
@@ -195,6 +197,7 @@ public class TruckDao {
 
 
 	public List<Truck> selectByReviewList(Connection conn) {
+		PreparedStatement pstmp1=null;
 		try {
 			pstmp=conn.prepareStatement(prop.getProperty("selectByReviewList"));
 			rs=pstmp.executeQuery();
@@ -243,6 +246,7 @@ public class TruckDao {
 
 
 	public Truck selectOne(Connection conn, int truckPk) {
+		PreparedStatement pstmp1=null;
 		Truck truck =null;
 		try {
 			truck =new Truck();
@@ -504,6 +508,7 @@ public class TruckDao {
 
 	public Truck manageTruck(Connection conn, int memberPk) {
 			Truck truck = null;
+			PreparedStatement pstmp1=null;
 
 		try {
 			truck =new Truck();

@@ -19,6 +19,7 @@ public class JDBCTemplate {
 			String fileName=JDBCTemplate.class.
 					getResource("./driver.properties").getPath();
 			prop.load(new FileReader(fileName));
+			System.out.println(fileName);
 			
 			String driver=prop.getProperty("driver");
 			String url=prop.getProperty("url");
