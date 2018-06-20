@@ -51,13 +51,31 @@
                             </div>
 
                           </div>
-                          <div class='col-xs-3 col-md-3-body-center'>
+                          <div class='col-xs-4 col-md-3-body-center'>
                           <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
-                     <a id="menu-modal" data-toggle="modal" data-target=".pop-up-3" >       
+                     		<a id="menu-modal" data-toggle="modal" data-target=".pop-up-3" >       
                             <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150px onclick="fn_modal_review('images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>');"></a><br>
                           <%} %>
                           </div>
                         </div>
+                        
+                        <%-- 
+						  <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
+                            <div class="row">
+                              <div class="col-xs-12">
+								<a id="menu-modal" data-toggle="modal" data-target=".pop-up-3" >       
+                          	   <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=80% height=80% onclick="fn_modal_review('images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>');"></a><br>
+                              </div>
+                            </div>
+                              <%} %>
+                          </div>
+                          
+                         
+                          <div class='col-xs-12'>
+                     	<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
+						</div> --%>
+                        
+                        
                            <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
                     
                          <div class="row">
@@ -178,8 +196,8 @@
                                
                                 <!--아이디부여-->
                               </div>
-                              <div class="col-md-6 date-padding">
-                                <span id="localTime" class='panel-2-body-font'></span><br>
+                              <div class="col-md-6 date-padding panel-2-body-font">작성일
+                            	    <span id="localTime" class='panel-2-body-font'></span><br>
                                 <!--date 부여 -->
                               </div>
                             </div>
@@ -344,9 +362,12 @@
 
 	$(function() {
 		function fn_localTime() {
-			return new Date().toLocaleString(); 
+			var st_date = new Date().toISOString().substr(0, 10);
+			return st_date; 
 		}
 			$("#localTime").html(fn_localTime());
+			
+			
 	})
     
     //모달주석

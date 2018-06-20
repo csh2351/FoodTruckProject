@@ -107,8 +107,8 @@
 					$("#load-menu-button").click(function(e){ // Load More를 위한 클릭 이벤트e
 					e.preventDefault();
 					$(".more-menu:hidden").slice(0, 5).show(); // 숨김 설정된 다음 10개를 선택하여 표시
-					
 					});
+			
 				});
 		
 		</script>
