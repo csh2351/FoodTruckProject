@@ -60,7 +60,6 @@
                         </div>
                            <%if((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)){ %>
                     
-                    	
                          <div class="row">
                          <div class="col-xs-8">
                           </div>
@@ -84,9 +83,11 @@
 								error : function(request,status,error) { 
 								alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
 								}
-						})
+							})
 						})
                       </script>
+                      
+                      
 
                     
                        

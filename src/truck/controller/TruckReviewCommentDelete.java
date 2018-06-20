@@ -32,10 +32,8 @@ public class TruckReviewCommentDelete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		int reviewCommentPk=Integer.parseInt(request.getParameter("reviewCommentPk"));
 		int result=new TruckService().deleteTruckComment(reviewCommentPk);
-	
 		
 		String msg="삭제실패";	
 		if(result>0){
