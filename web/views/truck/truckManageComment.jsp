@@ -21,7 +21,6 @@
  		
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
-                   <div id='comment-modify-list<%=i%>' class="more-comment"> 
                     <%if(reviewList.get(i).getReviewCommentLevel()==1){ %>
                     <li id='review-view<%=i%>' class='comment-reply level1'>
                       <!--댓글보기-->
@@ -92,7 +91,6 @@
                             </div>
                         	<hr>
                           </div>
-                          
                         </div>
                     </li>
                             <!--댓글삭제 ajax-->
@@ -114,7 +112,6 @@
                       </script>
                       
                   	  <%} %>
-                    </div>
                   	   
                   	     <script type="text/javascript">
                             $("#addComment<%=i%>").one('click', function() {
@@ -146,7 +143,6 @@
 
                                 	   var reviewList=$("#comment-modify-list"+<%=i%>);
                                        reviewList.after(li).slideDown(500);
-                                 
                                  
                                
                                   
@@ -188,9 +184,6 @@
         </div>
         <!-- /.modal mixer image -->
                     
-                    
-   
-  
   
 <script>
 	
@@ -220,14 +213,6 @@
 		}); 
 	});
    
-
-   
-	
-
-    /*   $(".btn-cancel").on('click', function(e) {
-        $(".comment-reply").detach();
-      }); */
-
     	
   </script>
 
