@@ -21,9 +21,8 @@
  		
            <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
-                   <div id='comment-modify-list' class="more-comment" style="display: none;"> 
+                   <div id='comment-modify-list<%=i%>' class="more-comment"> 
                     <%if(reviewList.get(i).getReviewCommentLevel()==1){ %>
-               
                     <li id='review-view<%=i%>' class='comment-reply level1'>
                       <!--댓글보기-->
                       <hr>
@@ -53,8 +52,6 @@
 								<button id='addComment<%=i%>' type="button" class="btn btn-success ">답글</button>
                               </div>
                             </div>
-                            
-                         
 
                           </div>
                           <div class='col-xs-3 col-md-3-body-center'>
@@ -88,16 +85,14 @@
                               </div>
                               <br><br>
                             </div>
-                            
                               <div class="row">
                               <div class="col-xs-12" align="right">
-                             <button id="delete-button<%=i%>"  class='btn btn-success delete-button' type="button" >삭제</button>
+                             <button id="delete-button<%=i%>"  class='btn btn-success delete-button' type="button">삭제</button>
                               </div>
                             </div>
                         	<hr>
                           </div>
                           
-                        </div>
                         </div>
                     </li>
                             <!--댓글삭제 ajax-->
@@ -124,23 +119,37 @@
                   	     <script type="text/javascript">
                             $("#addComment<%=i%>").one('click', function() {
                             	   var li = $('<li id='+"comment-reply"+<%=i%>+'</li>'); //태그생성
-                                   var html = "<div class='col-xs-12' align='right'>";
+                                   var html = "<br><div class='col-xs-12' align='right'>";
                                    html += "<form action='<%=request.getContextPath()%>/truckReviewCommentEnd' method='post'>";
                                    html += "<input type='hidden' name='reviewCommentLevel' value='2'/>";
                                    html += "<input type='hidden' name='reivewCommentWriter' value='<%=member.getMemberId()%>'/>";
                                    html += "<input type='hidden' name='reviewCommentRef' value='<%=reviewList.get(i).getReviewCommentPk()%>'/>";
                                    html += "<input type='hidden' name='memberPk' value='<%=member.getMemberPk()%>'/>";
                                    html += "<input type='hidden' name='truckPk' value='<%=reviewList.get(i).getTruckPk()%>'/>"; 
-                                   html += " ↴<textarea name='truckCommentContent' class='form-control' style='resize: none;'></textarea>";
-                                   html += "<button type='submit' class='btn btn-success '>등록</button>&nbsp;";
-                                   html += "<button type='reset' class='btn btn-success 'ㅁ>취소</button>";
+                                   html += " <textarea name='truckCommentContent' class='form-control' style='resize: none;' required='required'></textarea>";
+                                   html += "<button type='submit' class='btn btn-success'>등록</button>&nbsp;";
+                                   html += "<button type='reset' class='btn btn-success'>취소</button>";
                                    html += "<br><hr></form></div>";
                                    //위에서 작성한 html구문을li변수 text노드에 삽입
                                    li.html(html);
                                    //작성된 lir태그(객체)를 원본 html구문의
                                    //(li class=leve1)뒤에 삽입
-                                   var reviewList=$("#review-view"+<%=i%>);
-                                   reviewList.after(li).slideDown(500);
+                                  <%--  var reviewComment= $(".review-comment-view"+<%=i%>);
+                                  
+                                   reviewComment.after(li).slideDown(500); --%>
+                                   
+                              
+                                    
+                                	   <%-- var reviewList=$(".review-view"+<%=i%>);
+                                       reviewList.after(li).slideDown(500); --%>
+                                       
+
+                                	   var reviewList=$("#comment-modify-list"+<%=i%>);
+                                       reviewList.after(li).slideDown(500);
+                                 
+                                 
+                               
+                                  
                             	  return li;
                             	  /*수정해주기*/
 							});

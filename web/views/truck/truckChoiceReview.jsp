@@ -59,6 +59,8 @@
                           </div>
                         </div>
                         
+                        
+                        <!--지우지마셈...-->
                         <%-- 
 						  <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
                             <div class="row">
@@ -163,7 +165,7 @@
                 <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
               </div>
               <div class="modal-body">
-                 <img id="modal-review-img"class="img-responsive img-rounded center-block" alt="" width="500" height="500">
+                 <img id="modal-review-img"class="img-responsive img-rounded center-block" alt="" width="500px" height="500px">
               </div>
             </div>
             <!-- /.modal-content -->
@@ -273,22 +275,7 @@
                     <%} %>
                   </ul>
                   
-             <%--   		  <script type="text/javascript">
-						$("#result-button").on("click", function() {
-							$.ajax({
-								url:"<%=request.getContextPath()%>/managestore.do?truckChoice=truckChoiceReview",
-								type : "POST",
-								success : function(data){ 
-									alert("작성완료")
-								}, 
-								error : function(request,status,error) { 
-								alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-								}
-							})
-						})
-                      </script> 
-   --%>
-  
+         
 <script>
   $("#myonoffswitch").on('click', function(e) {
     e.preventDefault();
@@ -362,12 +349,20 @@
 
 	$(function() {
 		function fn_localTime() {
-			var st_date = new Date().toISOString().substr(0, 10);
+			var now = new Date();  
+			var year= now.getFullYear();  
+			var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);  
+			var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();  
+			
+			var st_date=year+'-'+mon+'-'+day;
+			
+		
 			return st_date; 
 		}
 			$("#localTime").html(fn_localTime());
 			
 			
+		
 	})
     
     //모달주석

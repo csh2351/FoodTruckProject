@@ -31,7 +31,7 @@
 <body>
 
 
-  <nav class="navbar">
+  <nav class="navbar" style="margin-bottom: 0px">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">

@@ -65,7 +65,7 @@
                 <h4 class="modal-title" id="myLargeModalLabel-1">확대 이미지</h4>
               </div>
               <div class="modal-body">
-                 <img id="modal-menu-img"class="img-responsive img-rounded center-block" alt="" width="500" height="500">
+                 <img id="modal-menu-img"class="img-responsive img-rounded center-block" alt="" width="500px" height="500px">
               </div>
             </div>
             <!-- /.modal-content -->

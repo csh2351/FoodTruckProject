@@ -22,6 +22,7 @@
     }
 </style>
 
+<br>
 <section>
 	<div class="container">
 
@@ -71,7 +72,7 @@
 												<div class="modal-body">
 													<img id="truckbasic-modal" src="images/truck/<%=truck.getTruckRenameImage()%>"
 														class="img-responsive img-rounded center-block" alt=""
-														width="500" height="500">
+														width="500px" height="500px">
 												</div>
 											</div>
 											<!-- /.modal-content -->
