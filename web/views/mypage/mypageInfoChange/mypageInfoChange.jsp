@@ -1,7 +1,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   
+<% 
+	Member member=(Member)request.getAttribute("member");
+%>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="css/nav-tabs.css">
 <link rel="stylesheet" href="css/customer.css">
@@ -197,7 +199,7 @@ function Postcode() {
                   <label class="col-sm-3 control-label" for="memberId">아이디</label>
                   <div class="col-sm-6">
                      <input class="form-control" id="memberId" name="memberId" type="text" placeholder="아이디" 
-                     value="<%=memberLoggedIn.getMemberId() %>" title="아이디는 변경하실 수 없습니다." readonly>
+                     value="<%if(member!=null){%><%=member.getMemberId()%><%}else{ %><%=memberLoggedIn.getMemberId() %><%}%>" title="아이디는 변경하실 수 없습니다." readonly>
                   </div>
                </div>
 
@@ -235,7 +237,7 @@ function Postcode() {
                   <label class="col-sm-3 control-label" for="memberName">이름</label>
                   <div class="col-sm-6">
                      <input class="form-control" id="memberName" name="memberName"
-                        type="text" placeholder="이름" value="<%=memberLoggedIn.getMemberName()%>" title="이름은 변경하실 수 없습니다." readonly>
+                        type="text" placeholder="이름" value="<%if(member!=null){%><%=member.getMemberName()%><%}else{ %><%=memberLoggedIn.getMemberName() %><%}%>" title="이름은 변경하실 수 없습니다." readonly>
                   </div>
                </div>
 
@@ -243,7 +245,7 @@ function Postcode() {
                   <label class="col-sm-3 control-label" for="memberPhone">휴대폰번호</label>
                   <div class="col-sm-6">
                      <input class="form-control" id="memberPhone" name="memberPhone"
-                        type="text" placeholder="- 없이 입력해 주세요" value="<%=memberLoggedIn.getMemberPhone()%>" required>
+                        type="text" placeholder="- 없이 입력해 주세요" value="<%if(member!=null){%><%=member.getMemberPhone()%><%}else{ %><%=memberLoggedIn.getMemberPhone() %><%}%>" required>
                   </div>
                </div>
 
@@ -253,7 +255,7 @@ function Postcode() {
                   <div class="col-sm-6">
 
                      <input type="email" class="form-control" id="memberEmail"
-                        name="memberEmail" placeholder="이메일을 입력해 주세요" value="<%=memberLoggedIn.getMemberEmail()%>" required>
+                        name="memberEmail" placeholder="이메일을 입력해 주세요" value="<%if(member!=null){%><%=member.getMemberEmail()%><%}else{ %><%=memberLoggedIn.getMemberEmail() %><%}%>" required>
 
                   </div>
                </div>
@@ -268,7 +270,7 @@ function Postcode() {
                         value="주소찾기" >
                   </div>
                   <div class="col-sm-6">
-                        <input type="text" class="form-control" id="memberAddress" name="memberAddress" placeholder="주소" value="<%=memberLoggedIn.getMemberAddress()%>" required> 
+                        <input type="text" class="form-control" id="memberAddress" name="memberAddress" placeholder="주소" value="<%if(member!=null){%><%=member.getMemberAddress()%><%}else{ %><%=memberLoggedIn.getMemberAddress() %><%}%>" required> 
                         <input type="text" class="form-control" id="memberAddressDetail" placeholder="상세주소" value="">
                   </div>
                 <br><br><br><br>
