@@ -84,25 +84,26 @@
 									
 									
 
-									<div class="col-md-8">
-										<p class='truck-basic-font'>
+									<div class="col-md-6">
+										<p>
 											주소:
 											<%=truck.getTrucklocation() %></p>
 													<div class="ratings">
       														<div class="empty-stars"></div>
       														<div class="full-stars" style="width:<%=truck.getTruckStar()*20%>%"></div>
     												  </div>
-										<br> <span class='truck-basic-font'>최소금액: <%=truck.getTruckPrice() %>원</span>
+										<br> <span>최소금액: <%=truck.getTruckPrice() %>원</span>
 										<br>
 										<br>
-										<p class='truck-basic-font'>
+										<p>
 											사업자정보 :
 											<%=truck.getTruckInfoName() %></p>
-										<span class='truck-basic-font'>상호명: <%=truck.getTruckName() %></span>
-										<br> <span class='truck-basic-font'>사업자등록번호: <%=truck.getTruckInfoRegisterNumber() %></span>
+										<span>상호명: <%=truck.getTruckName() %></span>
+										<br> <span>사업자등록번호: <%=truck.getTruckInfoRegisterNumber() %></span>
 									</div>
-	
-									<div class="col-xs-12" align="center">
+									
+									<div class="col-md-2" align="center">
+										<span><%=truck.getTruckStatus().equals("t")?"영업중":"영업종료" %></span>
 										<div class="onoffswitch">
 											<input type="checkbox" name="onoffswitch"
 												class="onoffswitch-checkbox" id="myonoffswitch"

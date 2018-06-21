@@ -26,15 +26,18 @@ $(function() {
 		alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
 		}
 })
-    $('#location-btn').trigger('click');
 	
-	var truck_check=<%=truck.getTruckRenameImage()%>;
-	if(truck_check==null){
+	var truck_check=<%=truck.getLogitude()%>;
+	var truck_check2=<%=truck.getLatitude()%>;
+	console.log(truck_check);
+	if(truck_check<1||truck_check2<1){
+		alert("초기위치설정중[점포관리로 다시 이동해주세요]");
+    $('#location-btn').trigger('click');
 		setTimeout(function() {
 	    $('#detail-btn').trigger('click');
 			}, 1000);
-
 	}	
+
 })
 
 </script>
@@ -73,7 +76,7 @@ $(function() {
 											%>
 											<img id='truck-check-img'
 												src="http://proxyprivat.com/images/noimage.jpeg"
-												alt="Card image cap" width=100% height=200px> <br>
+												alt="Card image cap" width=100% height=160px> <br>
 											<button class="truck-img-replace btn btn-success">사진등록</button>
 											<input id='truck-input-img' type="file" value="사진등록"
 												class="upload" accept="image/gif, image/jpeg, image/png"
@@ -85,7 +88,7 @@ $(function() {
 											%>
 											<img id='truck-check-img'
 												src="images/truck/<%=truck.getTruckRenameImage()%>"
-												alt="Card image cap" width=100% height=200px	><br>
+												alt="Card image cap" width=100% height=160px	><br>
 											<button class="truck-img-replace btn btn-success">사진등록</button>
 											<input type="hidden" name="oimage"
 												value="<%=truck.getTruckOriginalImage()%>" /> <input
@@ -103,7 +106,7 @@ $(function() {
 
 
 										<div class="col-md-6">
-											<p class='truck-basic-font'>
+											<p>
 												주소:<%=truck.getTrucklocation()%></p>
 											<div class="ratings">
 												<div class="empty-stars"></div>
@@ -113,20 +116,20 @@ $(function() {
 											<!--갯수를 입력받아야함.-->
 											<br>최소금액:<input id="basic-input" type="number" name="min-price"
 												value="<%=truck.getTruckPrice()%>" placeholder="ex)2000원~"
-												class="form-control" required="required">
-											<br><br>
-											<p class='truck-basic-font'>
+												class="form-control" required="required" >
+											<br>
+											<p>
 												사업자정보 :
 												<%=truck.getTruckInfoName()%></p>
-											<span class='truck-basic-font'>상호명: <%=truck.getTruckName()%></span>
-											<br> <span class='truck-basic-font'>사업자등록번호: <%=truck.getTruckInfoRegisterNumber()%></span>
+											<span>상호명: <%=truck.getTruckName()%></span>
+											<br> <span>사업자등록번호: <%=truck.getTruckInfoRegisterNumber()%></span>
 
 										</div>
 										<!--ajax처리....-->
 
 
 										<div class="col-md-2" align="center">
-											<br>
+										<span><%=truck.getTruckStatus().equals("t")?"영업중":"영업종료" %></span>
 											<div class="onoffswitch">
 												<input type="checkbox" name="onoffswitch"
 													class="onoffswitch-checkbox" id="myonoffswitch"
@@ -142,7 +145,6 @@ $(function() {
 
 									</div>
 									<div align="center">
-										<br>
 										<button id="basic-submit" class="btn btn-success "
 											type="submit">완료</button>
 										<button id="reset-button"
@@ -250,14 +252,14 @@ $(function() {
 								<!-- 주소 입력 위치 확인 -->
 								<br> <input type="button" class='btn btn-warning'
 									onclick="findCurrentLocation()" value="현재 위치 확인"> <br>
-								<br> 직접입력:&nbsp;<input type="button"
-									class="btn btn-warning" onclick="Postcode()" value="주소찾기">
+								<br><input type="button"
+									class="btn btn-warning" onclick="Postcode()" value="주소직접입력">
 								<input id='location-btn' type="button" class="btn btn-info" onclick="findL()"
 									value="확인" style="display: inline-block;"> <br> <br>
 								<input type="text" class="form-control" id="Address"
 									placeholder="주소" value="<%=truck.getTrucklocation()%>" required>
 								<input type="text" class="form-control" id="AddressDetail"
-									placeholder="상세주소"><br> <input type="hidden"
+									placeholder="상세주소" required="required"><br> <input type="hidden"
 									name="truck-address" id='truck-address'
 									value="<%=truck.getTrucklocation()%>">
 								<p>
@@ -460,6 +462,10 @@ results[1].address_components[3].long_name + " "
 	function findL() {
 		var latitude = null;
 		var longitude = null;
+		var detail_loc=<%=truck.getTruckContent()%>
+		if(detail_loc==null){
+			detail_loc=" ";
+		}
 		var mapOptions = {
 				zoom : 17
 			};
@@ -470,7 +476,7 @@ results[1].address_components[3].long_name + " "
 	      '푸드트럭 : <%=truck.getTruckName()%>'+
 	      '</div>'+
 	      '<div id="content">' +
-	      '상세 설명 : <%=truck.getTruckContent()%>'+
+	      '상세 설명 :'+detail_loc+
 	      '</div>';
 		var geocoder = new google.maps.Geocoder;
 		var infowindow = new google.maps.InfoWindow({

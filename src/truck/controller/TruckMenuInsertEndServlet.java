@@ -90,8 +90,6 @@ public class TruckMenuInsertEndServlet extends HttpServlet {
 			int menuPk = new TruckService().selectOneMenuPk(menuRimage);
 			result = new TruckService().insertTruckMenuForeign(menuPk, truckPk);
 			if (result > 0) {
-				System.out.println("삽입성공");
-				request.setAttribute("msg", "메뉴작성완료");
 				request.setAttribute("loc", "/managestore.do?truckChoice=truckMenuUpdate");
 			} else {
 				System.out.println("삽입실패");
