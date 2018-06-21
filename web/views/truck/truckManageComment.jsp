@@ -53,7 +53,7 @@
                             </div>
 
                           </div>
-                          <div class='col-xs-3 col-md-3-body-center'>
+                          <div class='col-xs-4 col-md-3-body-center'>
                           <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
                      		<a id="menu-modal" data-toggle="modal" data-target=".pop-up-3" >       
                             <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=150px height=150px onclick="fn_modal_review('images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>');"></a><br>
@@ -129,7 +129,7 @@
                                    html += "<input type='hidden' name='reviewCommentRef' value='<%=reviewList.get(i).getReviewCommentPk()%>'/>";
                                    html += "<input type='hidden' name='memberPk' value='<%=member.getMemberPk()%>'/>";
                                    html += "<input type='hidden' name='truckPk' value='<%=reviewList.get(i).getTruckPk()%>'/>"; 
-                                   html += " <textarea name='truckCommentContent' class='form-control' style='resize: none;' required='required'></textarea>";
+                                   html += " <textarea name='truckCommentContent' class='form-control' style='resize: none;' required='required' autofocus='autofocus' ></textarea>";
                                    html += "<button type='submit' class='btn btn-success'>등록</button>&nbsp;";
                                    html += "<button type='reset' class='btn btn-success'>취소</button>";
                                    html += "<br><hr></form></div>";
