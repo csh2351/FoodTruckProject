@@ -202,14 +202,17 @@ function fn_emailcheck(){
          success : function(data){
                var email=$("#memberEmail").val();
          var check1=email.indexOf("@");
+         var check2=email.indexOf(".com");
+         var check3=email.indexOf(".co.kr");
+         
                if(email.length!=0&&data=='true'){
-                        $("#emailCheckText").css("color","red");
+                       $("#emailCheckText").css("color","red");
                       $("#emailCheckText").html("이미 가입된 이메일입니다. 다시 입력해주세요.");
                       $("#memberEmail").val("");
-                     
+                      
 
                }else if(email.length!=0){
-                  if(check1!=-1){
+                  if(check1!=-1&&(check2!=-1||check3!=-1)){
                      $("#emailCheckText").html("사용 가능한 이메일입니다.");
                      $("#emailCheckText").css("color","green");
                         var memberEmail = document.getElementById("memberEmail").value;
