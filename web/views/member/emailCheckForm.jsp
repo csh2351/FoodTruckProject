@@ -37,7 +37,7 @@
   });
   
    function fn_emailcheck(){
-      localStorage.setItem("result",false);
+      
       var e1 = $("#emailCode").val();
       var e2 = code;
       

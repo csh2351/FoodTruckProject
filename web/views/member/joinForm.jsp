@@ -116,33 +116,7 @@ function fn_pwCheck2(){
    }
 
 //submit할시 이용약관 확인 펑션
-function fn_enroll_validate(){
-   
 
-    var check1_1=$("input:checkbox[id='check1_1']").is(":checked"); 
-    var check1_2=$("input:checkbox[id='check1_2']").is(":checked"); 
-    var check1_3=$("input:checkbox[id='check1_3']").is(":checked"); 
-    var check2=$("input:checkbox[id='check2']").is(":checked"); 
-    var result = localStorage.getItem("result");
-   
-  
-    if(check1_1==false||check1_2==false){
-
-       alert("필수 이용약관을 체크 하세요.");
-        $("input:checkbox[id='check1_1']").focus();
-        return false;
-       
-    }
-    
-    if(result=="false"){
-       alert("이메일인증을 다시하세요");
-       $("#memberEmail").focus(); 
-       return false;
-    }
-    
- 
-    return true;
- }
 
 
 
@@ -217,46 +191,76 @@ function check_del() {
       }
    }
 }
+//이메일 인증 여부 확인 하는 것
+localStorage.setItem("result",false);
 
 function fn_emailcheck(){
-   var memberEmail = document.getElementById("memberEmail").value;
-   var url="<%=request.getContextPath()%>/views/member/emailCheckForm.jsp?memberEmail="+memberEmail;
-   var status="left=500px,top=100px,width=600px,height=200px";
-   var popup=window.open(url,"",status);
-}
+    $.ajax({
+       url: "<%=request.getContextPath()%>/memberEmailCheck.do",
+         type:"post",
+         data:{memberEmail:$('#memberEmail').val()},
+         success : function(data){
+               var email=$("#memberEmail").val();
+         var check1=email.indexOf("@");
+               if(email.length!=0&&data=='true'){
+                        $("#emailCheckText").css("color","red");
+                      $("#emailCheckText").html("이미 가입된 이메일입니다. 다시 입력해주세요.");
+                      $("#memberEmail").val("");
+                     
+
+               }else if(email.length!=0){
+                  if(check1!=-1){
+                     $("#emailCheckText").html("사용 가능한 이메일입니다.");
+                     $("#emailCheckText").css("color","green");
+                        var memberEmail = document.getElementById("memberEmail").value;
+                        var url="<%=request.getContextPath()%>/views/member/emailCheckForm.jsp?memberEmail="+memberEmail;
+                        var status="left=500px,top=100px,width=600px,height=200px";
+                        var popup=window.open(url,"",status);
+                  }else{
+                    $("#emailCheckText").html("유효하지 않은 이메일형식입니다. 다시 입력해주세요.");
+                     $("#emailCheckText").css("color","red");
+                     $("#memberEmail").val("");
+                  }
+               }      
+               
+         }
+       });
+   };
 
 
-$(function(){
-	   $('#memberEmail').blur(function(){
-	          $.ajax({
-	             url: "<%=request.getContextPath()%>/memberEmailCheck.do",
-	               type:"post",
-	               data:{memberEmail:$('#memberEmail').val()},
-	               success : function(data){
-	                     var email=$("#memberEmail").val();
-						var check1=email.indexOf("@");
-	                     if(email.length!=0&&data=='true'){
-	                           /*  $("#emailCheck").css("color","red");
-	                            $("#emailCheck").html("*이미 가입된 이메일입니다. 다시 입력해주세요.");
-	                            $("#memberEmail").val(""); */
-	                            alert("이미가입된 메일입니다.");
- 
-	                     }else if(email.length!=0){
-	                    	 if(check1!=-1){
-	                        	$("#emailCheck").html("사용 가능한 이메일입니다.");
-	                        	$("#emailCheck").css("color","green");
-	                    	 }else{
-	                    		$("#emailCheck").html("유효하지 않은 이메일형식입니다. 다시 입력해주세요.");
-		                        $("#emailCheck").css("color","red");
-		                        $("#memberEmail").val("");
-	                    	 }
-	                     }      
-	                     
-	               }
-	             });
-	         });
-	   });
+	   
+ 			
+ 			
+ 			
+	         function fn_enroll_validate(){
+	        	   
 
+	        	    var check1_1=$("input:checkbox[id='check1_1']").is(":checked"); 
+	        	    var check1_2=$("input:checkbox[id='check1_2']").is(":checked"); 
+	        	    var check1_3=$("input:checkbox[id='check1_3']").is(":checked"); 
+	        	    var check2=$("input:checkbox[id='check2']").is(":checked");
+	        	    
+	        	    var result =localStorage.getItem("result")
+	        	  
+	        	  
+	        	    if(check1_1==false||check1_2==false){
+
+	        	       alert("필수 이용약관을 체크 하세요.");
+	        	        $("input:checkbox[id='check1_1']").focus();
+	        	        return false;
+	        	       
+	        	    }
+	        	    
+	        	    
+	        	    if(result=="false"){
+	        	       alert("이메일인증 여부를 확인해주세요");
+	        	       $("#memberEmail").focus(); 
+	        	       return false;
+	        	    }
+	        	    
+	        	 
+	        	    return true;
+	        	 }
 
 
 </script>
@@ -313,6 +317,7 @@ $(function(){
                <label class="col-sm-3 control-label" for="inputEmail"><span class="text-danger">*</span>이메일</label>
                <div class="col-sm-6">
                <input id="memberEmail" type="email" class="form-control" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해 주세요" required>
+               <p id="emailCheckText"></p>
                </div>
                <div class="col-sm-3">
                   <input  type="button" class="btn btn-warning" id="emailCheck" name="emailCheck" onclick="fn_emailcheck();" value="이메일 인증">
