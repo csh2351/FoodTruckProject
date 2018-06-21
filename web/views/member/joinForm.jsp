@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ include file="/views/common/header.jsp"%>
+<%@ include file="../common/header.jsp"%>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script>
 
@@ -24,7 +24,7 @@ $(function(){
                             $("#idCheck").css("color","red");
                             $("#memberId").val("");
                             $("#memberId").focus();
-                        }else{
+                        } else {
                             $("#idCheck").css("color","green");
                                $("#idCheck").html("*해당 아이디는 사용이 가능합니다.");
                          }
@@ -123,7 +123,8 @@ function fn_enroll_validate(){
     var check1_2=$("input:checkbox[id='check1_2']").is(":checked"); 
     var check1_3=$("input:checkbox[id='check1_3']").is(":checked"); 
     var check2=$("input:checkbox[id='check2']").is(":checked"); 
-    
+    var result = localStorage.getItem("result");
+   
   
     if(check1_1==false||check1_2==false){
 
@@ -133,70 +134,15 @@ function fn_enroll_validate(){
        
     }
     
+    if(result=="false"){
+       alert("이메일인증을 다시하세요");
+       $("#memberEmail").focus(); 
+       return false;
+    }
     
-    
-   /*  if($("#memberName").val()==''){
-       $("#memberName").val().focus();
-       alert('필수 항목을 기입해주세요!');
-          
-      return false;
-    }  
-      if($("#memberPhone").val()==''){
-          $("#memberPhone").val().focus();
-          alert('필수 항목을 기입해주세요!');
-             
-         return false;
-       }
-      
-      if($("#memberEmail").val()==''){
-          $("#memberEmail").val().focus();
-          alert('필수 항목을 기입해주세요!');
-             
-         return false;
-       }
-      
-      if($("#memberAddress").val()==''){
-          $("#memberAddress").val().focus();
-          alert('필수 항목을 기입해주세요!');
-             
-         return false;
-       } */
-   
+ 
     return true;
  }
- 
- //이메일 중복검사
-$(function(){
-	   $('#memberEmail').blur(function(){
-	          $.ajax({
-	             url: "<%=request.getContextPath()%>/memberEmailCheck.do",
-	               type:"post",
-	               data:{memberEmail:$('#memberEmail').val()},
-	               success : function(data){
-	                     var email=$("#memberEmail").val();
-						var check1=email.indexOf("@");
-	                     if(email.length!=0&&data=='true'){
-	                            $("#emailCheck").css("color","red");
-	                            $("#emailCheck").html("*이미 가입된 이메일입니다. 다시 입력해주세요.");
-	                            $("#memberEmail").val("");
-    
-	                     }else if(email.length!=0){
-	                    	 if(check1!=-1){
-	                        	$("#emailCheck").html("사용 가능한 이메일입니다.");
-	                        	$("#emailCheck").css("color","green");
-	                    	 }else{
-	                    		$("#emailCheck").html("유효하지 않은 이메일형식입니다. 다시 입력해주세요.");
-		                        $("#emailCheck").css("color","red");
-		                        $("#memberEmail").val("");
-	                    	 }
-	                     }      
-	                     
-	               }
-	             });
-	         });
-	   });
- 
- 
 
 
 
@@ -272,6 +218,12 @@ function check_del() {
    }
 }
 
+function fn_emailcheck(){
+   var memberEmail = document.getElementById("memberEmail").value;
+   var url="<%=request.getContextPath()%>/views/member/emailCheckForm.jsp?memberEmail="+memberEmail;
+   var status="left=500px,top=100px,width=600px,height=200px";
+   var popup=window.open(url,"",status);
+}
 
       
 </script>
@@ -325,12 +277,16 @@ function check_del() {
             </div>
          
             <div class="form-group">
-               <label class="col-sm-3 control-label" for="memberEmail"><span class="text-danger">*</span>이메일</label>
+               <label class="col-sm-3 control-label" for="inputEmail"><span class="text-danger">*</span>이메일</label>
                <div class="col-sm-6">
                <input type="email" class="form-control" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해 주세요" required>
-               <p id='emailCheck'></p>
                </div>
+               <div class="col-sm-3">
+                  <input  type="button" class="btn btn-warning" id="emailCheck" name="emailCheck" onclick="fn_emailcheck();" value="이메일 인증">
+              </div>
             </div>
+            
+       
 
             <div class="form-group">
               <label class="col-sm-3 control-label" for="memberAddrress"><span class="text-danger">*</span>주소</label>
@@ -602,19 +558,24 @@ function check_del() {
 
             <div class="form-group">
                <div class="col-sm-12 text-center">
-                    <input class="btn btn-primary" type="submit" value="회원가입" onclick="return fn_enroll_validate();">
+                    <input class="btn btn-primary" type="submit" id="join" value="회원가입" onclick="return fn_enroll_validate();">
                     <input class="btn btn-danger" type="reset" value="가입취소">
                </div>
             </div>
          </form>
-         <form name="checkIdDuplicateFrm" method="post">
-            <input type="hidden" name="memberId">
-         </form>
-         <hr>
+         
+         <form name="emailCheckFrm" method="post">
+         <input type="hidden" name="memberEmail"/>
+      </form>
+      
       </div>
 
    </article>
 </section>
+
+
+
+
 
 
 

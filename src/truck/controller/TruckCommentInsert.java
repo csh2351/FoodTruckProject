@@ -48,7 +48,7 @@ public class TruckCommentInsert extends HttpServlet {
 		}
 
 		String root = getServletContext().getRealPath("/");
-		String saveDir = root + "/images" + File.separator + "truckReview";
+		String saveDir = root + "images" + File.separator + "truckReview";
 		System.out.println(saveDir);
 
 		// 크긱조정

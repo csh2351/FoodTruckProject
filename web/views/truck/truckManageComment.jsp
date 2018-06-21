@@ -12,6 +12,7 @@
  <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList");%>
  <%Truck truck=(Truck)(request.getAttribute("truck"));%>
   <%Member member=(Member)(request.getAttribute("member"));%>
+ 
 	
 			
 			<div class="page-header">
@@ -63,7 +64,7 @@
                     <ul class="level2">
                     <%for(int k=0; k<reviewList.size(); k++){ %>
                    <%if(reviewList.get(k).getReviewCommentLevel()==2&&reviewList.get(k).getReviewCommentRef()==reviewList.get(i).getReviewCommentPk()) {%>
-                    <li class='review-comment-view<%=i%>' textalign="right"> 
+                    <li class='review-comment-view<%=k%>' textalign="right"> 
                      <div class='row'>
                      <div class="col-xs-2"></div>
                           <div class="col-xs-10" id="review-list">
@@ -85,7 +86,7 @@
                             </div>
                               <div class="row">
                               <div class="col-xs-12" align="right">
-                             <button class='btn btn-success delete-button' type="button"  onclick="fn_commentDelete(<%=i%>,<%=reviewList.get(i).getReviewCommentPk()%>)">삭제</button>
+                             <button class='btn btn-success delete-button' type="button"  onclick="fn_commentDelete(<%=k%>,<%=reviewList.get(k).getReviewCommentPk()%>)">삭제</button>
                               </div>
                             </div>
                         	<hr>
@@ -134,16 +135,7 @@
                                    html += "<br><hr></form></div>";
                                    //위에서 작성한 html구문을li변수 text노드에 삽입
                                    li.html(html);
-                                   
-/*                                    li.insertAfter($(this).parent().parent()).children("td").slideDown(100);
- */                                   //작성된 lir태그(객체)를 원본 html구문의
-                                   //(li class=leve1)뒤에 삽입
-                                  <%--  var reviewComment= $(".review-comment-view"+<%=i%>);
-                                   reviewComment.after(li).slideDown(500); --%>
-                                	   <%-- var reviewList=$(".review-view"+<%=i%>);
-                                       reviewList.after(li).slideDown(500); --%>
-                                	   var reviewList=$(".level2");
-                                       li.insertAfter($(this).parent().parent().parent().parent().parent().parent().children(".level2")).slideDown(100);
+                                   li.insertAfter($(this).parent().parent().parent().parent().parent().parent().children(".level2")).slideDown(100);
 
 /*                                        reviewList.after(li).slideDown(500);
  */                            	  return li;
@@ -198,7 +190,8 @@ function fn_commentDelete(index,pk) {
 		data:{reviewCommentPk :pk},
 		success : function(data){ 
 			alert(data.msg);
-			$(".review-comment-view"+index).remove();
+			var comment=$(".review-comment-view"+index);
+			comment.remove();
 		}, 
 		error : function(request,status,error) { 
 		alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 

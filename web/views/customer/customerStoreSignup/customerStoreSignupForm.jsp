@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <style>
 /*폼 그룹 사이 벌려주는 것 (마진-바텀값으로 조절가능)*/
 .form-horizontal .form-group {
-	margin-bottom: 30px;
+   margin-bottom: 30px;
 }
 </style>
 
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/nav-tabs.css">
+   href="<%=request.getContextPath()%>/css/nav-tabs.css">
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/customer.css">
+   href="<%=request.getContextPath()%>/css/customer.css">
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script>  
 //주소찾기 스크립트
@@ -56,61 +56,83 @@ function Postcode() {
         }
     }).open();
 }
+
+
+
+function fn_enroll_validate()
+{
+   var truckInfoRegisterNumber=$("#truckInfoRegisterNumber");
+   if(truckInfoRegisterNumber.val().length>10)
+   {
+      alert("사업자번호는 최대9자리까지 입력가능합니다.");
+      truckInfoRegisterNumber.focus();
+      return false;
+   }
+   
+   if(truckInfoRegisterNumber.val().length==0||truckInfoName.val().length==0||truckLocation.val().length==0){
+      alert("공백없이 모두 입력해주세요");
+      return false;
+   }
+   
+   return true;
+}
+
 </script>
 <section>
-	<div class='container'>
-		<div class="panel">
-			<ul class="nav nav-tabs">
-				<li role="presentation"><a href="<%=request.getContextPath()%>/customer.do">공지사항</a></li>
-				<li role="presentation"><a href="<%=request.getContextPath()%>/customerFAQForm.do">자주묻는 질문</a></li>
-				<li class="active" role="presentation"><a href="<%=request.getContextPath()%>/customerStoreSignup.do">점포가입신청</a></li>
-			</ul>
-			<div class="panel-body">
-				<div class="page-header">
-					<h2>점포 가입 신청</h2>
-				</div>
+   <div class='container'>
+      <div class="panel">
+         <ul class="nav nav-tabs">
+            <li role="presentation"><a href="<%=request.getContextPath()%>/customer.do">공지사항</a></li>
+            <li role="presentation"><a href="<%=request.getContextPath()%>/customerFAQForm.do">자주묻는 질문</a></li>
+            <li class="active" role="presentation"><a href="<%=request.getContextPath()%>/customerStoreSignup.do">점포가입신청</a></li>
+         </ul>
+         <div class="panel-body">
+            <div class="page-header">
+               <h2>점포 가입 신청</h2>
+            </div>
 
-				<form action="<%=request.getContextPath()%>/storeSignupWrite.do?memberPk=<%=memberLoggedIn.getMemberPk()%>" method="post" class="form-horizontal">
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="">사업자 번호</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="truckInfoRegisterNumber" name="truckInfoRegisterNumber" type="text" placeholder="사업자 번호(필수 입력아님)">
-						</div>
-					</div>
-				
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="">상호명</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="truckInfoName " name="truckInfoName" type="text" placeholder="상호명">
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="truckAddress">푸드트럭 주소</label>
-						<div class="col-sm-3">
-							<input type="text"  class="form-control" id="post" placeholder="우편번호">
-						</div>
-						<div class="col-sm-3">
-							<input type="button" class="btn btn-warning" onclick="Postcode()" value="주소찾기">
-						</div>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" id="truckLocation" name="truckLocation" placeholder="주소"> 
-							<input type="text" class="form-control" id="memberAddressDetail" placeholder="상세주소">
-						</div>
-				
-					<br> <br> <br> <br>
-					<div class="form-group">
-						<div class="col-sm-12 text-center">
-							<input class="btn btn-primary" type="submit" onclick="fn_submit();" value="신청서제출">
-							<input class="btn btn-danger" type="reset" value="취소">
-						</div>
-					</div>
-				</form>
-				
-			
-			</div>
-		</div>
-	</div>
+            <form action="<%=request.getContextPath()%>/storeSignupWrite.do?memberPk=<%=memberLoggedIn.getMemberPk()%>" method="post" class="form-horizontal" onsubmit="return fn_enroll_validate();">
+               <div class="form-group">
+                  <label class="col-sm-3 control-label" for="">사업자 번호</label>
+                  <div class="col-sm-6">
+                     <input class="form-control" id="truckInfoRegisterNumber" name="truckInfoRegisterNumber" type="text" placeholder="사업자 번호(필수 입력아님)" onblur="chkNum();">
+                     
+                  </div>
+               </div>
+            
+               <div class="form-group">
+                  <label class="col-sm-3 control-label" for="">상호명</label>
+                  <div class="col-sm-6">
+                     <input class="form-control" id="truckInfoName " name="truckInfoName" type="text" placeholder="상호명">
+                  </div>
+               </div>
+               
+               <div class="form-group">
+                  <label class="col-sm-3 control-label" for="truckAddress">푸드트럭 주소</label>
+                  <div class="col-sm-3">
+                     <input type="text"  class="form-control" id="post" placeholder="우편번호">
+                  </div>
+                  <div class="col-sm-3">
+                     <input type="button" class="btn btn-warning" onclick="Postcode()" value="주소찾기">
+                  </div>
+                  <div class="col-sm-6">
+                     <input type="text" class="form-control" id="truckLocation" name="truckLocation" placeholder="주소"> 
+                     <input type="text" class="form-control" id="memberAddressDetail" placeholder="상세주소">
+                  </div>
+            
+               <br> <br> <br> <br>
+               <div class="form-group">
+                  <div class="col-sm-12 text-center">
+                     <input class="btn btn-primary" type="submit" onclick="fn_submit();" value="신청서제출">
+                     <input class="btn btn-danger" type="reset" value="취소">
+                  </div>
+               </div>
+            </form>
+            
+         
+         </div>
+      </div>
+   </div>
 </section>
 
 <%@ include file="/views/common/footer.jsp"%>
