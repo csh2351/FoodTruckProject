@@ -14,11 +14,9 @@
   <%Member member=(Member)(request.getAttribute("member"));%>
  
 <style>
-
     ul#comment-main button.btn-reply{display:none;}
     ul#comment-reply button.btn-delete{display:none;}
     ul#comment-main li:hover button.btn-reply{display:inline;}
-    
     ul#comment-main li:hover button.btn-delete{display:inline;}
 </style>	
 			
@@ -31,7 +29,6 @@
           		 <ul id='comment-main' class='level1'>
                     <li id='review-view<%=i%>' class='comment-reply level1'>
                       <!--댓글보기-->
-                      <hr>
                         <div class='row'>
                           <div class="col-xs-8">
                             <div class="row">
@@ -54,7 +51,6 @@
 								<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
 								<br>
 								<br>
-								<br>
 								<button id='addComment<%=i%>' type="button" class="btn btn-success btn-reply ">답글</button>
                               </div>
                             </div>
@@ -67,6 +63,7 @@
                           <%} %>
                           </div>
                         </div>
+                        <hr>
                     </li>
                     <ul id="comment-reply" class="level2">
                     <%for(int k=0; k<reviewList.size(); k++){ %>
@@ -89,17 +86,16 @@
                               <div class="col-xs-12">
 								<span><%=reviewList.get(k).getReviewCommnetContent() %></span>
                               </div>
-                              <br><br>
+                              <br>
                             </div>
                               <div class="row">
                               <div class="col-xs-12" align="right">
                              <button class='btn btn-success btn-delete' type="button"  onclick="fn_commentDelete(<%=k%>,<%=reviewList.get(k).getReviewCommentPk()%>)">삭제</button>
+                        	<hr>
                               </div>
                             </div>
                           </div>
-                          
                         </div>
-                        	<hr>
                     </li>
                     <%}
                    }%>
@@ -207,10 +203,10 @@ function fn_commentDelete(index,pk) {
 		$("#load-review-button").click(function(e){ // Load More를 위한 클릭 이벤트e
 		e.preventDefault();
 		$(".more-comment:hidden").slice(0, 10).show(); // 숨김 설정된 다음 10개를 선택하여 표시
-		/* if($(".more-comment:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
-		alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
-		}*/
 		}); 
+		 if($(".more-comment:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
+			 $("#load-review-button").hide();
+		}
 	});
    
 

@@ -9,6 +9,14 @@
 	href="<%=request.getContextPath()%>/css/foodTruckReview.css">
 <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 
+<style>
+    ul#comment-main button.btn-reply{display:none;}
+    ul#comment-reply button.btn-delete{display:none;}
+    ul#comment-main li:hover button.btn-reply{display:inline;}
+    ul#comment-main li:hover button.btn-delete{display:inline;}
+</style>	
+
+
 <%
 	List<TruckReviewComment> reviewList = (ArrayList<TruckReviewComment>) request.getAttribute("reviewList");
 %>
@@ -55,7 +63,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<span><%=reviewList.get(i).getReviewCommnetContent()%></span>
-					</div>
+						</div>
 				</div>
 
 			</div>
@@ -76,7 +84,6 @@
 		</div> <%
  	if ((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)) {
  %>
-
 		<div class="row">
 			<div class="col-xs-8"></div>
 			<div class="col-xs-4 result-btn-positon">
@@ -129,14 +136,10 @@
                         })
                         }
                       </script>
-
-	</li>
+	
 	<ul class="level2">
-		<%
-			for (int k = 0; k < reviewList.size(); k++) {
-		%>
-		<%
-			if (reviewList.get(k).getReviewCommentLevel() == 2
+		<%for (int k = 0; k < reviewList.size(); k++) {%>
+		<%if (reviewList.get(k).getReviewCommentLevel() == 2
 								&& reviewList.get(k).getReviewCommentRef() == reviewList.get(i).getReviewCommentPk()) {
 		%>
 		<li class='review-comment-view<%=k%>' textalign="right">
