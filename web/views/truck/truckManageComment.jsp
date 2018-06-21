@@ -13,7 +13,14 @@
  <%Truck truck=(Truck)(request.getAttribute("truck"));%>
   <%Member member=(Member)(request.getAttribute("member"));%>
  
-	
+<style>
+
+    ul#comment-main button.btn-reply{display:none;}
+    ul#comment-reply button.btn-delete{display:none;}
+    ul#comment-main li:hover button.btn-reply{display:inline;}
+    
+    ul#comment-main li:hover button.btn-delete{display:inline;}
+</style>	
 			
 			<div class="page-header">
 					<p style="font-size: 14pt; font-weight: bold;">&nbsp;&nbsp;&nbsp;리뷰</p>
@@ -48,7 +55,7 @@
 								<br>
 								<br>
 								<br>
-								<button id='addComment<%=i%>' type="button" class="btn btn-success ">답글</button>
+								<button id='addComment<%=i%>' type="button" class="btn btn-success btn-reply ">답글</button>
                               </div>
                             </div>
 
@@ -61,7 +68,7 @@
                           </div>
                         </div>
                     </li>
-                    <ul class="level2">
+                    <ul id="comment-reply" class="level2">
                     <%for(int k=0; k<reviewList.size(); k++){ %>
                    <%if(reviewList.get(k).getReviewCommentLevel()==2&&reviewList.get(k).getReviewCommentRef()==reviewList.get(i).getReviewCommentPk()) {%>
                     <li class='review-comment-view<%=k%>' textalign="right"> 
@@ -86,38 +93,19 @@
                             </div>
                               <div class="row">
                               <div class="col-xs-12" align="right">
-                             <button class='btn btn-success delete-button' type="button"  onclick="fn_commentDelete(<%=k%>,<%=reviewList.get(k).getReviewCommentPk()%>)">삭제</button>
+                             <button class='btn btn-success btn-delete' type="button"  onclick="fn_commentDelete(<%=k%>,<%=reviewList.get(k).getReviewCommentPk()%>)">삭제</button>
                               </div>
                             </div>
-                        	<hr>
                           </div>
                           
                         </div>
+                        	<hr>
                     </li>
                     <%}
                    }%>
                     </ul>
                     </ul>
-                  
-                            <!--댓글삭제 ajax-->
-                        <script type="text/javascript">
-                     		<%-- $("#delete-button<%=i%>").on("click", function() {
-							$.ajax({
-								url:"<%=request.getContextPath()%>/truckReviewCommentDelete",
-								type : "POST",
-								data:{reviewCommentPk :<%=reviewList.get(i).getReviewCommentPk()%>},
-								success : function(data){ 
-									alert(data.msg);
-									$(".review-comment-view<%=i%>").remove();
-								}, 
-								error : function(request,status,error) { 
-								alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-								}
-						})
-						}) --%>
-                      </script>
-                      
-                  	  <%} %>
+                     	  <%} %>
                   	   
                   	     <script type="text/javascript">
                             $("#addComment<%=i%>").one('click', function() {
