@@ -74,9 +74,13 @@
 								<!--고정값으로 할수있는 checkd찾기-->
 							</div>
 							<div class="col-xs-5">
+							<%if(list.get(i).getTruckRenameImage()!=null){ %>
 								<br> <img class="truck_img_size"src="images/truck/<%=list.get(i).getTruckRenameImage()%>"
 									alt=""  width=130px; height=150px;>
-									
+							<%}else{ %>
+									<br> <img class="truck_img_size"src="images/truck/noimage.jpeg"
+									alt=""  width=130px; height=150px;>
+							<%} %>
 							</div>
 							
     

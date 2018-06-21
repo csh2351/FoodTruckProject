@@ -6,8 +6,6 @@
 <%@ page import="truck.vo.Truck"%>
 <%
 	Truck truck = (Truck) request.getAttribute("truck");
-	String truckHoliday = truck.getTruckHoliday();
-	int truckPrice = (int) truck.getTruckPrice();
 	String serlvet = (String) request.getAttribute("truckChoice");
 %>
 
@@ -28,6 +26,15 @@ $(function() {
 		alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
 		}
 })
+    $('#location-btn').trigger('click');
+	
+	var truck_check=<%=truck.getTruckRenameImage()%>;
+	if(truck_check==null){
+		setTimeout(function() {
+	    $('#detail-btn').trigger('click');
+			}, 1000);
+
+	}	
 })
 
 </script>
@@ -245,7 +252,7 @@ $(function() {
 									onclick="findCurrentLocation()" value="현재 위치 확인"> <br>
 								<br> 직접입력:&nbsp;<input type="button"
 									class="btn btn-warning" onclick="Postcode()" value="주소찾기">
-								<input type="button" class="btn btn-info" onclick="findL()"
+								<input id='location-btn' type="button" class="btn btn-info" onclick="findL()"
 									value="확인" style="display: inline-block;"> <br> <br>
 								<input type="text" class="form-control" id="Address"
 									placeholder="주소" value="<%=truck.getTrucklocation()%>" required>
@@ -277,7 +284,7 @@ $(function() {
 								</p>
 								<div align="center">
 									<br>
-									<button class="btn btn-success" type="submit" id="detailsubmit">완료</button>
+									<button id='detail-btn' class="btn btn-success" type="submit" id="detailsubmit">완료</button>
 									<button class="btn btn-success reset-button" type="reset">취소</button>
 								</div>
 							</form>
