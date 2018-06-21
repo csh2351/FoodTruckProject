@@ -12,16 +12,15 @@
  <%List<TruckReviewComment> reviewList=(ArrayList<TruckReviewComment>)request.getAttribute("reviewList");%>
  <%Truck truck=(Truck)(request.getAttribute("truck"));%>
   <%Member member=(Member)(request.getAttribute("member"));%>
- 
 	
 			
 			<div class="page-header">
 					<p style="font-size: 14pt; font-weight: bold;">&nbsp;&nbsp;&nbsp;리뷰</p>
 			</div>
  		
-           <ul id='comment-main level1'>
 			<%for(int i=0; i<reviewList.size(); i++){ %>
                     <%if(reviewList.get(i).getReviewCommentLevel()==1){ %>
+          		 <ul id='comment-main' class='level1'>
                     <li id='review-view<%=i%>' class='comment-reply level1'>
                       <!--댓글보기-->
                       <hr>
@@ -60,42 +59,48 @@
                           <%} %>
                           </div>
                         </div>
-                      
                     </li>
-                    <%}if(reviewList.get(i).getReviewCommentLevel()==2) {%>
-                    
-                    <li class='review-comment-view<%=i%> level2' textalign="right"> 
+                    <ul class="level2">
+                    <%for(int k=0; k<reviewList.size(); k++){ %>
+                   <%if(reviewList.get(k).getReviewCommentLevel()==2&&reviewList.get(k).getReviewCommentRef()==reviewList.get(i).getReviewCommentPk()) {%>
+                    <li class='review-comment-view<%=i%>' textalign="right"> 
                      <div class='row'>
-                     <div class="col-xs-2">	↘</div>
-                          <div class="col-xs-10">
+                     <div class="col-xs-2"></div>
+                          <div class="col-xs-10" id="review-list">
                             <div class="row">
                               <div class="col-xs-6 ">
-                                <span class='panel-2-body-font'>사장님: <%=reviewList.get(i).getReviewCommnetWriter() %></span> 
+                                <span class='panel-2-body-font'>사장님: <%=reviewList.get(k).getReviewCommnetWriter() %></span> 
                                 <!--아이디부여-->
                               </div>
                               <div class="col-md-6 date-padding">
-                                <span class='panel-2-body-font'>작성일:<%=reviewList.get(i).getReivewCommentDate() %></span><br>
+                                <span class='panel-2-body-font'>작성일:<%=reviewList.get(k).getReivewCommentDate() %></span><br>
                                 <!--date 부여 -->
                               </div>
                             </div>
                             <div class="row">
                               <div class="col-xs-12">
-								<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
+								<span><%=reviewList.get(k).getReviewCommnetContent() %></span>
                               </div>
                               <br><br>
                             </div>
                               <div class="row">
                               <div class="col-xs-12" align="right">
-                             <button id="delete-button<%=i%>"  class='btn btn-success delete-button' type="button">삭제</button>
+                             <button class='btn btn-success delete-button' type="button"  onclick="fn_commentDelete(<%=i%>,<%=reviewList.get(i).getReviewCommentPk()%>)">삭제</button>
                               </div>
                             </div>
                         	<hr>
                           </div>
+                          
                         </div>
                     </li>
+                    <%}
+                   }%>
+                    </ul>
+                    </ul>
+                  
                             <!--댓글삭제 ajax-->
                         <script type="text/javascript">
-						$("#delete-button<%=i%>").on("click", function() {
+                     		<%-- $("#delete-button<%=i%>").on("click", function() {
 							$.ajax({
 								url:"<%=request.getContextPath()%>/truckReviewCommentDelete",
 								type : "POST",
@@ -108,7 +113,7 @@
 								alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
 								}
 						})
-						})
+						}) --%>
                       </script>
                       
                   	  <%} %>
@@ -129,24 +134,19 @@
                                    html += "<br><hr></form></div>";
                                    //위에서 작성한 html구문을li변수 text노드에 삽입
                                    li.html(html);
-                                   //작성된 lir태그(객체)를 원본 html구문의
+                                   
+/*                                    li.insertAfter($(this).parent().parent()).children("td").slideDown(100);
+ */                                   //작성된 lir태그(객체)를 원본 html구문의
                                    //(li class=leve1)뒤에 삽입
                                   <%--  var reviewComment= $(".review-comment-view"+<%=i%>);
-                                  
                                    reviewComment.after(li).slideDown(500); --%>
-                                   
-                              
-                                    
                                 	   <%-- var reviewList=$(".review-view"+<%=i%>);
                                        reviewList.after(li).slideDown(500); --%>
-                                       
+                                	   var reviewList=$(".level2");
+                                       li.insertAfter($(this).parent().parent().parent().parent().parent().parent().children(".level2")).slideDown(100);
 
-                                	   var reviewList=$("#comment-modify-list"+<%=i%>);
-                                       reviewList.after(li).slideDown(500);
-                                 
-                               
-                                  
-                            	  return li;
+/*                                        reviewList.after(li).slideDown(500);
+ */                            	  return li;
                             	  /*수정해주기*/
 							});
                             </script> 
@@ -184,9 +184,28 @@
         </div>
         <!-- /.modal mixer image -->
                     
+                    
+   
+  
   
 <script>
+	//삭제
+function fn_commentDelete(index,pk) {
 	
+	$.ajax({
+		url:"<%=request.getContextPath()%>/truckReviewCommentDelete",
+		type : "POST",
+		data:{reviewCommentPk :pk},
+		success : function(data){ 
+			alert(data.msg);
+			$(".review-comment-view"+index).remove();
+		}, 
+		error : function(request,status,error) { 
+		alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+		}
+})
+}
+
 
 	$(function() {
 		function fn_localTime() {
@@ -213,6 +232,14 @@
 		}); 
 	});
    
+
+   
+	
+
+    /*   $(".btn-cancel").on('click', function(e) {
+        $(".comment-reply").detach();
+      }); */
+
     	
   </script>
 
