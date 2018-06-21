@@ -139,16 +139,18 @@ public class MypageQuestionDao {
 			qna.setQnaContent(rs.getString("qna_content"));
 			qna.setAnswerTitle(rs.getString("qna_answer_title"));
 			qna.setAnswerContent(rs.getString("qna_answer_content"));
-			
+			qna.setQnaWriter(rs.getString("qna_writer"));		
 			String s=rs.getString("qna_answer_date");
+			if(s!=null) {
 			String qnaAnswerDate=s.substring(0, 19);
 			qna.setQnaAnswerDate(qnaAnswerDate);
-			
+			}
 			String s1=rs.getString("qna_date");
 			String qnaDate=s1.substring(0, 19);
 			qna.setQnaDate(qnaDate);
 			
-			qna.setQnaWriter(rs.getString("qna_writer"));
+			
+			
 			}	
 		}catch(Exception e) {
 			e.printStackTrace();
