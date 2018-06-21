@@ -9,17 +9,6 @@ section ul {
   padding-bottom: 15px;
 }
 
- .basic-btn{
-      background: green;
-    }
-    
-    
-   .more-btn {
-      width: 90px;
-      border-radius: 3px;
-      border-color: transparent;
-      background: green;
-    }
 
     .more-btn-positon {
       text-align: center;
@@ -73,19 +62,22 @@ section ul {
       right: 0px;
   }
   
-
+.truck_img_size{
+	    border-radius: 8px;
+		width: 130px;
+		height: 150px;
+}
   
-     /*스위치*/
-     @media(max-width:1199px) {
+          @media(max-width:1199px) {
         .truck_img_size{
           width: 110px;
           height: 160px;
         }
       }
       
-       @media(max-width:765px) {
+       @media(max-width:768px) {
         .truck_img_size{
-          width: 280px;
+          width: 100%;
           height: 160px;
         }
           #select_sort{
@@ -93,12 +85,16 @@ section ul {
         }
       }
       
+      
         @media(max-width:480px) {
         .truck_img_size{
-          width: 130px;
+          width: 100%;
           height: 160px;
         }
       }
-      
+      .parsing-address{
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+  
      
       

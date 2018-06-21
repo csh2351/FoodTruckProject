@@ -21,11 +21,8 @@
     border: 1px solid black;
     }
 </style>
-
-<br>
 <section>
 	<div class="container">
-
 		<div class='row'>
 			<div class="col-md-7 ">
 				<div class="panel-group">
@@ -55,7 +52,6 @@
 											<%} %>
 										
 									</div>
-									
 
 									<!--모달 틀-->
 									<div class="modal fade pop-up-1" tabindex="-1" role="dialog"
@@ -80,9 +76,6 @@
 										<!-- /.modal-dialog -->
 									</div>
 									<!-- /.modal mixer image -->
-								
-									
-									
 
 									<div class="col-md-6">
 										<p>
@@ -119,7 +112,6 @@
 							</div>
 						</div>
 					</div>
-					<br> <br>
 
 					<div class="row">
 						<div class="panel panel-default">
@@ -160,6 +152,13 @@
 								위치 :
 								<%=truck.getTrucklocation() %></p>
 							<br>
+							
+							<%if(truck.getTruckContent()!=null){ %>
+							<p>
+								상세주소 :
+								<%=truck.getTruckContent() %></p>
+							<br>
+							<%} %>
 								<p>
 									오픈시간 : <%=request.getAttribute("openTime")%>
 								</p>
@@ -174,8 +173,7 @@
 						</div>
 					</div>
 				</div>
-
-			</div>
+	 			</div>
 		</div>
 	</div>
 </section>

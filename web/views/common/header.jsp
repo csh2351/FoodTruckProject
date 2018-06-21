@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/all.css">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/navbar.css">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/truckStar.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/customer.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
   <script src='js/bootstrap.js'></script>

@@ -41,11 +41,8 @@ $(function() {
 })
 
 </script>
-
-<br>
 <section>
 	<div class="container">
-
 		<div class='row'>
 			<div class="col-md-7 ">
 				<div class="panel-group">
@@ -154,7 +151,6 @@ $(function() {
 							</div>
 						</div>
 					</div>
-					<br> <br>
 					<div class="row">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -217,15 +213,11 @@ $(function() {
 									})
 							
 							</script>
-
 							<div id="choice-body" class="panel-body"></div>
-
 						</div>
 					</div>
-
 				</div>
 			</div>
-
 
 			<div class="col-md-4 col-md-offset-1">
 				<div class="row">

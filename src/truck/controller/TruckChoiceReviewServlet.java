@@ -60,12 +60,16 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 		if(truckPk>0){
 			List<TruckReviewComment> reviewList=new TruckService().selectReviewCommnetList(truckPk);
 			view="/views/truck/truckChoiceReview.jsp";
-			System.out.println("reviewList:"+reviewList);
 
+			System.out.println("member 체크체크"+member);
+			System.out.println("memberId 체크체크"+memberId);
+			System.out.println("truckPk 체크체크"+truckPk);
 			
 			request.setAttribute("reviewList", reviewList);
 			request.setAttribute("member", member);
+			request.setAttribute("memberId", memberId);
 	        request.setAttribute("truckPk", truckPk);
+	        
 
 		}
 		

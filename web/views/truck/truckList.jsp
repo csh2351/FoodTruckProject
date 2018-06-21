@@ -6,38 +6,7 @@
  
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css">
     
-  <style>
-     @media(max-width:1199px) {
-        .truck_img_size{
-          width: 110px;
-          height: 160px;
-        }
-      }
-      
-       @media(max-width:768px) {
-        .truck_img_size{
-          width: 100%;
-          height: 160px;
-        }
-          #select_sort{
-        margin-left: 15px;
-        }
-      }
-      
-      
-        @media(max-width:480px) {
-        .truck_img_size{
-          width: 100%;
-          height: 160px;
-        }
-      }
-      .parsing-address{
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      }
-      @media(min-width:992px) {
-      
-      }
-</style> 
+
     
     
 <% ArrayList<Truck>list=(ArrayList<Truck>)request.getAttribute("list");%>
@@ -52,15 +21,11 @@
 					<!-- <div class="col-sm-6 col-md-4 padding"> -->
 					<div class="padding">
 						<div class="thumbnail thumnail-botton">
-							<div class="col-xs-12">
 								<br>
-							</div>
-
 							<div class="col-xs-8" align="left">
 								<span class='truck_name'><%=list.get(i).getTruckName()%></span>
 							</div>
 							<div class="col-xs-4">
-								<!--고정값으로 할수있는 checkd찾기-->
 								<div class="onoffswitch">
 									<input type="checkbox" name="onoffswitch"
 										class="onoffswitch-checkbox" id="myonoffswitch" <%=(list.get(i).getTruckStatus()).equals("t")?"CHECKED":""%>>
@@ -69,21 +34,18 @@
 										class="onoffswitch-inner"></span> <span
 										class="onoffswitch-switch"></span>
 									</label>
-									<!--클릭이벤트제거-->
 								</div>
-								<!--고정값으로 할수있는 checkd찾기-->
 							</div>
+							
 							<div class="col-xs-5">
 							<%if(list.get(i).getTruckRenameImage()!=null){ %>
 								<br> <img class="truck_img_size"src="images/truck/<%=list.get(i).getTruckRenameImage()%>"
-									alt=""  width=130px; height=150px;>
+									alt="">
 							<%}else{ %>
 									<br> <img class="truck_img_size"src="images/truck/noimage.jpeg"
-									alt=""  width=130px; height=150px;>
+									alt="">
 							<%} %>
 							</div>
-							
-    
                     
 							<div class="col-xs-7">
 								<br>
@@ -95,11 +57,6 @@
 								<p>최소금액: <%=list.get(i).getTruckPrice() %>원</p>
 								<p>리뷰: <%=list .get(i).getReviewCount()%>개</p>
 							</div>
-							<div class='col-xs-4'></div>
-							<div class='col-xs-4'></div>
-							<div class='col-xs-4'></div>
-							<!--지우지마셈 꺠짐-->
-							
 							<div>
 								<a>&nbsp;</a>
 							</div>
@@ -141,10 +98,10 @@
 			e.preventDefault();
 			$(".more-list:hidden").slice(0, 8).show(); // 숨김 설정된 다음 10개를 선택하여 표시
 			
-			/* if($(".more-menu:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
-			alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
-			} */
+			if($(".more-menu:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
+				 $("#load-list-button").hide();			
 			
+			}
 			});
 		});
 </script>
