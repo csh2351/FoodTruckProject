@@ -41,19 +41,21 @@ public class AdminStoreEnrollListServlet extends HttpServlet {
 		}
 		//페이지에 보여줄 리스트 갯수
 		int numPerPage=10;
-		//전체 notice 리스트에 받아오기
+		
 		List<Signup> signupList=new AdminStoreEnrollService().selectList(cPage,numPerPage);
 		
 		for(Signup s: signupList) {
 			String id=new AdminStoreEnrollService().selectId(s.getMemberPk());
 			s.setMemberId(id);
+			
 		}
 		
-		//전체 notice 수
+		
+	
 		int totalQna=new AdminStoreEnrollService().selectCount();
 		//전체 페이지 수
 		int totalPage=(int)Math.ceil((double)totalQna/numPerPage);
-		//noticeForm에 보내줄 html문
+		
 		String pageBar="";
 		//페이지바 사이즈 5로 고정함
 		int pageBarSize=5;
@@ -67,7 +69,7 @@ public class AdminStoreEnrollListServlet extends HttpServlet {
 		if(pageNo==1) {
 			pageBar+="<li><a><span aria-hidden='true'>«</span></a></li>";
 		}else {
-			pageBar+="<li><a href='"+request.getContextPath()+"/adminstoreEnrollList.do?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>«</span></a></li>";
+			pageBar+="<li><a href='"+request.getContextPath()+"/adminStoreEnrollList.do?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>«</span></a></li>";
 
 		}
 		
@@ -76,7 +78,7 @@ public class AdminStoreEnrollListServlet extends HttpServlet {
 			if(cPage==pageNo) {
 				pageBar+="<li><a>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<li><a href='"+request.getContextPath()+"/adminstoreEnrollList.do?cPage="+pageNo+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
+				pageBar+="<li><a href='"+request.getContextPath()+"/adminStoreEnrollList.do?cPage="+pageNo+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
 			}
 			pageNo++;
 		}
@@ -84,7 +86,7 @@ public class AdminStoreEnrollListServlet extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar+="<li><a><span aria-hidden='true'>»</span></a></li>";
 		}else {
-			pageBar+="<li><a href='"+request.getContextPath()+"/adminstoreEnrollList.do?cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>»</span></a></li>";
+			pageBar+="<li><a href='"+request.getContextPath()+"/adminStoreEnrollList.do?cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>»</span></a></li>";
 		}
 		
 		request.setAttribute("pageBar", pageBar);
