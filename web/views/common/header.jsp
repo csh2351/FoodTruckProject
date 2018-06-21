@@ -47,7 +47,7 @@
 
 	
       <div class="collapse navbar-collapse" id='bs-example-navbar-collapse-1'>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-left">
           <li><a href="<%=request.getContextPath() %>/intro.do">소개<span class='sr-only'></span></a></li>
           <li><a href="<%=request.getContextPath() %>/truckStore.do">STORE</a></li>
           <li><a href="<%=request.getContextPath() %>/eventForm.do">EVENT</a></li>
@@ -99,7 +99,7 @@
  <% }
 else if(memberLoggedIn.getMemberLevel().equals("3")){
 	%>
-	<ul class="nav navbar-nav navbar-right">
+	<ul class="nav navbar-nav  navbar-right">
 		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do"><span class="glyphicon glyphicon-user"></span><%= memberLoggedIn.getMemberName() %>님</a></li>
 		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do">마이페이지</a></li>
           <li><a href="<%=request.getContextPath() %>/logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
@@ -107,14 +107,14 @@ else if(memberLoggedIn.getMemberLevel().equals("3")){
 	<% }
 else if(memberLoggedIn.getMemberLevel().equals("1")){
 	%>
-	<ul class="nav navbar-nav navbar-right">
+	<ul class="nav navbar-nav  navbar-right">
 		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do"><span class="glyphicon glyphicon-user"></span><%= memberLoggedIn.getMemberName() %>관리자님</a></li>
 		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do">마이페이지</a></li>
           <li><a href="<%=request.getContextPath() %>/logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
      </ul>
 	<% }
 	else if(memberLoggedIn.getMemberLevel().equals("2")) {%>
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav  navbar-right">
 		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do"><span class="glyphicon glyphicon-user"></span><%= memberLoggedIn.getMemberName() %>점주님</a></li>
 		  <li><a href="<%=request.getContextPath() %>/mypageInfoChange.do">마이페이지</a></li>
           <li><a href="<%=request.getContextPath() %>/logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>

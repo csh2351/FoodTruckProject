@@ -2,11 +2,10 @@
 
 /*@비회원 메인화면*/
 
-@media (max-width:980px) {
+@media (max-width:970px) {
   .navbar-header {
     float: none;
   }
-  
   
   .navbar-left, .navbar-right {
     float: none !important;
@@ -42,6 +41,8 @@
 }
 
 /*네브바 축소시 줄내림 현상 방지 끝*/
+
+
 
 .navbar-header .icon-bar {
   background-color: black;
