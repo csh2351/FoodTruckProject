@@ -11,7 +11,7 @@
 
 <style>
     ul#comment-main button.btn-reply{display:none;}
-    ul#comment-reply button.btn-delete{display:none;}
+    ul#comment-main button.btn-delete{display:none;}
     ul#comment-main li:hover button.btn-reply{display:inline;}
     ul#comment-main li:hover button.btn-delete{display:inline;}
 </style>	
@@ -24,7 +24,7 @@
 	int truckPk = (int) (request.getAttribute("truckPk"));
 %>
 <%
-	String memberId = (String) request.getAttribute("memberId");
+	Member member= (Member) request.getAttribute("member");
 %>
 
 <!-- 지우지마셈... -->
@@ -41,7 +41,7 @@
 <%
 	if (reviewList.get(i).getReviewCommentLevel() == 1) {
 %>
-<ul id='comment-main<%=i%>>' class='level1'>
+<ul id='comment-main' class='level1'>
 	<li id='review-view<%=i%>' class='comment-reply level1'>
 		<!--댓글보기-->
 		<div class='row'>
@@ -58,6 +58,7 @@
 				</div>
 				<span class="rating"> <label> <span class="icon">평점:
 							<%=reviewList.get(i).getReviewStar()%></span>
+                              
 				</label>
 				</span>
 				<div class="row">
@@ -65,6 +66,31 @@
 						<span><%=reviewList.get(i).getReviewCommnetContent()%></span>
 						</div>
 				</div>
+				
+					<script type="text/javascript">
+                            $("#addComment<%=i%>").one('click', function() {
+                            	   var li = $('<li id></li>'); //태그생성
+                                   var html = "<br><div class='col-xs-12' align='right'>";
+                                   html += "<form action='<%=request.getContextPath()%>/truckReviewCommentEnd' method='post'>";
+                                   html += "<input type='hidden' name='reviewCommentLevel' value='2'/>";
+                                   html += "<input type='hidden' name='reivewCommentWriter' value='<%=member.getMemberId()%>'/>";
+                                   html += "<input type='hidden' name='reviewCommentRef' value='<%=reviewList.get(i).getReviewCommentPk()%>'/>";
+                                   html += "<input type='hidden' name='memberPk' value='<%=member.getMemberPk()%>'/>";
+                                   html += "<input type='hidden' name='truckPk' value='<%=reviewList.get(i).getTruckPk()%>'/>"; 
+                                   html += " <textarea name='truckCommentContent' class='form-control' style='resize: none;' required='required' autofocus='autofocus' ></textarea>";
+                                   html += "<button type='submit' class='btn btn-success'>등록</button>&nbsp;";
+                                   html += "<button type='reset' class='btn btn-success'>취소</button>";
+                                   html += "<br><hr></form></div>";
+                                   //위에서 작성한 html구문을li변수 text노드에 삽입
+                                   li.html(html);
+                                   li.insertAfter($(this).parent().parent().parent().parent().children(".level2")).slideDown(100);
+
+/*                                        reviewList.after(li).slideDown(500);
+ */                            	  return li;
+                            	  /*수정해주기*/
+							});
+                            </script> 
+                            			
 
 			</div>
 			<div class='col-xs-4 col-md-3-body-center'>
@@ -82,14 +108,16 @@
 				%>
 			</div>
 		</div> <%
- 	if ((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)) {
+ 	if ((reviewList.get(i).getReviewCommnetWriter()).equals(member.getMemberId())) {
  %>
 		<div class="row">
 			<div class="col-xs-8"></div>
 			<div class="col-xs-4 result-btn-positon">
 				<br>
-				<button id="delete-button" class='btn btn-success' type="button"
+				<button id="delete-button" class='btn btn-success btn-delete' type="button"
 					onclick="fn_commentDelete(<%=i%>,<%=reviewList.get(i).getReviewCommentPk()%>)">삭제</button>
+				<button id='addComment<%=i%>' type="button" class="btn btn-success btn-reply ">답글</button>
+			
 			</div>
 		</div> <%
  	}
@@ -137,7 +165,7 @@
                         }
                       </script>
 	
-	<ul class="level2">
+	<ul id='comment-reply' class="level2">
 		<%for (int k = 0; k < reviewList.size(); k++) {%>
 		<%if (reviewList.get(k).getReviewCommentLevel() == 2
 								&& reviewList.get(k).getReviewCommentRef() == reviewList.get(i).getReviewCommentPk()) {
@@ -148,7 +176,7 @@
 				<div class="col-xs-10" id="review-list">
 					<div class="row">
 						<div class="col-xs-6 ">
-							<span class='panel-2-body-font'>사장님: <%=reviewList.get(k).getReviewCommnetWriter()%></span>
+							<span class='panel-2-body-font'>아이디: <%=reviewList.get(k).getReviewCommnetWriter()%></span>
 							<!--아이디부여-->
 						</div>
 						<div class="col-md-6 date-padding">
@@ -161,21 +189,25 @@
 							<span><%=reviewList.get(k).getReviewCommnetContent()%></span>
 						</div>
 						<br>
-						<br>
 					</div>
-					<hr>
+					   <div class="row">
+                              <div class="col-xs-12" align="right">
+                             <button class='btn btn-success btn-delete' type="button"  onclick="fn_commentDelete(<%=k%>,<%=reviewList.get(k).getReviewCommentPk()%>)">삭제</button>
+                        	<hr>
+                              </div>
+                            </div>
 				</div>
 			</div>
 		</li>
 		<%
 			}
 					}
-				}
-			}
-		%>
+				}%>
 	</ul>
 </ul>
 
+			<%}
+		%>
 
 <%
 	if (!reviewList.isEmpty()) {
@@ -221,7 +253,7 @@
 
 <!--댓글달기 -->
 <%
-	if (memberId.length() > 0) {
+	if (member.getMemberId().length() > 0) {
 %>
 <ul>
 	<li id='comment-list'>
@@ -234,11 +266,11 @@
 					<div class="row">
 						<div class="col-md-6 ">
 							<input type="hidden" name="truckPk" value="<%=truckPk%>" /> <input
-								type="hidden" name="reviewCommentWriter" value="<%=memberId%>" />
+								type="hidden" name="reviewCommentWriter" value="<%=member.getMemberId()%>" />
 							<input type="hidden" name="reviewCommentRef" value="0" /> <input
 								type="hidden" name="reviewCommentLevel" value="1" /> <input
 								type="hidden" name="memberPk" value="1" /> <span
-								class='panel-2-body-font' name="reviewCommentWriter"><%=memberId%></span>
+								class='panel-2-body-font' name="reviewCommentWriter"><%=member.getMemberId()%></span>
 
 							<!--아이디부여-->
 						</div>
@@ -305,10 +337,10 @@
 		</form>
 
 	</li>
+</ul>
 	<%
 		}
 	%>
-</ul>
 
 
 <script>

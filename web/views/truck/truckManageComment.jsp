@@ -105,7 +105,7 @@
                   	   
                   	     <script type="text/javascript">
                             $("#addComment<%=i%>").one('click', function() {
-                            	   var li = $('<li id='+"comment-reply"+<%=i%>+'</li>'); //태그생성
+                            	   var li = $('<li></li>'); //태그생성
                                    var html = "<br><div class='col-xs-12' align='right'>";
                                    html += "<form action='<%=request.getContextPath()%>/truckReviewCommentEnd' method='post'>";
                                    html += "<input type='hidden' name='reviewCommentLevel' value='2'/>";

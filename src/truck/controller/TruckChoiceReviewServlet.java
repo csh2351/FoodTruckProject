@@ -64,7 +64,7 @@ public class TruckChoiceReviewServlet extends HttpServlet {
 
 			
 			request.setAttribute("reviewList", reviewList);
-			request.setAttribute("memberId", memberId);
+			request.setAttribute("member", member);
 	        request.setAttribute("truckPk", truckPk);
 
 		}
