@@ -34,6 +34,9 @@
       .parsing-address{
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       }
+      @media(min-width:992px) {
+      
+      }
 </style> 
     
     
@@ -44,10 +47,10 @@
 			<%for(int i=0; i<list.size(); i++){%>
 				<!--클릭리스너 만들기-->
 
-
-                 <div class="more-list" style="display: none;"> 
-				<li class='store-list' value=<%=list.get(i).getTruckPk() %>>
-					<div class="col-sm-6 col-md-4 padding">
+                <!--  <div class="" style="display: none;"> -->
+				<li class='store-list more-list col-sm-6 col-md-4' value="<%=list.get(i).getTruckPk() %>" style="display: none;">
+					<!-- <div class="col-sm-6 col-md-4 padding"> -->
+					<div class="padding">
 						<div class="thumbnail thumnail-botton">
 							<div class="col-xs-12">
 								<br>
@@ -72,7 +75,7 @@
 							</div>
 							<div class="col-xs-5">
 								<br> <img class="truck_img_size"src="images/truck/<%=list.get(i).getTruckRenameImage()%>"
-									alt=""  width=130px; height=160px;>
+									alt=""  width=130px; height=150px;>
 									
 							</div>
 							
@@ -99,7 +102,8 @@
 						</div>
 					</div>
 				</li>
-				</div>
+				
+				<!-- </div> -->
 				<%} %>
 			
 			
