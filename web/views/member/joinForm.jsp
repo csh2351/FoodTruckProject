@@ -225,7 +225,40 @@ function fn_emailcheck(){
    var popup=window.open(url,"",status);
 }
 
-      
+
+$(function(){
+	   $('#memberEmail').blur(function(){
+	          $.ajax({
+	             url: "<%=request.getContextPath()%>/memberEmailCheck.do",
+	               type:"post",
+	               data:{memberEmail:$('#memberEmail').val()},
+	               success : function(data){
+	                     var email=$("#memberEmail").val();
+						var check1=email.indexOf("@");
+	                     if(email.length!=0&&data=='true'){
+	                           /*  $("#emailCheck").css("color","red");
+	                            $("#emailCheck").html("*이미 가입된 이메일입니다. 다시 입력해주세요.");
+	                            $("#memberEmail").val(""); */
+	                            alert("이미가입된 메일입니다.");
+ 
+	                     }else if(email.length!=0){
+	                    	 if(check1!=-1){
+	                        	$("#emailCheck").html("사용 가능한 이메일입니다.");
+	                        	$("#emailCheck").css("color","green");
+	                    	 }else{
+	                    		$("#emailCheck").html("유효하지 않은 이메일형식입니다. 다시 입력해주세요.");
+		                        $("#emailCheck").css("color","red");
+		                        $("#memberEmail").val("");
+	                    	 }
+	                     }      
+	                     
+	               }
+	             });
+	         });
+	   });
+
+
+
 </script>
 
 <section>
@@ -279,7 +312,7 @@ function fn_emailcheck(){
             <div class="form-group">
                <label class="col-sm-3 control-label" for="inputEmail"><span class="text-danger">*</span>이메일</label>
                <div class="col-sm-6">
-               <input type="email" class="form-control" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해 주세요" required>
+               <input id="memberEmail" type="email" class="form-control" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해 주세요" required>
                </div>
                <div class="col-sm-3">
                   <input  type="button" class="btn btn-warning" id="emailCheck" name="emailCheck" onclick="fn_emailcheck();" value="이메일 인증">
