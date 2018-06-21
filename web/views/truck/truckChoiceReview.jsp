@@ -9,14 +9,34 @@
 	href="<%=request.getContextPath()%>/css/foodTruckReview.css">
 <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 
+
+<!--중복되서-->
+<style>
+ul#comment-main button.btn-reply {
+	display: none;
+}
+
+ul#comment-main button.btn-delete {
+	display: none;
+}
+
+ul#comment-main li:hover button.btn-reply {
+	display: inline;
+}
+
+ul#comment-main li:hover button.btn-delete {
+	display: inline;
+}
+</style>
+
+
 <%
 	List<TruckReviewComment> reviewList = (ArrayList<TruckReviewComment>) request.getAttribute("reviewList");
 %>
 <%
 	int truckPk = (int) (request.getAttribute("truckPk"));
-%>
-<%
-	String memberId = (String) request.getAttribute("memberId");
+	String memberId=(String)request.getAttribute("memberId");
+	Member member= (Member) request.getAttribute("member");
 %>
 
 <!-- 지우지마셈... -->
@@ -33,7 +53,7 @@
 <%
 	if (reviewList.get(i).getReviewCommentLevel() == 1) {
 %>
-<ul id='comment-main<%=i%>>' class='level1'>
+<ul id='comment-main' class='level1'>
 	<li id='review-view<%=i%>' class='comment-reply level1'>
 		<!--댓글보기-->
 		<div class='row'>
@@ -50,88 +70,63 @@
 				</div>
 				<span class="rating"> <label> <span class="icon">평점:
 							<%=reviewList.get(i).getReviewStar()%></span>
+
 				</label>
 				</span>
-				<div class="row">
-					<div class="col-xs-12">
-						<span><%=reviewList.get(i).getReviewCommnetContent()%></span>
-					</div>
-				</div>
 
 			</div>
 			<div class='col-xs-4 col-md-3-body-center'>
-				<%
-					if (reviewList.get(i).getReviewCommentRimage() != null) {
-				%>
-				<a id="menu-modal" data-toggle="modal" data-target=".pop-up-3">
-					<img class='comment-check-img'
-					src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>"
-					alt="Card image cap" width=150px height=150px
-					onclick="fn_modal_review('images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>');">
-				</a><br>
-				<%
-					}
-				%>
+			</div>
+			 <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
+			 	<div class="col-xs-12">
+			<a id="menu-modal" data-toggle="modal" data-target=".pop-up-3" >       
+             <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap"onclick="fn_modal_review('images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>');"></a><br>
+			</div>
+			<%} %> 
+			<div class="col-xs-12">
+				<%=reviewList.get(i).getReviewCommnetContent()%>
 			</div>
 		</div> <%
- 	if ((reviewList.get(i).getReviewCommnetWriter()).equals(memberId)) {
+ 	if (((reviewList.get(i).getReviewCommnetWriter()).equals(memberId))&&memberId.length()>0) {
  %>
-
 		<div class="row">
 			<div class="col-xs-8"></div>
 			<div class="col-xs-4 result-btn-positon">
 				<br>
-				<button id="delete-button" class='btn btn-success' type="button"
+				<button id="delete-button" class='btn btn-success btn-delete'
+					type="button"
 					onclick="fn_commentDelete(<%=i%>,<%=reviewList.get(i).getReviewCommentPk()%>)">삭제</button>
+				<button id='addComment<%=i%>' type="button"
+					class="btn btn-success btn-reply ">답글</button>
+
 			</div>
-		</div> <%
+		</div> 
+		
+		<script type="text/javascript">
+                            $("#addComment<%=i%>").one('click', function() {
+                            	   var li = $('<li id></li>'); //태그생성
+                                   var html = "<br><div class='col-xs-12' align='right'>";
+                                   html += "<form action='<%=request.getContextPath()%>/truckReviewCommentEnd' method='post'>";
+                                   html += "<input type='hidden' name='reviewCommentLevel' value='2'/>";
+                                   html += "<input type='hidden' name='reivewCommentWriter' value='<%=member.getMemberId()%>'/>";
+                                   html += "<input type='hidden' name='reviewCommentRef' value='<%=reviewList.get(i).getReviewCommentPk()%>'/>";
+                                   html += "<input type='hidden' name='memberPk' value='<%=member.getMemberPk()%>'/>";
+                                   html += "<input type='hidden' name='truckPk' value='<%=reviewList.get(i).getTruckPk()%>'/>"; 
+                                   html += " <textarea name='truckCommentContent' class='form-control' style='resize: none;' required='required' autofocus='autofocus' ></textarea>";
+                                   html += "<button type='submit' class='btn btn-success'>등록</button>&nbsp;";
+                                   html += "<button type='reset' class='btn btn-success'>취소</button>";
+                                   html += "<br><hr></form></div>";
+                                   li.html(html);
+                                   li.insertAfter($(this).parent().parent().parent().parent().children(".level2")).slideDown(100);
+
+                          	  return li;
+							});
+       </script> <%
  	}
  %>
 		<hr>
 	</li>
-
-
-	<!--지우지마셈...-->
-	<%-- 
-						  <%if(reviewList.get(i).getReviewCommentRimage()!=null){ %>
-                            <div class="row">
-                              <div class="col-xs-12">
-								<a id="menu-modal" data-toggle="modal" data-target=".pop-up-3" >       
-                          	   <img class='comment-check-img' src="images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>" alt="Card image cap" width=80% height=80% onclick="fn_modal_review('images/truckReview/<%=reviewList.get(i).getReviewCommentRimage()%>');"></a><br>
-                              </div>
-                            </div>
-                              <%} %>
-                          </div>
-                          
-                         
-                          <div class='col-xs-12'>
-                     	<span><%=reviewList.get(i).getReviewCommnetContent() %></span>
-						</div> --%>
-
-
-
-
-	<!--댓글삭제 ajax-->
-	<script type="text/javascript">
-                        function fn_commentDelete(index,pk) {
-                        	$.ajax({
-                        		url:"<%=request.getContextPath()%>/truckReviewCommentDelete",
-                        		type : "POST",
-                        		data:{reviewCommentPk :pk},
-                        		success : function(data){ 
-                        			alert(data.msg);
-                        			var comment=$("#review-view"+index);
-                        			comment.remove();
-                        		}, 
-                        		error : function(request,status,error) { 
-                        		alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
-                        		}
-                        })
-                        }
-                      </script>
-
-	</li>
-	<ul class="level2">
+	<ul id='comment-reply' class="level2">
 		<%
 			for (int k = 0; k < reviewList.size(); k++) {
 		%>
@@ -145,7 +140,7 @@
 				<div class="col-xs-10" id="review-list">
 					<div class="row">
 						<div class="col-xs-6 ">
-							<span class='panel-2-body-font'>사장님: <%=reviewList.get(k).getReviewCommnetWriter()%></span>
+							<span class='panel-2-body-font'>아이디: <%=reviewList.get(k).getReviewCommnetWriter()%></span>
 							<!--아이디부여-->
 						</div>
 						<div class="col-md-6 date-padding">
@@ -158,9 +153,20 @@
 							<span><%=reviewList.get(k).getReviewCommnetContent()%></span>
 						</div>
 						<br>
-						<br>
 					</div>
-					<hr>
+					<div class="row">
+						<div class="col-xs-12" align="right">
+							<%
+								if (memberId.length() > 0) {
+							%>
+							<button class='btn btn-success btn-delete' type="button"
+								onclick="fn_commentDelete(<%=k%>,<%=reviewList.get(k).getReviewCommentPk()%>)">삭제</button>
+							<%
+								}
+							%>
+							<hr>
+						</div>
+					</div>
 				</div>
 			</div>
 		</li>
@@ -168,11 +174,13 @@
 			}
 					}
 				}
-			}
 		%>
 	</ul>
 </ul>
 
+<%
+	}
+%>
 
 <%
 	if (!reviewList.isEmpty()) {
@@ -202,14 +210,11 @@
 			<div class="modal-body">
 				<img id="modal-review-img"
 					class="img-responsive img-rounded center-block" alt=""
-					width="500px" height="500px">
+					width="500" height="500">
 			</div>
 		</div>
-		<!-- /.modal-content -->
 	</div>
-	<!-- /.modal-dialog -->
 </div>
-<!-- /.modal mixer image -->
 
 
 
@@ -276,7 +281,7 @@
 				<div class='col-xs-4 col-md-3-body-center'>
 					<img id='comment-check-img'
 						src="http://proxyprivat.com/images/noimage.jpeg"
-						alt="Card image cap" width=90% height=100><br>
+						alt="Card image cap" width=90% height=118><br>
 					<button class="btn-success replace basic-btn">사진등록</button>
 					<div class='test'>
 						<input id='comment-input-img' type="file" value="사진등록"
@@ -302,13 +307,30 @@
 		</form>
 
 	</li>
-	<%
-		}
-	%>
 </ul>
+<%
+	}
+%>
 
 
 <script>
+//댓글삭제 ajax
+function fn_commentDelete(index,pk) {
+	$.ajax({
+		url:"<%=request.getContextPath()%>/truckReviewCommentDelete",
+		type : "POST",
+		data:{reviewCommentPk :pk},
+		success : function(data){ 
+			alert(data.msg);
+			var comment=$("#review-view"+index);
+			comment.remove();
+		}, 
+		error : function(request,status,error) { 
+		alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
+		}
+})
+}
+
   $("#myonoffswitch").on('click', function(e) {
     e.preventDefault();
   });
@@ -409,9 +431,9 @@
 		$("#load-review-button").click(function(e){ // Load More를 위한 클릭 이벤트e
 		e.preventDefault();
 		$(".more-comment:hidden").slice(0, 10).show(); // 숨김 설정된 다음 10개를 선택하여 표시
-		/* if($(".more-comment:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
-		alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
-		}*/
+		 if($(".more-comment:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
+			 $("#load-review-button").hide();
+		}
 		}); 
 	});
     	
