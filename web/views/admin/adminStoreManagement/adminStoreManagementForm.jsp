@@ -29,24 +29,25 @@ List<Signup> signupList = (List)request.getAttribute("signupList");
                         <br>
                         <h2>점주관리</h2>
                         <br>
-                        <table class="table">
+                         <table class="table">
                                 <thead id='tablehead'>
                                     <tr>
+                                       <td>트럭 번호</td>
                                         <td>점포명</td>
-                                        <td>카테고리</td>
+                                        <td>위치</td>
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
                                    
-                                    	<%for(Signup signup: signupList){ %>
+                                       <%for(Signup signup: signupList){ %>
                                      <tr>
-                                    
+                                       <td><%=signup.getTruckPk() %></td>
                                         <td><a href="<%=request.getContextPath()%>/managestore.do?truckPk=<%=String.valueOf(signup.getTruckPk())%>"><%=signup.getTruckName() %></a></td>
-                                        																				<!--Integer.parseIint쓰기때문에 String로 변환후 보냈음-->
-                                        <td></td>
+                                                                                                    <!--Integer.parseIint쓰기때문에 String로 변환후 보냈음-->
+                                        <td><%=signup.getTruckLocation() %></td>
                                       <tr>
-                                    	<%} %>
+                                       <%} %>
                                 </tbody>
                             </table>
                 </div>

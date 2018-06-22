@@ -61,7 +61,7 @@ public class ManageTruck extends HttpServlet {
 		}
 		
 
-		 else if (session != null) {// 세션이 존재할때 (점주가 접근)
+		 else if (session != null &&truckPk==null) {// 세션이 존재할때 (점주가 접근)
 			Member member = (Member) session.getAttribute("memberLoggedIn");
 			System.out.println("member :  " + member);
 			int memberPk = member.getMemberPk();

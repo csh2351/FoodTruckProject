@@ -52,6 +52,7 @@ private Properties prop=new Properties();
 				signup.setTruckName(rs.getString("truck_name"));
 				signup.setTruckInfoName(rs.getString("truck_info_name"));
 				signup.setTruckApprove(rs.getString("truck_Approve"));
+				signup.setTruckLocation(rs.getString("truck_location"));
 				signupList.add(signup);
 			}
 		
