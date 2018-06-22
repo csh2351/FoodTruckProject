@@ -82,9 +82,6 @@ ul#comment-main li:hover button.btn-delete {
 			<div class="col-xs-8"></div>
 			<div class="col-xs-4 result-btn-positon">
 				<br>
-				<button id="delete-button" class='btn btn-success btn-delete'
-					type="button"
-					onclick="fn_commentDelete(<%=i%>,<%=reviewList.get(i).getReviewCommentPk()%>)">삭제</button>
 				<button id='addComment<%=i%>' type="button"
 					class="btn btn-success btn-reply ">답글</button>
 

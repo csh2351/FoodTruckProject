@@ -31,11 +31,11 @@ $(function() {
 	var truck_check2=<%=truck.getLatitude()%>;
 	console.log(truck_check);
 	if(truck_check<1||truck_check2<1){
-		alert("초기위치설정중[점포관리로 다시 이동해주세요]");
     $('#location-btn').trigger('click');
+    	alert('초기위치설정중....[점포관리로 다시이동해주세요]');
 		setTimeout(function() {
 	    $('#detail-btn').trigger('click');
-		}, 500);
+		}, 700);
 	}	
 
 })
@@ -251,7 +251,7 @@ $(function() {
 								<input type="text" class="form-control" id="Address"
 									placeholder="주소" value="<%=truck.getTrucklocation()%>" required>
 								<input type="text" class="form-control" id="AddressDetail"
-									placeholder="상세주소" required="required"><br> <input type="hidden"
+									placeholder="상세주소"><br> <input type="hidden"
 									name="truck-address" id='truck-address'
 									value="<%=truck.getTrucklocation()%>">
 								<p>

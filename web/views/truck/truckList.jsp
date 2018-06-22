@@ -93,10 +93,10 @@
 	});
 	
 	 $(function(){
-			$(".more-list").slice(0, 8).show(); // 최초 10개 선택
+			$(".more-list").slice(0, 9).show(); // 최초 10개 선택
 			$("#load-list-button").click(function(e){ // Load More를 위한 클릭 이벤트e
 			e.preventDefault();
-			$(".more-list:hidden").slice(0, 8).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+			$(".more-list:hidden").slice(0, 9).show(); // 숨김 설정된 다음 10개를 선택하여 표시
 			
 			if($(".more-menu:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
 				 $("#load-list-button").hide();			

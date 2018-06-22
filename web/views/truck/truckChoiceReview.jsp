@@ -132,14 +132,14 @@ ul#comment-main li:hover button.btn-delete {
 					</div>
 					<div class="row">
 						<div class="col-xs-12" align="right">
-							<%
+						<%-- 	<%
 								if (memberId.length()>0&&memberId.equals(reviewList.get(i).getReviewCommnetWriter())) {
 							%>
 							<button class='btn btn-success btn-delete' type="button"
 								onclick="fn_commentDelete(<%=k%>,<%=reviewList.get(k).getReviewCommentPk()%>)">삭제</button>
 							<%
 								}
-							%>
+							%> --%>
 							<hr>
 						</div>
 					</div>
@@ -298,8 +298,11 @@ function fn_commentDelete(index,pk) {
 		data:{reviewCommentPk :pk},
 		success : function(data){ 
 			alert(data.msg);
+			var delbtn=$('#delete-button');
+			delbtn.parent().parent().parent().parent("ul").remove();
+			/* parent 4번
 			var comment=$("#review-view"+index);
-			comment.remove();
+			comment.remove(); */
 		}, 
 		error : function(request,status,error) { 
 		alert("code:"+request.status+"\n"+ "message:"+request.responseText+"\n"+"error:"+error); 
