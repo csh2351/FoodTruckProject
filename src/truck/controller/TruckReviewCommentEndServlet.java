@@ -45,6 +45,8 @@ public class TruckReviewCommentEndServlet extends HttpServlet {
 			
 			System.out.println(comment);
 			int result=new TruckService().insertTruckReviewComment(comment);
+			
+			//여길로가는구나...
 			if(result>0){
 				request.setAttribute("loc", "/managestore.do?truckChoice=truckReviewComment");
 			}

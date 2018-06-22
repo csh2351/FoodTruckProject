@@ -39,6 +39,7 @@ public class AdminStoreManagementFormServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
+		System.out.println(cPage);
 		//페이지에 보여줄 리스트 갯수
 		int numPerPage=10;
 		//signup 리스트에 받아오기(adminStoreEnroll 서비스 공유함!)
@@ -58,6 +59,7 @@ public class AdminStoreManagementFormServlet extends HttpServlet {
 		//페이지 끝번호
 		int pageEnd=pageNo+pageBarSize-1;
 		
+		System.out.println(signupList);
 		
 		//html문  이전버튼
 		if(pageNo==1) {

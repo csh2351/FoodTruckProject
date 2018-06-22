@@ -96,33 +96,9 @@ ul#comment-main li:hover button.btn-delete {
 				<button id="delete-button" class='btn btn-success btn-delete'
 					type="button"
 					onclick="fn_commentDelete(<%=i%>,<%=reviewList.get(i).getReviewCommentPk()%>)">삭제</button>
-				<button id='addComment<%=i%>' type="button"
-					class="btn btn-success btn-reply ">답글</button>
-
 			</div>
 		</div> 
-		
-		<script type="text/javascript">
-                            $("#addComment<%=i%>").one('click', function() {
-                            	   var li = $('<li id></li>'); //태그생성
-                                   var html = "<br><div class='col-xs-12' align='right'>";
-                                   html += "<form action='<%=request.getContextPath()%>/truckReviewCommentEnd' method='post'>";
-                                   html += "<input type='hidden' name='reviewCommentLevel' value='2'/>";
-                                   html += "<input type='hidden' name='reivewCommentWriter' value='<%=member.getMemberId()%>'/>";
-                                   html += "<input type='hidden' name='reviewCommentRef' value='<%=reviewList.get(i).getReviewCommentPk()%>'/>";
-                                   html += "<input type='hidden' name='memberPk' value='<%=member.getMemberPk()%>'/>";
-                                   html += "<input type='hidden' name='truckPk' value='<%=reviewList.get(i).getTruckPk()%>'/>"; 
-                                   html += " <textarea name='truckCommentContent' class='form-control' style='resize: none;' required='required' autofocus='autofocus' ></textarea>";
-                                   html += "<button type='submit' class='btn btn-success'>등록</button>&nbsp;";
-                                   html += "<button type='reset' class='btn btn-success'>취소</button>";
-                                   html += "<br><hr></form></div>";
-                                   li.html(html);
-                                   li.insertAfter($(this).parent().parent().parent().parent().children(".level2")).slideDown(100);
-
-                          	  return li;
-							});
-       </script> <%
- 	}
+ 	<%}
  %>
 		<hr>
 	</li>
@@ -157,7 +133,7 @@ ul#comment-main li:hover button.btn-delete {
 					<div class="row">
 						<div class="col-xs-12" align="right">
 							<%
-								if (memberId.length() > 0) {
+								if (memberId.length()>0&&memberId.equals(reviewList.get(i).getReviewCommnetWriter())) {
 							%>
 							<button class='btn btn-success btn-delete' type="button"
 								onclick="fn_commentDelete(<%=k%>,<%=reviewList.get(k).getReviewCommentPk()%>)">삭제</button>

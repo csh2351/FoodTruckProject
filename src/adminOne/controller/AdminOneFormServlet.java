@@ -59,6 +59,7 @@ public class AdminOneFormServlet extends HttpServlet {
 				List<Qna> qnaList=new AdminOneService().selectQNAList(cPage,numPerPage);
 				//전체 notice 수
 				int totalQNA=new AdminOneService().selectQNACount();
+				System.out.println(totalQNA);
 				//전체 페이지 수
 				int totalPage=(int)Math.ceil((double)totalQNA/numPerPage);
 				//noticeForm에 보내줄 html문

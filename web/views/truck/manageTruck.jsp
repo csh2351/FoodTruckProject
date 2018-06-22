@@ -35,7 +35,7 @@ $(function() {
     $('#location-btn').trigger('click');
 		setTimeout(function() {
 	    $('#detail-btn').trigger('click');
-			}, 1000);
+		}, 500);
 	}	
 
 })

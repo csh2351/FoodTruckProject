@@ -201,7 +201,7 @@ function fn_commentDelete(index,pk) {
 		data:{reviewCommentPk :pk},
 		success : function(data){ 
 			alert(data.msg);
-			var comment=$("#review-view"+index);
+			var comment=$(".review-comment-view"+index);
 			comment.remove();
 		}, 
 		error : function(request,status,error) { 
