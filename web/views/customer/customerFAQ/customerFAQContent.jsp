@@ -5,7 +5,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/nav-tabs.css">
 <%
 	CustomerFAQ customerFAQ=(CustomerFAQ)request.getAttribute("customerFAQ");
+	String memberLevel=memberLoggedIn.getMemberLevel();;
 %>
+
 
 <style>
 	.table
@@ -39,10 +41,12 @@
 	<div class='container'>
 		<div class="panel">
 			<ul class="nav nav-tabs">
-				<li role="presentation"><a href="<%=request.getContextPath() %>/customer.do">공지사항</a></li>
-                <li class="active" role="presentation"><a href="<%=request.getContextPath() %>/customerFAQForm.do">자주묻는 질문</a></li>
-                <li role="presentation"><a href="<%=request.getContextPath() %>/customerStoreSignup.do">점포가입신청</a></li>
-            </ul>
+				<li role="presentation"><a href="<%=request.getContextPath()%>/customer.do">공지사항</a></li>
+				<li class="active" role="presentation"><a href="<%=request.getContextPath()%>/customerFAQForm.do">자주묻는 질문</a></li>
+				<li role="presentation"><a href="<%=request.getContextPath()%>/customerStoreSignup.do">점포가입신청</a></li>
+			</ul>
+
+
         <div class="panel-body">
 	            <br>
 	            <h2>공지사항</h2>
